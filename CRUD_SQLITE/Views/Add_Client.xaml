@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRUD_SQLITE.Views.Add_Client">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout >
+                <Image Source="avatar.png" WidthRequest="100" Margin="10" />
+                <Label Text="ADD NEW CLIENT" HorizontalOptions="Center"/>
+                <Entry x:Name="textFirstName" Placeholder="First Name"  WidthRequest="80" Margin="10" />
+                <Entry x:Name="textLastName" Placeholder="Last Name" WidthRequest="80" Margin="10" />
+                <Entry x:Name="textDirection" Placeholder="Direction" WidthRequest="80" Margin="10" />
+                <Entry x:Name="textPhone" Placeholder="Phone"  WidthRequest="80" Margin="10" />
+                <Entry x:Name="textEmail" Placeholder="Email"  WidthRequest="80" Margin="10" />
+                <Entry x:Name="textCity" Placeholder="City"  WidthRequest="80" Margin="10" />
+                <Button x:Name="btnAddClient" Text="Save"  Margin="50" CornerRadius="10" Clicked="addClient_Clicked" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

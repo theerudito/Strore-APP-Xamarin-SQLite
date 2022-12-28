@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRUD_SQLITE.Views.Cart">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout Background="Silver">
+                <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="0" >
+                    <Label Text="Cant" WidthRequest="100" Margin="10"/>
+                    <Label Text="Details" WidthRequest="100" Margin="10"/>
+                    <Label Text="P_Unitary" WidthRequest="100" Margin="10"/>
+                    <Label Text="P_Total" WidthRequest="100" Margin="10"/>
+                    <Label Text="Action" WidthRequest="100" Margin="10"/>
+                </FlexLayout>
+            </StackLayout>
+
+            <ScrollView >
+                <StackLayout  HeightRequest="300">
+                    <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="0" >
+                        <Label Text="20" WidthRequest="100" Margin="10"/>
+                        <Label Text="Dorito" WidthRequest="100" Margin="10"/>
+                        <Label Text="0.25" WidthRequest="100" Margin="10"/>
+                        <FlexLayout WidthRequest="100" HeightRequest="40" Margin="10">
+                            <Image Source="edit" Aspect="AspectFit" WidthRequest="50" HeightRequest="20" />
+                            <Image Source="trash" Aspect="AspectFit"  WidthRequest="50" HeightRequest="20"   />
+                        </FlexLayout>
+                    </FlexLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+            <FlexLayout  Background="silver" Padding="10" >
+                <Label Text="TOTAL:" FontSize="20" />
+                <Label Text="2000" WidthRequest="100" HorizontalOptions="Center" FlowDirection="LeftToRight" TextDecorations="None" TextColor="White" FontSize="20"  />
+            </FlexLayout>
+
+            <Label Text="DETAILS" FontSize="20" />
+
+            <StackLayout>
+                <Entry Placeholder="CI"    Margin="10"  />
+                <Entry Placeholder="Name"    Margin="10" />
+                <Entry Placeholder="Email"  Margin="10" />
+                <Entry Placeholder="Phone"  Margin="10" />
+            </StackLayout>
+
+            <Button Text="TO BOY" Margin="50" CornerRadius="5" />
+
+
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

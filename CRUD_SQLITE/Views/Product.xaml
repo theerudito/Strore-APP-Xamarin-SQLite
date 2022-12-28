@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRUD_SQLITE.Views.Product">
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <FlexLayout WidthRequest="100" HeightRequest="40" Margin="10">
+
+                <ImageButton Source="add_product.png" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                             Aspect="AspectFit" WidthRequest="50" Clicked="ImageButton_Clicked"
+                             />
+
+                <Label Text="Search:" WidthRequest="100" Margin="10" />
+                <Entry Placeholder="Search Product" WidthRequest="200"/>
+                <Image Source="lupa" Aspect="AspectFit" WidthRequest="50" HeightRequest="30"/>
+            </FlexLayout>
+
+
+            <StackLayout
+                Background="Silver">
+                <FlexLayout WidthRequest="100" HeightRequest="40" Margin="0" >
+                    <Label Text="Cant" WidthRequest="100" Margin="10"
+                           />
+                    <Label Text="Name" WidthRequest="100" Margin="10"
+                           />
+                    <Label Text="Brand" WidthRequest="100" Margin="10"
+                           />
+                    <Label Text="Description" WidthRequest="100" Margin="10"
+                           />
+                    <Label Text="V_Unitary" WidthRequest="100" Margin="10"
+                           />
+                    <Label Text="Action" WidthRequest="100" Margin="10"/>
+                </FlexLayout>
+            </StackLayout>
+
+            <ListView x:Name="mylistViewProduct">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid  BackgroundColor="white">
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto"  />
+                                    <RowDefinition  Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions  >
+                                <!--<Label Text="{Binding Quantity}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>-->
+                                <Label Text="{Binding Id}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Brand}" Grid.Row="0" Grid.Column="2" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Price}" Grid.Row="0" Grid.Column="4"  WidthRequest="100" Margin="10"/>
+
+                                <FlexLayout Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"  >
+                                    <ImageButton Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateProduct_Clicked" Margin="0, 2, 5, 0" />
+                                    <ImageButton Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteProduct_Clicked" Margin="0, 2, 5, 0"  />
+                                </FlexLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
