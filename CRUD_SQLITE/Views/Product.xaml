@@ -8,9 +8,15 @@
 
             <FlexLayout WidthRequest="100" HeightRequest="40" Margin="10">
 
-                <ImageButton Source="add_product.png" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
-                             Aspect="AspectFit" WidthRequest="50" Clicked="ImageButton_Clicked"
-                             />
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Source="add_product.png"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Aspect="AspectFit"
+                    WidthRequest="50"
+                    Clicked="ImageButton_Clicked"
+                    />
 
                 <Label Text="Search:" WidthRequest="100" Margin="10" />
                 <Entry Placeholder="Search Product" WidthRequest="200"/>
@@ -51,16 +57,15 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions  >
-                                <!--<Label Text="{Binding Quantity}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>-->
-                                <Label Text="{Binding Id}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Quantity}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Brand}" Grid.Row="0" Grid.Column="2" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Price}" Grid.Row="0" Grid.Column="4"  WidthRequest="100" Margin="10"/>
 
                                 <FlexLayout Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"  >
-                                    <ImageButton Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateProduct_Clicked" Margin="0, 2, 5, 0" />
-                                    <ImageButton Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteProduct_Clicked" Margin="0, 2, 5, 0"  />
+                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateProduct_Clicked" Margin="0, 2, 5, 0" />
+                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteProduct_Clicked" Margin="0, 2, 5, 0"  />
                                 </FlexLayout>
                             </Grid>
                         </ViewCell>

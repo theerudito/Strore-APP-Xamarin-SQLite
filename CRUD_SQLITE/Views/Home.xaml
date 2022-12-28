@@ -3,10 +3,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Home">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Page Home"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <ScrollView>
+            <StackLayout>
+
+                <StackLayout >
+                    <Image Source="avatar" Aspect="AspectFit" WidthRequest="100"  Margin="0 ,40 ,0 ,0"/>
+                    <Label Text="Your Store"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="20" />
+                    <Label x:Name="UserLabel" Text="Welcome Jorge Loor"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="14"  />
+                </StackLayout>
+
+                <StackLayout Margin="0 ,40 ,0 ,0">
+                    <Image Source="store" Aspect="AspectFit" WidthRequest="100" HeightRequest="300"/>
+                </StackLayout>
+
+                <StackLayout  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                    <Label Text="By Jorge Loor 2022" HorizontalOptions="CenterAndExpand" />
+                    <Label Text="v1.1.0" HorizontalOptions="CenterAndExpand" />
+
+
+                    <FlexLayout WidthRequest="0" HeightRequest="50"  VerticalOptions="Center" >
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            Source="github"
+                            Aspect="AspectFit"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            Margin="0, 2, 10, 0"
+                            Clicked="openMyGitHub"
+
+
+                            />
+
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            Source="instagram"
+                            Aspect="AspectFit"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            Margin="0, 2, 10, 0"
+                            Clicked="openMyGitHub"
+
+                            />
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            Source="twitter"
+                            Aspect="AspectFit"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            Margin="0, 2, 10, 0"
+                            Clicked="openMyGitHub"
+                            />
+
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            Source="web"
+                            Aspect="AspectFit"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            Margin="0, 2, 10, 0"
+                            Clicked="openMyGitHub"
+                            />
+
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            Source="linkedin"
+                            Aspect="AspectFit"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            Margin="0, 2, 10, 0"
+                            Clicked="openMyGitHub"
+                            />
+
+                    </FlexLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

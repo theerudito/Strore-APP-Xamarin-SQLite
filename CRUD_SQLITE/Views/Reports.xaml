@@ -4,9 +4,59 @@
              x:Class="CRUD_SQLITE.Views.Reports">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="10" >
+
+
+                <Image Source="reports" Aspect="AspectFit" WidthRequest="50" HeightRequest="30"  />
+
+                <Label Text="Search:" WidthRequest="100" Margin="10"/>
+                <Entry Placeholder="Search Docu"  WidthRequest="200" />
+                <Image Source="lupa" Aspect="AspectFit" WidthRequest="50" HeightRequest="30"  />
+
+            </FlexLayout>
+
+            <StackLayout Background="Silver">
+                <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="0" >
+                    <Label Text="Name" WidthRequest="100" Margin="10"/>
+                    <Label Text="#Docu" WidthRequest="100" Margin="10"/>
+                    <Label Text="Date" WidthRequest="100" Margin="10"/>
+                    <Label Text="Total" WidthRequest="100" Margin="10"/>
+                    <Label Text="Action" WidthRequest="100" Margin="10"/>
+                </FlexLayout>
+            </StackLayout>
+
+            <ListView x:Name="myListViewReport">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid  BackgroundColor="white">
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto"  />
+                                    <RowDefinition  Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions  >
+                                <Label Text="{Binding FirstName}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Direction}" Grid.Row="0" Grid.Column="1" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Phone}" Grid.Row="0" Grid.Column="2"  WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Email}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
+                                <FlexLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center"   >
+                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateClient_Clicked" Margin="0, 2, 5, 0" />
+                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteClient_Clicked" Margin="0, 2, 5, 0"  />
+                                </FlexLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

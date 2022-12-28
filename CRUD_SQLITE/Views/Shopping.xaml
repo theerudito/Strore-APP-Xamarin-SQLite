@@ -4,9 +4,43 @@
              x:Class="CRUD_SQLITE.Views.Shopping">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Page Shopping"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+
+            <Frame>
+                <Entry  Text="Hola"/>
+
+            </Frame>
+
+            <StackLayout>
+                <ContentView>
+                    <ContentView.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </ContentView.Content>
+                </ContentView>
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout Background="orange" WidthRequest="40" HeightRequest="300" >
+                    <Label Text="Name"></Label>
+                    <Label Text="Name"></Label>
+                    <Label Text="Name"></Label>
+                    <Label Text="Name"></Label>
+                    <Button WidthRequest="50" Text="ADD TO CART"  />
+                </StackLayout>
+                <StackLayout>
+
+                </StackLayout>
+            </StackLayout>
+
+
+            <FlexLayout WidthRequest="100" HorizontalOptions="Center">
+                <ImageButton Source="left" BackgroundColor="Transparent" WidthRequest="50" Margin="0, 0, 20, 0"/>
+                <ImageButton Source="right" BackgroundColor="Transparent" WidthRequest="50" Margin="0, 0, 20, 0"/>
+            </FlexLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

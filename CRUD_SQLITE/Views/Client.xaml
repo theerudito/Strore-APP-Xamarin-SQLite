@@ -13,6 +13,7 @@
                     VerticalOptions="CenterAndExpand"
                     Aspect="AspectFit" WidthRequest="50"
                     Clicked="openNewCLient_Clicked"
+                    BackgroundColor="Transparent"
                     />
 
                 <Label Text="Search:" WidthRequest="100" Margin="10"/>
@@ -53,8 +54,8 @@
                                 <Label Text="{Binding Phone}" Grid.Row="0" Grid.Column="2"  WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Email}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
                                 <FlexLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center"   >
-                                    <ImageButton Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateClient_Clicked" Margin="0, 2, 5, 0" />
-                                    <ImageButton Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteClient_Clicked" Margin="0, 2, 5, 0"  />
+                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateClient_Clicked" Margin="0, 2, 5, 0" />
+                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteClient_Clicked" Margin="0, 2, 5, 0"  />
                                 </FlexLayout>
                             </Grid>
                         </ViewCell>
