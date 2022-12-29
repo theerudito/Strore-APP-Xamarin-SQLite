@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 
 namespace CRUD_SQLITE.Views
@@ -31,6 +32,8 @@ namespace CRUD_SQLITE.Views
             btnAddClient.TextColor = Color.White;
             btnAddClient.BackgroundColor = Color.FromHex("#FF8C00");
             btnAddClient.Text = "Edit Client";
+
+
         }
 
         public Add_Client() => InitializeComponent();
@@ -132,6 +135,7 @@ namespace CRUD_SQLITE.Views
             }
             return validate;
         }
+
 
     }
 }

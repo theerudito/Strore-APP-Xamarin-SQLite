@@ -69,6 +69,10 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+    <FlyoutItem Title="Auth" Icon="login">
+        <ShellContent Route="Auth" ContentTemplate="{DataTemplate local:Auth}" />
+    </FlyoutItem>
+
 
     <FlyoutItem Title="Home" Icon="store.png">
         <ShellContent Route="home" ContentTemplate="{DataTemplate local:Home}" />
@@ -92,6 +96,14 @@
 
     <FlyoutItem Title="Reports" Icon="reports.png">
         <ShellContent Route="report" ContentTemplate="{DataTemplate local:Reports}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Config" Icon="config">
+        <ShellContent Route="config" ContentTemplate="{DataTemplate local:Config}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="User" Icon="avatar">
+        <ShellContent Route="users" ContentTemplate="{DataTemplate local:Users}" />
     </FlyoutItem>
 
 

@@ -6,7 +6,7 @@
 
         <StackLayout>
 
-            <FlexLayout WidthRequest="100" HeightRequest="40" Margin="10">
+            <FlexLayout WidthRequest="100" HeightRequest="50"  >
 
                 <ImageButton
                     BackgroundColor="Transparent"
@@ -15,12 +15,17 @@
                     VerticalOptions="CenterAndExpand"
                     Aspect="AspectFit"
                     WidthRequest="50"
+                    HeightRequest="50"
+                    Padding="0,0,-20,0"
+                    Margin="0,0,-2,0"
                     Clicked="ImageButton_Clicked"
                     />
 
-                <Label Text="Search:" WidthRequest="100" Margin="10" />
-                <Entry Placeholder="Search Product" WidthRequest="200"/>
-                <Image Source="lupa" Aspect="AspectFit" WidthRequest="50" HeightRequest="30"/>
+
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="20, 5" CornerRadius="10" Padding="0,0,0,-2" Grid.Row="1">
+                    <SearchBar  Placeholder="Search Product" HeightRequest="100"  />
+                </Frame>
+
             </FlexLayout>
 
 
@@ -73,6 +78,16 @@
                 </ListView.ItemTemplate>
 
             </ListView>
+
+            <StackLayout  HeightRequest="30" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ImageButton Source="left" Grid.Column="0" BackgroundColor="Transparent"   />
+                    <ImageButton Source="right" Grid.Column="1"  BackgroundColor="Transparent"    />
+                </Grid>
+            </StackLayout>
 
 
         </StackLayout>

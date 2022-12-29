@@ -5,42 +5,109 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Frame>
-                <Entry  Text="Hola"/>
-
-            </Frame>
-
-            <StackLayout>
-                <ContentView>
-                    <ContentView.Content>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                        </Grid>
-                    </ContentView.Content>
-                </ContentView>
-            </StackLayout>
-
-            <StackLayout>
-                <StackLayout Background="orange" WidthRequest="40" HeightRequest="300" >
-                    <Label Text="Name"></Label>
-                    <Label Text="Name"></Label>
-                    <Label Text="Name"></Label>
-                    <Label Text="Name"></Label>
-                    <Button WidthRequest="50" Text="ADD TO CART"  />
-                </StackLayout>
-                <StackLayout>
-
-                </StackLayout>
-            </StackLayout>
+            <FlexLayout>
 
 
-            <FlexLayout WidthRequest="100" HorizontalOptions="Center">
-                <ImageButton Source="left" BackgroundColor="Transparent" WidthRequest="50" Margin="0, 0, 20, 0"/>
-                <ImageButton Source="right" BackgroundColor="Transparent" WidthRequest="50" Margin="0, 0, 20, 0"/>
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="30, 10" CornerRadius="10" Padding="0,0,0,-2" Grid.Row="1">
+                    <SearchBar  Placeholder="Search Product" WidthRequest="250"/>
+                </Frame>
+                <ImageButton BackgroundColor="Transparent"
+                             Source="cart"
+                             HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand"
+                             Aspect="AspectFit"
+                             WidthRequest="50"
+                             HeightRequest="50"
+                             Padding="0,12,-20,0"
+                             Margin="0,0,2,0"
+                             Clicked="addCart_Clicked"
+                             x:Name="padre"
+                             />
+
+                <Frame CornerRadius="50" BackgroundColor="Red"  Padding="5" Margin="1,10 ,2, 20"  HeightRequest="30" WidthRequest="25">
+                    <Label x:Name="textCounter" Text="100"  TextColor="White" VerticalTextAlignment="Center"/>
+                </Frame>
+
             </FlexLayout>
 
+            <StackLayout>
+
+                <ListView x:Name="mylistViewProduct" IsGroupingEnabled="False"
+                          HasUnevenRows="True"  Background="white"
+                          BackgroundColor="Transparent" SelectionMode="None"
+                          SeparatorColor="Black" InputTransparent="True" SeparatorVisibility="None"
+                          >
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell >
+                                <Grid  Padding="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout  Padding="5" BackgroundColor="black" >
+                                        <Image  Source="store"  HeightRequest="100"/>
+
+                                        <FlexLayout HorizontalOptions="Center">
+                                            <Label Text="Name:"    Margin="0, 0,5,0" TextColor="White"/>
+                                            <Label Text="{Binding Name}"  Margin="0, 0, 5 ,0" TextColor="White"/>
+                                        </FlexLayout>
+
+                                        <FlexLayout HorizontalOptions="Center">
+                                            <Label Text="Brand:"    Margin="0, 0,5,0" TextColor="White"/>
+                                            <Label Text="{Binding Brand}"   Margin="0, 0, 5 ,0" TextColor="White"/>
+                                        </FlexLayout>
+
+                                        <FlexLayout HorizontalOptions="Center">
+                                            <Label Text="Description:"    Margin="0, 0,5,0" TextColor="White"/>
+                                            <Label Text="{Binding Description}"   Margin="0, 0, 5 ,0" TextColor="White"/>
+                                        </FlexLayout>
+
+                                        <FlexLayout HorizontalOptions="Center">
+                                            <Label Text="Price:"    Margin="0, 0,5,0" TextColor="White"/>
+                                            <Label Text="{Binding Price}"  Margin="0, 0, 5 ,0" TextColor="White"/>
+                                        </FlexLayout>
+
+                                        <Button Text="ADD TO CART" WidthRequest="100" />
+                                    </StackLayout>
+
+                                </Grid>
+
+
+
+
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
+            </StackLayout>
+
+
+
+
+            <StackLayout  HeightRequest="30" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ImageButton Source="left" Grid.Column="0" BackgroundColor="Transparent"   Clicked="prewProduct_Clicked"/>
+                    <ImageButton Source="right" Grid.Column="1"  BackgroundColor="Transparent"   Clicked="nextProduct_Clicked" />
+                </Grid>
+            </StackLayout>
+
+
+
+
+
+
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

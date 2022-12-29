@@ -7,11 +7,11 @@
             <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="10" >
 
 
-                <Image Source="reports" Aspect="AspectFit" WidthRequest="50" HeightRequest="30"  />
+                <Image Source="reports" Aspect="AspectFit" WidthRequest="100" HeightRequest="50"  />
 
-                <Label Text="Search:" WidthRequest="100" Margin="10"/>
-                <Entry Placeholder="Search Docu"  WidthRequest="200" />
-                <Image Source="lupa" Aspect="AspectFit" WidthRequest="50" HeightRequest="30"  />
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="50, 5, 20, -5" CornerRadius="10" Padding="0,0,0,-2" Grid.Row="1">
+                    <SearchBar  Placeholder="Search # Document" HeightRequest="80"  />
+                </Frame>
 
             </FlexLayout>
 
@@ -46,14 +46,36 @@
                                 <Label Text="{Binding Phone}" Grid.Row="0" Grid.Column="2"  WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Email}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
                                 <FlexLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center"   >
-                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateClient_Clicked" Margin="0, 2, 5, 0" />
-                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteClient_Clicked" Margin="0, 2, 5, 0"  />
+                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0" />
+                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0"  />
                                 </FlexLayout>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackLayout  HeightRequest="60" Margin="20">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <FlexLayout   Grid.Row="0" Grid.Column="1" BackgroundColor="#0099FF" >
+                        <Label  Text="TOTAL:"  WidthRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="white" />
+                        <Label x:Name="textTotal" Text="2000"  WidthRequest="100" FontSize="20" TextColor="white"/>
+                    </FlexLayout>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout  HeightRequest="30" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ImageButton Source="left" Grid.Column="0" BackgroundColor="Transparent"   />
+                    <ImageButton Source="right" Grid.Column="1"  BackgroundColor="Transparent"    />
+                </Grid>
+            </StackLayout>
 
 
 

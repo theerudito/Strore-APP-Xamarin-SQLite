@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Cart">
     <ContentPage.Content>
+
         <StackLayout>
+
+
 
             <StackLayout Background="Silver">
                 <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="0" >
@@ -30,26 +33,63 @@
             </ScrollView>
 
 
-            <FlexLayout  Background="silver" Padding="10" >
-                <Label Text="TOTAL:" FontSize="20" />
-                <Label Text="2000" WidthRequest="100" HorizontalOptions="Center" FlowDirection="LeftToRight" TextDecorations="None" TextColor="White" FontSize="20"  />
-            </FlexLayout>
-
-            <Label Text="DETAILS" FontSize="20" />
-
-            <StackLayout>
-                <Entry Placeholder="CI"    Margin="10"  />
-                <Entry Placeholder="Name"    Margin="10" />
-                <Entry Placeholder="Email"  Margin="10" />
-                <Entry Placeholder="Phone"  Margin="10" />
+            <StackLayout  HeightRequest="60" Margin="5,40,5,0" Padding="0" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <FlexLayout   Grid.Row="0" Grid.Column="1" BackgroundColor="#0099FF">
+                        <Label  Text="TOTAL:"  WidthRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="white" />
+                        <Label x:Name="textTotal" Text="2000"  WidthRequest="100" FontSize="20" TextColor="white"/>
+                    </FlexLayout>
+                </Grid>
             </StackLayout>
 
-            <Button Text="TO BOY" Margin="50" CornerRadius="5" />
+
+            <StackLayout>
+
+                <Frame Background="#0099FF" VerticalOptions="Center"  Margin="0" Padding="5">
+                    <Label  Text="DETAILS" TextColor="white" HorizontalOptions="Center" />
+                </Frame>
+
+                <Grid   HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions  >
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="180" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame HasShadow="True" BackgroundColor="AliceBlue"  Grid.Row="0" Grid.Column="0" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                        <SearchBar x:Name="textDNI"  Placeholder="CI"  />
+                    </Frame>
+
+                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="0" Grid.Column="1" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                        <Entry x:Name="textPhone"  Placeholder="Phone"  HeightRequest="70"  />
+                    </Frame>
+
+                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="1" Grid.Column="0" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                        <Entry x:Name="textFirstName"  Placeholder="First Name" HeightRequest="40"    />
+                    </Frame>
+
+                    <Frame HasShadow="True" BackgroundColor="AliceBlue"  Grid.Row="1" Grid.Column="1" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                        <Entry x:Name="textLastName"  Placeholder="Last Name" HeightRequest="70"   />
+                    </Frame>
+
+                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="0" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                        <Entry x:Name="textEmail"  Placeholder="Email"  HeightRequest="70"  />
+                    </Frame>
+                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="1" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                        <Entry x:Name="textDirection"  Placeholder="Direction"  HeightRequest="70"  />
+                    </Frame>
 
 
+                </Grid>
+
+
+            </StackLayout>
+
+            <Button Text="TO BUY" Margin="50" CornerRadius="5" />
 
         </StackLayout>
-
 
     </ContentPage.Content>
 </ContentPage>

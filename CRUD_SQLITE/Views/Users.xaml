@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRUD_SQLITE.Views.Users">
+    <ContentPage.Content>
+
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center">
+                <Label  Text="USERS" Margin="10"/>
+            </StackLayout>
+
+
+            <ListView x:Name="viewUser">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid  BackgroundColor="white">
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto"  />
+                                    <RowDefinition  Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions  >
+                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Email}" Grid.Row="0" Grid.Column="1" WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Password}" Grid.Row="0" Grid.Column="2"  WidthRequest="100" Margin="10"/>
+                                <Label Text="{Binding Email}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
+                                <FlexLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center"   >
+                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0" />
+                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0"  />
+                                </FlexLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

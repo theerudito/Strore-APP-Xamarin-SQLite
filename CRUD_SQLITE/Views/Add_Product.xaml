@@ -7,12 +7,24 @@
             <StackLayout >
                 <Image Source="image.png" WidthRequest="100" Margin="10" />
                 <Label Text="ADD NEW PRODUCT" HorizontalOptions="Center"/>
-                <Entry x:Name="textName" Placeholder="Name"  WidthRequest="80" Margin="10" />
-                <Entry x:Name="textCode"  Placeholder="Code"  WidthRequest="80" Margin="10" />
-                <Entry x:Name="textBrand"  Placeholder="Brand"  WidthRequest="80" Margin="10" />
-                <Entry x:Name="textDescription"  Placeholder="Description"  WidthRequest="80" Margin="10" />
-                <Entry x:Name="textPrice"  Placeholder="Price"  WidthRequest="80" Margin="10" />
-                <Entry x:Name="textQuantity"  Placeholder="Quantity"  WidthRequest="80" Margin="10" />
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                    <Entry x:Name="textName" Placeholder="Name"  HeightRequest="70" />
+                </Frame>
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                    <Entry x:Name="textCode"  Placeholder="Code"  HeightRequest="70"/>
+                </Frame>
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                    <Entry x:Name="textBrand"  Placeholder="Brand"  HeightRequest="70" />
+                </Frame>
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                    <Entry x:Name="textDescription"  Placeholder="Description"  HeightRequest="70" />
+                </Frame>
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                    <Entry x:Name="textPrice" Keyboard="Numeric"  Placeholder="Price"  HeightRequest="70" />
+                </Frame>
+                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
+                    <Entry x:Name="textQuantity" Keyboard="Numeric"  Placeholder="Quantity"  HeightRequest="70"/>
+                </Frame>
                 <Button x:Name="btnAddProduct" Text="Save" Margin="50" CornerRadius="10" Clicked="createProduct_Clicked"/>
             </StackLayout>
         </ScrollView>

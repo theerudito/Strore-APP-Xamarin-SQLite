@@ -31,8 +31,6 @@
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
                             Clicked="openMyGitHub"
-
-
                             />
 
                         <ImageButton
