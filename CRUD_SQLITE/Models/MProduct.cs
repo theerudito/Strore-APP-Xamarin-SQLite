@@ -11,7 +11,7 @@ namespace CRUD_SQLITE.Models
         public int Id { get; set; }
 
         [MaxLength(50)]
-        public string Code { get; set; }
+        public int Code { get; set; }
 
         [MaxLength(50)]
         public string Name { get; set; }
@@ -28,9 +28,9 @@ namespace CRUD_SQLITE.Models
         [MaxLength(50)]
         public int Quantity { get; set; }
 
-        public static explicit operator MProduct(Task<bool> v)
-        {
-            throw new NotImplementedException();
-        }
+        [MaxLength(150)]
+        public string ImageProduct { get; set; }
+
+
     }
 }

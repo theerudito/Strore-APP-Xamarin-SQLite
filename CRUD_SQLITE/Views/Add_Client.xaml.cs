@@ -23,6 +23,7 @@ namespace CRUD_SQLITE.Views
             InitializeComponent();
             edit = isEdit;
             id = int.Parse(data["Id"]);
+            textDNI.Text = data["DNI"];
             textFirstName.Text = data["FirstName"];
             textLastName.Text = data["LastName"];
             textDirection.Text = data["Direction"];
@@ -32,8 +33,6 @@ namespace CRUD_SQLITE.Views
             btnAddClient.TextColor = Color.White;
             btnAddClient.BackgroundColor = Color.FromHex("#FF8C00");
             btnAddClient.Text = "Edit Client";
-
-
         }
 
         public Add_Client() => InitializeComponent();
@@ -42,6 +41,8 @@ namespace CRUD_SQLITE.Views
         {
             ClientViewModel newClient = new ClientViewModel();
 
+
+
             if (edit == true)
             {
 
@@ -49,6 +50,7 @@ namespace CRUD_SQLITE.Views
                 {
                     await newClient.updateClientAsync(new MClient
                     {
+                        DNI = Convert.ToInt32(textDNI.Text),
                         FirstName = textFirstName.Text,
                         LastName = textLastName.Text,
                         Direction = textDirection.Text,
@@ -70,6 +72,7 @@ namespace CRUD_SQLITE.Views
                 {
                     await newClient.createClientAsync(new MClient
                     {
+                        DNI = Convert.ToInt32(textDNI.Text),
                         FirstName = textFirstName.Text,
                         LastName = textLastName.Text,
                         Direction = textDirection.Text,
@@ -92,6 +95,7 @@ namespace CRUD_SQLITE.Views
             textPhone.Text = "";
             textEmail.Text = "";
             textCity.Text = "";
+            textDNI.Text = "";
         }
 
 
@@ -127,6 +131,11 @@ namespace CRUD_SQLITE.Views
             else if (string.IsNullOrEmpty(textCity.Text))
             {
                 DisplayAlert("Alert", "Please enter the City", "OK");
+                validate = false;
+            }
+            else if (string.IsNullOrEmpty(textDNI.Text))
+            {
+                DisplayAlert("Alert", "Please enter the CI", "OK");
                 validate = false;
             }
             else

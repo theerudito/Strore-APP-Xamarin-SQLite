@@ -15,13 +15,15 @@ namespace CRUD_SQLITE.ViewModels
         public Task<MClient> createClientAsync(MClient client)
         {
             var db = connection.openConnection();
-            var sql = "INSERT INTO Client (FirstName, LastName, Direction, Phone, Email, City) " +
+            var sql = "INSERT INTO Client (FirstName, LastName, Direction, Phone, Email, City, DNI) " +
                 "VALUES ('" + client.FirstName + "', " +
                 "'" + client.LastName + "', " +
                 "'" + client.Direction + "', " +
                 "'" + client.Phone + "', " +
                 "'" + client.Email + "', " +
-                "'" + client.City + "')";
+                "'" + client.City + "', " +
+                "'" + client.DNI + "')";
+
             db.Execute(sql);
 
             return Task.FromResult(client);
@@ -58,6 +60,7 @@ namespace CRUD_SQLITE.ViewModels
                 "Direction = '" + client.Direction + "', " +
                 "Phone = '" + client.Phone + "', " +
                 "Email = '" + client.Email + "', " +
+                "DNI = '" + client.DNI + "', " +
                 "City = '" + client.City + "' " + "WHERE Id = " + id;
             db.Execute(sql);
 

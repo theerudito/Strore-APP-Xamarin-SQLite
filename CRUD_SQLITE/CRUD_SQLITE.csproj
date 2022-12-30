@@ -17,6 +17,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Dapper" Version="2.0.123" />
+		<PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
@@ -44,6 +45,9 @@
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\Home.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\LlamadoAPI.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\Product.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>

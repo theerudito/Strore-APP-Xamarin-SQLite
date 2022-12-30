@@ -5,8 +5,10 @@ using CRUD_SQLITE.Views;
 using SQLite;
 using System;
 using System.IO;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Xamarin.Essentials.Permissions;
 
 namespace CRUD_SQLITE
 {
@@ -38,22 +40,30 @@ namespace CRUD_SQLITE
 
             var queryProduct = "CREATE TABLE IF NOT EXISTS Product" +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, " +
-                "Code TEXT, Brand TEXT, Description TEXT, " +
-                "Price REAL, Quantity INTEGER)";
+                "Code INTEGER UNIQUE, Brand TEXT, Description TEXT, " +
+                "Price REAL, Quantity INTEGER, ImageProduct TEXT)";
 
-            var queryClien = "CREATE TABLE IF NOT EXISTS Client " +
+            var queryClient = "CREATE TABLE IF NOT EXISTS Client " +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "FirstName TEXT, LastName TEXT, DNI INTEGER UNIQUE, " +
+                "FirstName TEXT, LastName TEXT, DNI INTEGER" +
                 "Direction TEXT, Phone INTEGER, Email TEXT, City TEXT)";
+
 
             var queryAuth = "CREATE TABLE IF NOT EXISTS Auth" +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "Name TEXT, Email TEXT, PASSWORD TEXT)";
+                "Name TEXT, Email TEXT UNIQUE, PASSWORD TEXT)";
 
-            var queryCompany = "CREATE TABLE IF NOT EXISTS Company" +
-                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Onwer TEXT, " +
-                "Direction TEXT, Email TEXT, Phone INTEGER, DB TEXT, RUC INTEGER, Iva INTEGER, " +
-                "Current TEXT, Factura TEXT, Serie1 INTEGER, Serie2 INTEGER, NumDocument INTEGER)";
+
+
+            //Name, Owner, Direction, Email,  Phone, RUC,  NumDocument, Serie1,  Serie2, DB, Document, Iva, Current
+            var queryCompany =
+                "CREATE TABLE IF NOT EXISTS Company" +
+                "(IdCompany INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "Name TEXT, Owner TEXT, Direction TEXT, Email TEXT, " +
+                "Phone INTEGER, RUC INTEGER, NumDocument INTEGER, " +
+                "Serie1 INTEGER, Serie2 INTEGER, DB TEXT, Document TEXT, " +
+                "Iva REAL, Current INTEGER)";
+
 
 
             //// crear un tabla que tenga las dos tablas tanto client como product como referencia
@@ -79,7 +89,7 @@ namespace CRUD_SQLITE
                 "Total REAL, " +
                 "FOREIGN KEY(IdClient) REFERENCES Client(Id))";
 
-            db.Execute(queryClien);
+            db.Execute(queryClient);
             db.Execute(queryProduct);
             db.Execute(queryAuth);
             db.Execute(queryCompany);

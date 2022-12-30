@@ -29,6 +29,7 @@ namespace CRUD_SQLITE.Views
             textQuantity.Text = data["Quantity"];
             textCode.Text = data["Code"];
             textBrand.Text = data["Brand"];
+
             btnAddProduct.TextColor = Color.White;
             btnAddProduct.BackgroundColor = Color.FromHex("#FF8C00");
             btnAddProduct.Text = "Edit Product";
@@ -49,8 +50,8 @@ namespace CRUD_SQLITE.Views
                         await productViewModel.UpdateProduct(new MProduct
                         {
                             Name = textName.Text,
-                            Code = textCode.Text,
-                            Brand = textCode.Text,
+                            Code = Convert.ToInt32(textCode.Text),
+                            Brand = textBrand.Text,
                             Description = textDescription.Text,
                             Price = Convert.ToDecimal(textPrice.Text),
                             Quantity = Convert.ToInt32(textQuantity.Text),
@@ -58,6 +59,8 @@ namespace CRUD_SQLITE.Views
                          ,
                             id
                          );
+                        Shopping shopping = new Shopping();
+                        shopping.cargarDataGrid();
                         await DisplayAlert("Success", "Product Updated", "OK");
                         await Navigation.PushAsync(new Product());
                         ResetInput();
@@ -69,14 +72,15 @@ namespace CRUD_SQLITE.Views
                     {
                         await productViewModel.CreateProduct(new MProduct
                         {
-
                             Name = textName.Text,
-                            Code = textCode.Text,
-                            Brand = textCode.Text,
+                            Code = Convert.ToInt32(textCode.Text),
+                            Brand = textBrand.Text,
                             Description = textDescription.Text,
                             Price = Convert.ToDecimal(textPrice.Text),
                             Quantity = Convert.ToInt32(textQuantity.Text),
                         });
+                        Shopping shopping = new Shopping();
+                        shopping.cargarDataGrid();
                         await DisplayAlert("Success", "Product created", "OK");
                         await Navigation.PushAsync(new Product());
                         ResetInput();

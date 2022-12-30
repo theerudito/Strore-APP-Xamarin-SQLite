@@ -107,5 +107,10 @@
     </FlyoutItem>
 
 
+    <FlyoutItem Title="API" Icon="avatar">
+        <ShellContent Route="API" ContentTemplate="{DataTemplate local:LlamadoAPI}" />
+    </FlyoutItem>
+
+
 
 </Shell>

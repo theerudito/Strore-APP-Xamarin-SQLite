@@ -65,11 +65,12 @@ namespace CRUD_SQLITE.Views
             {
                 { "Id", item.Id.ToString()},
                 { "Name", item.Name },
-                { "Code", item.Code },
+                { "Code", item.Code.ToString() },
                 { "Brand", item.Brand },
                 { "Description", item.Description },
                 { "Price", item.Price.ToString() },
                 { "Quantity", item.Quantity.ToString() },
+                { "ImageProduct", item.ImageProduct }
 
             };
 

@@ -71,6 +71,8 @@ namespace CRUD_SQLITE.Views
                 { "Phone", item.Phone.ToString() },
                 { "Email", item.Email },
                 { "City", item.City },
+                { "DNI", item.DNI.ToString() },
+
             };
 
                 Navigation.PushAsync(new Add_Client(data, isEdit));

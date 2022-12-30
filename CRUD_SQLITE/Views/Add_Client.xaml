@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:renderers="clr-namespace:AppAdminDipo.Renderers"
              x:Class="CRUD_SQLITE.Views.Add_Client">
 
     <ContentPage.Content>
@@ -11,19 +10,19 @@
                 <Label Text="ADD NEW CLIENT" HorizontalOptions="Center"/>
 
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <SearchBar x:Name="textDNI"  Placeholder="CI" HeightRequest="70"  />
+                    <Entry x:Name="textDNI" Keyboard="Numeric"  Placeholder="CI" HeightRequest="70"  />
                 </Frame>
 
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textFirstName"  Placeholder="First Name" HeightRequest="70"  />
+                    <Entry x:Name="textFirstName" Keyboard="Text"  Placeholder="First Name" HeightRequest="70"  />
                 </Frame>
 
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textLastName" Placeholder="Last Name" HeightRequest="70"  />
+                    <Entry x:Name="textLastName" Keyboard="Text" Placeholder="Last Name" HeightRequest="70"  />
                 </Frame>
 
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textDirection" Placeholder="Direction" HeightRequest="70"  />
+                    <Entry x:Name="textDirection" Keyboard="Text" Placeholder="Direction" HeightRequest="70"  />
                 </Frame>
 
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
@@ -36,7 +35,7 @@
 
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
 
-                    <Entry x:Name="textCity" Placeholder="City"  HeightRequest="70"   />
+                    <Entry x:Name="textCity" Keyboard="Text" Placeholder="City"  HeightRequest="70"   />
                 </Frame>
                 <Button x:Name="btnAddClient" Text="Save" WidthRequest="80" HeightRequest="50"  Margin="20" CornerRadius="10" Clicked="addClient_Clicked" />
 

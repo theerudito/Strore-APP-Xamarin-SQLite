@@ -3,7 +3,7 @@ using CRUD_SQLITE.Services;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 
 namespace CRUD_SQLITE.ViewModels
 {
@@ -72,6 +72,11 @@ namespace CRUD_SQLITE.ViewModels
 
             db.Execute(sql);
             return Task.FromResult(true);
+        }
+
+        internal ObservableCollection<MProduct> GetProducts()
+        {
+            throw new NotImplementedException();
         }
     }
 }

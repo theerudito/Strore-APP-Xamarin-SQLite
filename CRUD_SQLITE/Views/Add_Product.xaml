@@ -11,7 +11,7 @@
                     <Entry x:Name="textName" Placeholder="Name"  HeightRequest="70" />
                 </Frame>
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textCode"  Placeholder="Code"  HeightRequest="70"/>
+                    <Entry x:Name="textCode" Keyboard="Numeric" Placeholder="Code"  HeightRequest="70"/>
                 </Frame>
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
                     <Entry x:Name="textBrand"  Placeholder="Brand"  HeightRequest="70" />

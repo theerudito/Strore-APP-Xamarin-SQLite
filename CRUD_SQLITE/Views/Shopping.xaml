@@ -30,67 +30,48 @@
 
             </FlexLayout>
 
-            <StackLayout>
 
-                <ListView x:Name="mylistViewProduct" IsGroupingEnabled="False"
-                          HasUnevenRows="True"  Background="white"
-                          BackgroundColor="Transparent" SelectionMode="None"
-                          SeparatorColor="Black" InputTransparent="True" SeparatorVisibility="None"
-                          >
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                            <ViewCell >
-                                <Grid  Padding="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition  Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout  Padding="5" BackgroundColor="black" >
-                                        <Image  Source="store"  HeightRequest="100"/>
+            <CollectionView  x:Name="mylistViewProduct" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame Padding="20" BackgroundColor="black" Margin="10" CornerRadius="10">
+                                <StackLayout   >
+                                    <Image  Source="store"  HeightRequest="100"/>
+                                    <FlexLayout HorizontalOptions="Center">
+                                        <Label Text="Name:"    Margin="0, 0,5,0" TextColor="White"/>
+                                        <Label Text="{Binding Name}"  Margin="0, 0, 5 ,0" TextColor="White"/>
+                                    </FlexLayout>
+                                    <FlexLayout HorizontalOptions="Center">
+                                        <Label Text="Brand:"    Margin="0, 0,5,0" TextColor="White"/>
+                                        <Label Text="{Binding Brand}"   Margin="0, 0, 5 ,0" TextColor="White"/>
+                                    </FlexLayout>
+                                    <FlexLayout HorizontalOptions="Center">
+                                        <Label Text="Description:"    Margin="0, 0,5,0" TextColor="White"/>
+                                        <Label Text="{Binding Description}"   Margin="0, 0, 5 ,0" TextColor="White"/>
+                                    </FlexLayout>
+                                    <FlexLayout HorizontalOptions="Center">
+                                        <Label Text="Price:"    Margin="0, 0,5,0" TextColor="White"/>
+                                        <Label Text="{Binding Price}"  Margin="0, 0, 5 ,0" TextColor="White"/>
+                                    </FlexLayout>
+                                    <Button Text="ADD TO CART" WidthRequest="100" />
+                                </StackLayout>
+                            </Frame>
 
-                                        <FlexLayout HorizontalOptions="Center">
-                                            <Label Text="Name:"    Margin="0, 0,5,0" TextColor="White"/>
-                                            <Label Text="{Binding Name}"  Margin="0, 0, 5 ,0" TextColor="White"/>
-                                        </FlexLayout>
+                        </Grid>
 
-                                        <FlexLayout HorizontalOptions="Center">
-                                            <Label Text="Brand:"    Margin="0, 0,5,0" TextColor="White"/>
-                                            <Label Text="{Binding Brand}"   Margin="0, 0, 5 ,0" TextColor="White"/>
-                                        </FlexLayout>
-
-                                        <FlexLayout HorizontalOptions="Center">
-                                            <Label Text="Description:"    Margin="0, 0,5,0" TextColor="White"/>
-                                            <Label Text="{Binding Description}"   Margin="0, 0, 5 ,0" TextColor="White"/>
-                                        </FlexLayout>
-
-                                        <FlexLayout HorizontalOptions="Center">
-                                            <Label Text="Price:"    Margin="0, 0,5,0" TextColor="White"/>
-                                            <Label Text="{Binding Price}"  Margin="0, 0, 5 ,0" TextColor="White"/>
-                                        </FlexLayout>
-
-                                        <Button Text="ADD TO CART" WidthRequest="100" />
-                                    </StackLayout>
-
-                                </Grid>
-
-
-
-
-
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-
-
-            </StackLayout>
-
-
-
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="2" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+            </CollectionView>
 
             <StackLayout  HeightRequest="30" >
                 <Grid>
@@ -101,10 +82,6 @@
                     <ImageButton Source="right" Grid.Column="1"  BackgroundColor="Transparent"   Clicked="nextProduct_Clicked" />
                 </Grid>
             </StackLayout>
-
-
-
-
 
 
         </StackLayout>

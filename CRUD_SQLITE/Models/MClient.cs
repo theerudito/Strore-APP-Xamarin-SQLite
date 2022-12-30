@@ -8,6 +8,9 @@ namespace CRUD_SQLITE.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
+        [MaxLength(15)]
+        public int DNI { get; set; }
+
         [MaxLength(50)]
         public string FirstName { get; set; }
 

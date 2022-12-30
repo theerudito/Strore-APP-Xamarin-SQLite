@@ -1,10 +1,11 @@
-﻿using CRUD_SQLITE.ViewModels;
+﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +15,7 @@ namespace CRUD_SQLITE.Views
     public partial class Shopping : ContentPage
     {
         ProductViewModel product = new ProductViewModel();
+
         public Shopping()
         {
             InitializeComponent();
@@ -24,7 +26,11 @@ namespace CRUD_SQLITE.Views
         {
             var result = await product.GetAllProduct();
 
-            mylistViewProduct.ItemsSource = result;
+            if (result != null)
+            {
+                mylistViewProduct.ItemsSource = result;
+            }
+
         }
 
         private void addCart_Clicked(object sender, EventArgs e)
