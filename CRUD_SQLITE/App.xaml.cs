@@ -1,32 +1,16 @@
 ﻿using CRUD_SQLITE.DB;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
-using CRUD_SQLITE.Views;
-using SQLite;
 using System;
 using System.IO;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using static Xamarin.Essentials.Permissions;
+
 
 namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
         public static string FilePath { get; internal set; }
-        static DATA database;
-        public static DATA Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new DATA(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "mystore.db3"));
-                }
-                return database;
-            }
-        }
+
 
         public App()
         {
@@ -54,16 +38,17 @@ namespace CRUD_SQLITE
                 "Name TEXT, Email TEXT UNIQUE, PASSWORD TEXT)";
 
 
-
-            //Name, Owner, Direction, Email,  Phone, RUC,  NumDocument, Serie1,  Serie2, DB, Document, Iva, Current
+            //Name, Owner, Direction, Email, RUC,  Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current
             var queryCompany =
                 "CREATE TABLE IF NOT EXISTS Company" +
                 "(IdCompany INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Name TEXT, Owner TEXT, Direction TEXT, Email TEXT, " +
-                "Phone INTEGER, RUC INTEGER, NumDocument INTEGER, " +
+                "RUC INTEGER, Phone INTEGER,  NumDocument INTEGER, " +
                 "Serie1 INTEGER, Serie2 INTEGER, DB TEXT, Document TEXT, " +
                 "Iva REAL, Current INTEGER)";
 
+            //var deleteTableCompany = "DROP TABLE Company";
+            //db.Execute(deleteTableCompany);
 
 
             //// crear un tabla que tenga las dos tablas tanto client como product como referencia
@@ -89,11 +74,44 @@ namespace CRUD_SQLITE
                 "Total REAL, " +
                 "FOREIGN KEY(IdClient) REFERENCES Client(Id))";
 
+
+            var queryCode = "CREATE TABLE IF NOT EXISTS Code" +
+                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CodeAdmin INTEGER UNIQUE)";
+
+            db.Execute(queryCode);
             db.Execute(queryClient);
             db.Execute(queryProduct);
             db.Execute(queryAuth);
             db.Execute(queryCompany);
             db.Execute(queryCart);
+
+
+            ////insert company
+            //var queryInsertCompany = "INSERT INTO Company (Name, Owner, Direction, Email, RUC, Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current) " +
+            //    "VALUES ('By Here', 'Jorge Loor', 'Ecuador', 'erudito.tv@gmail.com', 1234567890, 09060806054, 123456789, 123, 456, 'Firebase', 'Factura', 0.12, 'Dollar')";
+
+            //// find company
+
+            //var queryFindCompany = "SELECT * FROM Company WHERE RUC = 1234567890";
+
+            //if (db.Find<Company>(queryFindCompany) == null)
+            //{
+            //    db.Execute(queryInsertCompany);
+            //}
+
+
+            // insert code  admin on table code
+            var queryInsertCode = "INSERT INTO Code (CodeAdmin) VALUES (250787)";
+
+            // find code admin on table code
+            var querySelectCode = "SELECT * FROM Code WHERE CodeAdmin = 250787";
+
+            //// if not exist code admin on table code insert code admin
+            if (db.Query<Code>(querySelectCode).Count == 0)
+            {
+                db.Execute(queryInsertCode);
+            }
 
         }
 

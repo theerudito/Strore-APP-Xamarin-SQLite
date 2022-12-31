@@ -19,7 +19,7 @@ namespace CRUD_SQLITE.ViewModels
             try
             {
                 var db = connection.openConnection();
-                var sql = "INSERT INTO Product (Name, Code, Description, Brand,  Price, Quantity) "
+                var sql = "INSERT INTO Product (Name, Code, Brand, Description, Price, Quantity) "
 
                     + "VALUES ('" + product.Name + "', "
                     + "'" + product.Code + "', "

@@ -16,9 +16,9 @@ namespace CRUD_SQLITE.Models
         public string Direction { get; set; }
         [MaxLength(50)]
         public string Email { get; set; }
-        [MaxLength(10)]
+        [MaxLength(15)]
         public int RUC { get; set; }
-        [MaxLength(50)]
+        [MaxLength(20)]
         public int Phone { get; set; }
         [MaxLength(50)]
         public int NumDocument { get; set; }
@@ -34,8 +34,7 @@ namespace CRUD_SQLITE.Models
         public decimal Iva { get; set; }
         [MaxLength(50)]
         public string Current { get; set; }
-        [MaxLength(10)]
-        public string Code { get; set; }
 
+        public bool existe { get; set; }
     }
 }

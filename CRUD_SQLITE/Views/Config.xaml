@@ -92,11 +92,11 @@
                 <Grid   HorizontalOptions="Center">
                     <Grid.ColumnDefinitions  >
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="80" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
                     <Button  x:Name="btnSaveCompany" Grid.Column="0"  Text="Save Company"  Margin="10" CornerRadius="10" Clicked="btncreateCompany_Clicked"/>
-                    <Button  x:Name="btnEditCompany" Grid.Column="2"  Text="Edit Company"  Margin="10" CornerRadius="10" BackgroundColor="orange" Clicked="btnEditCompany_Clicked"/>
+                    <Button  x:Name="btnEditCompany" Grid.Column="2"  Text="ADMIN"  Margin="10" CornerRadius="10" BackgroundColor="orange" Clicked="btnEditCompany_Clicked"/>
                     <Frame x:Name="FrameCode" HasShadow="True" BackgroundColor="AliceBlue"  Grid.Column="1" IsClippedToBounds="True" Margin="10" CornerRadius="10" Padding="0,-10,0,-10"  >
                         <Entry x:Name="textCode" Placeholder="CODE" Keyboard="Numeric"   />
                     </Frame>
