@@ -28,9 +28,7 @@ namespace CRUD_SQLITE.Models
         [MaxLength(50)]
         public int Quantity { get; set; }
 
-        [MaxLength(150)]
-        public string ImageProduct { get; set; }
-
-
+        [MaxLength(300)]
+        public byte[] imgProduct { get; set; }
     }
 }

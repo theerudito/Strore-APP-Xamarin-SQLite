@@ -2,12 +2,13 @@
 using CRUD_SQLITE.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
+using System.Linq;
+using CRUD_SQLITE.Services;
+using System.IO;
 
 namespace CRUD_SQLITE.Views
 {
@@ -17,6 +18,8 @@ namespace CRUD_SQLITE.Views
         private MProduct data;
         bool edit;
         int id;
+        byte[] imgProduct;
+
         public Add_Product(Dictionary<string, string> data, bool isEdit)
         {
 
@@ -29,13 +32,43 @@ namespace CRUD_SQLITE.Views
             textQuantity.Text = data["Quantity"];
             textCode.Text = data["Code"];
             textBrand.Text = data["Brand"];
-
+            picProduct.Source = data["imgProduct"];
             btnAddProduct.TextColor = Color.White;
             btnAddProduct.BackgroundColor = Color.FromHex("#FF8C00");
             btnAddProduct.Text = "Edit Product";
         }
 
         public Add_Product() => InitializeComponent();
+
+        private async void openGalery_Clicked(object sender, EventArgs e)
+        {
+
+            //DisplayAlert("Alert", "Please wait while we open the gallery", "OK");
+
+
+            // abrir la galeria 
+
+            var photo = await MediaPicker.PickPhotoAsync();
+
+            if (photo != null)
+            {
+                picProduct.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = photo.OpenReadAsync().Result;
+
+
+                    return stream;
+                });
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                photo.OpenReadAsync().Result.CopyTo(memoryStream);
+                imgProduct = memoryStream.ToArray();
+            }
+
+        }
+
 
         private async void createProduct_Clicked(object sender, EventArgs e)
         {
@@ -55,6 +88,9 @@ namespace CRUD_SQLITE.Views
                             Description = textDescription.Text,
                             Price = Convert.ToDecimal(textPrice.Text),
                             Quantity = Convert.ToInt32(textQuantity.Text),
+                            imgProduct = imgProduct,
+
+
                         }
                          ,
                             id
@@ -78,6 +114,7 @@ namespace CRUD_SQLITE.Views
                             Description = textDescription.Text,
                             Price = Convert.ToDecimal(textPrice.Text),
                             Quantity = Convert.ToInt32(textQuantity.Text),
+                            imgProduct = imgProduct,
                         });
                         Shopping shopping = new Shopping();
                         shopping.cargarDataGrid();

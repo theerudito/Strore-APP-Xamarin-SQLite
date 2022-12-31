@@ -33,17 +33,10 @@ namespace CRUD_SQLITE.Views
             btnAddClient.TextColor = Color.White;
             btnAddClient.BackgroundColor = Color.FromHex("#FF8C00");
             btnAddClient.Text = "Edit Client";
-            picProduct
+
         }
 
         public Add_Client() => InitializeComponent();
-        private void openGalery_Clicked(object sender, EventArgs e)
-        {
-            DisplayAlert("Alert", "Open Galery", "OK");
-
-            imageProduct.
-
-        }
 
 
         private async void addClient_Clicked(object sender, EventArgs e)

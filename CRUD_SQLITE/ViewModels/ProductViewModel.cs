@@ -19,14 +19,16 @@ namespace CRUD_SQLITE.ViewModels
             try
             {
                 var db = connection.openConnection();
-                var sql = "INSERT INTO Product (Name, Code, Brand, Description, Price, Quantity) "
+                var sql = "INSERT INTO Product (Name, Code, Brand, Description, Price, Quantity, imgProduct) "
 
-                    + "VALUES ('" + product.Name + "', "
-                    + "'" + product.Code + "', "
-                    + "'" + product.Brand + "', "
-                    + "'" + product.Description + "', "
-                    + "'" + product.Price + "', "
-                    + "'" + product.Quantity + "')";
+                    + "VALUES ('" + product.Name + "', " +
+                    "'" + product.Code + "', " +
+                    "'" + product.Brand + "', " +
+                    "'" + product.Description + "', " +
+                    "'" + product.Price + "', " +
+                    "'" + product.Quantity + "', " +
+                    "'" + product.imgProduct + "')";
+
 
                 db.Execute(sql);
                 return Task.FromResult(product);
@@ -62,13 +64,16 @@ namespace CRUD_SQLITE.ViewModels
         public Task<bool> UpdateProduct(MProduct product, int id)
         {
             var db = connection.openConnection();
-            var sql = "UPDATE Product SET Name = '" + product.Name + "', "
-               + "Code = '" + product.Code + "', "
-               + "Description = '" + product.Description + "', "
-               + "Brand = '" + product.Brand + "', "
-               + "Price = '" + product.Price + "', "
-               + "Quantity = '" + product.Quantity + "' "
-               + "WHERE Id = " + id;
+            var sql = "UPDATE Product SET"
+                    + "Name = '" + product.Name + "', "
+                    + "Code = '" + product.Code + "', "
+                    + "Brand = '" + product.Brand + "', "
+                    + "Description = '" + product.Description + "', "
+                    + "Price = '" + product.Price + "', "
+                    + "Quantity = '" + product.Quantity + "', "
+                    + "imgProduct = '" + product.imgProduct + "' "
+                    + "WHERE Id = " + id;
+
 
             db.Execute(sql);
             return Task.FromResult(true);
