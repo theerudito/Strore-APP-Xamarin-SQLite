@@ -88,17 +88,17 @@ namespace CRUD_SQLITE
 
 
             ////insert company
-            //var queryInsertCompany = "INSERT INTO Company (Name, Owner, Direction, Email, RUC, Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current) " +
-            //    "VALUES ('By Here', 'Jorge Loor', 'Ecuador', 'erudito.tv@gmail.com', 1234567890, 09060806054, 123456789, 123, 456, 'Firebase', 'Factura', 0.12, 'Dollar')";
+            var queryInsertCompany = "INSERT INTO Company (Name, Owner, Direction, Email, RUC, Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current) " +
+                "VALUES ('By Here', 'Jorge Loor', 'Ecuador', 'erudito.tv@gmail.com', 1234567890, 09060806054, 123456789, 123, 456, 'Firebase', 'Factura', 0.12, 'Dollar')";
 
             //// find company
 
-            //var queryFindCompany = "SELECT * FROM Company WHERE RUC = 1234567890";
+            var queryFindCompany = "SELECT * FROM Company WHERE RUC = 1234567890";
 
-            //if (db.Find<Company>(queryFindCompany) == null)
-            //{
-            //    db.Execute(queryInsertCompany);
-            //}
+            if (db.Find<Company>(queryFindCompany) == null)
+            {
+                db.Execute(queryInsertCompany);
+            }
 
 
             // insert code  admin on table code

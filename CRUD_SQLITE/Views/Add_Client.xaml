@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout >
-                <Image Source="avatar.png" WidthRequest="100" Margin="0" />
+                <Image Source="avatar.png" WidthRequest="100" Margin="0"  />
                 <Label Text="ADD NEW CLIENT" HorizontalOptions="Center"/>
 
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >

@@ -12,7 +12,7 @@ namespace CRUD_SQLITE.Services
 
         Task<Company> companyAsync();
 
-        Task<Company> getCompanyAsync(int ruc, bool existe);
+        Task<Company> getCompanyAsync(int ruc);
 
         Task<bool> updateCompanyAsync(Company company, int ruc);
 

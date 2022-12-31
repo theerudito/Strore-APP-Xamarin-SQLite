@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout >
-                <Image Source="image.png" WidthRequest="100" Margin="10" />
+                <ImageButton x:Name="picProduct" Source="image.png"  WidthRequest="100" Margin="10" Clicked="openGalery_Clicked"/>
                 <Label Text="ADD NEW PRODUCT" HorizontalOptions="Center"/>
                 <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
                     <Entry x:Name="textName" Placeholder="Name"  HeightRequest="70" />

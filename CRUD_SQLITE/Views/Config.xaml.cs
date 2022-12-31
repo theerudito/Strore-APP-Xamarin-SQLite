@@ -128,34 +128,22 @@ namespace CRUD_SQLITE.Views
             CompanyViewModel comp = new CompanyViewModel();
             var RUC = 1234567890;
             // hacer una consulta si existe la compania manda los imput sino no 
-
-
-            if (existeCompany == true)
-            {
-                var result = await comp.getCompanyAsync(RUC, existeCompany);
-                textNameCompany.Text = result.Name;
-                textOwner.Text = result.Owner;
-                textDirection.Text = result.Direction;
-                textEmail.Text = result.Email;
-                textRUC.Text = result.RUC.ToString();
-                textPhone.Text = result.Phone.ToString();
-                textNumDocument.Text = result.NumDocument.ToString();
-                textSerie1.Text = result.Serie1.ToString();
-                textSerie2.Text = result.Serie2.ToString();
-                textDB.Text = result.DB;
-                textDocument.Text = result.Document;
-                textIva.Text = result.Iva.ToString();
-                textCurrent.Text = result.Current;
-                //textCode.Text = result.Name;
-                btnSaveCompany.IsEnabled = false;
-            }
-            else
-            {
-                // no exixte la company
-
-                await DisplayAlert("Success", "no exixte la company", "OK");
-                btnSaveCompany.IsEnabled = true;
-            }
+            var result = await comp.getCompanyAsync(RUC);
+            textNameCompany.Text = result.Name;
+            textOwner.Text = result.Owner;
+            textDirection.Text = result.Direction;
+            textEmail.Text = result.Email;
+            textRUC.Text = result.RUC.ToString();
+            textPhone.Text = result.Phone.ToString();
+            textNumDocument.Text = result.NumDocument.ToString();
+            textSerie1.Text = result.Serie1.ToString();
+            textSerie2.Text = result.Serie2.ToString();
+            textDB.Text = result.DB;
+            textDocument.Text = result.Document;
+            textIva.Text = result.Iva.ToString();
+            textCurrent.Text = result.Current;
+            //textCode.Text = result.Name;
+            btnSaveCompany.IsEnabled = false;
 
         }
 

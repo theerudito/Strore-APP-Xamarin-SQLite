@@ -32,38 +32,12 @@ namespace CRUD_SQLITE.ViewModels
             throw new NotImplementedException();
         }
 
-        public async Task<Company> getCompanyAsync(int ruc, bool da)
+        public async Task<Company> getCompanyAsync(int ruc)
         {
-            if (da == true)
-            {
-                var db = connection.openConnection();
-                var sql = "SELECT * FROM Company WHERE RUC = " + ruc;
-                var company = db.Query<Company>(sql).FirstOrDefault();
-                return await Task.FromResult(company);
-            }
-            else
-            {
-                var db = connection.openConnection();
-                var sql = "SELECT * FROM Company";
-                var company = db.Query<Company>(sql).FirstOrDefault();
-                return await Task.FromResult(company);
-            }
-            //{
-            //    //var db = connection.openConnection();
-            //    //var sql = "SELECT * FROM Company WHERE RUC = '" + ruc + "'";
-            //    //var result = db.Query<Company>(sql).FirstOrDefault();
-            //    //return await Task.FromResult(result);
-            //    var db = connection.openConnection();
-            //    var sql = "SELECT * FROM Company";
-            //    var result = db.Query<Company>(sql);
-            //    return await Task.FromResult(result.FirstOrDefault());
-            //}
-            //else
-            //{
-            //    return await Task.FromResult(new Company());
-            //}
-
-
+            var db = connection.openConnection();
+            var sql = "SELECT * FROM Company WHERE RUC = " + ruc;
+            var company = db.Query<Company>(sql).FirstOrDefault();
+            return await Task.FromResult(company);
         }
 
         public async Task<bool> updateCompanyAsync(Company company, int ruc)
