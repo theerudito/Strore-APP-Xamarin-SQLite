@@ -27,6 +27,9 @@ namespace CRUD_SQLITE
                 "Code INTEGER UNIQUE, Brand TEXT, Description TEXT, " +
                 "Price REAL, Quantity INTEGER, imgProduct TEXT )";
 
+            //var deleteTableProduct = "DROP TABLE Product";
+            //db.Execute(deleteTableProduct);
+
             var queryClient = "CREATE TABLE IF NOT EXISTS Client " +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "FirstName TEXT, LastName TEXT, DNI INTEGER" +

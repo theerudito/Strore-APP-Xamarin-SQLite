@@ -70,7 +70,7 @@ namespace CRUD_SQLITE.Views
                 { "Description", item.Description },
                 { "Price", item.Price.ToString() },
                 { "Quantity", item.Quantity.ToString() },
-                { "imgProduct", Convert.ToBase64String(item.imgProduct) },
+                { "imgProduct", item.imgProduct.ToString() }
 
             };
 

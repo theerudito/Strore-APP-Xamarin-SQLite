@@ -1,25 +1,21 @@
 ﻿using CRUD_SQLITE.Models;
 using CRUD_SQLITE.ViewModels;
-using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
-using System.Threading.Tasks;
-using System.Linq;
-using CRUD_SQLITE.Services;
+using System;
 using System.IO;
+using System.Linq;
 
 namespace CRUD_SQLITE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Add_Product : ContentPage
     {
-        private MProduct data;
         bool edit;
         int id;
-        byte[] imgProduct;
-
+        byte[] uploadImage;
         public Add_Product(Dictionary<string, string> data, bool isEdit)
         {
 
@@ -36,39 +32,29 @@ namespace CRUD_SQLITE.Views
             btnAddProduct.TextColor = Color.White;
             btnAddProduct.BackgroundColor = Color.FromHex("#FF8C00");
             btnAddProduct.Text = "Edit Product";
+
+
+            // convertir data["imgProduct"]; a png 
+
+
         }
 
         public Add_Product() => InitializeComponent();
 
         private async void openGalery_Clicked(object sender, EventArgs e)
         {
-
-            //DisplayAlert("Alert", "Please wait while we open the gallery", "OK");
-
-
-            // abrir la galeria 
-
             var photo = await MediaPicker.PickPhotoAsync();
 
             if (photo != null)
             {
-                picProduct.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = photo.OpenReadAsync().Result;
+                uploadImage = System.IO.File.ReadAllBytes(photo.FullPath);
+                var steam = picProduct.Source = ImageSource.FromStream(() => new MemoryStream(uploadImage));
 
 
-                    return stream;
-                });
-            }
 
-            using (var memoryStream = new MemoryStream())
-            {
-                photo.OpenReadAsync().Result.CopyTo(memoryStream);
-                imgProduct = memoryStream.ToArray();
             }
 
         }
-
 
         private async void createProduct_Clicked(object sender, EventArgs e)
         {
@@ -88,13 +74,11 @@ namespace CRUD_SQLITE.Views
                             Description = textDescription.Text,
                             Price = Convert.ToDecimal(textPrice.Text),
                             Quantity = Convert.ToInt32(textQuantity.Text),
-                            imgProduct = imgProduct,
-
-
+                            imgProduct = uploadImage.ToArray(),
                         }
                          ,
                             id
-                         );
+                         ); ;
                         Shopping shopping = new Shopping();
                         shopping.cargarDataGrid();
                         await DisplayAlert("Success", "Product Updated", "OK");
@@ -114,7 +98,7 @@ namespace CRUD_SQLITE.Views
                             Description = textDescription.Text,
                             Price = Convert.ToDecimal(textPrice.Text),
                             Quantity = Convert.ToInt32(textQuantity.Text),
-                            imgProduct = imgProduct,
+                            imgProduct = uploadImage.ToArray(),
                         });
                         Shopping shopping = new Shopping();
                         shopping.cargarDataGrid();
