@@ -5,9 +5,6 @@
     <ContentPage.Content>
 
         <StackLayout>
-
-
-
             <StackLayout Background="Silver">
                 <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="0" >
                     <Label Text="Cant" WidthRequest="100" Margin="10"/>
@@ -21,9 +18,10 @@
             <ScrollView >
                 <StackLayout  HeightRequest="300">
                     <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="0" >
-                        <Label Text="20" WidthRequest="100" Margin="10"/>
-                        <Label Text="Dorito" WidthRequest="100" Margin="10"/>
-                        <Label Text="0.25" WidthRequest="100" Margin="10"/>
+                        <Label x:Name="textQuantityProductCart" Text="20" WidthRequest="100" Margin="10"/>
+                        <Label x:Name="textNameProductCart" Text="Dorito" WidthRequest="100" Margin="10"/>
+                        <Label x:Name="textValueUnitaryProductCart" Text="0.25" WidthRequest="100" Margin="10"/>
+                        <Label x:Name="textValuevTotalProductCart" Text="0.25" WidthRequest="100" Margin="10"/>
                         <FlexLayout WidthRequest="100" HeightRequest="40" Margin="10">
                             <Image Source="edit" Aspect="AspectFit" WidthRequest="50" HeightRequest="20" />
                             <Image Source="trash" Aspect="AspectFit"  WidthRequest="50" HeightRequest="20"   />
@@ -33,25 +31,72 @@
             </ScrollView>
 
 
-            <StackLayout  HeightRequest="60" Margin="5,40,5,0" Padding="0" >
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <FlexLayout   Grid.Row="0" Grid.Column="1" BackgroundColor="#0099FF">
-                        <Label  Text="TOTAL:"  WidthRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="white" />
-                        <Label x:Name="textTotal" Text="2000"  WidthRequest="100" FontSize="20" TextColor="white"/>
+
+            <Grid >
+                <Grid.ColumnDefinitions  >
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <FlexLayout  Grid.Column="1" BackgroundColor="#0099FF">
+                    <Label  Text="TOTAL:"  WidthRequest="100" FontSize="20" HorizontalTextAlignment="Center" TextColor="white" />
+                    <Label x:Name="textTotal" Text="2000"  WidthRequest="100" FontSize="20" TextColor="white"/>
+                </FlexLayout>
+            </Grid>
+
+            <Frame Background="#0099FF" VerticalOptions="Center"  Margin="5, 0, 5 ,0" Padding="5" CornerRadius="20">
+                <Label  Text="DETAILS" TextColor="white" HorizontalOptions="Center" />
+            </Frame>
+
+            <StackLayout HeightRequest="25" Margin="5, 0, 5 ,0" Background="silver" Padding="5">
+                <Grid   HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions  >
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <FlexLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="Center">
+                        <Label  x:Name="Fecha" Text="Fecha: "   />
+                        <Label  x:Name="textDate" Text="03/01/2023"   />
+                        <!--<DatePicker  Grid.Column="0" TextColor="black" FontSize="12" HorizontalOptions="Center"/>-->
                     </FlexLayout>
+
+                    <FlexLayout Grid.Column="2"  Grid.Row="0">
+                        <Label x:Name="Hora" Text="Hora: "   />
+                        <Label x:Name="textHour" Text="11:50 AM"   />
+                        <!--<TimePicker Grid.Column="1" TextColor="black" FontSize="12"/>-->
+                    </FlexLayout>
+
                 </Grid>
             </StackLayout>
 
 
+            <StackLayout  HeightRequest="40" Margin="5, 0, 5 ,0" Background="silver" Padding="5">
+
+                <Grid   HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions  >
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <FlexLayout Grid.Column="0" Grid.Row="0" >
+                        <Label  Text="Document: "  />
+                        <Label Text="Factura" Grid.Column="5" />
+                    </FlexLayout>
+                    <FlexLayout Grid.Column="0" Grid.Row="1" >
+                        <Label  Text="numDocument: "  />
+                        <Label Text="123456" Grid.Column="5" />
+                    </FlexLayout>
+                    <FlexLayout Grid.Column="2" Grid.Row="0" >
+                        <Label  Text="Serie: "  />
+                        <Label  Text="001" Grid.Column="5"  />
+                    </FlexLayout >
+                    <FlexLayout Grid.Column="2" Grid.Row="1">
+                        <Label  Text="Serie: "  />
+                        <Label  Text="002" Grid.Column="5" />
+                    </FlexLayout>
+                </Grid>
+            </StackLayout>
+
             <StackLayout>
-
-                <Frame Background="#0099FF" VerticalOptions="Center"  Margin="0" Padding="5">
-                    <Label  Text="DETAILS" TextColor="white" HorizontalOptions="Center" />
-                </Frame>
-
                 <Grid   HorizontalOptions="Center">
                     <Grid.ColumnDefinitions  >
                         <ColumnDefinition Width="180" />
@@ -59,36 +104,30 @@
                     </Grid.ColumnDefinitions>
 
                     <Frame HasShadow="True" BackgroundColor="AliceBlue"  Grid.Row="0" Grid.Column="0" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <SearchBar x:Name="textDNI"  Placeholder="CI"  />
+                        <SearchBar x:Name="textDNICart"  Placeholder="CI"  />
                     </Frame>
 
                     <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="0" Grid.Column="1" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textPhone"  Placeholder="Phone"  HeightRequest="70"  />
+                        <Entry x:Name="textPhoneCart"  Placeholder="Phone"  HeightRequest="70"  />
                     </Frame>
 
                     <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="1" Grid.Column="0" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textFirstName"  Placeholder="First Name" HeightRequest="40"    />
+                        <Entry x:Name="textFirstNameCart"  Placeholder="First Name" HeightRequest="40"    />
                     </Frame>
 
                     <Frame HasShadow="True" BackgroundColor="AliceBlue"  Grid.Row="1" Grid.Column="1" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textLastName"  Placeholder="Last Name" HeightRequest="70"   />
+                        <Entry x:Name="textLastNameCart"  Placeholder="Last Name" HeightRequest="70"   />
                     </Frame>
 
                     <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="0" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textEmail"  Placeholder="Email"  HeightRequest="70"  />
+                        <Entry x:Name="textEmailCart"  Placeholder="Email"  HeightRequest="70"  />
                     </Frame>
                     <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="1" IsClippedToBounds="True" Margin="0, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textDirection"  Placeholder="Direction"  HeightRequest="70"  />
+                        <Entry x:Name="textDirectionCart"  Placeholder="Direction"  HeightRequest="70"  />
                     </Frame>
-
-
                 </Grid>
-
-
+                <Button Text="TO BUY" Margin="10" CornerRadius="5" />
             </StackLayout>
-
-            <Button Text="TO BUY" Margin="50" CornerRadius="5" />
-
         </StackLayout>
 
     </ContentPage.Content>

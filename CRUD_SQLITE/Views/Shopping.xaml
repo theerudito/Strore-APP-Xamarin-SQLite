@@ -20,7 +20,7 @@
                              HeightRequest="50"
                              Padding="0,12,-20,0"
                              Margin="0,0,2,0"
-                             Clicked="addCart_Clicked"
+                             Clicked="goCart_Clicked"
                              x:Name="padre"
                              />
 
@@ -44,6 +44,7 @@
                             <Frame Padding="20" BackgroundColor="black" Margin="10" CornerRadius="10">
                                 <StackLayout   >
                                     <Image  Source="store"  HeightRequest="100"/>
+                                    <Label Text="{Binding Id}"  Margin="0, 0, 5 ,0" TextColor="White"/>
                                     <FlexLayout HorizontalOptions="Center">
                                         <Label Text="Name:"    Margin="0, 0,5,0" TextColor="White"/>
                                         <Label Text="{Binding Name}"  Margin="0, 0, 5 ,0" TextColor="White"/>
@@ -60,7 +61,7 @@
                                         <Label Text="Price:"    Margin="0, 0,5,0" TextColor="White"/>
                                         <Label Text="{Binding Price}"  Margin="0, 0, 5 ,0" TextColor="White"/>
                                     </FlexLayout>
-                                    <Button Text="ADD TO CART" WidthRequest="100" />
+                                    <Button Text="ADD TO CART" x:Name="{Binding Id}"  WidthRequest="100" Clicked="addCart_Clicked" />
                                 </StackLayout>
                             </Frame>
 

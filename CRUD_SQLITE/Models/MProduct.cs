@@ -28,6 +28,10 @@ namespace CRUD_SQLITE.Models
         [MaxLength(50)]
         public int Quantity { get; set; }
 
+        [MaxLength(50)]
+        public int vTotal { get; set; }
+        [MaxLength(50)]
+        public int Total { get; set; }
         [MaxLength(300)]
         public byte[] imgProduct { get; set; }
     }
