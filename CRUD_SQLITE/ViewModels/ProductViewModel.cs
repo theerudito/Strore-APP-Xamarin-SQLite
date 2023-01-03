@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace CRUD_SQLITE.ViewModels
 {
@@ -47,18 +48,36 @@ namespace CRUD_SQLITE.ViewModels
             db.Execute(sql);
             return Task.FromResult(true);
         }
+        private void Get()
+        {
+            var db = connection.openConnection();
+            var sql = "SELECT * FROM Product";
+            var result = db.Query<MProduct>(sql);
+            GetProducts = new ObservableCollection<MProduct>(result);
+        }
 
         public async Task<IEnumerable<MProduct>> GetAllProduct()
         {
             var db = connection.openConnection();
             var sql = "SELECT * FROM Product";
             var result = db.Query<MProduct>(sql);
+            GetProducts = new ObservableCollection<MProduct>(result);
+
             return result;
         }
 
         public Task<MProduct> GetOneProduct(int id)
         {
-            throw new NotImplementedException();
+            var db = connection.openConnection();
+            var sql = "SELECT * FROM Product WHERE Id = " + id;
+            var result = db.Query<MProduct>(sql);
+            return Task.FromResult(result[0]);
+
+
+            //var db = connection.openConnection();
+            //var sql = "SELECT * FROM Company WHERE RUC = " + ruc;
+            //var company = db.Query<Company>(sql).FirstOrDefault();
+            //return await Task.FromResult(company);
         }
 
         public Task<bool> UpdateProduct(MProduct product, int id)
@@ -79,9 +98,13 @@ namespace CRUD_SQLITE.ViewModels
             return Task.FromResult(true);
         }
 
-        internal ObservableCollection<MProduct> GetProducts()
+        public ProductViewModel()
         {
-            throw new NotImplementedException();
+            Get();
+        }
+        internal ObservableCollection<MProduct> GetProducts
+        {
+            get; set;
         }
     }
 }

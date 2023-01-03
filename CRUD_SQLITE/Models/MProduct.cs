@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 using SQLite;
@@ -34,5 +35,7 @@ namespace CRUD_SQLITE.Models
         public int Total { get; set; }
         [MaxLength(300)]
         public byte[] imgProduct { get; set; }
+
+
     }
 }

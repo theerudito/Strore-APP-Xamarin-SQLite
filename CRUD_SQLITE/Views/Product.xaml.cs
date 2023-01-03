@@ -12,6 +12,7 @@ namespace CRUD_SQLITE.Views
     {
         ProductViewModel product = new ProductViewModel();
 
+
         public Product()
         {
             InitializeComponent();

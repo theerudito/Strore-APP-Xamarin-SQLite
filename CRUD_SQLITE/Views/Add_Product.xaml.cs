@@ -80,7 +80,7 @@ namespace CRUD_SQLITE.Views
                             id
                          ); ;
                         Shopping shopping = new Shopping();
-                        shopping.cargarDataGrid();
+                        //shopping.cargarDataGrid();
                         await DisplayAlert("Success", "Product Updated", "OK");
                         await Navigation.PushAsync(new Product());
                         ResetInput();
@@ -101,7 +101,7 @@ namespace CRUD_SQLITE.Views
                             imgProduct = uploadImage.ToArray(),
                         });
                         Shopping shopping = new Shopping();
-                        shopping.cargarDataGrid();
+                        //shopping.cargarDataGrid();
                         await DisplayAlert("Success", "Product created", "OK");
                         await Navigation.PushAsync(new Product());
                         ResetInput();

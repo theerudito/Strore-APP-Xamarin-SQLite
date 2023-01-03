@@ -16,17 +16,10 @@ namespace CRUD_SQLITE.Views
     {
         ProductViewModel product = new ProductViewModel();
 
-        public ObservableCollection<MProduct> Products { get; set; }
-
-        // crear un array
-
-
-
 
         public Shopping()
         {
             InitializeComponent();
-            cargarDataGrid();
         }
 
         public async void cargarDataGrid()
@@ -35,22 +28,13 @@ namespace CRUD_SQLITE.Views
 
             if (result != null)
             {
-                var data = mylistViewProduct.ItemsSource = result;
+                lista.ItemsSource = result;
             }
         }
         CartViewModel cart = new CartViewModel();
         private async void addCart_Clicked(object sender, EventArgs e)
+
         {
-            if (mylistViewProduct.SelectedItem == null)
-            {
-                await DisplayAlert("Alert", "Select a product", "OK");
-            }
-            else
-            {
-
-                await DisplayAlert("Alert", "Product Added", "OK");
-
-            }
 
 
 

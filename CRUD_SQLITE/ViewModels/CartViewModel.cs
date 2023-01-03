@@ -12,7 +12,11 @@ namespace CRUD_SQLITE.ViewModels
         public Task<MProduct> addCartProductAsync(MProduct product)
         {
 
-            throw new NotImplementedException();
+            // add product to cart
+            Console.WriteLine("dasdasd", product.Code);
+
+            // retornar el product
+            return Task.FromResult(product);
 
         }
 

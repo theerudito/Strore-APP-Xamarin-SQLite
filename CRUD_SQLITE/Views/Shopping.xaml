@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CRUD_SQLITE.Views.Shopping">
+             x:Class="CRUD_SQLITE.Views.Shopping"
+             xmlns:local="clr-namespace:CRUD_SQLITE.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:ProductViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
 
@@ -31,7 +37,7 @@
             </FlexLayout>
 
 
-            <CollectionView  x:Name="mylistViewProduct" >
+            <CollectionView x:Name="lista"   SelectionMode="Single"  >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -61,7 +67,7 @@
                                         <Label Text="Price:"    Margin="0, 0,5,0" TextColor="White"/>
                                         <Label Text="{Binding Price}"  Margin="0, 0, 5 ,0" TextColor="White"/>
                                     </FlexLayout>
-                                    <Button Text="ADD TO CART" x:Name="{Binding Id}"  WidthRequest="100" Clicked="addCart_Clicked" />
+                                    <Button Text="ADD TO CART" x:Name="btnAdd"  WidthRequest="100" Clicked="addCart_Clicked" />
                                 </StackLayout>
                             </Frame>
 
