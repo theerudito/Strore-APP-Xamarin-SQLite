@@ -5,13 +5,37 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using CRUD_SQLITE.Views;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    public class ProductViewModel : IProduct
+    public class ProductViewModel : BaseViewModel, IProduct
     {
 
         DB.SQLite_Config connection = new DB.SQLite_Config();
+
+        public ICommand btnDeleteProduct { get; set; }
+        public ICommand btnUpdateProduct { get; set; }
+
+
+        public ObservableCollection<MProduct> products { get; set; } = new ObservableCollection<MProduct>();
+
+        public ProductViewModel(INavigation navigation)
+        {
+            GetAllProduct();
+
+            // CREATE PRODUCT
+            btnCreateProduct = new Command(async () => await navigation.PushAsync(new Add_Product()));
+
+
+            // DELETE PRODUCT
+            //btnDeleteProduct = new Command(DeleteProduct);
+            btnUpdateProduct = new Command(async () => await navigation.PushAsync(new Add_Product()));
+            btnDeleteProduct = new Command<MProduct>(Delete);
+        }
+
 
 
         public Task<MProduct> CreateProduct(MProduct product)
@@ -43,26 +67,23 @@ namespace CRUD_SQLITE.ViewModels
 
         public Task<bool> DeleteProduct(int id)
         {
+            Console.WriteLine("IdProduct", id);
             var db = connection.openConnection();
             var sql = "DELETE FROM Product WHERE Id = " + id;
             db.Execute(sql);
             return Task.FromResult(true);
         }
-        private void Get()
-        {
-            var db = connection.openConnection();
-            var sql = "SELECT * FROM Product";
-            var result = db.Query<MProduct>(sql);
-            GetProducts = new ObservableCollection<MProduct>(result);
-        }
+
 
         public async Task<IEnumerable<MProduct>> GetAllProduct()
         {
             var db = connection.openConnection();
             var sql = "SELECT * FROM Product";
             var result = db.Query<MProduct>(sql);
-            GetProducts = new ObservableCollection<MProduct>(result);
-
+            foreach (var item in result)
+            {
+                products.Add(item);
+            }
             return result;
         }
 
@@ -98,13 +119,28 @@ namespace CRUD_SQLITE.ViewModels
             return Task.FromResult(true);
         }
 
-        public ProductViewModel()
+
+        // COMMANDOS 
+
+        // CREATE PRODUCT
+        public ICommand btnCreateProduct { get; set; }
+
+
+        // UPDATE PRODUCT
+
+
+
+        private void Update(MProduct product)
         {
-            Get();
+            Update(product);
         }
-        internal ObservableCollection<MProduct> GetProducts
+
+
+
+        //DELETE PRODUCT
+        private void Delete(MProduct product)
         {
-            get; set;
+            DeleteProduct(product.Id);
         }
     }
 }

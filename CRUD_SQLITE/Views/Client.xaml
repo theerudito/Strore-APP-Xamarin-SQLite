@@ -12,7 +12,7 @@
                     HorizontalOptions="Center"
                     VerticalOptions="CenterAndExpand"
                     Aspect="AspectFit"
-                    Clicked="openNewCLient_Clicked"
+                    Command="{Binding btnGoNewClient}"
                     BackgroundColor="Transparent"
                     WidthRequest="30"
                     HeightRequest="50"
@@ -37,7 +37,7 @@
             </StackLayout>
 
 
-            <ListView x:Name="myClients">
+            <ListView x:Name="Lista" ItemsSource="{Binding client}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
@@ -58,8 +58,15 @@
                                 <Label Text="{Binding Phone}" Grid.Row="0" Grid.Column="2"  WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Email}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
                                 <FlexLayout Grid.Row="0" Grid.Column="4" HorizontalOptions="Center"   >
-                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateClient_Clicked" Margin="0, 2, 5, 0" />
-                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteClient_Clicked" Margin="0, 2, 5, 0"  />
+                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Margin="0, 2, 5, 0"
+                                                 Command="{Binding Source={x:Reference Lista}, Path=BindingContext.btnUpdateClient}"
+                                                 CommandParameter="{Binding}"
+                                                 />
+
+                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0"
+                                                 Command="{Binding Source={x:Reference Lista}, Path=BindingContext.btnDeleteClient}"
+                                                 CommandParameter="{Binding}"
+                                                 />
                                 </FlexLayout>
                             </Grid>
                         </ViewCell>

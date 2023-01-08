@@ -4,9 +4,6 @@
              x:Class="CRUD_SQLITE.Views.Shopping"
              xmlns:local="clr-namespace:CRUD_SQLITE.ViewModels">
 
-    <ContentPage.BindingContext>
-        <local:ProductViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout>
@@ -36,8 +33,7 @@
 
             </FlexLayout>
 
-
-            <CollectionView x:Name="lista"   SelectionMode="Single"  >
+            <CollectionView   SelectionMode="Single" ItemsSource="{Binding  products}"  >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>

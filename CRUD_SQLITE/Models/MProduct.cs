@@ -35,7 +35,5 @@ namespace CRUD_SQLITE.Models
         public int Total { get; set; }
         [MaxLength(300)]
         public byte[] imgProduct { get; set; }
-
-
     }
 }

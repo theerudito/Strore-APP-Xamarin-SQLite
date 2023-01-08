@@ -18,7 +18,7 @@
                     HeightRequest="50"
                     Padding="0,0,-20,0"
                     Margin="0,0,-2,0"
-                    Clicked="ImageButton_Clicked"
+                    Command="{Binding btnCreateProduct}"
                     />
 
 
@@ -46,7 +46,7 @@
                 </FlexLayout>
             </StackLayout>
 
-            <ListView x:Name="mylistViewProduct">
+            <ListView x:Name="Lista" ItemsSource="{Binding  products}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
@@ -69,8 +69,14 @@
                                 <Label Text="{Binding Price}" Grid.Row="0" Grid.Column="4"  WidthRequest="100" Margin="10"/>-->
                                 <Label Text="{Binding imgProduct}" Grid.Row="0" Grid.Column="1"  WidthRequest="100" Margin="10"/>
                                 <FlexLayout Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"  >
-                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="updateProduct_Clicked" Margin="0, 2, 5, 0" />
-                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" Clicked="deleteProduct_Clicked" Margin="0, 2, 5, 0"  />
+                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0"
+                                                 Command="{Binding Source={x:Reference Lista}, Path=BindingContext.btnUpdateProduct}"
+                                                 CommandParameter="{Binding}"
+                                                 />
+                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0"
+                                                 Command="{Binding Source={x:Reference Lista}, Path=BindingContext.btnDeleteProduct}"
+                                                 CommandParameter="{Binding}"
+                                                 />
                                 </FlexLayout>
                             </Grid>
                         </ViewCell>

@@ -60,7 +60,7 @@ namespace CRUD_SQLITE.Views
         {
             try
             {
-                ProductViewModel productViewModel = new ProductViewModel();
+                ProductViewModel productViewModel = new ProductViewModel(Navigation);
 
                 if (edit == true)
                 {
