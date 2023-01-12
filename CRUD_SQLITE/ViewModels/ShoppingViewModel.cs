@@ -64,10 +64,7 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
-
         #endregion
-
-
         #region METODOS ASYNC
         public async Task getAllProducts()
         {
@@ -93,7 +90,7 @@ namespace CRUD_SQLITE.ViewModels
         }
         public async Task next_Product()
         {
-            await DisplayAlert("infor", "Siguientes Lista 10 Product", "Ok");
+            await DisplayAlert("infor", "Siguientes Lista 10 Products", "Ok");
         }
         #endregion
 
