@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRUD_SQLITE\CRUD_SQLITE.csproj">
-      <Project>{4033467E-8431-4C7D-97BB-6D9795143403}</Project>
+      <Project>{BA90234C-88EC-49B4-B74D-950E78337C54}</Project>
       <Name>CRUD_SQLITE</Name>
     </ProjectReference>
   </ItemGroup>
