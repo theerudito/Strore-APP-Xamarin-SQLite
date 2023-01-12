@@ -11,12 +11,12 @@ namespace CRUD_SQLITE.Views
     public partial class Client : ContentPage
     {
 
-        //ClientViewModel client = new ClientViewModel();
+
 
         public Client()
         {
             InitializeComponent();
-            BindingContext = new ClientViewModel();
+            BindingContext = new ClientViewModel(Navigation);
         }
 
         //private void openNewCLient_Clicked(object sender, EventArgs e)

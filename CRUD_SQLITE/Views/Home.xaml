@@ -3,26 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Home">
     <ContentPage.Content>
-
         <ScrollView>
             <StackLayout>
-
-                <StackLayout >
-                    <Image Source="avatar" Aspect="AspectFit" WidthRequest="100"  Margin="0 ,40 ,0 ,0"/>
-                    <Label Text="Your Store"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="20" />
-                    <Label x:Name="UserLabel" Text="Welcome Jorge Loor"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="14"  />
+                <StackLayout>
+                    <Image
+                        Source="avatar"
+                        Aspect="AspectFit"
+                        WidthRequest="100"
+                        Margin="0 ,40 ,0 ,0"
+                        />
+                    <Label
+                        Text="Your Store"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        FontSize="20"
+                        />
+                    <Label
+                        x:Name="UserLabel"
+                        Text="Welcome Jorge Loor"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        FontSize="14"
+                        />
                 </StackLayout>
-
-                <StackLayout Margin="0 ,40 ,0 ,0">
-                    <Image Source="store" Aspect="AspectFit" WidthRequest="100" HeightRequest="300"/>
+                <StackLayout
+                    Margin="0 ,40 ,0 ,0">
+                    <Image
+                        Source="store"
+                        Aspect="AspectFit"
+                        WidthRequest="100"
+                        HeightRequest="300"
+                        />
                 </StackLayout>
-
-                <StackLayout  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
-                    <Label Text="By Jorge Loor 2022" HorizontalOptions="CenterAndExpand" />
-                    <Label Text="v1.1.0" HorizontalOptions="CenterAndExpand" />
-
-
-                    <FlexLayout WidthRequest="0" HeightRequest="50"  VerticalOptions="Center" >
+                <StackLayout
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand">
+                    <Label
+                        Text="By Jorge Loor 2022"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                    <Label
+                        Text="v1.1.0"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                    <FlexLayout
+                        WidthRequest="0"
+                        HeightRequest="50"
+                        VerticalOptions="Center">
                         <ImageButton
                             BackgroundColor="Transparent"
                             Source="github"
@@ -32,7 +59,6 @@
                             Margin="0, 2, 10, 0"
                             Clicked="openMyGitHub"
                             />
-
                         <ImageButton
                             BackgroundColor="Transparent"
                             Source="instagram"
@@ -41,7 +67,6 @@
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
                             Clicked="openMyGitHub"
-
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -52,7 +77,6 @@
                             Margin="0, 2, 10, 0"
                             Clicked="openMyGitHub"
                             />
-
                         <ImageButton
                             BackgroundColor="Transparent"
                             Source="web"
@@ -62,7 +86,6 @@
                             Margin="0, 2, 10, 0"
                             Clicked="openMyGitHub"
                             />
-
                         <ImageButton
                             BackgroundColor="Transparent"
                             Source="linkedin"
@@ -72,10 +95,8 @@
                             Margin="0, 2, 10, 0"
                             Clicked="openMyGitHub"
                             />
-
                     </FlexLayout>
                 </StackLayout>
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

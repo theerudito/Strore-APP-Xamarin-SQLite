@@ -2,45 +2,124 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Add_Client">
-
     <ContentPage.Content>
         <ScrollView>
             <StackLayout >
-                <Image Source="avatar.png" WidthRequest="100" Margin="0"  />
-                <Label Text="ADD NEW CLIENT" HorizontalOptions="Center"/>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry Text="{Binding textDNI}"   Keyboard="Numeric"  Placeholder="CI" HeightRequest="70"  />
-                </Frame>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry Text="{Binding textFirstName}"  Keyboard="Text"  Placeholder="First Name" HeightRequest="70"  />
-                </Frame>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry Text="{Binding textLastName}"  Keyboard="Text" Placeholder="Last Name" HeightRequest="70"  />
-                </Frame>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry Text="{Binding textDirection}"  Keyboard="Text" Placeholder="Direction" HeightRequest="70"  />
-                </Frame>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry Text="{Binding textPhone}"  Keyboard="Numeric" Placeholder="Phone" HeightRequest="70"   />
-                </Frame>
-
-                <Frame HasShadow="True"  BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry Text="{Binding textEmail}"  Keyboard="Email" Placeholder="Email" HeightRequest="70"   />
-                </Frame>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-
-                    <Entry Text="{Binding textCity}"  Keyboard="Text" Placeholder="City"  HeightRequest="70"   />
-                </Frame>
-                <Button  Text="Save" WidthRequest="80" HeightRequest="50"  Margin="20" CornerRadius="10"
-                        Command="{Binding btnSaveClient}"
+                <Image
+                    Source="avatar.png"
+                    WidthRequest="100"
+                    Margin="0"
+                    />
+                <Label
+                    Text="ADD NEW CLIENT"
+                    HorizontalOptions="Center"
+                    />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        Text="{Binding textDNI}"
+                        Keyboard="Numeric"
+                        Placeholder="CI"
+                        HeightRequest="70"
                         />
-
+                </Frame>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        Text="{Binding textFirstName}"
+                        Keyboard="Text"
+                        Placeholder="First Name"
+                        HeightRequest="70"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10"  >
+                    <Entry
+                        Text="{Binding textLastName}"
+                        Keyboard="Text"
+                        Placeholder="Last Name"
+                        HeightRequest="70"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10"  >
+                    <Entry
+                        Text="{Binding textDirection}"
+                        Keyboard="Text"
+                        Placeholder="Direction"
+                        HeightRequest="70"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        Text="{Binding textPhone}"
+                        Keyboard="Numeric"
+                        Placeholder="Phone"
+                        HeightRequest="70"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        Text="{Binding textEmail}"
+                        Keyboard="Email"
+                        Placeholder="Email"
+                        HeightRequest="70"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        Text="{Binding textCity}"
+                        Keyboard="Text"
+                        Placeholder="City"
+                        HeightRequest="70"
+                        />
+                </Frame>
+                <Button
+                    Text="Save"
+                    WidthRequest="80"
+                    HeightRequest="50"
+                    Margin="20"
+                    CornerRadius="10"
+                    Command="{Binding btnSaveClient}"
+                    />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

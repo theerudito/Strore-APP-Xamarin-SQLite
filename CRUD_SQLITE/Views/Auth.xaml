@@ -3,41 +3,130 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Auth">
     <ContentPage.Content>
-        <StackLayout >
-
-            <StackLayout x:Name="login">
-                <Image Source="login" WidthRequest="200" Margin="10" />
-                <Label Text="Login" HorizontalOptions="Center" FontSize="30"/>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="20" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textEmailLogin" Placeholder="Email"  HeightRequest="70" />
+        <StackLayout>
+            <StackLayout
+                x:Name="login">
+                <Image
+                    Source="login"
+                    WidthRequest="200"
+                    Margin="10"
+                    />
+                <Label
+                    Text="Login"
+                    HorizontalOptions="Center"
+                    FontSize="30"
+                    />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="20" CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textEmailLogin"
+                        Placeholder="Email"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="20, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textPasswordLogin" IsPassword="True"  Placeholder="Password" Keyboard="Chat"  HeightRequest="70"/>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="20, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textPasswordLogin"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        Keyboard="Chat"
+                        HeightRequest="70"
+                        />
                 </Frame>
-
-                <Button x:Name="btnLogin" Text="Login" CornerRadius="10" Margin="20" Padding="0" Clicked="Login_Clicked" />
-                <Button x:Name="showRegister" Text="Go Register" CornerRadius="10" Margin="20" Padding="0"  BackgroundColor="Orange" Clicked="showRegister_Clicked" />
+                <Button
+                    x:Name="btnLogin"
+                    Text="Login"
+                    CornerRadius="10"
+                    Margin="20"
+                    Padding="0"
+                    Clicked="Login_Clicked"
+                    />
+                <Button
+                    x:Name="showRegister"
+                    Text="Go Register"
+                    CornerRadius="10"
+                    Margin="20"
+                    Padding="0"
+                    BackgroundColor="Orange"
+                    Clicked="showRegister_Clicked"
+                    />
             </StackLayout>
-
-
-            <StackLayout x:Name="register" >
-                <Image Source="login" WidthRequest="200" Margin="10" />
-                <Label Text="Register" HorizontalOptions="Center" FontSize="30"/>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="20" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textNameRegister" Placeholder="Name"  HeightRequest="70" />
+            <StackLayout
+                x:Name="register">
+                <Image
+                    Source="login"
+                    WidthRequest="200"
+                    Margin="10" />
+                <Label
+                    Text="Register"
+                    HorizontalOptions="Center"
+                    FontSize="30"/>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="20"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textNameRegister"
+                        Placeholder="Name"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="20" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textEmailRegister" Placeholder="Email"  HeightRequest="70" />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="20"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textEmailRegister"
+                        Placeholder="Email"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="20" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry IsPassword="True" x:Name="textPasswordRegister"  Placeholder="Password" Keyboard="Chat"  HeightRequest="70"/>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="20"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        IsPassword="True"
+                        x:Name="textPasswordRegister"
+                        Placeholder="Password"
+                        Keyboard="Chat"
+                        HeightRequest="70"
+                        />
                 </Frame>
-
-
-                <Button x:Name="btnRegister" Text="Register" CornerRadius="10" Margin="20" Padding="0" Clicked="Register_Clicked" />
-                <Button x:Name="showLogin" Text="Go Login"  CornerRadius="10" Margin="20" Padding="0" BackgroundColor="Orange"  Clicked="showLogin_Clicked"/>
+                <Button
+                    x:Name="btnRegister"
+                    Text="Register"
+                    CornerRadius="10"
+                    Margin="20" Padding="0"
+                    Clicked="Register_Clicked" />
+                <Button
+                    x:Name="showLogin"
+                    Text="Go Login"
+                    CornerRadius="10"
+                    Margin="20"
+                    Padding="0"
+                    BackgroundColor="Orange"
+                    Clicked="showLogin_Clicked"/>
             </StackLayout>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

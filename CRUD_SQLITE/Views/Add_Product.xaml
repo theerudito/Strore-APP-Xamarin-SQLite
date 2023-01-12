@@ -5,28 +5,107 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout >
-                <ImageButton x:Name="picProduct" Source="image.png"  WidthRequest="100" Margin="10"  BackgroundColor="Transparent"/>
-                <Button Text="Open" Clicked="openGalery_Clicked" />
-                <Label Text="ADD NEW PRODUCT" HorizontalOptions="Center"/>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textName" Placeholder="Name"  HeightRequest="70" />
+                <ImageButton
+                    x:Name="picProduct"
+                    Source="image.png"
+                    WidthRequest="100"
+                    Margin="10"
+                    BackgroundColor="Transparent"
+                    />
+                <Button
+                    Text="Open"
+                    Clicked="openGalery_Clicked"
+                    />
+                <Label
+                    Text="ADD NEW PRODUCT"
+                    HorizontalOptions="Center"
+                    />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textName"
+                        Placeholder="Name"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textCode" Keyboard="Numeric" Placeholder="Code"  HeightRequest="70"/>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textCode"
+                        Keyboard="Numeric"
+                        Placeholder="Code"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textBrand"  Placeholder="Brand"  HeightRequest="70" />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textBrand"
+                        Placeholder="Brand"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textDescription"  Placeholder="Description"  HeightRequest="70" />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textDescription"
+                        Placeholder="Description"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textPrice" Keyboard="Numeric"  Placeholder="Price"  HeightRequest="70" />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textPrice"
+                        Keyboard="Numeric"
+                        Placeholder="Price"
+                        HeightRequest="70"
+                        />
                 </Frame>
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textQuantity" Keyboard="Numeric"  Placeholder="Quantity"  HeightRequest="70"/>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textQuantity"
+                        Keyboard="Numeric"
+                        Placeholder="Quantity"
+                        HeightRequest="70"/>
                 </Frame>
-                <Button x:Name="btnAddProduct" Text="Save" Margin="50" CornerRadius="10" Clicked="createProduct_Clicked"/>
+                <Button
+                    x:Name="btnAddProduct"
+                    Text="Save" Margin="50"
+                    CornerRadius="10"
+                    Clicked="createProduct_Clicked"
+                    />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

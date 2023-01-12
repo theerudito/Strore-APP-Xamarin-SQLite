@@ -54,33 +54,49 @@
             </CollectionView>-->
 
 
-            <CollectionView  x:Name="myData" >
+            <CollectionView
+                x:Name="myData" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition  Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Frame Padding="20" BackgroundColor="black" Margin="10">
-                                <StackLayout   >
-                                    <Image Source="{Binding avatar}"  />
-                                    <Label Text="{Binding id}"  TextColor="White"/>
-                                    <Label Text="{Binding first_name}" TextColor="White" />
-                                    <Label Text="{Binding last_name}" TextColor="White" />
-                                    <Label Text="{Binding email}" TextColor="White" />
-                                    <Button Text="ADD TO CART" WidthRequest="100" />
+                        <Grid
+                            ColumnDefinitions="*"
+                            RowDefinitions="*">
+                            <Frame
+                                Padding="20"
+                                BackgroundColor="black"
+                                Margin="10">
+                                <StackLayout >
+                                    <Image
+                                        Source="{Binding avatar}"
+                                        />
+                                    <Label
+                                        Text="{Binding id}"
+                                        TextColor="White"
+                                        />
+                                    <Label
+                                        Text="{Binding first_name}"
+                                        TextColor="White"
+                                        />
+                                    <Label
+                                        Text="{Binding last_name}"
+                                        TextColor="White" />
+                                    <Label Text="{Binding email}"
+                                           TextColor="White"
+                                           />
+                                    <Button
+                                        Text="ADD TO CART"
+                                        WidthRequest="100"
+                                        />
                                 </StackLayout>
                             </Frame>
-
                         </Grid>
-
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="2" Orientation="Vertical"/>
+                    <GridItemsLayout
+                        Span="2"
+                        Orientation="Vertical"
+                        />
                 </CollectionView.ItemsLayout>
             </CollectionView>
 

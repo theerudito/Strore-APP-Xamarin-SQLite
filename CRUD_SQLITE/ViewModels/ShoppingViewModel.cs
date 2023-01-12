@@ -86,7 +86,7 @@ namespace CRUD_SQLITE.ViewModels
         }
         public async Task prew_Product()
         {
-            await DisplayAlert("infor", "Siguiente Lista -10 Products", "Ok");
+            await DisplayAlert("infor", "Anterior Lista -10 Products", "Ok");
         }
         public async Task next_Product()
         {

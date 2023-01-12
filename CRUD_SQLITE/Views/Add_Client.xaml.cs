@@ -1,13 +1,5 @@
-﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CRUD_SQLITE.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 
 namespace CRUD_SQLITE.Views
@@ -15,26 +7,10 @@ namespace CRUD_SQLITE.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Add_Client : ContentPage
     {
-
-        public Add_Client(/*Dictionary<string, string> data, bool isEdit*/)
+        public Add_Client()
         {
             InitializeComponent();
-            BindingContext = new ClientViewModel();
-
-
-            //edit = isEdit;
-            //id = int.Parse(data["Id"]);
-            //textDNI.Text = data["DNI"];
-            //textFirstName.Text = data["FirstName"];
-            //textLastName.Text = data["LastName"];
-            //textDirection.Text = data["Direction"];
-            //textPhone.Text = data["Phone"];
-            //textEmail.Text = data["Email"];
-            //textCity.Text = data["City"];
-            //btnAddClient.TextColor = Color.White;
-            //btnAddClient.BackgroundColor = Color.FromHex("#FF8C00");
-            //btnAddClient.Text = "Edit Client";
-
+            BindingContext = new ClientViewModel(Navigation);
         }
 
         //public Add_Client() => InitializeComponent();

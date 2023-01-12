@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Product">
     <ContentPage.Content>
-
         <StackLayout>
-
-            <FlexLayout WidthRequest="100" HeightRequest="50"  >
-
+            <FlexLayout
+                WidthRequest="100"
+                HeightRequest="50">
                 <ImageButton
                     BackgroundColor="Transparent"
                     Source="add_product.png"
@@ -20,83 +19,128 @@
                     Margin="0,0,-2,0"
                     Command="{Binding btnCreateProduct}"
                     />
-
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="20, 5" CornerRadius="10" Padding="0,0,0,-2" Grid.Row="1">
-                    <SearchBar  Placeholder="Search Product" HeightRequest="100"  />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="20, 5"
+                    CornerRadius="10"
+                    Padding="0,0,0,-2"
+                    Grid.Row="1">
+                    <SearchBar
+                        Placeholder="Search Product"
+                        HeightRequest="100"
+                        />
                 </Frame>
-
             </FlexLayout>
-
-
             <StackLayout
                 Background="Silver">
-                <FlexLayout WidthRequest="100" HeightRequest="40" Margin="0" >
-                    <Label Text="Cant" WidthRequest="100" Margin="10"
-                           />
-                    <Label Text="Name" WidthRequest="100" Margin="10"
-                           />
-                    <Label Text="Brand" WidthRequest="100" Margin="10"
-                           />
-                    <Label Text="Description" WidthRequest="100" Margin="10"
-                           />
-                    <Label Text="V_Unitary" WidthRequest="100" Margin="10"
-                           />
-                    <Label Text="Action" WidthRequest="100" Margin="10"/>
+                <FlexLayout
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    Margin="0" >
+                    <Label
+                        Text="Cant"
+                        WidthRequest="100"
+                        Margin="10"
+                        />
+                    <Label
+                        Text="Name"
+                        WidthRequest="100"
+                        Margin="10"
+                        />
+                    <Label
+                        Text="Brand"
+                        WidthRequest="100"
+                        Margin="10"
+                        />
+                    <Label
+                        Text="Description"
+                        WidthRequest="100"
+                        Margin="10"
+                        />
+                    <Label
+                        Text="V_Unitary"
+                        WidthRequest="100"
+                        Margin="10"
+                        />
+                    <Label
+                        Text="Action"
+                        WidthRequest="100"
+                        Margin="10"
+                        />
                 </FlexLayout>
             </StackLayout>
-
-            <ListView x:Name="Lista" ItemsSource="{Binding  products}" >
+            <ListView
+                x:Name="Lista"
+                ItemsSource="{Binding  products}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
-                            <Grid  BackgroundColor="white">
-                                <Grid.RowDefinitions >
-                                    <RowDefinition Height="100"  />
-                                    <RowDefinition Height="Auto"  />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5" />
-                                    <!--<ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />-->
-                                </Grid.ColumnDefinitions  >
+                            <Grid
+                                RowDefinitions="100,Auto"
+                                ColumnDefinitions="5,*,*,*,*"
+                                BackgroundColor="white">
                                 <!--<Label Text="{Binding Quantity}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Brand}" Grid.Row="0" Grid.Column="2" WidthRequest="100" Margin="10"/>-->
                                 <!--<Label Text="{Binding Description}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Price}" Grid.Row="0" Grid.Column="4"  WidthRequest="100" Margin="10"/>-->
-                                <Label Text="{Binding imgProduct}" Grid.Row="0" Grid.Column="1"  WidthRequest="100" Margin="10"/>
-                                <FlexLayout Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"  >
-                                    <ImageButton BackgroundColor="Transparent" Source="edit"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0"
-                                                 Command="{Binding Source={x:Reference Lista}, Path=BindingContext.btnUpdateProduct}"
-                                                 CommandParameter="{Binding}"
-                                                 />
-                                    <ImageButton BackgroundColor="Transparent" Source="trash"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30"  Margin="0, 2, 5, 0"
-                                                 Command="{Binding Source={x:Reference Lista}, Path=BindingContext.btnDeleteProduct}"
-                                                 CommandParameter="{Binding}"
-                                                 />
+                                <Label
+                                    Text="{Binding imgProduct}"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    WidthRequest="100"
+                                    Margin="10"
+                                    />
+                                <FlexLayout
+                                    Grid.Row="0"
+                                    Grid.Column="5"
+                                    HorizontalOptions="Center">
+                                    <ImageButton
+                                        BackgroundColor="Transparent"
+                                        Source="edit"
+                                        Aspect="AspectFit"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="0, 2, 5, 0"
+                                        Command="{Binding Source={x:Reference Lista},
+                                        Path=BindingContext.btnUpdateProduct}"
+                                        CommandParameter="{Binding}"
+                                        />
+                                    <ImageButton
+                                        BackgroundColor="Transparent"
+                                        Source="trash"
+                                        Aspect="AspectFit"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="0, 2, 5, 0"
+                                        Command="{Binding Source={x:Reference Lista},
+                                        Path=BindingContext.btnDeleteProduct}"
+                                        CommandParameter="{Binding}"
+                                        />
                                 </FlexLayout>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
-
-            <StackLayout  HeightRequest="30" >
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <ImageButton Source="left" Grid.Column="0" BackgroundColor="Transparent"   />
-                    <ImageButton Source="right" Grid.Column="1"  BackgroundColor="Transparent"    />
+            <StackLayout
+                HeightRequest="30">
+                <Grid
+                    RowDefinitions="*">
+                    <ImageButton
+                        Source="left"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        />
+                    <ImageButton
+                        Source="right"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        />
                 </Grid>
             </StackLayout>
-
-
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

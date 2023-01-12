@@ -4,110 +4,258 @@
              x:Class="CRUD_SQLITE.Views.Config">
     <ContentPage.Content>
         <StackLayout>
-
-            <!--<TimePicker/>
-            <DatePicker/>-->
-
             <StackLayout >
-
-                <Label Text="CONFIG COMPANY" HorizontalOptions="Center" Margin="20" FontSize="30"/>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textNameCompany"  Placeholder="Name Company" HeightRequest="70"  />
+                <Label
+                    Text="CONFIG COMPANY"
+                    HorizontalOptions="Center"
+                    Margin="20"
+                    FontSize="30"/>
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textNameCompany"
+                        Placeholder="Name Company"
+                        HeightRequest="70"
+                        />
                 </Frame>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textOwner" Placeholder="Propietary" HeightRequest="70"  />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textOwner"
+                        Placeholder="Propietary"
+                        HeightRequest="70"
+                        />
                 </Frame>
-
-                <Frame HasShadow="True" BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textDirection" Placeholder="Direction" HeightRequest="70"  />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textDirection"
+                        Placeholder="Direction"
+                        HeightRequest="70"
+                        />
                 </Frame>
-
-
-
-                <Frame HasShadow="True"  BackgroundColor="AliceBlue" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                    <Entry x:Name="textEmail" Keyboard="Email" Placeholder="Email" HeightRequest="70"   />
+                <Frame
+                    HasShadow="True"
+                    BackgroundColor="AliceBlue"
+                    IsClippedToBounds="True"
+                    Margin="10, 5"
+                    CornerRadius="10"
+                    Padding="0,-10,0,-10">
+                    <Entry
+                        x:Name="textEmail"
+                        Keyboard="Email"
+                        Placeholder="Email"
+                        HeightRequest="70"/>
                 </Frame>
-
-                <Grid   HorizontalOptions="Center">
-                    <Grid.ColumnDefinitions  >
-                        <ColumnDefinition Width="180" />
-                        <ColumnDefinition Width="180" />
-                    </Grid.ColumnDefinitions>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Column="0" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textRUC" Keyboard="Numeric" Placeholder="RUC" HeightRequest="70"   />
+                <Grid
+                    ColumnDefinitions="180,180"
+                    HorizontalOptions="Center">
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="0"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textRUC"
+                            Keyboard="Numeric"
+                            Placeholder="RUC"
+                            HeightRequest="70"
+                            />
                     </Frame>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Column="1" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textPhone" Keyboard="Numeric" Placeholder="Phone" HeightRequest="70"   />
-                    </Frame>
-                </Grid>
-
-                <Grid WidthRequest="100" >
-                    <Grid.ColumnDefinitions  >
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Column="0" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textNumDocument" Keyboard="Numeric" Placeholder="#Document" HeightRequest="70"   />
-                    </Frame>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Column="1" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textSerie1" Keyboard="Numeric" Placeholder="Serie1" HeightRequest="70" />
-                    </Frame>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue" Grid.Column="2" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textSerie2" Keyboard="Numeric" Placeholder="Serie2" HeightRequest="70" />
-                    </Frame>
-                </Grid>
-
-
-                <Grid   HorizontalOptions="Center">
-                    <Grid.ColumnDefinitions  >
-                        <ColumnDefinition Width="180" />
-                        <ColumnDefinition Width="180" />
-                    </Grid.ColumnDefinitions>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue"  IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textDB" Placeholder="DB" Keyboard="Text" HeightRequest="70"   />
-                    </Frame>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue"  Grid.Column="1" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textDocument" Placeholder="Document" Keyboard="Text" HeightRequest="70"   />
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textPhone"
+                            Keyboard="Numeric"
+                            Placeholder="Phone"
+                            HeightRequest="70"
+                            />
                     </Frame>
                 </Grid>
 
-
-                <Grid   HorizontalOptions="Center">
-                    <Grid.ColumnDefinitions  >
-                        <ColumnDefinition Width="180" />
-                        <ColumnDefinition Width="180" />
-                    </Grid.ColumnDefinitions>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue"  IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textIva" Placeholder="IVA" Keyboard="Numeric" HeightRequest="70"   />
+                <Grid
+                    WidthRequest="100"
+                    ColumnDefinitions="150,*,*">
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="0"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textNumDocument"
+                            Keyboard="Numeric"
+                            Placeholder="#Document"
+                            HeightRequest="70"
+                            />
                     </Frame>
-                    <Frame HasShadow="True" BackgroundColor="AliceBlue"  Grid.Column="1" IsClippedToBounds="True" Margin="10, 5" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textCurrent" Placeholder="Current" Keyboard="Text" HeightRequest="70"   />
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textSerie1"
+                            Keyboard="Numeric"
+                            Placeholder="Serie1"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="2"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textSerie2"
+                            Keyboard="Numeric"
+                            Placeholder="Serie2"
+                            HeightRequest="70"/>
                     </Frame>
                 </Grid>
-
-
-                <Grid   HorizontalOptions="Center">
-                    <Grid.ColumnDefinitions  >
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="100" />
-                    </Grid.ColumnDefinitions>
-                    <Button  x:Name="btnSaveCompany" Grid.Column="0"  Text="Save Company"  Margin="10" CornerRadius="10" Clicked="btncreateCompany_Clicked"/>
-                    <Button  x:Name="btnEditCompany" Grid.Column="2"  Text="ADMIN"  Margin="10" CornerRadius="10" BackgroundColor="orange" Clicked="btnEditCompany_Clicked"/>
-                    <Frame x:Name="FrameCode" HasShadow="True" BackgroundColor="AliceBlue"  Grid.Column="1" IsClippedToBounds="True" Margin="10" CornerRadius="10" Padding="0,-10,0,-10"  >
-                        <Entry x:Name="textCode" Placeholder="CODE" Keyboard="Numeric"   />
+                <Grid
+                    HorizontalOptions="Center"
+                    ColumnDefinitions="180,180">
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textDB"
+                            Placeholder="DB"
+                            Keyboard="Text"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textDocument"
+                            Placeholder="Document"
+                            Keyboard="Text"
+                            HeightRequest="70"
+                            />
                     </Frame>
                 </Grid>
-
-
-                <Button  x:Name="btnLogout" Text="LOGOUT" MinimumHeightRequest="2" BackgroundColor="Red" Margin="10"   CornerRadius="10"/>
+                <Grid
+                    HorizontalOptions="Center"
+                    ColumnDefinitions="180,180">
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textIva"
+                            Placeholder="IVA"
+                            Keyboard="Numeric"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="10, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textCurrent"
+                            Placeholder="Current"
+                            Keyboard="Text"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                </Grid>
+                <Grid
+                    HorizontalOptions="Center"
+                    ColumnDefinitions="180,180">
+                    <Button
+                        x:Name="btnSaveCompany"
+                        Grid.Column="0"
+                        Text="Save Company"
+                        Margin="10"
+                        CornerRadius="10"
+                        Clicked="btncreateCompany_Clicked"
+                        />
+                    <Button
+                        x:Name="btnEditCompany"
+                        Grid.Column="2"
+                        Text="ADMIN"
+                        Margin="10"
+                        CornerRadius="10"
+                        BackgroundColor="orange"
+                        Clicked="btnEditCompany_Clicked"
+                        />
+                    <Frame
+                        x:Name="FrameCode"
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="10"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            x:Name="textCode"
+                            Placeholder="CODE"
+                            Keyboard="Numeric"
+                            />
+                    </Frame>
+                </Grid>
+                <Button
+                    x:Name="btnLogout"
+                    Text="LOGOUT"
+                    MinimumHeightRequest="2"
+                    BackgroundColor="Red"
+                    Margin="10"
+                    CornerRadius="10"
+                    />
             </StackLayout>
-
-
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
