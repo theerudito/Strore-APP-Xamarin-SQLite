@@ -14,14 +14,13 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
-        public int DNI { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Direction { get; set; }
-        public int Phone { get; set; }
-        public string Email { get; set; }
-        public string City { get; set; }
-
+        public int textDNI { get; set; }
+        public string textFirstName { get; set; }
+        public string textLastName { get; set; }
+        public string textDirection { get; set; }
+        public int textPhone { get; set; }
+        public string textEmail { get; set; }
+        public string textCity { get; set; }
 
 
         public ICommand btnSaveClient { get; set; }
@@ -49,7 +48,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
             var sql = "INSERT INTO Client (FirstName, LastName, Direction, Phone, Email, City, DNI) " +
-                    "VALUES ('" + FirstName + "', '" + LastName + "', '" + Direction + "', '" + Phone + "', '" + Email + "', '" + City + "', '" + DNI + "')";
+                    "VALUES ('" + textFirstName + "', '" + textLastName + "', '" + textDirection + "', '" + textPhone + "', '" + textEmail + "', '" + textCity + "', '" + textDNI + "')";
 
             db.Execute(sql);
 
@@ -101,8 +100,6 @@ namespace CRUD_SQLITE.ViewModels
         // COMMANDS
         public void goCreate()
         {
-            var navigationPage = new NavigationPage(new Add_Client());
-            Application.Current.MainPage = navigationPage;
 
         }
 
@@ -112,7 +109,7 @@ namespace CRUD_SQLITE.ViewModels
             OnPropertyChanged(nameof(MClient));
 
             // navegacion
-            Application.Current.MainPage.Navigation.PopAsync();
+
         }
 
         // UPDATE CLIENT

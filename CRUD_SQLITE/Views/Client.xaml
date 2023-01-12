@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="10" >
+            <FlexLayout  WidthRequest="100" HeightRequest="40" Margin="0" >
 
                 <ImageButton
                     Source="add_client.png"
@@ -37,7 +37,7 @@
             </StackLayout>
 
 
-            <ListView x:Name="Lista" ItemsSource="{Binding client}" >
+            <ListView x:Name="Lista" ItemsSource="{Binding client}" IsRefreshing="True" RefreshControlColor="#0099FF" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
