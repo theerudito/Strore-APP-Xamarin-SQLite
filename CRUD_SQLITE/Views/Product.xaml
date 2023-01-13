@@ -17,7 +17,7 @@
                     HeightRequest="50"
                     Padding="0,0,-20,0"
                     Margin="0,0,-2,0"
-                    Command="{Binding btnCreateProduct}"
+                    Command="{Binding btnGoNewProduct }"
                     />
                 <Frame
                     HasShadow="True"
@@ -79,20 +79,55 @@
                         <ViewCell >
                             <Grid
                                 RowDefinitions="100,Auto"
-                                ColumnDefinitions="5,*,*,*,*"
+                                ColumnDefinitions="*,*,*,*"
                                 BackgroundColor="white">
-                                <!--<Label Text="{Binding Quantity}" Grid.Row="0" Grid.Column="0" WidthRequest="100" Margin="10"/>
-                                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" WidthRequest="100" Margin="10"/>
-                                <Label Text="{Binding Brand}" Grid.Row="0" Grid.Column="2" WidthRequest="100" Margin="10"/>-->
-                                <!--<Label Text="{Binding Description}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
-                                <Label Text="{Binding Price}" Grid.Row="0" Grid.Column="4"  WidthRequest="100" Margin="10"/>-->
                                 <Image
-                                    Source="{Binding imgProduct}"
+
+                                    BackgroundColor="black"
+                                    Aspect="Fill"
+                                    Source="{Binding ImageProduct}"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    WidthRequest="50"
+                                    HeightRequest="50"
+                                    Margin="10"
+                                    />
+                                <!--<Label
+                                Text="{Binding Quantity}"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                WidthRequest="100"
+                                Margin="10"
+                                />-->
+                                <Label
+                                    Text="{Binding Name}"
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     WidthRequest="100"
                                     Margin="10"
                                     />
+                                <Label
+                                    Text="{Binding Brand}"
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    WidthRequest="100"
+                                    Margin="10"
+                                    />
+                                <Label
+                                    Text="{Binding Description}"
+                                    Grid.Row="0"
+                                    Grid.Column="3"
+                                    WidthRequest="100"
+                                    Margin="10"
+                                    />
+                                <Label
+                                    Text="{Binding Price}"
+                                    Grid.Row="0"
+                                    Grid.Column="4"
+                                    WidthRequest="100"
+                                    Margin="10"
+                                    />
+
                                 <FlexLayout
                                     Grid.Row="0"
                                     Grid.Column="5"

@@ -59,7 +59,7 @@
                                    CornerRadius="10">
                                 <StackLayout>
                                     <Image
-                                        Source="store"
+                                        Source="{Binding ImageProduct}"
                                         HeightRequest="100"/>
                                     <FlexLayout
                                         HorizontalOptions="Center">

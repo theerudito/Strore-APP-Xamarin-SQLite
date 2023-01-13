@@ -1,6 +1,4 @@
-﻿using System.Data.SQLite;
-using SQLite;
-
+﻿using SQLite;
 
 namespace CRUD_SQLITE.Models
 {
@@ -34,7 +32,6 @@ namespace CRUD_SQLITE.Models
         public decimal Iva { get; set; }
         [MaxLength(50)]
         public string Current { get; set; }
-
         public bool existe { get; set; }
     }
 }

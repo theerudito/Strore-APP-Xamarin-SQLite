@@ -104,7 +104,7 @@
                     x:Name="btnAddProduct"
                     Text="Save" Margin="50"
                     CornerRadius="10"
-                    Command="{Binding btnUpdateProduct}"
+                    Command="{Binding btnCreateProduct}"
                     />
             </StackLayout>
         </ScrollView>

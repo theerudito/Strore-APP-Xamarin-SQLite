@@ -64,7 +64,7 @@
             <ListView
                 x:Name="List"
                 ItemsSource="{Binding List_Clients}"
-                IsRefreshing="True"
+                IsRefreshing="false"
                 RefreshControlColor="#0099FF" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -75,6 +75,7 @@
                                 <Label
                                     Text="{Binding FirstName}"
                                     Grid.Row="0"
+                                    Background="red"
                                     Grid.Column="0"
                                     WidthRequest="100"
                                     Margin="10"/>

@@ -10,7 +10,7 @@ namespace CRUD_SQLITE.Views
         public Auth()
         {
             InitializeComponent();
-            BindingContext = new AuthViewModel(Navigation);
+            BindingContext = new AuthViewModel(Navigation, showRegister, showLogin);
         }
     }
 }

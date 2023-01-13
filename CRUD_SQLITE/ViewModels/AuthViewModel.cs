@@ -13,8 +13,8 @@ namespace CRUD_SQLITE.ViewModels
         private string _email;
         private string _password;
         private string _name;
-        private bool _StackLoyoud_Login;
-        private bool _StackLoyoud_Register;
+        private StackLayout showRegister;
+        private StackLayout showLogin;
         #endregion
 
         #region  OBJECTS
@@ -33,28 +33,18 @@ namespace CRUD_SQLITE.ViewModels
             get { return _password; }
             set { SetValue(ref _password, value); }
         }
-        public bool StackLoyoud_Login
-        {
-            get { return _StackLoyoud_Login; }
-            set { SetValue(ref _StackLoyoud_Login, value); }
-        }
-        public bool StackLoyoud_Register
-        {
-            get { return _StackLoyoud_Login; }
-            set { SetValue(ref _StackLoyoud_Login, value); }
-        }
-
         #endregion
 
 
         #region CONSTRUCTOR
-        public AuthViewModel(INavigation navigation)
+        public AuthViewModel(INavigation navigation, StackLayout showRegister, StackLayout showLogin)
         {
+            showRegister.IsVisible = false;
             Navigation = navigation;
+            this.showRegister = showRegister;
+            this.showLogin = showLogin;
         }
         #endregion
-
-
 
         #region METHODS
         public async Task Login()
@@ -70,13 +60,8 @@ namespace CRUD_SQLITE.ViewModels
             {
                 await DisplayAlert("Error", "Email or Password is incorrect", "Ok");
             }
-
-
         }
-        public async Task show_Login()
-        {
-            StackLoyoud_Register = false;
-        }
+
         public async Task Register()
         {
             var db = connection.openConnection();
@@ -93,18 +78,24 @@ namespace CRUD_SQLITE.ViewModels
                 await DisplayAlert("Error", "Email already exists", "Ok");
             }
         }
-        public async Task show_Register()
+        public void show_Login()
         {
-            StackLoyoud_Login = false;
+            showRegister.IsVisible = false;
+            showLogin.IsVisible = true;
+        }
+        public void show_Register()
+        {
+            showRegister.IsVisible = true;
+            showLogin.IsVisible = false;
         }
         #endregion
 
 
         #region COMMANDS
         public ICommand btnLoginCommand => new Command(async () => await Login());
-        public ICommand btnShowRegisterCommand => new Command(async () => await show_Login());
+        public ICommand btnShowRegisterCommand => new Command(show_Login);
         public ICommand btnRegisterCommand => new Command(async () => await Register());
-        public ICommand LoginCommand => new Command(async () => await show_Register());
+        public ICommand btnShowLoginCommand => new Command(show_Register);
         #endregion 
     }
 }

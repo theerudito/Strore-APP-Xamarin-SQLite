@@ -1,5 +1,4 @@
-﻿using System.Data.SQLite;
-using SQLite;
+﻿using SQLite;
 
 namespace CRUD_SQLITE.Models
 {

@@ -4,7 +4,7 @@
              x:Class="CRUD_SQLITE.Views.Auth">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout  >
+            <StackLayout x:Name="showRegister" VerticalOptions="Center">
                 <Image
                     Source="login"
                     WidthRequest="200"
@@ -58,8 +58,13 @@
                     Padding="0"
                     BackgroundColor="Orange"
                     />
+                <!--<Label Text="No Tienes Cuenta"  >
+                <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding btnShowRegisterCommand}"/>
+                </Label.GestureRecognizers>
+                </Label>-->
             </StackLayout>
-            <StackLayout >
+            <StackLayout x:Name="showLogin">
                 <Image
                     Source="login"
                     WidthRequest="200"

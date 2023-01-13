@@ -23,7 +23,7 @@ namespace CRUD_SQLITE.ViewModels
         public string _textDescription;
         public int _textPrice;
         public int _textQuantity;
-        public string _imageProduct = "https://i.postimg.cc/ZKxQ2vmz/hoja-dark.png";
+        public string _imageProduct = "https://i.postimg.cc/bY7xNvpV/hoja-white.png";
         #endregion
 
 
@@ -112,15 +112,12 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region METHODS
-        public async Task Get_All_Client()
-        {
 
-        }
 
-        public async Task Insert_Client()
+        public async Task Insert_Product()
         {
             var db = connection.openConnection();
-            var sql = "INSERT INTO Product (Name, Code, Brand, Description, Price, Quantity, imgProduct) "
+            var sql = "INSERT INTO Product (Name, Code, Brand, Description, Price, Quantity, ImageProduct) "
 
                 + "VALUES ('" + TextName + "', " +
                 "'" + TextCode + "', " +
@@ -132,6 +129,8 @@ namespace CRUD_SQLITE.ViewModels
 
 
             db.Execute(sql);
+
+            await Navigation.PushAsync(new Product());
         }
 
         public async Task Delete_Product(MProduct product)
@@ -172,11 +171,11 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region COMMANDS   
-        public ICommand btnCreateProduct => new Command(async () => await Insert_Client());
+        public ICommand btnCreateProduct => new Command(async () => await Insert_Product());
         public ICommand btnUpdateProduct => new Command(async () => await Update_Product());
         public ICommand btnDeleteProduct => new Command<MProduct>(async (prod) => await Delete_Product(prod));
-        public ICommand btnGoNewProduct => new Command(async () => await Navigation.PushAsync(new Add_Client()));
-        public ICommand btnGoUpdateProduct => new Command(async () => await Navigation.PushAsync(new Add_Client()));
+        public ICommand btnGoNewProduct => new Command(async () => await Navigation.PushAsync(new Add_Product()));
+        public ICommand btnGoUpdateProduct => new Command(async () => await Navigation.PushAsync(new Add_Product()));
         public ICommand btnLeftProduct => new Command(async () => await DisplayAlert("info", "prew", "ok"));
         public ICommand btnRightProduct => new Command(async () => await DisplayAlert("info", "next", "ok"));
         public ICommand btnOpenGalery => new Command(async () => await openGalery());
