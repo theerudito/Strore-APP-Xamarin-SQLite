@@ -72,8 +72,8 @@
                 </FlexLayout>
             </StackLayout>
             <ListView
-                x:Name="Lista"
-                ItemsSource="{Binding  products}">
+                x:Name="list_product"
+                ItemsSource="{Binding  List_Product}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
@@ -86,8 +86,8 @@
                                 <Label Text="{Binding Brand}" Grid.Row="0" Grid.Column="2" WidthRequest="100" Margin="10"/>-->
                                 <!--<Label Text="{Binding Description}" Grid.Row="0" Grid.Column="3" WidthRequest="100" Margin="10"/>
                                 <Label Text="{Binding Price}" Grid.Row="0" Grid.Column="4"  WidthRequest="100" Margin="10"/>-->
-                                <Label
-                                    Text="{Binding imgProduct}"
+                                <Image
+                                    Source="{Binding imgProduct}"
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     WidthRequest="100"
@@ -104,9 +104,9 @@
                                         WidthRequest="30"
                                         HeightRequest="30"
                                         Margin="0, 2, 5, 0"
-                                        Command="{Binding Source={x:Reference Lista},
+                                        Command="{Binding Source={x:Reference list_product},
                                         Path=BindingContext.btnUpdateProduct}"
-                                        CommandParameter="{Binding}"
+                                        CommandParameter="{Binding .}"
                                         />
                                     <ImageButton
                                         BackgroundColor="Transparent"
@@ -115,9 +115,9 @@
                                         WidthRequest="30"
                                         HeightRequest="30"
                                         Margin="0, 2, 5, 0"
-                                        Command="{Binding Source={x:Reference Lista},
+                                        Command="{Binding Source={x:Reference list_product},
                                         Path=BindingContext.btnDeleteProduct}"
-                                        CommandParameter="{Binding}"
+                                        CommandParameter="{Binding .}"
                                         />
                                 </FlexLayout>
                             </Grid>

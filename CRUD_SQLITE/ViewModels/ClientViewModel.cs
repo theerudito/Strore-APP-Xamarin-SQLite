@@ -22,9 +22,7 @@ namespace CRUD_SQLITE.ViewModels
         public string _textCity;
         #endregion
 
-
-
-        #region CONSTROCTOR
+        #region CONSTRUCTOR
         public ClientViewModel(INavigation navigation)
         {
 
@@ -32,8 +30,6 @@ namespace CRUD_SQLITE.ViewModels
             GET_ALL_Clients();
         }
         #endregion
-
-
 
         #region OBJECTS
         public ObservableCollection<MClient> List_Clients
@@ -54,7 +50,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public string textFirstName
+        public string TextFirstName
         {
             get { return _textFirstName; }
             set
@@ -63,7 +59,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public string textLastName
+        public string TextLastName
         {
             get { return _textLastName; }
             set
@@ -72,7 +68,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public string textDirection
+        public string TextDirection
         {
             get { return _textDirection; }
             set
@@ -81,7 +77,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public int textPhone
+        public int TextPhone
         {
             get { return _textPhone; }
             set
@@ -90,7 +86,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public string textEmail
+        public string TextEmail
         {
             get { return _textEmail; }
             set
@@ -99,7 +95,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public string textCity
+        public string TextCity
         {
             get { return _textCity; }
             set
@@ -111,14 +107,11 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region METHODS
-
-
-
         public async Task Insert_Client()
         {
             var db = connection.openConnection();
             var sql = "INSERT INTO Client (FirstName, LastName, Direction, Phone, Email, City, DNI) " +
-                    "VALUES ('" + textFirstName + "', '" + textLastName + "', '" + textDirection + "', '" + textPhone + "', '" + textEmail + "', '" + textCity + "', '" + TextDNI + "')";
+                    "VALUES ('" + TextFirstName + "', '" + TextLastName + "', '" + TextDirection + "', '" + TextPhone + "', '" + TextEmail + "', '" + TextCity + "', '" + TextDNI + "')";
 
             db.Execute(sql);
 

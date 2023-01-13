@@ -4,8 +4,7 @@
              x:Class="CRUD_SQLITE.Views.Auth">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout
-                x:Name="login">
+            <StackLayout  >
                 <Image
                     Source="login"
                     WidthRequest="200"
@@ -23,7 +22,7 @@
                     Margin="20" CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textEmailLogin"
+                        Text="{Binding Email}"
                         Placeholder="Email"
                         HeightRequest="70"
                         />
@@ -36,7 +35,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textPasswordLogin"
+                        Text="{Binding Password}"
                         IsPassword="True"
                         Placeholder="Password"
                         Keyboard="Chat"
@@ -44,25 +43,23 @@
                         />
                 </Frame>
                 <Button
-                    x:Name="btnLogin"
+                    Command="{Binding btnLoginCommand}"
                     Text="Login"
                     CornerRadius="10"
                     Margin="20"
                     Padding="0"
-                    Clicked="Login_Clicked"
                     />
                 <Button
-                    x:Name="showRegister"
+
+                    Command="{Binding btnShowRegisterCommand}"
                     Text="Go Register"
                     CornerRadius="10"
                     Margin="20"
                     Padding="0"
                     BackgroundColor="Orange"
-                    Clicked="showRegister_Clicked"
                     />
             </StackLayout>
-            <StackLayout
-                x:Name="register">
+            <StackLayout >
                 <Image
                     Source="login"
                     WidthRequest="200"
@@ -79,7 +76,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textNameRegister"
+                        Text="{Binding Name}"
                         Placeholder="Name"
                         HeightRequest="70"
                         />
@@ -92,7 +89,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textEmailRegister"
+                        Text="{Binding Email}"
                         Placeholder="Email"
                         HeightRequest="70"
                         />
@@ -106,26 +103,24 @@
                     Padding="0,-10,0,-10">
                     <Entry
                         IsPassword="True"
-                        x:Name="textPasswordRegister"
+                        Text="{Binding Password}"
                         Placeholder="Password"
                         Keyboard="Chat"
                         HeightRequest="70"
                         />
                 </Frame>
                 <Button
-                    x:Name="btnRegister"
+                    Command="{Binding btnRegisterCommand}"
                     Text="Register"
                     CornerRadius="10"
-                    Margin="20" Padding="0"
-                    Clicked="Register_Clicked" />
+                    Margin="20" Padding="0"/>
                 <Button
-                    x:Name="showLogin"
+                    Command="{Binding btnShowLoginCommand}"
                     Text="Go Login"
                     CornerRadius="10"
                     Margin="20"
                     Padding="0"
-                    BackgroundColor="Orange"
-                    Clicked="showLogin_Clicked"/>
+                    BackgroundColor="Orange"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

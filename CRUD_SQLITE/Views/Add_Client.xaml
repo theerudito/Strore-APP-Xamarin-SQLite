@@ -22,7 +22,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        Text="{Binding textDNI}"
+                        Text="{Binding TextDNI}"
                         Keyboard="Numeric"
                         Placeholder="CI"
                         HeightRequest="70"
@@ -36,7 +36,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        Text="{Binding textFirstName}"
+                        Text="{Binding TextFirstName}"
                         Keyboard="Text"
                         Placeholder="First Name"
                         HeightRequest="70"
@@ -50,7 +50,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10"  >
                     <Entry
-                        Text="{Binding textLastName}"
+                        Text="{Binding TextLastName}"
                         Keyboard="Text"
                         Placeholder="Last Name"
                         HeightRequest="70"
@@ -64,7 +64,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10"  >
                     <Entry
-                        Text="{Binding textDirection}"
+                        Text="{Binding TextDirection}"
                         Keyboard="Text"
                         Placeholder="Direction"
                         HeightRequest="70"
@@ -78,7 +78,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        Text="{Binding textPhone}"
+                        Text="{Binding TextPhone}"
                         Keyboard="Numeric"
                         Placeholder="Phone"
                         HeightRequest="70"
@@ -92,7 +92,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        Text="{Binding textEmail}"
+                        Text="{Binding TextEmail}"
                         Keyboard="Email"
                         Placeholder="Email"
                         HeightRequest="70"
@@ -106,7 +106,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        Text="{Binding textCity}"
+                        Text="{Binding TextCity}"
                         Keyboard="Text"
                         Placeholder="City"
                         HeightRequest="70"

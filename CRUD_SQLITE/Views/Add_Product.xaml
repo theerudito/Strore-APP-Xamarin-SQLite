@@ -6,7 +6,7 @@
         <ScrollView>
             <StackLayout >
                 <ImageButton
-                    x:Name="picProduct"
+                    Command="{Binding btnOpenGalery}"
                     Source="image.png"
                     WidthRequest="100"
                     Margin="10"
@@ -14,7 +14,7 @@
                     />
                 <Button
                     Text="Open"
-                    Clicked="openGalery_Clicked"
+                    Command="{Binding btnOpenGalery}"
                     />
                 <Label
                     Text="ADD NEW PRODUCT"
@@ -104,7 +104,7 @@
                     x:Name="btnAddProduct"
                     Text="Save" Margin="50"
                     CornerRadius="10"
-                    Clicked="createProduct_Clicked"
+                    Command="{Binding btnUpdateProduct}"
                     />
             </StackLayout>
         </ScrollView>

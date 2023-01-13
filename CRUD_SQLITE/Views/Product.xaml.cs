@@ -1,28 +1,17 @@
-﻿using CRUD_SQLITE.Models;
-using System;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using CRUD_SQLITE.ViewModels;
-using System.Collections.Generic;
 
 namespace CRUD_SQLITE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Product : ContentPage
     {
-        //ProductViewModel product = new ProductViewModel();
-
-
         public Product()
         {
             InitializeComponent();
             BindingContext = new ProductViewModel(Navigation);
-
-        }
-
-        private void ImageButton_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Add_Product());
         }
 
         //private async void deleteProduct_Clicked(object sender, EventArgs e)
