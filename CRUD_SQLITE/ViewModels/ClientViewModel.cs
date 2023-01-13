@@ -110,9 +110,10 @@ namespace CRUD_SQLITE.ViewModels
         public async Task Insert_Client()
         {
             var db = connection.openConnection();
-            var sql = "INSERT INTO Client (FirstName, LastName, Direction, Phone, Email, City, DNI) " +
-                    "VALUES ('" + TextFirstName + "', '" + TextLastName + "', '" + TextDirection + "', '" + TextPhone + "', '" + TextEmail + "', '" + TextCity + "', '" + TextDNI + "')";
-
+            //DNI, FirstName, LastName, Direction, Phone, Email, City
+            var sql = "INSERT INTO Client (DNI, FirstName, LastName, Direction, Phone, Email, City) " +
+                "VALUES (" + TextDNI + ", '" + TextFirstName + "', '" + TextLastName + "', '" + TextDirection + "', " +
+                "" + TextPhone + ", '" + TextEmail + "', '" + TextCity + "')";
             db.Execute(sql);
 
             await Navigation.PushAsync(new Client());

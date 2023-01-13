@@ -10,9 +10,6 @@ namespace CRUD_SQLITE.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Client : ContentPage
     {
-
-
-
         public Client()
         {
             InitializeComponent();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRUD_SQLITE.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,8 @@ namespace CRUD_SQLITE.Views
         public Home()
         {
             InitializeComponent();
+            BindingContext = new HomeViewModel(Navigation);
         }
 
-        private void openMyGitHub(object sender, EventArgs e)
-        {
-            DisplayAlert("Alert", "This is an alert.", "OK");
-            //Navigation.PushAsync(new Shopping());
-        }
     }
 }

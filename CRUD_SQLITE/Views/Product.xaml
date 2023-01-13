@@ -71,6 +71,35 @@
                         />
                 </FlexLayout>
             </StackLayout>
+
+            <!--<CollectionView x:Name="list_product" ItemsSource="{Binding  List_Product}">
+            <CollectionView.ItemTemplate>
+            <DataTemplate>
+            <Grid RowDefinitions="100,Auto" ColumnDefinitions="*,*,*,*">
+            <Image
+
+            BackgroundColor="black"
+            Aspect="Fill"
+            Source="{Binding ImageProduct}"
+            Grid.Row="0"
+            Grid.Column="0"
+            WidthRequest="50"
+            HeightRequest="50"
+            Margin="10"
+            />
+            <Label
+            Text="{Binding TextName}"
+            TextColor="Aqua"
+            Grid.Row="0"
+            Grid.Column="1"
+            WidthRequest="100"
+            Margin="10"
+            />
+            </Grid>
+            </DataTemplate>
+            </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
             <ListView
                 x:Name="list_product"
                 ItemsSource="{Binding  List_Product}">

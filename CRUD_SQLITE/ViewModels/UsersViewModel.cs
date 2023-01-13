@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    public class CartViewModel : BaseViewModel
+    public class UsersViewModel : BaseViewModel
     {
-        public CartViewModel(INavigation navigation)
+        public UsersViewModel(INavigation navigation)
         {
             Navigation = navigation;
         }

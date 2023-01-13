@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CRUD_SQLITE.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CRUD_SQLITE.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Reports : ContentPage
-	{
-		public Reports ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Reports : ContentPage
+    {
+        public Reports()
+        {
+            InitializeComponent();
+            BindingContext = new ReportViewModel(Navigation);
+        }
+    }
 }

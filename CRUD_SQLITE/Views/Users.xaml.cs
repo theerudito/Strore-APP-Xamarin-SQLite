@@ -1,10 +1,4 @@
-﻿using CRUD_SQLITE.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CRUD_SQLITE.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +10,9 @@ namespace CRUD_SQLITE.Views
         public Users()
         {
             InitializeComponent();
+            BindingContext = new UsersViewModel(Navigation);
             LoadDataGridUsers();
+
 
         }
 

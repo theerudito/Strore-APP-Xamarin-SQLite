@@ -3,13 +3,19 @@ using CRUD_SQLITE.Services;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
-
+using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    public class CompanyViewModel : ICompany
+    public class CompanyViewModel : BaseViewModel, ICompany
     {
+        public CompanyViewModel(INavigation navigation)
+        {
+            Navigation = navigation;
+        }
+
         DB.SQLite_Config connection = new DB.SQLite_Config();
+
 
         public Task<Company> companyAsync()
         {

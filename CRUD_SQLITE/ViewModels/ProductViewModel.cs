@@ -64,7 +64,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public string TextDirection
+        public string TextDescription
         {
             get { return _textDescription; }
             set
@@ -122,7 +122,7 @@ namespace CRUD_SQLITE.ViewModels
                 + "VALUES ('" + TextName + "', " +
                 "'" + TextCode + "', " +
                 "'" + TextBrand + "', " +
-                "'" + TextDirection + "', " +
+                "'" + TextDescription + "', " +
                 "'" + TextPrice + "', " +
                 "'" + TextQuantity + "', " +
                 "'" + ImageProduct + "')";

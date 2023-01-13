@@ -57,7 +57,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-                            Clicked="openMyGitHub"
+
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -66,7 +66,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-                            Clicked="openMyGitHub"
+
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -75,7 +75,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-                            Clicked="openMyGitHub"
+
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -84,7 +84,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-                            Clicked="openMyGitHub"
+
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -93,7 +93,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-                            Clicked="openMyGitHub"
+
                             />
                     </FlexLayout>
                 </StackLayout>

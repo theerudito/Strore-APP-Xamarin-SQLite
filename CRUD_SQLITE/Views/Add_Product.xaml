@@ -28,7 +28,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textName"
+                        Text="{Binding TextName}"
                         Placeholder="Name"
                         HeightRequest="70"
                         />
@@ -41,7 +41,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textCode"
+                        Text="{Binding TextCode}"
                         Keyboard="Numeric"
                         Placeholder="Code"
                         HeightRequest="70"
@@ -55,7 +55,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textBrand"
+                        Text="{Binding TextBrand}"
                         Placeholder="Brand"
                         HeightRequest="70"
                         />
@@ -68,7 +68,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textDescription"
+                        Text="{Binding TextDescription}"
                         Placeholder="Description"
                         HeightRequest="70"
                         />
@@ -81,7 +81,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textPrice"
+                        Text="{Binding TextPrice}"
                         Keyboard="Numeric"
                         Placeholder="Price"
                         HeightRequest="70"
@@ -95,7 +95,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textQuantity"
+                        Text="{Binding TextQuantity}"
                         Keyboard="Numeric"
                         Placeholder="Quantity"
                         HeightRequest="70"/>

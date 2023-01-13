@@ -1,16 +1,7 @@
-﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
-using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using CRUD_SQLITE.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static Xamarin.Essentials.Permissions;
 
 namespace CRUD_SQLITE.Views
 {
@@ -20,7 +11,7 @@ namespace CRUD_SQLITE.Views
         public Cart()
         {
             InitializeComponent();
-
+            BindingContext = new CartViewModel(Navigation);
             //textDateCart.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 

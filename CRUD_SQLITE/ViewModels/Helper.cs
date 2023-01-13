@@ -6,17 +6,16 @@ namespace CRUD_SQLITE.ViewModels
 {
     class Helper : BaseViewModel
     {
-
-        #region VARIABLES
-        string _Text;
-        #endregion
-
-
         #region CONSTRUCTOR
         public Helper()
         {
 
         }
+        #endregion
+
+
+        #region VARIABLES
+        string _Text;
         #endregion
 
 

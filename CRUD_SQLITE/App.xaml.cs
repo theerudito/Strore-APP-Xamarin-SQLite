@@ -1,7 +1,4 @@
-﻿using CRUD_SQLITE.DB;
-using CRUD_SQLITE.Models;
-using System;
-using System.IO;
+﻿using CRUD_SQLITE.Models;
 using Xamarin.Forms;
 
 
@@ -9,9 +6,7 @@ namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
-        public static string FilePath { get; internal set; }
-
-
+        //public static string FilePath { get; internal set; }
         public App()
         {
             InitializeComponent();
@@ -24,7 +19,7 @@ namespace CRUD_SQLITE
 
             var queryProduct = "CREATE TABLE IF NOT EXISTS Product" +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, " +
-                "Code INTEGER UNIQUE, Brand TEXT, Description TEXT, " +
+                "Code INTEGER, Brand TEXT, Description TEXT, " +
                 "Price REAL, Quantity INTEGER, ImageProduct TEXT )";
 
             //var deleteTableProduct = "DROP TABLE Product";
@@ -32,9 +27,11 @@ namespace CRUD_SQLITE
 
             var queryClient = "CREATE TABLE IF NOT EXISTS Client " +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "FirstName TEXT, LastName TEXT, DNI INTEGER" +
+                "DNI INTEGER, FirstName TEXT, LastName TEXT, " +
                 "Direction TEXT, Phone INTEGER, Email TEXT, City TEXT)";
 
+            //var deleteTableClient = "DROP TABLE Client";
+            //db.Execute(deleteTableClient);
 
             var queryAuth = "CREATE TABLE IF NOT EXISTS Auth" +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
