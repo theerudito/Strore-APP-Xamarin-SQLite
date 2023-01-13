@@ -18,7 +18,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textNameCompany"
+                        Text="{Binding Name}"
                         Placeholder="Name Company"
                         HeightRequest="70"
                         />
@@ -31,7 +31,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textOwner"
+                        Text="{Binding Owner}"
                         Placeholder="Propietary"
                         HeightRequest="70"
                         />
@@ -44,7 +44,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textDirection"
+                        Text="{Binding Direction}"
                         Placeholder="Direction"
                         HeightRequest="70"
                         />
@@ -57,7 +57,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        x:Name="textEmail"
+                        Text="{Binding Email}"
                         Keyboard="Email"
                         Placeholder="Email"
                         HeightRequest="70"/>
@@ -74,7 +74,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textRUC"
+                            Text="{Binding RUC}"
                             Keyboard="Numeric"
                             Placeholder="RUC"
                             HeightRequest="70"
@@ -89,7 +89,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textPhone"
+                            Text="{Binding Phone}"
                             Keyboard="Numeric"
                             Placeholder="Phone"
                             HeightRequest="70"
@@ -109,7 +109,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textNumDocument"
+                            Text="{Binding NumDocument}"
                             Keyboard="Numeric"
                             Placeholder="#Document"
                             HeightRequest="70"
@@ -124,7 +124,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textSerie1"
+                            Text="{Binding Serie1}"
                             Keyboard="Numeric"
                             Placeholder="Serie1"
                             HeightRequest="70"
@@ -139,7 +139,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textSerie2"
+                            Text="{Binding Serie2}"
                             Keyboard="Numeric"
                             Placeholder="Serie2"
                             HeightRequest="70"/>
@@ -156,7 +156,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textDB"
+                            Text="{Binding DB}"
                             Placeholder="DB"
                             Keyboard="Text"
                             HeightRequest="70"
@@ -171,7 +171,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textDocument"
+                            Text="{Binding Document}"
                             Placeholder="Document"
                             Keyboard="Text"
                             HeightRequest="70"
@@ -189,7 +189,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textIva"
+                            Text="{Binding Iva}"
                             Placeholder="IVA"
                             Keyboard="Numeric"
                             HeightRequest="70"
@@ -204,7 +204,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textCurrent"
+                            Text="{Binding Current}"
                             Placeholder="Current"
                             Keyboard="Text"
                             HeightRequest="70"
@@ -215,21 +215,19 @@
                     HorizontalOptions="Center"
                     ColumnDefinitions="*,100,100">
                     <Button
-                        x:Name="btnSaveCompany"
                         Grid.Column="0"
                         Text="Save Company"
                         Margin="10"
                         CornerRadius="10"
-
+                        Command="{Binding btnSaveCompany}"
                         />
                     <Button
-                        x:Name="btnEditCompany"
                         Grid.Column="2"
                         Text="ADMIN"
                         Margin="10"
                         CornerRadius="10"
                         BackgroundColor="orange"
-
+                        Command="{Binding btnAdmin}"
                         />
                     <Frame
                         x:Name="FrameCode"
@@ -241,14 +239,14 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            x:Name="textCode"
+                            Text="{Binding CODE}"
                             Placeholder="CODE"
                             Keyboard="Numeric"
                             />
                     </Frame>
                 </Grid>
                 <Button
-                    x:Name="btnLogout"
+                    Command="{Binding btnLogOut}"
                     Text="LOGOUT"
                     MinimumHeightRequest="2"
                     BackgroundColor="Red"

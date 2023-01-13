@@ -32,6 +32,6 @@ namespace CRUD_SQLITE.Models
         public decimal Iva { get; set; }
         [MaxLength(50)]
         public string Current { get; set; }
-        public bool existe { get; set; }
+        public bool ExisteCompany { get; set; }
     }
 }
