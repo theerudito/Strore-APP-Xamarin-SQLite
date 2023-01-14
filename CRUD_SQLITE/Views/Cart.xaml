@@ -3,307 +3,292 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Cart">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout
-                Background="Silver">
-                <FlexLayout
-                    WidthRequest="100"
-                    HeightRequest="40"
-                    Margin="0">
-                    <Label
-                        Text="Cant"
-                        WidthRequest="100"
-                        Margin="10"
-                        />
-                    <Label
-                        Text="Details"
-                        WidthRequest="100"
-                        Margin="10"
-                        />
-                    <Label
-                        Text="P_Unitary"
-                        WidthRequest="100"
-                        Margin="10"
-                        />
-                    <Label
-                        Text="P_Total"
-                        WidthRequest="100"
-                        Margin="10"
-                        />
-                    <Label
-                        Text="Action"
-                        WidthRequest="100"
-                        Margin="10"
-                        />
-                </FlexLayout>
-            </StackLayout>
+        <Grid BackgroundColor="red" RowDefinitions="30,*,*,*,*"  >
 
-            <StackLayout Margin="0,-400,0,0">
-                <ListView x:Name="list_product">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Label
-                                        Text="{Binding Quantity}"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        />
-                                    <Label
-                                        Text="{Binding Name}"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        />
-                                    <Label
-                                        Text="{Binding Price}"
-                                        Grid.Row="0"
-                                        Grid.Column="2"
-                                        />
-                                    <Label
-                                        Text="{Binding Price_Total}"
-                                        Grid.Row="0"
-                                        Grid.Column="3"
-                                        />
-                                    <ImageButton
-                                        Source="edit"
-                                        Aspect="AspectFit"
-                                        WidthRequest="50"
-                                        HeightRequest="20"
-                                        BackgroundColor="Transparent"
-                                        />
-                                    <ImageButton
-                                        Source="trash"
-                                        Aspect="AspectFit"
-                                        WidthRequest="50"
-                                        HeightRequest="20"
-                                        BackgroundColor="Transparent"
-
-                                        />
-                                    <!--Command="{Binding Source={x:Reference list_product},
-                                    Path=BindingContext.btnUpdateProduct}"
-                                    CommandParameter="{Binding .}"-->
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+            <StackLayout BackgroundColor="Silver" Grid.Row="0" >
+                <Label Text="Cant"  Grid.Row="2" Grid.Column="0"/>
+                <Label Text="Name"  Grid.Row="0" Grid.Column="1"/>
+                <Label Text="P_Unitaty"  Grid.Row="0" Grid.Column="2"/>
+                <Label Text="P_Total"  Grid.Row="0" Grid.Column="3"/>
+                <Label Text="Action"  Grid.Row="0" Grid.Column="4"/>
             </StackLayout>
 
 
-            <Grid  ColumnDefinitions="*,*">
-                <FlexLayout
-                    Grid.Column="1"
-                    BackgroundColor="#0099FF">
-                    <Label
-                        Text="TOTAL:"
-                        WidthRequest="100"
-                        FontSize="20"
-                        HorizontalTextAlignment="Center"
-                        TextColor="white"
-                        />
-                    <Label
 
-                        Text="{Binding Total}"
-                        WidthRequest="100"
-                        FontSize="20"
-                        TextColor="white"
-                        />
-                </FlexLayout>
+
+
+
+
+
+            <!--<ListView x:Name="list_product" Grid.Row="1">
+            <ListView.ItemTemplate >
+            <DataTemplate>
+            <ViewCell>
+            <Grid RowDefinitions="Auto,Auto"
+            ColumnDefinitions="*,*,*,*"
+            BackgroundColor="white">
+            <Label
+            Text="{Binding Quantity}"
+            Grid.Row="0"
+            Grid.Column="0"
+            />
+            <Label
+            Text="{Binding Name}"
+            Grid.Row="0"
+            Grid.Column="1"
+            />
+            <Label
+            Text="{Binding Price}"
+            Grid.Row="0"
+            Grid.Column="2"
+            />
+            <Label
+            Text="{Binding Price_Total}"
+            Grid.Row="0"
+            Grid.Column="3"
+            />
+            <ImageButton
+            Source="edit"
+            Aspect="AspectFit"
+            WidthRequest="50"
+            HeightRequest="20"
+            BackgroundColor="Transparent"
+            />
+            <ImageButton
+            Source="trash"
+            Aspect="AspectFit"
+            WidthRequest="50"
+            HeightRequest="20"
+            BackgroundColor="Transparent"
+
+            />
+            -->
+            <!--Command="{Binding Source={x:Reference list_product},
+            Path=BindingContext.btnUpdateProduct}"
+            CommandParameter="{Binding .}"-->
+            <!--
+            </Grid>
+            </ViewCell>
+            </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
+
+
+
+            <Grid  ColumnDefinitions="*,*" Grid.Row="2">
+            <FlexLayout
+            Grid.Column="1"
+            BackgroundColor="#0099FF">
+            <Label
+            Text="TOTAL:"
+            WidthRequest="100"
+            FontSize="20"
+            HorizontalTextAlignment="Center"
+            TextColor="white"
+            />
+            <Label
+
+            Text="{Binding Total}"
+            WidthRequest="100"
+            FontSize="20"
+            TextColor="white"
+            />
+            </FlexLayout>
             </Grid>
             <Frame
-                Background="#0099FF"
-                VerticalOptions="Center"
-                Margin="5, 0, 5 ,0"
-                Padding="5"
-                CornerRadius="20">
-                <Label
-                    Text="DETAILS"
-                    TextColor="white"
-                    HorizontalOptions="Center"
-                    />
+            Background="#0099FF"
+            VerticalOptions="Center"
+            Margin="5, 0, 5 ,0"
+            Padding="5"
+            CornerRadius="20">
+            <Label
+            Text="DETAILS"
+            TextColor="white"
+            HorizontalOptions="Center"
+            />
             </Frame>
             <StackLayout
-                HeightRequest="25"
-                Margin="5, 0, 5 ,0"
-                Background="silver"
-                Padding="5">
-                <Grid
-                    ColumnDefinitions="*,*,*"
-                    HorizontalOptions="Center">
-                    <FlexLayout
-                        Grid.Column="0"
-                        Grid.Row="0"
-                        HorizontalOptions="Center">
-                        <Label
-                            x:Name="Fecha"
-                            Text="Fecha: "
-                            />
-                        <Label
-                            x:Name="textDate"
-                            Text="{Binding Date}"
-                            />
-                    </FlexLayout>
-                    <FlexLayout
-                        Grid.Column="2"
-                        Grid.Row="0">
-                        <Label
-                            Text="Hora: "
-                            />
-                        <Label
-                            Text="{Binding Hour}"
-                            />
-                    </FlexLayout>
-                </Grid>
+            HeightRequest="25"
+            Margin="5, 0, 5 ,0"
+            Background="silver"
+            Padding="5">
+            <Grid
+            ColumnDefinitions="*,*,*"
+            HorizontalOptions="Center">
+            <FlexLayout
+            Grid.Column="0"
+            Grid.Row="0"
+            HorizontalOptions="Center">
+            <Label
+            x:Name="Fecha"
+            Text="Fecha: "
+            />
+            <Label
+            x:Name="textDate"
+            Text="{Binding Date}"
+            />
+            </FlexLayout>
+            <FlexLayout
+            Grid.Column="2"
+            Grid.Row="0">
+            <Label
+            Text="Hora: "
+            />
+            <Label
+            Text="{Binding Hour}"
+            />
+            </FlexLayout>
+            </Grid>
             </StackLayout>
             <StackLayout
-                HeightRequest="40"
-                Margin="5, 0, 5 ,0"
-                Background="silver"
-                Padding="5">
-                <Grid
-                    ColumnDefinitions="200,*"
-                    HorizontalOptions="Center">
-                    <FlexLayout
-                        Grid.Column="0"
-                        Grid.Row="0" >
-                        <Label
-                            Text="Document: "
-                            />
-                        <Label
-                            Text="{Binding Document}"
-                            Grid.Column="5"
-                            />
-                    </FlexLayout>
-                    <FlexLayout
-                        Grid.Column="0"
-                        Grid.Row="1" >
-                        <Label
-                            Text="numDocument: "
-                            />
-                        <Label
-                            Text="{Binding NumDocument}"
-                            Grid.Column="5"
-                            />
-                    </FlexLayout>
-                    <FlexLayout
-                        Grid.Column="2"
-                        Grid.Row="0" >
-                        <Label
-                            Text="Serie: "
-                            />
-                        <Label
-                            Text="{Binding Serie1}"
-                            Grid.Column="5"
-                            />
-                    </FlexLayout >
-                    <FlexLayout
-                        Grid.Column="2"
-                        Grid.Row="1">
-                        <Label
-                            Text="Serie: "
-                            />
-                        <Label
-                            Text="{Binding Serie2}"
-                            Grid.Column="5"
-                            />
-                    </FlexLayout>
-                </Grid>
+            HeightRequest="40"
+            Margin="5, 0, 5 ,0"
+            Background="silver"
+            Padding="5">
+            <Grid
+            ColumnDefinitions="200,*"
+            HorizontalOptions="Center">
+            <FlexLayout
+            Grid.Column="0"
+            Grid.Row="0" >
+            <Label
+            Text="Document: "
+            />
+            <Label
+            Text="{Binding Document}"
+            Grid.Column="5"
+            />
+            </FlexLayout>
+            <FlexLayout
+            Grid.Column="0"
+            Grid.Row="1" >
+            <Label
+            Text="numDocument: "
+            />
+            <Label
+            Text="{Binding NumDocument}"
+            Grid.Column="5"
+            />
+            </FlexLayout>
+            <FlexLayout
+            Grid.Column="2"
+            Grid.Row="0" >
+            <Label
+            Text="Serie: "
+            />
+            <Label
+            Text="{Binding Serie1}"
+            Grid.Column="5"
+            />
+            </FlexLayout >
+            <FlexLayout
+            Grid.Column="2"
+            Grid.Row="1">
+            <Label
+            Text="Serie: "
+            />
+            <Label
+            Text="{Binding Serie2}"
+            Grid.Column="5"
+            />
+            </FlexLayout>
+            </Grid>
             </StackLayout>
             <StackLayout>
-                <Grid
-                    ColumnDefinitions="180,180"
-                    HorizontalOptions="Center">
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Row="0" Grid.Column="0"
-                        IsClippedToBounds="True"
-                        Margin="0, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <SearchBar
-                            Text="{Binding DNI}"
-                            Placeholder="CI"
-                            />
-                    </Frame>
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Row="0" Grid.Column="1"
-                        IsClippedToBounds="True"
-                        Margin="0, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding Phone}"
-                            Placeholder="Phone"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Row="1" Grid.Column="0"
-                        IsClippedToBounds="True"
-                        Margin="0, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding FirstName}"
-                            Placeholder="First Name"
-                            HeightRequest="40"    />
-                    </Frame>
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Row="1" Grid.Column="1"
-                        IsClippedToBounds="True"
-                        Margin="0, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding LastName}"
-                            Placeholder="Last Name"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Row="2" Grid.Column="0"
-                        IsClippedToBounds="True"
-                        Margin="0, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding Email}"
-                            Placeholder="Email"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        IsClippedToBounds="True"
-                        Margin="0, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10"  >
-                        <Entry
-                            Text="{Binding Direction}"
-                            Placeholder="Direction"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                </Grid>
-                <Button
-                    Text="TO BUY"
-                    Margin="10"
-                    CornerRadius="5"
-                    Command="{Binding Save_Buy}"
-                    />
-            </StackLayout>
-        </StackLayout>
+            <Grid
+            ColumnDefinitions="180,180"
+            HorizontalOptions="Center">
+            <Frame
+            HasShadow="True"
+            BackgroundColor="AliceBlue"
+            Grid.Row="0" Grid.Column="0"
+            IsClippedToBounds="True"
+            Margin="0, 5"
+            CornerRadius="10"
+            Padding="0,-10,0,-10">
+            <SearchBar
+            Text="{Binding DNI}"
+            Placeholder="CI"
+            />
+            </Frame>
+            <Frame
+            HasShadow="True"
+            BackgroundColor="AliceBlue"
+            Grid.Row="0" Grid.Column="1"
+            IsClippedToBounds="True"
+            Margin="0, 5"
+            CornerRadius="10"
+            Padding="0,-10,0,-10">
+            <Entry
+            Text="{Binding Phone}"
+            Placeholder="Phone"
+            HeightRequest="70"
+            />
+            </Frame>
+            <Frame
+            HasShadow="True"
+            BackgroundColor="AliceBlue"
+            Grid.Row="1" Grid.Column="0"
+            IsClippedToBounds="True"
+            Margin="0, 5"
+            CornerRadius="10"
+            Padding="0,-10,0,-10">
+            <Entry
+            Text="{Binding FirstName}"
+            Placeholder="First Name"
+            HeightRequest="40"    />
+            </Frame>
+            <Frame
+            HasShadow="True"
+            BackgroundColor="AliceBlue"
+            Grid.Row="1" Grid.Column="1"
+            IsClippedToBounds="True"
+            Margin="0, 5"
+            CornerRadius="10"
+            Padding="0,-10,0,-10">
+            <Entry
+            Text="{Binding LastName}"
+            Placeholder="Last Name"
+            HeightRequest="70"
+            />
+            </Frame>
+            <Frame
+            HasShadow="True"
+            BackgroundColor="AliceBlue"
+            Grid.Row="2" Grid.Column="0"
+            IsClippedToBounds="True"
+            Margin="0, 5"
+            CornerRadius="10"
+            Padding="0,-10,0,-10">
+            <Entry
+            Text="{Binding Email}"
+            Placeholder="Email"
+            HeightRequest="70"
+            />
+            </Frame>
+            <Frame
+            HasShadow="True"
+            BackgroundColor="AliceBlue"
+            Grid.Row="2"
+            Grid.Column="1"
+            IsClippedToBounds="True"
+            Margin="0, 5"
+            CornerRadius="10"
+            Padding="0,-10,0,-10"  >
+            <Entry
+            Text="{Binding Direction}"
+            Placeholder="Direction"
+            HeightRequest="70"
+            />
+            </Frame>
+            </Grid>
+            <Button
+            Text="TO BUY"
+            Margin="10"
+            CornerRadius="5"
+            Command="{Binding Save_Buy}"
+            />
+            </StackLayout>-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

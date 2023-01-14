@@ -138,22 +138,30 @@ namespace CRUD_SQLITE.ViewModels
         public async Task Save_Buy()
         {
             await DisplayAlert("Infor", "Gracias por tu compra", "Ok");
-
         }
-        #endregion
 
-
-        #region METODOS SIMPLE
-        public void MetodoSimple()
+        public async Task Delete_ProductCart()
         {
+            await DisplayAlert("Infor", "product eliminated on the cart", "Ok");
+        }
 
+        public async Task Res_Quantity()
+        {
+            await DisplayAlert("Infor", "Quntity - 1", "Ok");
+        }
+
+        public async Task Sum_Quantity()
+        {
+            await DisplayAlert("Infor", "Quantity + 1", "Ok");
         }
         #endregion
 
 
         #region COMANDOS
-        public ICommand AlertaAsincrona => new Command(async () => await Save_Buy());
-        public ICommand AlertaSimple => new Command(() => MetodoSimple());
+        public ICommand btnSaveCartCommand => new Command(async () => await Save_Buy());
+        public ICommand btnDeleteProductCommand => new Command(async () => await Delete_ProductCart());
+        public ICommand btnSumCommand => new Command(async () => await Sum_Quantity());
+        public ICommand btnRestCartCommand => new Command(async () => await Res_Quantity());
         #endregion
     }
 }
