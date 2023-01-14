@@ -18,11 +18,7 @@ namespace CRUD_SQLITE.Models
         public decimal Price { get; set; }
         [MaxLength(50)]
         public int Quantity { get; set; }
-        [MaxLength(50)]
-        public int vTotal { get; set; }
-        [MaxLength(50)]
-        public int Total { get; set; }
-        [MaxLength(300)]
+        [MaxLength(500)]
         public string ImageProduct { get; set; }
     }
 }
