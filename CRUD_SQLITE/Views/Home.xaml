@@ -13,14 +13,13 @@
                         Margin="0 ,40 ,0 ,0"
                         />
                     <Label
-                        Text="Your Store"
+                        Text="{Binding Name}"
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="CenterAndExpand"
                         FontSize="20"
                         />
                     <Label
-                        x:Name="UserLabel"
-                        Text="Welcome Jorge Loor"
+                        Text="{Binding Owner}"
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="CenterAndExpand"
                         FontSize="14"
@@ -57,7 +56,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-
+                            Command="{Binding btnGitHub}"
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -66,7 +65,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-
+                            Command="{Binding btnInstagram}"
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -75,7 +74,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-
+                            Command="{Binding btnTwitter}"
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -84,7 +83,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-
+                            Command="{Binding btnWeb}"
                             />
                         <ImageButton
                             BackgroundColor="Transparent"
@@ -93,7 +92,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             Margin="0, 2, 10, 0"
-
+                            Command="{Binding btnLinkedin}"
                             />
                     </FlexLayout>
                 </StackLayout>

@@ -3,292 +3,357 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Cart">
     <ContentPage.Content>
-        <Grid BackgroundColor="red" RowDefinitions="30,*,*,*,*"  >
 
-            <StackLayout BackgroundColor="Silver" Grid.Row="0" >
-                <Label Text="Cant"  Grid.Row="2" Grid.Column="0"/>
-                <Label Text="Name"  Grid.Row="0" Grid.Column="1"/>
-                <Label Text="P_Unitaty"  Grid.Row="0" Grid.Column="2"/>
-                <Label Text="P_Total"  Grid.Row="0" Grid.Column="3"/>
-                <Label Text="Action"  Grid.Row="0" Grid.Column="4"/>
+        <Grid
+            RowDefinitions="30,*,40,30,20,45,*"
+            ColumnDefinitions="*">
+            <StackLayout
+                BackgroundColor="silver"
+                Grid.Column="0"
+                Grid.Row="0">
+                <Grid>
+                    <Label
+                        Text="Cant"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="5"
+                        />
+                    <Label
+                        Text="Name"
+                        Grid.Column="1"
+                        Padding="5"
+                        />
+                    <Label
+                        Text="P_Unitaty"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Padding="5"
+                        />
+                    <Label
+                        Text="P_Total"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Padding="5"
+                        />
+                    <Label
+                        Text="Action"
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        Padding="5"/>
+                </Grid>
             </StackLayout>
 
+            <!--<StackLayout
+            Grid.Column="0"
+            Grid.Row="1"
+            Background="orange">
+            <ListView IsRefreshing="false"
 
-
-
-
-
-
-
-            <!--<ListView x:Name="list_product" Grid.Row="1">
-            <ListView.ItemTemplate >
+            RefreshControlColor="#0099FF" >
+            <ListView.ItemTemplate>
             <DataTemplate>
             <ViewCell>
-            <Grid RowDefinitions="Auto,Auto"
-            ColumnDefinitions="*,*,*,*"
-            BackgroundColor="white">
+            <Grid>
             <Label
-            Text="{Binding Quantity}"
-            Grid.Row="0"
-            Grid.Column="0"
+            TextColor="Red"
+            Text="2"
+
             />
             <Label
-            Text="{Binding Name}"
-            Grid.Row="0"
-            Grid.Column="1"
+            Text="1"
+
             />
             <Label
-            Text="{Binding Price}"
-            Grid.Row="0"
-            Grid.Column="2"
+            Text="Dorito"
+
             />
             <Label
-            Text="{Binding Price_Total}"
-            Grid.Row="0"
-            Grid.Column="3"
+            Text="0.50"
+
+            />
+            <Label
+            Text="1.00"
+
             />
             <ImageButton
-            Source="edit"
-            Aspect="AspectFit"
-            WidthRequest="50"
-            HeightRequest="20"
-            BackgroundColor="Transparent"
-            />
-            <ImageButton
+            Grid.Row="0"
+            Grid.Column="5"
             Source="trash"
             Aspect="AspectFit"
             WidthRequest="50"
             HeightRequest="20"
             BackgroundColor="Transparent"
-
             />
-            -->
-            <!--Command="{Binding Source={x:Reference list_product},
-            Path=BindingContext.btnUpdateProduct}"
-            CommandParameter="{Binding .}"-->
-            <!--
             </Grid>
             </ViewCell>
             </DataTemplate>
             </ListView.ItemTemplate>
             </ListView>
-
-
-
-            <Grid  ColumnDefinitions="*,*" Grid.Row="2">
-            <FlexLayout
-            Grid.Column="1"
-            BackgroundColor="#0099FF">
-            <Label
-            Text="TOTAL:"
-            WidthRequest="100"
-            FontSize="20"
-            HorizontalTextAlignment="Center"
-            TextColor="white"
-            />
-            <Label
-
-            Text="{Binding Total}"
-            WidthRequest="100"
-            FontSize="20"
-            TextColor="white"
-            />
-            </FlexLayout>
-            </Grid>
-            <Frame
-            Background="#0099FF"
-            VerticalOptions="Center"
-            Margin="5, 0, 5 ,0"
-            Padding="5"
-            CornerRadius="20">
-            <Label
-            Text="DETAILS"
-            TextColor="white"
-            HorizontalOptions="Center"
-            />
-            </Frame>
-            <StackLayout
-            HeightRequest="25"
-            Margin="5, 0, 5 ,0"
-            Background="silver"
-            Padding="5">
-            <Grid
-            ColumnDefinitions="*,*,*"
-            HorizontalOptions="Center">
-            <FlexLayout
-            Grid.Column="0"
-            Grid.Row="0"
-            HorizontalOptions="Center">
-            <Label
-            x:Name="Fecha"
-            Text="Fecha: "
-            />
-            <Label
-            x:Name="textDate"
-            Text="{Binding Date}"
-            />
-            </FlexLayout>
-            <FlexLayout
-            Grid.Column="2"
-            Grid.Row="0">
-            <Label
-            Text="Hora: "
-            />
-            <Label
-            Text="{Binding Hour}"
-            />
-            </FlexLayout>
-            </Grid>
-            </StackLayout>
-            <StackLayout
-            HeightRequest="40"
-            Margin="5, 0, 5 ,0"
-            Background="silver"
-            Padding="5">
-            <Grid
-            ColumnDefinitions="200,*"
-            HorizontalOptions="Center">
-            <FlexLayout
-            Grid.Column="0"
-            Grid.Row="0" >
-            <Label
-            Text="Document: "
-            />
-            <Label
-            Text="{Binding Document}"
-            Grid.Column="5"
-            />
-            </FlexLayout>
-            <FlexLayout
-            Grid.Column="0"
-            Grid.Row="1" >
-            <Label
-            Text="numDocument: "
-            />
-            <Label
-            Text="{Binding NumDocument}"
-            Grid.Column="5"
-            />
-            </FlexLayout>
-            <FlexLayout
-            Grid.Column="2"
-            Grid.Row="0" >
-            <Label
-            Text="Serie: "
-            />
-            <Label
-            Text="{Binding Serie1}"
-            Grid.Column="5"
-            />
-            </FlexLayout >
-            <FlexLayout
-            Grid.Column="2"
-            Grid.Row="1">
-            <Label
-            Text="Serie: "
-            />
-            <Label
-            Text="{Binding Serie2}"
-            Grid.Column="5"
-            />
-            </FlexLayout>
-            </Grid>
-            </StackLayout>
-            <StackLayout>
-            <Grid
-            ColumnDefinitions="180,180"
-            HorizontalOptions="Center">
-            <Frame
-            HasShadow="True"
-            BackgroundColor="AliceBlue"
-            Grid.Row="0" Grid.Column="0"
-            IsClippedToBounds="True"
-            Margin="0, 5"
-            CornerRadius="10"
-            Padding="0,-10,0,-10">
-            <SearchBar
-            Text="{Binding DNI}"
-            Placeholder="CI"
-            />
-            </Frame>
-            <Frame
-            HasShadow="True"
-            BackgroundColor="AliceBlue"
-            Grid.Row="0" Grid.Column="1"
-            IsClippedToBounds="True"
-            Margin="0, 5"
-            CornerRadius="10"
-            Padding="0,-10,0,-10">
-            <Entry
-            Text="{Binding Phone}"
-            Placeholder="Phone"
-            HeightRequest="70"
-            />
-            </Frame>
-            <Frame
-            HasShadow="True"
-            BackgroundColor="AliceBlue"
-            Grid.Row="1" Grid.Column="0"
-            IsClippedToBounds="True"
-            Margin="0, 5"
-            CornerRadius="10"
-            Padding="0,-10,0,-10">
-            <Entry
-            Text="{Binding FirstName}"
-            Placeholder="First Name"
-            HeightRequest="40"    />
-            </Frame>
-            <Frame
-            HasShadow="True"
-            BackgroundColor="AliceBlue"
-            Grid.Row="1" Grid.Column="1"
-            IsClippedToBounds="True"
-            Margin="0, 5"
-            CornerRadius="10"
-            Padding="0,-10,0,-10">
-            <Entry
-            Text="{Binding LastName}"
-            Placeholder="Last Name"
-            HeightRequest="70"
-            />
-            </Frame>
-            <Frame
-            HasShadow="True"
-            BackgroundColor="AliceBlue"
-            Grid.Row="2" Grid.Column="0"
-            IsClippedToBounds="True"
-            Margin="0, 5"
-            CornerRadius="10"
-            Padding="0,-10,0,-10">
-            <Entry
-            Text="{Binding Email}"
-            Placeholder="Email"
-            HeightRequest="70"
-            />
-            </Frame>
-            <Frame
-            HasShadow="True"
-            BackgroundColor="AliceBlue"
-            Grid.Row="2"
-            Grid.Column="1"
-            IsClippedToBounds="True"
-            Margin="0, 5"
-            CornerRadius="10"
-            Padding="0,-10,0,-10"  >
-            <Entry
-            Text="{Binding Direction}"
-            Placeholder="Direction"
-            HeightRequest="70"
-            />
-            </Frame>
-            </Grid>
-            <Button
-            Text="TO BUY"
-            Margin="10"
-            CornerRadius="5"
-            Command="{Binding Save_Buy}"
-            />
             </StackLayout>-->
+
+            <CollectionView
+                Grid.Column="0"
+                Grid.Row="1"
+                BackgroundColor="Aqua">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Button  Text="sdsdaasd" WidthRequest="2" HeightRequest="5" BackgroundColor="Black"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+            <StackLayout
+                Grid.Column="0"
+                Grid.Row="2"
+                >
+                <Grid
+                    RowDefinitions="*"
+                    ColumnDefinitions="*,*">
+                    <Frame
+                        Padding="10"
+                        BackgroundColor="#0099FF"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        CornerRadius="20"
+                        Margin="0,0,10,0">
+                        <Grid
+                            RowDefinitions="*"
+                            ColumnDefinitions="*,*">
+                            <Label
+                                Text="TOTAL: "
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                />
+                            <Label
+                                Text="2000"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout
+                Grid.Column="0"
+                Grid.Row="3"
+                BackgroundColor="#0099FF" >
+                <Label
+                    Margin="0,5,0,0"
+                    Text="DETAILS"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                    />
+            </StackLayout>
+
+            <StackLayout
+                BackgroundColor="silver"
+                Grid.Row="4"
+                Grid.Column="0">
+                <Grid
+                    RowDefinitions="*"
+                    ColumnDefinitions="40,*,40,*"
+                    Margin="10,0,0,0">
+                    <Label
+                        Text="Date: "
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="{Binding Date}"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="Hour: "
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="{Binding Hour}"
+                        Grid.Column="3"
+                        Grid.Row="0"
+                        TextColor="black"
+                        />
+                </Grid>
+            </StackLayout>
+
+            <StackLayout
+                Margin="0,0,0,0"
+                BackgroundColor="silver"
+                Grid.Row="5"
+                Grid.Column="0">
+                <Grid
+                    ColumnDefinitions="100,*,60,*">
+                    <Label
+                        Text="Document: "
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Margin="10,0,0,0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="{Binding Document}"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="#Document: "
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Margin="10,0,0,0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="{Binding NumDocument}"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="Serie1: "
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Margin="10,0,0,0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="{Binding Serie1}"
+                        Grid.Column="3"
+                        Grid.Row="0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="Serie2: "
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Margin="10,0,0,0"
+                        TextColor="black"
+                        />
+                    <Label
+                        Text="{Binding Serie2}"
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        TextColor="black"
+                        />
+                </Grid>
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="6"
+                Grid.Column="0"
+                Margin="10,0,10,0">
+                <Grid>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Row="0" Grid.Column="0"
+                        IsClippedToBounds="True"
+                        Margin="0, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <SearchBar
+                            Text="{Binding DNI}"
+                            Placeholder="DNI"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Row="0" Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="0, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding Phone}"
+                            Placeholder="Phone"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Row="1" Grid.Column="0"
+                        IsClippedToBounds="True"
+                        Margin="0, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding FirstName}"
+                            Placeholder="FirstName"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Row="1" Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="0, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding LastName}"
+                            Placeholder="LastName"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Row="2" Grid.Column="0"
+                        IsClippedToBounds="True"
+                        Margin="0, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding Email}"
+                            Placeholder="Email"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        Grid.Row="2" Grid.Column="1"
+                        IsClippedToBounds="True"
+                        Margin="0, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding Direction}"
+                            Placeholder="Direction"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout
+                Grid.Column="0"
+                Grid.Row="7">
+                <Button
+                    Text="SAVE"
+                    Margin="20,10,20,0"
+                    CornerRadius="20"
+                    Command="{Binding Save_Buy}"
+                    />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

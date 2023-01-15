@@ -28,8 +28,8 @@ namespace CRUD_SQLITE.ViewModels
         private string _Serie1 = "001";
         private string _Serie2 = "002";
 
-        private int _DNI;
-        private int _Phone;
+        private string _DNI;
+        private string _Phone;
         private string _FirstName;
         private string _LastName;
         private string _Email;
@@ -40,6 +40,9 @@ namespace CRUD_SQLITE.ViewModels
         private int _P_Unitaty = 1;
         private int _P_Total = 10;
         #endregion
+
+
+
 
 
         #region OBJETOS
@@ -101,12 +104,12 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Serie2; }
             set { SetValue(ref _Serie2, value); }
         }
-        public int DNI
+        public string DNI
         {
             get { return _DNI; }
             set { SetValue(ref _DNI, value); }
         }
-        public int Phone
+        public string Phone
         {
             get { return _Phone; }
             set { SetValue(ref _Phone, value); }
