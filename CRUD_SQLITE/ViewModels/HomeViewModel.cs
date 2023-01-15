@@ -11,19 +11,20 @@ namespace CRUD_SQLITE.ViewModels
         public HomeViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            Get_Name_Store();
-            Get_Name_Owner();
+            Get_Company();
+            Got_Owner();
         }
         #endregion
 
         #region VARIABLES
+        private string _Version = "v1.1.0";
         private string _NameStore;
-        public string _NameOwner;
-        public string GitHub = "https://github.com/theerudito";
-        public string Instagram = "https://www.instagram.com/theerudito";
-        public string Twitter = "https://twitter.com/theerudito";
-        public string Web = "https://byerudito.web.app/";
-        public string Linkedin = "https://www.linkedin.com/in/theerudito";
+        private string _NameOwner;
+        private string GitHub = "https://github.com/theerudito";
+        private string Instagram = "https://www.instagram.com/theerudito";
+        private string Twitter = "https://twitter.com/theerudito";
+        private string Web = "https://byerudito.web.app/";
+        private string Linkedin = "https://www.linkedin.com/in/theerudito";
         #endregion
 
         #region OBJECTS
@@ -38,17 +39,22 @@ namespace CRUD_SQLITE.ViewModels
             get { return _NameOwner; }
             set { SetValue(ref _NameOwner, value); }
         }
+        public string Version
+        {
+            get { return _Version; }
+            set { SetValue(ref _Version, value); }
+        }
         #endregion
 
 
         #region METHODS
-        public async Task Get_Name_Store()
+        public async Task Get_Company()
         {
             Name = "Erudito Dev";
         }
-        public async Task Get_Name_Owner()
+        public async Task Got_Owner()
         {
-            Name = "Welcome: Jorge Loor";
+            Owner = "Welcome: Jorge Loor";
         }
 
         public async Task Go_GitHub()

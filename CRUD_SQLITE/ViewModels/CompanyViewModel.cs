@@ -38,7 +38,6 @@ namespace CRUD_SQLITE.ViewModels
         string _TextCODE;
         #endregion
 
-
         #region OBJETOS
         public string Name
         {
@@ -117,7 +116,6 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
-
         #region METODOS ASYNC
         public async Task Save_Company()
         {
@@ -148,7 +146,6 @@ namespace CRUD_SQLITE.ViewModels
 
         }
         #endregion
-
 
         #region COMANDOS
         public ICommand btnSaveCompany => new Command(async () => await Save_Company());

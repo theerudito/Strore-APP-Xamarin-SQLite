@@ -65,6 +65,7 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
         #endregion
+
         #region METODOS ASYNC
         public async Task getAllProducts()
         {

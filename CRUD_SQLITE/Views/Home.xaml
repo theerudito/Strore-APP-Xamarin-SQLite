@@ -42,7 +42,7 @@
                         HorizontalOptions="CenterAndExpand"
                         />
                     <Label
-                        Text="v1.1.0"
+                        Text="{Binding Version}"
                         HorizontalOptions="CenterAndExpand"
                         />
                     <FlexLayout

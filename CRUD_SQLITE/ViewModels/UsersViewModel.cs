@@ -1,5 +1,8 @@
 ﻿
 
+using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -8,6 +11,7 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class UsersViewModel : BaseViewModel
     {
+        DB.SQLite_Config connection = new DB.SQLite_Config();
         #region CONSTRUCTOR
         public UsersViewModel(INavigation navigation)
         {
@@ -19,14 +23,19 @@ namespace CRUD_SQLITE.ViewModels
 
         #region VARIABLES
         string _Text;
+        ObservableCollection<Users> _List_Users;
         #endregion
 
 
         #region OBJETOS
-        public string Text
+        public ObservableCollection<Users> List_Users
         {
-            get { return _Text; }
-            set { SetValue(ref _Text, value); }
+            get { return _List_Users; }
+            set
+            {
+                SetValue(ref _List_Users, value);
+                OnpropertyChanged();
+            }
         }
         #endregion
 
@@ -34,7 +43,12 @@ namespace CRUD_SQLITE.ViewModels
         #region METODOS ASYNC
         public async Task Get_ALL_Users()
         {
+            var db = connection.openConnection();
+            var sql = "SELECT * FROM Auth";
 
+            var result = db.Query<Users>(sql);
+
+            List_Users = new ObservableCollection<Users>(result);
         }
         public async Task Delete_User()
         {
