@@ -1,7 +1,4 @@
-﻿
-
-using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Views;
+﻿using CRUD_SQLITE.Views;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -23,12 +20,12 @@ namespace CRUD_SQLITE.ViewModels
 
         #region VARIABLES
         string _Text;
-        ObservableCollection<Users> _List_Users;
+        ObservableCollection<Auth> _List_Users;
         #endregion
 
 
         #region OBJETOS
-        public ObservableCollection<Users> List_Users
+        public ObservableCollection<Auth> List_Users
         {
             get { return _List_Users; }
             set
@@ -46,9 +43,9 @@ namespace CRUD_SQLITE.ViewModels
             var db = connection.openConnection();
             var sql = "SELECT * FROM Auth";
 
-            var result = db.Query<Users>(sql);
+            var result = db.Query<Auth>(sql);
 
-            List_Users = new ObservableCollection<Users>(result);
+            List_Users = new ObservableCollection<Auth>(result);
         }
         public async Task Delete_User()
         {

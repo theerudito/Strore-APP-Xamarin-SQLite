@@ -1,5 +1,4 @@
 ﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.ViewModels;
 using CRUD_SQLITE.Views;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
