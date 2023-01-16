@@ -28,15 +28,15 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region OBJECTS
-        public ObservableCollection<MProduct> List_Product
-        {
-            get { return _List_product; }
-            set
-            {
-                SetValue(ref _List_product, value);
-                OnpropertyChanged();
-            }
-        }
+        public ObservableCollection<MProduct> List_Product { get; set; }
+        //{
+        //    get { return _List_product; }
+        //    set
+        //    {
+        //        SetValue(ref _List_product, value);
+        //        OnpropertyChanged();
+        //    }
+        //}
         public string TextName
         {
             get { return _textName; }

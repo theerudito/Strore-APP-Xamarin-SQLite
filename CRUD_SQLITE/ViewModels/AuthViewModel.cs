@@ -1,4 +1,7 @@
 ﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Services;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,11 +16,21 @@ namespace CRUD_SQLITE.ViewModels
         private string _email;
         private string _password;
         private string _name;
+        ObservableCollection<MAuth> _List_Users;
         private StackLayout showRegister;
         private StackLayout showLogin;
         #endregion
 
         #region  OBJECTS
+        public ObservableCollection<MAuth> List_Users
+        {
+            get { return _List_Users; }
+            set
+            {
+                SetValue(ref _List_Users, value);
+                OnpropertyChanged();
+            }
+        }
         public string Name
         {
             get { return _name; }
@@ -44,13 +57,18 @@ namespace CRUD_SQLITE.ViewModels
             this.showRegister = showRegister;
             this.showLogin = showLogin;
         }
+
+        public AuthViewModel(INavigation navigation)
+        {
+            Navigation = navigation;
+        }
         #endregion
 
         #region METHODS
         public async Task Login()
         {
             var db = connection.openConnection();
-            var user = db.Table<Auth>().Where(u => u.Email == Email && u.Password == Password).FirstOrDefault();
+            var user = db.Table<MAuth>().Where(u => u.Email == Email && u.Password == Password).FirstOrDefault();
 
             if (user != null)
             {
@@ -66,7 +84,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
             var sql = "SELECT * FROM Auth WHERE Email = '" + Email + "'";
-            var result = db.Query<Auth>(sql);
+            var result = db.Query<MAuth>(sql);
             if (result.Count == 0)
             {
                 var sql2 = "INSERT INTO Auth (Name, Email, Password) VALUES ('" + Name + "', '" + Email + "', '" + Password + "')";
@@ -88,6 +106,7 @@ namespace CRUD_SQLITE.ViewModels
             showRegister.IsVisible = true;
             showLogin.IsVisible = false;
         }
+
         #endregion
 
 

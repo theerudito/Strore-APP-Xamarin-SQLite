@@ -72,38 +72,34 @@
             <ListView
                 x:Name="List"
                 ItemsSource="{Binding List_Clients}"
-                IsRefreshing="false"
+                IsRefreshing="true"
                 RefreshControlColor="#0099FF" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
                             <Grid
-                                RowDefinitions="*,*"
+                                RowDefinitions="*"
                                 ColumnDefinitions="*,*,*,*,*"
                                 BackgroundColor="white">
                                 <Label
-                                    Text="{Binding FirstName}"
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    WidthRequest="100"
+                                    Text="{Binding FirstName}"
                                     Margin="10"/>
                                 <Label
                                     Text="{Binding Direction}"
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    WidthRequest="100"
                                     Margin="10"/>
                                 <Label
                                     Text="{Binding Phone}"
                                     Grid.Row="0"
                                     Grid.Column="2"
-                                    WidthRequest="100"
                                     Margin="10"/>
                                 <Label
                                     Text="{Binding Email}"
                                     Grid.Row="0"
                                     Grid.Column="3"
-                                    WidthRequest="100"
                                     Margin="10"/>
                                 <FlexLayout
                                     Grid.Row="0"
@@ -117,7 +113,7 @@
                                         HeightRequest="30"
                                         Margin="0, 2, 5, 0"
                                         Command="{Binding Source={x:Reference List},
-                                        Path=BindingContext.btnUpdateClient}"
+                                        Path=BindingContext.btnGoUpdateClient}"
                                         CommandParameter="{Binding}"
                                         />
                                     <ImageButton

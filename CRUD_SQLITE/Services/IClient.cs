@@ -15,8 +15,8 @@ namespace CRUD_SQLITE.Services
 
         Task<MClient> createClientAsync(MClient client);
 
-        Task<bool> updateClientAsync(MClient client, int id);
+        Task<bool> updateClientAsync(MClient client);
 
-        Task<bool> deleteClientAsync(int id);
+        Task<bool> deleteClientAsync(MClient client);
     }
 }

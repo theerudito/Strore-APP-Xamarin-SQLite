@@ -75,7 +75,10 @@
 
             <ListView
                 x:Name="list_product"
-                ItemsSource="{Binding  List_Product}">
+                ItemsSource="{Binding  List_Product}"
+                IsRefreshing="false"
+                RefreshControlColor="#0099FF"
+                >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

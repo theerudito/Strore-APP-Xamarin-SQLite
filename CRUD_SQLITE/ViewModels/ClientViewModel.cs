@@ -1,5 +1,7 @@
 ﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Services;
 using CRUD_SQLITE.Views;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -7,7 +9,7 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    public class ClientViewModel : BaseViewModel
+    public class ClientViewModel : BaseViewModel, IClient
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
         #region VARIABLES
@@ -26,7 +28,7 @@ namespace CRUD_SQLITE.ViewModels
         {
 
             Navigation = navigation;
-            GET_ALL_Clients();
+            GetAllClientAsync();
         }
         #endregion
 
@@ -36,10 +38,11 @@ namespace CRUD_SQLITE.ViewModels
             get { return _List_client; }
             set
             {
-                SetValue(ref _List_client, value);
-                OnpropertyChanged();
+                _List_client = value;
+                OnPropertyChanged();
             }
         }
+
         public int TextDNI
         {
             get { return _textDNI; }
@@ -106,113 +109,80 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region METHODS
-        public async Task Insert_Client()
-        {
-            var db = connection.openConnection();
-            //DNI, FirstName, LastName, Direction, Phone, Email, City
-            var sql = "INSERT INTO Client (DNI, FirstName, LastName, Direction, Phone, Email, City) " +
-                "VALUES (" + TextDNI + ", '" + TextFirstName + "', '" + TextLastName + "', '" + TextDirection + "', " +
-                "" + TextPhone + ", '" + TextEmail + "', '" + TextCity + "')";
-            db.Execute(sql);
-
-            await Navigation.PushAsync(new Client());
-        }
-
-        public async Task Delete_Client(MClient client)
-        {
-            var db = connection.openConnection();
-            var sql = "delete from client where id = " + client.Id;
-
-            db.Execute(sql);
-        }
-
-        public async Task GET_ALL_Clients()
-        {
-            var db = connection.openConnection();
-            var sql = "SELECT * FROM Client";
-            var result = db.Query<MClient>(sql);
-
-            List_Clients = new ObservableCollection<MClient>(result);
-
-        }
-
-        public async Task Update_Client()
-        {
-
-        }
-
 
         public async Task go_Update_Client()
         {
             await Navigation.PushAsync(new Add_Client());
         }
+
+        public Task<IEnumerable<MClient>> GetAllClientAsync()
+        {
+            var db = connection.openConnection();
+
+            var sql = "SELECT * FROM Client";
+
+            var result = db.Query<MClient>(sql);
+
+            List_Clients = new ObservableCollection<MClient>(result);
+
+            return Task.FromResult<IEnumerable<MClient>>(result);
+        }
+
+        public Task<MClient> GetOneClientAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<MClient> createClientAsync(MClient client)
+        {
+            var db = connection.openConnection();
+            //DNI, FirstName, LastName, Direction, Phone, Email, City
+
+            var addClient = "INSERT INTO Client " +
+                "(DNI, FirstName, LastName, Direction, Phone, Email, City) " +
+                "VALUES (" + TextDNI + ", " +
+                "'" + TextFirstName + "', " +
+                "'" + TextLastName + "', " +
+                "'" + TextDirection + "', " +
+                "" + TextPhone + ", " +
+                "'" + TextEmail + "', " +
+                "'" + TextCity + "')";
+
+            db.Execute(addClient);
+            await Navigation.PushAsync(new Client());
+
+            return await Task.FromResult<MClient>(client);
+        }
+
+        public Task<bool> updateClientAsync(MClient client)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<bool> deleteClientAsync(MClient client)
+        {
+            var db = connection.openConnection();
+
+            var deleteClient = "DELETE FROM Client WHERE Id = " + client.Id;
+
+            db.Execute(deleteClient);
+
+            OnpropertyChanged();
+
+            return await Task.FromResult<bool>(true);
+        }
         #endregion
 
 
         #region COMMANDS
-        public ICommand btnSaveClient => new Command(async () => await Insert_Client());
-        public ICommand btnDeleteClient => new Command<MClient>(async (cli) => await Delete_Client(cli));
-        public ICommand btnGoNewClient => new Command(async () => await go_Update_Client());
-        public ICommand btnUpdateClient => new Command(async () => await Navigation.PushAsync(new Add_Client()));
+        public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createClientAsync(cli));
+        public ICommand btnDeleteClient => new Command<MClient>(async (cli) => await deleteClientAsync(cli));
+        public ICommand btnGoNewClient => new Command(async () => await Navigation.PushAsync(new Add_Client()));
+        public ICommand btnGoUpdateClient => new Command(async () => await go_Update_Client());
+        public ICommand btnUpdateClient => new Command<MClient>(async (cli) => await updateClientAsync(cli));
         public ICommand btnLeftClient => new Command(async () => await DisplayAlert("info", "prew", "ok"));
         public ICommand btnRightClient => new Command(async () => await DisplayAlert("info", "next", "ok"));
         #endregion
-
-
-
-        //public Task<MClient> createClientAsync(MClient client)
-        //{
-        //    var db = connection.openConnection();
-        //    var sql = "INSERT INTO Client (FirstName, LastName, Direction, Phone, Email, City, DNI) " +
-        //            "VALUES ('" + textFirstName + "', '" + textLastName + "', '" + textDirection + "', '" + textPhone + "', '" + textEmail + "', '" + textCity + "', '" + textDNI + "')";
-
-        //    db.Execute(sql);
-
-        //    return Task.FromResult(client);
-        //}
-
-        //public Task<bool> deleteClientAsync(int id)
-        //{
-        //    var db = connection.openConnection();
-        //    var sql = "DELETE FROM Client WHERE Id = " + id;
-        //    db.Execute(sql);
-        //    return Task.FromResult(true);
-        //}
-        //public async Task<IEnumerable<MClient>> GetAllClientAsync()
-        //{
-
-        //    var db = connection.openConnection();
-        //    var sql = "SELECT * FROM Client";
-        //    var result = db.Query<MClient>(sql);
-        //    foreach (var item in result)
-        //    {
-        //        client.Add(item);
-        //    }
-
-        //    return result;
-        //}
-
-        //public Task<MClient> GetOneClientAsync(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-        //public Task<bool> updateClientAsync(MClient client, int id)
-        //{
-        //    var db = connection.openConnection();
-
-        //    var sql = "UPDATE Client SET FirstName = '" + client.FirstName + "', " +
-        //        "LastName = '" + client.LastName + "', " +
-        //        "Direction = '" + client.Direction + "', " +
-        //        "Phone = '" + client.Phone + "', " +
-        //        "Email = '" + client.Email + "', " +
-        //        "DNI = '" + client.DNI + "', " +
-        //        "City = '" + client.City + "' " + "WHERE Id = " + id;
-        //    db.Execute(sql);
-
-        //    return Task.FromResult(true);
-        //}
-
-
 
     }
 }

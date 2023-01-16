@@ -1,82 +1,82 @@
-﻿using CRUD_SQLITE.Views;
+﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Services;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    public class UsersViewModel : BaseViewModel
+    internal class UsersViewModel : BaseViewModel, IAuth
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
-        #region CONSTRUCTOR
+
+        ObservableCollection<MAuth> _List_Users;
+
         public UsersViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            Get_ALL_Users();
+            GetAllUsersAsync();
         }
-        #endregion
 
-
-        #region VARIABLES
-        string _Text;
-        ObservableCollection<Auth> _List_Users;
-        #endregion
-
-
-        #region OBJETOS
-        public ObservableCollection<Auth> List_Users
+        public ObservableCollection<MAuth> List_Users
         {
             get { return _List_Users; }
             set
             {
-                SetValue(ref _List_Users, value);
-                OnpropertyChanged();
+                _List_Users = value;
+                OnPropertyChanged();
             }
         }
-        #endregion
 
 
-        #region METODOS ASYNC
-        public async Task Get_ALL_Users()
+        public Task<IEnumerable<MAuth>> GetAllUsersAsync()
         {
             var db = connection.openConnection();
-            var sql = "SELECT * FROM Auth";
 
-            var result = db.Query<Auth>(sql);
+            var getUsers = "SELECT * FROM Auth";
 
-            // usar un foreach para recorrer la lista
+            var result = db.Query<MAuth>(getUsers);
 
-            List_Users = new ObservableCollection<Auth>(result);
+            List_Users = new ObservableCollection<MAuth>(result);
 
+            return Task.FromResult<IEnumerable<MAuth>>(result);
         }
-        public async Task Delete_User()
+
+        public bool Login(string email, string password)
         {
-
+            throw new NotImplementedException();
         }
-        public async Task Update_User()
+
+        public bool Register(string name, string email, string password)
         {
-
+            throw new NotImplementedException();
         }
-        public async Task Admin()
+
+        public async Task DeleteUser(MAuth auth)
         {
+            var db = connection.openConnection();
+            var deleteUser = "DELETE FROM AUTH WHERE Id =" + auth.Id;
 
+            db.Execute(deleteUser);
         }
-        #endregion
 
-
-        #region METODOS SIMPLE
-        public void MetodoSimple()
+        public async Task UpdateUser()
         {
-
+            await DisplayAlert("infor", "Deleted", "Ok");
         }
-        #endregion
 
+        public async Task goUpdateUser()
+        {
+            await DisplayAlert("infor", "goUpdate", "Ok");
+        }
 
-        #region COMANDOS
-        public ICommand btnDeleteUser => new Command(async () => await Delete_User());
-        public ICommand btnUpdateUser => new Command(async () => await Update_User());
-        public ICommand btnSuperUser => new Command(async () => await Admin());
-        #endregion
+        public ICommand btnGoUpdateCommand => new Command(async () => await goUpdateUser());
+        public ICommand btnDeleteCommand => new Command<MAuth>(async (auth) => await DeleteUser(auth));
+        public ICommand btnUpdateCommand => new Command(async () => await goUpdateUser());
+
     }
 }

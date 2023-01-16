@@ -2,7 +2,7 @@
 
 namespace CRUD_SQLITE.Models
 {
-    public class Auth
+    public class MAuth
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

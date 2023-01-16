@@ -151,9 +151,101 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region METODOS ASYNC
-        public async Task Get_Products_Cat()
+        public void Get_Products_Cat()
         {
-            List_Products.Add(new MProduct { Quantity = 10, Name = "Dorito", Price = 1, P_Total = 2 });
+            List_Products = new ObservableCollection<MProduct>();
+            List_Products.Add(new MProduct
+            {
+                Quantity = 100,
+                Name = "Bebida",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Cola",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Helado",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Tallarin",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Chupete",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 50,
+                Name = "Cerveza",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1000,
+                P_Total = 2000
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Pañales",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Power",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Rapidito",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Aceite",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+
+
         }
 
 
