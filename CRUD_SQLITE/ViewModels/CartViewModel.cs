@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using CRUD_SQLITE.Models;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -10,6 +12,7 @@ namespace CRUD_SQLITE.ViewModels
         public CartViewModel(INavigation navigation)
         {
             Navigation = navigation;
+            Get_Products_Cat();
         }
         #endregion
 
@@ -39,13 +42,23 @@ namespace CRUD_SQLITE.ViewModels
         private string _Name = "Dorito";
         private int _P_Unitaty = 1;
         private int _P_Total = 10;
+
+
+        ObservableCollection<MProduct> _list_Product;
         #endregion
 
 
-
-
-
         #region OBJETOS
+        public ObservableCollection<MProduct> List_Products
+        {
+            get { return _list_Product; }
+            set
+            {
+                SetValue(ref _list_Product, value);
+                OnpropertyChanged();
+            }
+        }
+
         public int Quantity
         {
             get { return _Quantity; }
@@ -138,6 +151,12 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region METODOS ASYNC
+        public async Task Get_Products_Cat()
+        {
+            List_Products.Add(new MProduct { Quantity = 10, Name = "Dorito", Price = 1, P_Total = 2 });
+        }
+
+
         public async Task Save_Buy()
         {
             await DisplayAlert("Infor", "Gracias por tu compra", "Ok");

@@ -45,7 +45,10 @@ namespace CRUD_SQLITE.ViewModels
 
             var result = db.Query<Auth>(sql);
 
+            // usar un foreach para recorrer la lista
+
             List_Users = new ObservableCollection<Auth>(result);
+
         }
         public async Task Delete_User()
         {

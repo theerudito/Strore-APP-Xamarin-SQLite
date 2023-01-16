@@ -5,8 +5,10 @@
     <ContentPage.Content>
 
         <Grid
-            RowDefinitions="30,*,40,30,20,45,*"
+            RowDefinitions="30,200,140,30,75,150"
             ColumnDefinitions="*">
+
+
             <StackLayout
                 BackgroundColor="silver"
                 Grid.Column="0"
@@ -19,7 +21,7 @@
                         Padding="5"
                         />
                     <Label
-                        Text="Name"
+                        Text="Details"
                         Grid.Column="1"
                         Padding="5"
                         />
@@ -43,68 +45,19 @@
                 </Grid>
             </StackLayout>
 
-            <!--<StackLayout
-            Grid.Column="0"
-            Grid.Row="1"
-            Background="orange">
-            <ListView IsRefreshing="false"
 
-            RefreshControlColor="#0099FF" >
-            <ListView.ItemTemplate>
-            <DataTemplate>
-            <ViewCell>
-            <Grid>
-            <Label
-            TextColor="Red"
-            Text="2"
-
-            />
-            <Label
-            Text="1"
-
-            />
-            <Label
-            Text="Dorito"
-
-            />
-            <Label
-            Text="0.50"
-
-            />
-            <Label
-            Text="1.00"
-
-            />
-            <ImageButton
-            Grid.Row="0"
-            Grid.Column="5"
-            Source="trash"
-            Aspect="AspectFit"
-            WidthRequest="50"
-            HeightRequest="20"
-            BackgroundColor="Transparent"
-            />
-            </Grid>
-            </ViewCell>
-            </DataTemplate>
-            </ListView.ItemTemplate>
-            </ListView>
-            </StackLayout>-->
-
-            <CollectionView
+            <ListView
+                ItemsSource="List_Products"
                 Grid.Column="0"
-                Grid.Row="1"
-                BackgroundColor="Aqua">
-                <CollectionView.ItemTemplate>
+                Grid.Row="1">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Button  Text="sdsdaasd" WidthRequest="2" HeightRequest="5" BackgroundColor="Black"/>
-                        </Grid>
+                        <ViewCell>
+                            <Label Text="1" Grid.Column="0" Grid.Row="1" />
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-
+                </ListView.ItemTemplate>
+            </ListView>
 
             <StackLayout
                 Grid.Column="0"
@@ -118,22 +71,88 @@
                         BackgroundColor="#0099FF"
                         Grid.Column="1"
                         Grid.Row="0"
-                        CornerRadius="20"
+                        CornerRadius="10"
                         Margin="0,0,10,0">
                         <Grid
                             RowDefinitions="*"
-                            ColumnDefinitions="*,*">
+                            ColumnDefinitions="100,5,*">
                             <Label
-                                Text="TOTAL: "
+                                Text="SubTotal:"
                                 Grid.Row="0"
+                                Grid.Column="0"
+                                TextColor="White"
+                                />
+                            <Label
+                                HorizontalOptions="End"
+                                Text="11.70"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                TextColor="White"
+                                />
+                            <Label
+                                Text="Desc:"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                TextColor="White"
+                                />
+                            <Label
+                                HorizontalOptions="End"
+                                Text="0.00"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                TextColor="White"
+                                />
+                            <Label
+                                Text="SubTotal 12%:"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                TextColor="White"
+                                />
+                            <Label
+                                HorizontalOptions="End"
+                                Text="1.70"
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                TextColor="White"
+                                />
+                            <Label
+                                Text="SubTotal 0%:"
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                TextColor="White"
+                                />
+                            <Label
+                                HorizontalOptions="End"
+                                Text="0.00"
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                TextColor="White"
+                                />
+                            <Label
+                                Text="IVA:"
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                TextColor="White"
+                                />
+                            <Label
+                                HorizontalOptions="End"
+                                Text="1.40"
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                TextColor="White"
+                                />
+                            <Label
+                                Text="TOTAL:"
+                                Grid.Row="5"
                                 Grid.Column="0"
                                 TextColor="White"
                                 FontAttributes="Bold"
                                 />
                             <Label
-                                Text="2000"
-                                Grid.Row="0"
-                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Text="20000"
+                                Grid.Row="5"
+                                Grid.Column="2"
                                 TextColor="White"
                                 FontAttributes="Bold"
                                 />
@@ -156,18 +175,18 @@
             </StackLayout>
 
             <StackLayout
+                Margin="0,0,0,0"
                 BackgroundColor="silver"
                 Grid.Row="4"
                 Grid.Column="0">
                 <Grid
-                    RowDefinitions="*"
-                    ColumnDefinitions="40,*,40,*"
-                    Margin="10,0,0,0">
+                    ColumnDefinitions="100,*,60,*">
                     <Label
                         Text="Date: "
                         Grid.Column="0"
                         Grid.Row="0"
                         TextColor="black"
+                        Margin="10,0,0,0"
                         />
                     <Label
                         Text="{Binding Date}"
@@ -180,6 +199,7 @@
                         Grid.Column="2"
                         Grid.Row="0"
                         TextColor="black"
+                        Margin="10,0,0,0"
                         />
                     <Label
                         Text="{Binding Hour}"
@@ -187,53 +207,43 @@
                         Grid.Row="0"
                         TextColor="black"
                         />
-                </Grid>
-            </StackLayout>
-
-            <StackLayout
-                Margin="0,0,0,0"
-                BackgroundColor="silver"
-                Grid.Row="5"
-                Grid.Column="0">
-                <Grid
-                    ColumnDefinitions="100,*,60,*">
                     <Label
                         Text="Document: "
                         Grid.Column="0"
-                        Grid.Row="0"
+                        Grid.Row="1"
                         Margin="10,0,0,0"
                         TextColor="black"
                         />
                     <Label
                         Text="{Binding Document}"
                         Grid.Column="1"
-                        Grid.Row="0"
+                        Grid.Row="1"
                         TextColor="black"
                         />
                     <Label
                         Text="#Document: "
                         Grid.Column="0"
-                        Grid.Row="1"
+                        Grid.Row="2"
                         Margin="10,0,0,0"
                         TextColor="black"
                         />
                     <Label
                         Text="{Binding NumDocument}"
                         Grid.Column="1"
-                        Grid.Row="1"
+                        Grid.Row="2"
                         TextColor="black"
                         />
                     <Label
                         Text="Serie1: "
                         Grid.Column="2"
-                        Grid.Row="0"
+                        Grid.Row="2"
                         Margin="10,0,0,0"
                         TextColor="black"
                         />
                     <Label
                         Text="{Binding Serie1}"
                         Grid.Column="3"
-                        Grid.Row="0"
+                        Grid.Row="1"
                         TextColor="black"
                         />
                     <Label
@@ -246,14 +256,14 @@
                     <Label
                         Text="{Binding Serie2}"
                         Grid.Column="3"
-                        Grid.Row="1"
+                        Grid.Row="2"
                         TextColor="black"
                         />
                 </Grid>
             </StackLayout>
 
             <StackLayout
-                Grid.Row="6"
+                Grid.Row="5"
                 Grid.Column="0"
                 Margin="10,0,10,0">
                 <Grid>
@@ -346,11 +356,11 @@
 
             <StackLayout
                 Grid.Column="0"
-                Grid.Row="7">
+                Grid.Row="6">
                 <Button
                     Text="SAVE"
                     Margin="20,10,20,0"
-                    CornerRadius="20"
+                    CornerRadius="10"
                     Command="{Binding Save_Buy}"
                     />
             </StackLayout>
