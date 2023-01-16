@@ -17,14 +17,16 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region VARIABLES
-        private int _Total = 200;
+
         private string _Date = "14/01/2023";
         private string _Hour = "16:08 PM";
-        private int _subtotal0;
-        private int _subtotal12;
-        private int _iva;
-        private int _descuent;
 
+        private int _subtotal = 100;
+        private int _subtotal0 = 100;
+        private int _subtotal12 = 100;
+        private int _iva = 12;
+        private int _descuent = 100;
+        private int _Total = 112;
 
         private string _Document = "Factura";
         private int _numDocument = 123456;
@@ -38,7 +40,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _Email;
         private string _Direction;
 
-        private int _Quantity = 10;
+        private int _Quantity;
         private string _Name = "Dorito";
         private int _P_Unitaty = 1;
         private int _P_Total = 10;
@@ -81,11 +83,38 @@ namespace CRUD_SQLITE.ViewModels
         }
 
 
+        public int SubTotal
+        {
+            get { return _subtotal; }
+            set { SetValue(ref _subtotal, value); }
+        }
+        public int Descuent
+        {
+            get { return _descuent; }
+            set { SetValue(ref _descuent, value); }
+        }
+        public int SubTotal12
+        {
+            get { return _subtotal12; }
+            set { SetValue(ref _subtotal12, value); }
+        }
+        public int SubTotal0
+        {
+            get { return _subtotal0; }
+            set { SetValue(ref _subtotal0, value); }
+        }
+        public int Iva
+        {
+            get { return _iva; }
+            set { SetValue(ref _iva, value); }
+        }
         public int Total
         {
             get { return _Total; }
             set { SetValue(ref _Total, value); }
         }
+
+
         public string Date
         {
             get { return _Date; }
@@ -163,87 +192,87 @@ namespace CRUD_SQLITE.ViewModels
                 Price = 1,
                 P_Total = 10
             });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Cola",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Helado",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Tallarin",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Chupete",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 50,
-                Name = "Cerveza",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1000,
-                P_Total = 2000
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Pañales",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Power",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Rapidito",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Aceite",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Cola",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Helado",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Tallarin",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Chupete",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 50,
+            //    Name = "Cerveza",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1000,
+            //    P_Total = 2000
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Pañales",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Power",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Rapidito",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
+            //List_Products.Add(new MProduct
+            //{
+            //    Quantity = 10,
+            //    Name = "Aceite",
+            //    Brand = "Fanta",
+            //    Description = "125 GR",
+            //    Price = 1,
+            //    P_Total = 10
+            //});
 
 
         }
@@ -261,21 +290,21 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Res_Quantity()
         {
-            await DisplayAlert("Infor", "Quntity - 1", "Ok");
+            Total++;
         }
 
         public async Task Sum_Quantity()
         {
-            await DisplayAlert("Infor", "Quantity + 1", "Ok");
+            Quantity = Quantity++;
         }
         #endregion
 
 
         #region COMANDOS
         public ICommand btnSaveCartCommand => new Command(async () => await Save_Buy());
-        public ICommand btnDeleteProductCommand => new Command(async () => await Delete_ProductCart());
-        public ICommand btnSumCommand => new Command(async () => await Sum_Quantity());
-        public ICommand btnRestCartCommand => new Command(async () => await Res_Quantity());
+        public ICommand btnDeleteProductCart => new Command(async () => await Delete_ProductCart());
+        public ICommand btnSumQuantityCommand => new Command(async () => await Sum_Quantity());
+        public ICommand btnRestQuantityCommand => new Command(async () => await Res_Quantity());
         #endregion
     }
 }
