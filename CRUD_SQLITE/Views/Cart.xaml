@@ -47,7 +47,7 @@
 
 
             <ListView
-                ItemsSource="List_Products"
+                ItemsSource="{Binding List_Products}"
                 Grid.Column="0"
                 Grid.Row="1">
                 <ListView.ItemTemplate>
