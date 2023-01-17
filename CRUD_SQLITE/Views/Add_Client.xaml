@@ -113,7 +113,7 @@
                         />
                 </Frame>
                 <Button
-                    Text="Save"
+                    Text="{Binding Save}"
                     WidthRequest="80"
                     HeightRequest="50"
                     Margin="20"

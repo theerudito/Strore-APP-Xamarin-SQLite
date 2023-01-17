@@ -1,4 +1,6 @@
 ﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,6 +11,7 @@ namespace CRUD_SQLITE.ViewModels
     class ShoppingViewModel : BaseViewModel
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
+
 
         #region VARIABLES
         string _nameProduct;
@@ -66,6 +69,7 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
+
         #region METODOS ASYNC
         public async Task getAllProducts()
         {
@@ -78,12 +82,12 @@ namespace CRUD_SQLITE.ViewModels
         }
         public async Task goPageCart()
         {
-            await Navigation.PushAsync(new Views.Cart());
+            //await Navigation.PushAsync(new Cart());
         }
 
-        public async Task add_To_Cart()
+        public async Task add_To_Cart(MProduct product)
         {
-            await DisplayAlert("infor", "Añadido Al Cart", "Ok");
+            await Navigation.PushAsync(new Cart(product));
         }
         public async Task prew_Product()
         {
@@ -106,7 +110,7 @@ namespace CRUD_SQLITE.ViewModels
 
         #region COMANDOS
         public ICommand goCart => new Command(async () => await goPageCart());
-        public ICommand btnAddToCart => new Command(async () => await add_To_Cart());
+        public ICommand btnAddToCart => new Command<MProduct>(async (prod) => await add_To_Cart(prod));
         public ICommand btnPrewPorduct => new Command(async () => await prew_Product());
         public ICommand nextProduct => new Command(async () => await next_Product());
         public ICommand AlertaSimple => new Command(() => MetodoSimple());

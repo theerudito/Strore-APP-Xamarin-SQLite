@@ -2,7 +2,7 @@
 
 namespace CRUD_SQLITE.Models
 {
-    public class Cart
+    public class MCart
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

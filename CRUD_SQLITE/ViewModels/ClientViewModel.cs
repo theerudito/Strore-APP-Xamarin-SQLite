@@ -12,9 +12,11 @@ namespace CRUD_SQLITE.ViewModels
     public class ClientViewModel : BaseViewModel, IClient
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
+
         #region VARIABLES
         ObservableCollection<MClient> _List_client;
         public int _textDNI;
+        public bool _goEditing = true;
         public string _textFirstName;
         public string _textLastName;
         public string _textDirection;
@@ -26,10 +28,11 @@ namespace CRUD_SQLITE.ViewModels
         #region CONSTRUCTOR
         public ClientViewModel(INavigation navigation)
         {
-
+            //_client = client;
             Navigation = navigation;
             GetAllClientAsync();
         }
+
         #endregion
 
         #region OBJECTS
@@ -49,7 +52,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _textDNI, value);
-                //OnPropertyChanged();
             }
         }
         public string TextFirstName
@@ -109,11 +111,16 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region METHODS
-
-        public async Task go_Update_Client()
+        public async Task go_Update_Client(MClient client)
         {
-            await Navigation.PushAsync(new Add_Client());
+            await Navigation.PushAsync(new Add_Client(client, _goEditing));
         }
+
+        public async Task go_New_Client(MClient client)
+        {
+            await Navigation.PushAsync(new Add_Client(client, _goEditing));
+        }
+
 
         public Task<IEnumerable<MClient>> GetAllClientAsync()
         {
@@ -175,10 +182,10 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region COMMANDS
-        public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createClientAsync(cli));
+        //public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createClientAsync(cli));
         public ICommand btnDeleteClient => new Command<MClient>(async (cli) => await deleteClientAsync(cli));
-        public ICommand btnGoNewClient => new Command(async () => await Navigation.PushAsync(new Add_Client()));
-        public ICommand btnGoUpdateClient => new Command(async () => await go_Update_Client());
+        public ICommand btnGoNewClient => new Command<MClient>(async (cli) => await go_New_Client(cli));
+        public ICommand btnGoUpdateClient => new Command<MClient>(async (cli) => await go_Update_Client(cli));
         public ICommand btnUpdateClient => new Command<MClient>(async (cli) => await updateClientAsync(cli));
         public ICommand btnLeftClient => new Command(async () => await DisplayAlert("info", "prew", "ok"));
         public ICommand btnRightClient => new Command(async () => await DisplayAlert("info", "next", "ok"));

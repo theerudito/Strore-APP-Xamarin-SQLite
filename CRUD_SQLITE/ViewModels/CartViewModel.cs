@@ -8,10 +8,13 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
+        public MProduct receivedProduct { get; set; }
+
         #region CONSTRUCTOR
-        public CartViewModel(INavigation navigation)
+        public CartViewModel(INavigation navigation, MProduct product)
         {
             Navigation = navigation;
+            receivedProduct = product;
             Get_Products_Cat();
             Total_Cart();
         }
@@ -45,9 +48,9 @@ namespace CRUD_SQLITE.ViewModels
 
 
         private int _Quantity;
-        private string _Name = "Dorito";
-        private int _P_Unitaty = 1;
-        private int _P_Total = 10;
+        private string _Name;
+        private int _P_Unitaty;
+        private int _P_Total;
 
 
         ObservableCollection<MProduct> _list_Product;
@@ -190,95 +193,11 @@ namespace CRUD_SQLITE.ViewModels
             List_Products = new ObservableCollection<MProduct>();
             List_Products.Add(new MProduct
             {
-                Quantity = 100,
-                Name = "Bebida",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
+                Name = receivedProduct.Name,
+                Quantity = receivedProduct.Quantity,
+                Price = receivedProduct.Price,
+                P_Total = receivedProduct.Price * receivedProduct.Quantity
             });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Cola",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Helado",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Tallarin",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Chupete",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 50,
-                Name = "Cerveza",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1000,
-                P_Total = 2000
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Pañales",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Power",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Rapidito",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-            List_Products.Add(new MProduct
-            {
-                Quantity = 10,
-                Name = "Aceite",
-                Brand = "Fanta",
-                Description = "125 GR",
-                Price = 1,
-                P_Total = 10
-            });
-
 
         }
 
