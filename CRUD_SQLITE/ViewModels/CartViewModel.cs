@@ -13,25 +13,28 @@ namespace CRUD_SQLITE.ViewModels
         {
             Navigation = navigation;
             Get_Products_Cat();
+            Total_Cart();
         }
         #endregion
 
         #region VARIABLES
-
         private string _Date = "14/01/2023";
         private string _Hour = "16:08 PM";
 
-        private int _subtotal = 100;
-        private int _subtotal0 = 100;
-        private int _subtotal12 = 100;
+
+        private int _subtotal;
+        private int _subtotal0;
+        private int _subtotal12;
         private int _iva = 12;
-        private int _descuent = 100;
-        private int _Total = 112;
+        private int _descuent;
+        private int _Total;
+
 
         private string _Document = "Factura";
         private int _numDocument = 123456;
         private string _Serie1 = "001";
         private string _Serie2 = "002";
+
 
         private string _DNI;
         private string _Phone;
@@ -39,6 +42,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _LastName;
         private string _Email;
         private string _Direction;
+
 
         private int _Quantity;
         private string _Name = "Dorito";
@@ -71,7 +75,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Name; }
             set { SetValue(ref _Name, value); }
         }
-        public int P_Unitaty
+        public int P_Unitary
         {
             get { return _P_Unitaty; }
             set { SetValue(ref _P_Unitaty, value); }
@@ -125,6 +129,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Hour; }
             set { SetValue(ref _Hour, value); }
         }
+
 
         public string Document
         {
@@ -192,87 +197,87 @@ namespace CRUD_SQLITE.ViewModels
                 Price = 1,
                 P_Total = 10
             });
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Cola",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Helado",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Tallarin",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Chupete",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 50,
-            //    Name = "Cerveza",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1000,
-            //    P_Total = 2000
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Pañales",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Power",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Rapidito",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
-            //List_Products.Add(new MProduct
-            //{
-            //    Quantity = 10,
-            //    Name = "Aceite",
-            //    Brand = "Fanta",
-            //    Description = "125 GR",
-            //    Price = 1,
-            //    P_Total = 10
-            //});
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Cola",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Helado",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Tallarin",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Chupete",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 50,
+                Name = "Cerveza",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1000,
+                P_Total = 2000
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Pañales",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Power",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Rapidito",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
+            List_Products.Add(new MProduct
+            {
+                Quantity = 10,
+                Name = "Aceite",
+                Brand = "Fanta",
+                Description = "125 GR",
+                Price = 1,
+                P_Total = 10
+            });
 
 
         }
@@ -290,12 +295,24 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Res_Quantity()
         {
-            Total++;
+            SubTotal++;
+            //Quantity++;
+            Total_Cart();
         }
 
         public async Task Sum_Quantity()
         {
-            Quantity = Quantity++;
+            SubTotal--;
+            //Quantity--;
+            Total_Cart();
+        }
+
+        public async Task Total_Cart()
+        {
+            // Total = Subtotal * P_Unitary
+
+            Total = SubTotal * P_Unitary;
+
         }
         #endregion
 
