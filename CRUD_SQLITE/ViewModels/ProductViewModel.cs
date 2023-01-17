@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using CRUD_SQLITE.Views;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Essentials;
 
 namespace CRUD_SQLITE.ViewModels
 {
@@ -12,95 +11,18 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
+
         #region VARIABLES
         ObservableCollection<MProduct> _List_product;
-        //bool edit;
-        //int id;
-        //byte[] uploadImage;
-        public string _textName;
-        public int _textCode;
-        public string _textBrand;
-        public string _textDescription;
-        public int _textPrice;
-        public int _textQuantity;
-        public string _imageProduct = "https://i.postimg.cc/bY7xNvpV/hoja-white.png";
+        public bool _goEditingProduct = true;
         #endregion
+
 
 
         #region OBJECTS
         public ObservableCollection<MProduct> List_Product { get; set; }
-        //{
-        //    get { return _List_product; }
-        //    set
-        //    {
-        //        SetValue(ref _List_product, value);
-        //        OnpropertyChanged();
-        //    }
-        //}
-        public string TextName
-        {
-            get { return _textName; }
-            set
-            {
-                SetValue(ref _textName, value);
-                //OnPropertyChanged();
-            }
-        }
-        public int TextCode
-        {
-            get { return _textCode; }
-            set
-            {
-                SetValue(ref _textCode, value);
-                //OnPropertyChanged();
-            }
-        }
-        public string TextBrand
-        {
-            get { return _textBrand; }
-            set
-            {
-                SetValue(ref _textBrand, value);
-                //OnPropertyChanged();
-            }
-        }
-        public string TextDescription
-        {
-            get { return _textDescription; }
-            set
-            {
-                SetValue(ref _textDescription, value);
-                //OnPropertyChanged();
-            }
-        }
-        public int TextPrice
-        {
-            get { return _textPrice; }
-            set
-            {
-                SetValue(ref _textPrice, value);
-                //OnPropertyChanged();
-            }
-        }
-        public int TextQuantity
-        {
-            get { return _textQuantity; }
-            set
-            {
-                SetValue(ref _textQuantity, value);
-                //OnPropertyChanged();
-            }
-        }
-        public string ImageProduct
-        {
-            get { return _imageProduct; }
-            set
-            {
-                SetValue(ref _imageProduct, value);
-                //OnPropertyChanged();
-            }
-        }
         #endregion
+
 
 
         #region CONSTRUCTOR
@@ -111,28 +33,9 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
+
+
         #region METHODS
-
-
-        public async Task Insert_Product()
-        {
-            var db = connection.openConnection();
-            var sql = "INSERT INTO Product (Name, Code, Brand, Description, Price, Quantity, ImageProduct) "
-
-                + "VALUES ('" + TextName + "', " +
-                "'" + TextCode + "', " +
-                "'" + TextBrand + "', " +
-                "'" + TextDescription + "', " +
-                "'" + TextPrice + "', " +
-                "'" + TextQuantity + "', " +
-                "'" + ImageProduct + "')";
-
-
-            db.Execute(sql);
-
-            await Navigation.PushAsync(new Product());
-        }
-
         public async Task Delete_Product(MProduct product)
         {
             var db = connection.openConnection();
@@ -141,7 +44,6 @@ namespace CRUD_SQLITE.ViewModels
 
             await Navigation.PopAsync();
         }
-
         public async Task GET_ALL_Products()
         {
             var db = connection.openConnection();
@@ -150,35 +52,24 @@ namespace CRUD_SQLITE.ViewModels
 
             List_Product = new ObservableCollection<MProduct>(result);
         }
-
-        public async Task Update_Product()
+        public async Task goUpdate_Product(MProduct product)
         {
-            await DisplayAlert("Alerta", "Actualizando", "OK");
+            await Navigation.PushAsync(new Add_Product(product, _goEditingProduct));
         }
-        public async Task openGalery()
+        public async Task goNew_Product(MProduct product)
         {
-            var photo = await MediaPicker.PickPhotoAsync();
-
-            //if (photo != null)
-            //{
-            //    uploadImage = System.IO.File.ReadAllBytes(photo.FullPath);
-            //    var steam = picProduct.Source = ImageSource.FromStream(() => new MemoryStream(uploadImage));
-
-            //}
-            await DisplayAlert("Alert", "Image selected", "OK");
+            await Navigation.PushAsync(new Add_Product(product, _goEditingProduct));
         }
-
         #endregion
 
+
+
         #region COMMANDS   
-        public ICommand btnCreateProduct => new Command(async () => await Insert_Product());
-        public ICommand btnUpdateProduct => new Command(async () => await Update_Product());
         public ICommand btnDeleteProduct => new Command<MProduct>(async (prod) => await Delete_Product(prod));
-        public ICommand btnGoNewProduct => new Command(async () => await Navigation.PushAsync(new Add_Product()));
-        public ICommand btnGoUpdateProduct => new Command(async () => await Navigation.PushAsync(new Add_Product()));
-        public ICommand btnLeftProduct => new Command(async () => await DisplayAlert("info", "prew", "ok"));
-        public ICommand btnRightProduct => new Command(async () => await DisplayAlert("info", "next", "ok"));
-        public ICommand btnOpenGalery => new Command(async () => await openGalery());
+        public ICommand btnGoNewProduct => new Command<MProduct>(async (prod) => await goNew_Product(prod));
+        public ICommand btnGoUpdateProduct => new Command<MProduct>(async (prod) => await goUpdate_Product(prod));
+        public ICommand btnLeftProduct => new Command(async () => await DisplayAlert("info", "left", "ok"));
+        public ICommand btnRightProduct => new Command(async () => await DisplayAlert("info", "right", "ok"));
         #endregion
     }
 }

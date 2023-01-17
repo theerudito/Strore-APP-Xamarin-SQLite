@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System;
 
 namespace CRUD_SQLITE.Models
 {
@@ -20,5 +21,10 @@ namespace CRUD_SQLITE.Models
         public string Email { get; set; }
         [MaxLength(50)]
         public string City { get; set; }
+
+        public static implicit operator MClient(MProduct v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

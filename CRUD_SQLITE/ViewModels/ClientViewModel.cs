@@ -1,5 +1,4 @@
 ﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
 using CRUD_SQLITE.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,31 +8,25 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    public class ClientViewModel : BaseViewModel, IClient
+    public class ClientViewModel : BaseViewModel
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
+
         #region VARIABLES
         ObservableCollection<MClient> _List_client;
-        public int _textDNI;
         public bool _goEditing = true;
-        public string _textFirstName;
-        public string _textLastName;
-        public string _textDirection;
-        public int _textPhone;
-        public string _textEmail;
-        public string _textCity;
         #endregion
+
 
         #region CONSTRUCTOR
         public ClientViewModel(INavigation navigation)
         {
-            //_client = client;
             Navigation = navigation;
             GetAllClientAsync();
         }
-
         #endregion
+
 
         #region OBJECTS
         public ObservableCollection<MClient> List_Clients
@@ -45,83 +38,10 @@ namespace CRUD_SQLITE.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public int TextDNI
-        {
-            get { return _textDNI; }
-            set
-            {
-                SetValue(ref _textDNI, value);
-            }
-        }
-        public string TextFirstName
-        {
-            get { return _textFirstName; }
-            set
-            {
-                SetValue(ref _textFirstName, value);
-                //OnPropertyChanged();
-            }
-        }
-        public string TextLastName
-        {
-            get { return _textLastName; }
-            set
-            {
-                SetValue(ref _textLastName, value);
-                //OnPropertyChanged();
-            }
-        }
-        public string TextDirection
-        {
-            get { return _textDirection; }
-            set
-            {
-                SetValue(ref _textDirection, value);
-                //OnPropertyChanged();
-            }
-        }
-        public int TextPhone
-        {
-            get { return _textPhone; }
-            set
-            {
-                SetValue(ref _textPhone, value);
-                //OnPropertyChanged();
-            }
-        }
-        public string TextEmail
-        {
-            get { return _textEmail; }
-            set
-            {
-                SetValue(ref _textEmail, value);
-                //OnPropertyChanged();
-            }
-        }
-        public string TextCity
-        {
-            get { return _textCity; }
-            set
-            {
-                SetValue(ref _textCity, value);
-                //OnPropertyChanged();
-            }
-        }
         #endregion
 
+
         #region METHODS
-        public async Task go_Update_Client(MClient client)
-        {
-            await Navigation.PushAsync(new Add_Client(client, _goEditing));
-        }
-
-        public async Task go_New_Client(MClient client)
-        {
-            await Navigation.PushAsync(new Add_Client(client, _goEditing));
-        }
-
-
         public Task<IEnumerable<MClient>> GetAllClientAsync()
         {
             var db = connection.openConnection();
@@ -134,38 +54,14 @@ namespace CRUD_SQLITE.ViewModels
 
             return Task.FromResult<IEnumerable<MClient>>(result);
         }
-
-        public Task<MClient> GetOneClientAsync(int id)
+        public async Task go_Update_Client(MClient client)
         {
-            throw new System.NotImplementedException();
+            await Navigation.PushAsync(new Add_Client(client, _goEditing));
         }
-
-        public async Task<MClient> createClientAsync(MClient client)
+        public async Task go_New_Client(MClient client)
         {
-            var db = connection.openConnection();
-            //DNI, FirstName, LastName, Direction, Phone, Email, City
-
-            var addClient = "INSERT INTO Client " +
-                "(DNI, FirstName, LastName, Direction, Phone, Email, City) " +
-                "VALUES (" + TextDNI + ", " +
-                "'" + TextFirstName + "', " +
-                "'" + TextLastName + "', " +
-                "'" + TextDirection + "', " +
-                "" + TextPhone + ", " +
-                "'" + TextEmail + "', " +
-                "'" + TextCity + "')";
-
-            db.Execute(addClient);
-            await Navigation.PushAsync(new Client());
-
-            return await Task.FromResult<MClient>(client);
+            await Navigation.PushAsync(new Add_Client(client, _goEditing));
         }
-
-        public Task<bool> updateClientAsync(MClient client)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public async Task<bool> deleteClientAsync(MClient client)
         {
             var db = connection.openConnection();
@@ -182,11 +78,9 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region COMMANDS
-        //public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createClientAsync(cli));
         public ICommand btnDeleteClient => new Command<MClient>(async (cli) => await deleteClientAsync(cli));
         public ICommand btnGoNewClient => new Command<MClient>(async (cli) => await go_New_Client(cli));
         public ICommand btnGoUpdateClient => new Command<MClient>(async (cli) => await go_Update_Client(cli));
-        public ICommand btnUpdateClient => new Command<MClient>(async (cli) => await updateClientAsync(cli));
         public ICommand btnLeftClient => new Command(async () => await DisplayAlert("info", "prew", "ok"));
         public ICommand btnRightClient => new Command(async () => await DisplayAlert("info", "next", "ok"));
         #endregion

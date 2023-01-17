@@ -7,7 +7,7 @@
             <StackLayout >
                 <ImageButton
                     Command="{Binding btnOpenGalery}"
-                    Source="image"
+                    Source="{Binding ImageProduct}"
                     WidthRequest="100"
                     Margin="10"
                     BackgroundColor="Transparent"
@@ -101,8 +101,8 @@
                         HeightRequest="70"/>
                 </Frame>
                 <Button
-                    x:Name="btnAddProduct"
-                    Text="Save" Margin="50"
+                    Text="{Binding Save}"
+                    Margin="50"
                     CornerRadius="10"
                     Command="{Binding btnCreateProduct}"
                     />

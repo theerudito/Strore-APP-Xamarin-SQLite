@@ -195,8 +195,8 @@ namespace CRUD_SQLITE.ViewModels
             {
                 Name = receivedProduct.Name,
                 Quantity = receivedProduct.Quantity,
-                Price = receivedProduct.Price,
-                P_Total = receivedProduct.Price * receivedProduct.Quantity
+                P_Unitary = receivedProduct.P_Unitary,
+                P_Total = receivedProduct.P_Unitary * receivedProduct.Quantity
             });
 
         }

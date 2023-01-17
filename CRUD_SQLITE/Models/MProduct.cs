@@ -15,7 +15,7 @@ namespace CRUD_SQLITE.Models
         [MaxLength(50)]
         public string Description { get; set; }
         [MaxLength(50)]
-        public decimal Price { get; set; }
+        public decimal P_Unitary { get; set; }
         [MaxLength(50)]
         public decimal P_Total { get; set; }
         [MaxLength(50)]

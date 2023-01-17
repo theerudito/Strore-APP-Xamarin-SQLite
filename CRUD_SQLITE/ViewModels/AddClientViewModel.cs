@@ -132,7 +132,6 @@ namespace CRUD_SQLITE.ViewModels
             TextEmail = _client.Email;
             TextCity = _client.City;
         }
-
         public async Task<MClient> createClientAsync(MClient client)
         {
             var db = connection.openConnection();
@@ -153,7 +152,6 @@ namespace CRUD_SQLITE.ViewModels
             return await Task.FromResult<MClient>(client);
 
         }
-
         public async Task<MClient> editClientAsync(MClient client)
         {
             var db = connection.openConnection();
@@ -172,8 +170,6 @@ namespace CRUD_SQLITE.ViewModels
 
             return await Task.FromResult<MClient>(client);
         }
-
-
         public async Task<MClient> createOrEditClientAsync(MClient client)
         {
             if (_Editing)
@@ -185,9 +181,9 @@ namespace CRUD_SQLITE.ViewModels
                 return await createClientAsync(client);
             }
         }
-
-
         #endregion
+
+
 
         #region COMMANDS
         public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createOrEditClientAsync(cli));

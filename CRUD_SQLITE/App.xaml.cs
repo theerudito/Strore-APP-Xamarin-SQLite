@@ -20,7 +20,7 @@ namespace CRUD_SQLITE
             var queryProduct = "CREATE TABLE IF NOT EXISTS Product" +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, " +
                 "Code INTEGER, Brand TEXT, Description TEXT, " +
-                "Price REAL, Quantity INTEGER, ImageProduct TEXT )";
+                "P_Unitary REAL, P_Total REAL, Quantity INTEGER, ImageProduct TEXT )";
 
             //var deleteTableProduct = "DROP TABLE Product";
             //db.Execute(deleteTableProduct);

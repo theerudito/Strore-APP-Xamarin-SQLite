@@ -126,7 +126,7 @@
                                     Margin="10"
                                     />
                                 <Label
-                                    Text="{Binding Price}"
+                                    Text="{Binding P_Unitary}"
                                     Grid.Row="0"
                                     Grid.Column="4"
                                     WidthRequest="100"
@@ -145,7 +145,7 @@
                                         HeightRequest="30"
                                         Margin="0, 2, 5, 0"
                                         Command="{Binding Source={x:Reference list_product},
-                                        Path=BindingContext.btnUpdateProduct}"
+                                        Path=BindingContext.btnGoUpdateProduct}"
                                         CommandParameter="{Binding .}"
                                         />
                                     <ImageButton
