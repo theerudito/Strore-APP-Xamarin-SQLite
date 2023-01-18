@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using System;
 using System.Threading.Tasks;
-using System.Linq.Expressions;
 
 namespace CRUD_SQLITE.ViewModels
 {
@@ -11,16 +10,12 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
-        Button btnUpdate;
+
         #region CONTRUCTOR
-        public CompanyViewModel(INavigation navigation, Button buttonCHange)
+        public CompanyViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            //buttonUpdate.IsEnabled = false;
-            buttonCHange.BackgroundColor = Color.Gray;
-            //btnUpdate = buttonUpdate;
             getCompanyAsync();
-
         }
         #endregion
 
@@ -155,27 +150,23 @@ namespace CRUD_SQLITE.ViewModels
             var id = 1;
             var updateCompany = db.Table<Company>().Where(c => c.IdCompany == id);
 
-            if (updateCompany != null)
+            foreach (var item in updateCompany)
             {
-                foreach (var item in updateCompany)
-                {
-                    item.Name = Name;
-                    item.Owner = Owner;
-                    item.Direction = Direction;
-                    item.Email = Email;
-                    item.RUC = Convert.ToInt32(RUC);
-                    item.Phone = Convert.ToInt32(Phone);
-                    item.NumDocument = Convert.ToInt32(NumDocument);
-                    item.Serie1 = Serie1;
-                    item.Serie2 = Serie2;
-                    item.DB = DB;
-                    item.Document = Document;
-                    item.Iva = Convert.ToDecimal(Iva);
-                    item.Current = Current;
-                    db.Update(item);
-                }
+                item.Name = Name;
+                item.Owner = Owner;
+                item.Direction = Direction;
+                item.Email = Email;
+                item.RUC = Convert.ToInt32(RUC);
+                item.Phone = Convert.ToInt32(Phone);
+                item.NumDocument = Convert.ToInt32(NumDocument);
+                item.Serie1 = Serie1;
+                item.Serie2 = Serie2;
+                item.DB = DB;
+                item.Document = Document;
+                item.Iva = Convert.ToDecimal(Iva);
+                item.Current = Current;
+                db.Update(item);
             }
-            await DisplayAlert("alert", "The Company was update sussefully", "");
         }
 
         public async Task Activate()
@@ -185,11 +176,11 @@ namespace CRUD_SQLITE.ViewModels
             var getCode = db.Table<Code>().Where(c => c.CodeAdmin == CODE).FirstOrDefault();
             if (getCode != null)
             {
-                await DisplayAlert("infor", "the code is corect", "ok");
+                await DisplayAlert("infor", "the code is correct", "ok");
             }
             else
             {
-                await DisplayAlert("infor", "the code is incorrecto ", "ok");
+                await DisplayAlert("infor", "the code is incorrect", "ok");
             };
         }
         #endregion

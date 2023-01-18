@@ -10,9 +10,9 @@ namespace CRUD_SQLITE.Views
     {
         public Config()
         {
-            var buttonCHange = buttonUpdate;
+            var buttonChange = buttonUpdate;
             InitializeComponent();
-            BindingContext = new CompanyViewModel(Navigation, buttonCHange);
+            BindingContext = new CompanyViewModel(Navigation);
         }
     }
 }
