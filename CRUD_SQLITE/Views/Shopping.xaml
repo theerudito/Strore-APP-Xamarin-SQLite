@@ -60,57 +60,74 @@
                                 <StackLayout>
                                     <Image
                                         Source="{Binding ImageProduct}"
-                                        HeightRequest="100"/>
+                                        HeightRequest="100"
+                                        WidthRequest="100"
+                                        />
+
                                     <FlexLayout
                                         HorizontalOptions="Center">
                                         <Label
                                             Text="Name:"
                                             Margin="0, 0,5,0"
-                                            TextColor="White"/>
+                                            TextColor="White"
+                                            />
                                         <Label
                                             Text="{Binding Name}"
                                             Margin="0, 0, 5 ,0"
-                                            TextColor="White"/>
+                                            MaxLines="1"
+                                            TextColor="White"
+                                            />
                                     </FlexLayout>
                                     <FlexLayout
                                         HorizontalOptions="Center">
                                         <Label
                                             Text="Brand:"
-                                            Margin="0, 0,5,0"
-                                            TextColor="White"/>
+                                            Margin="0, -5, 5 ,0"
+                                            TextColor="White"
+                                            />
                                         <Label
                                             Text="{Binding Brand}"
-                                            Margin="0, 0, 5 ,0"
-                                            TextColor="White"/>
+                                            Margin="0, -5, 5 ,0"
+                                            MaxLines="1"
+                                            TextColor="White"
+                                            />
                                     </FlexLayout>
                                     <FlexLayout
                                         HorizontalOptions="Center">
                                         <Label
                                             Text="Description:"
-                                            Margin="0, 0,5,0"
-                                            TextColor="White"/>
+                                            Margin="0, -5, 5 ,0"
+                                            TextColor="White"
+                                            />
                                         <Label
                                             Text="{Binding Description}"
-                                            Margin="0, 0, 5 ,0"
-                                            TextColor="White"/>
+                                            MaxLines="1"
+                                            Margin="0, -5, 5 ,0"
+                                            TextColor="White"
+                                            />
                                     </FlexLayout>
                                     <FlexLayout
                                         HorizontalOptions="Center">
                                         <Label
                                             Text="Price:"
-                                            Margin="0, 0,5,0"
-                                            TextColor="White"/>
+                                            MaxLines="1"
+                                            Margin="0, -5, 5 ,0"
+                                            TextColor="White"
+                                            />
                                         <Label
                                             Text="{Binding P_Unitary}"
-                                            Margin="0, 0, 5 ,0"
-                                            TextColor="White"/>
+                                            MaxLines="1"
+                                            Margin="0, -5, 5 ,0"
+                                            TextColor="White"
+                                            />
                                     </FlexLayout>
                                     <Button Text="ADD TO CART"
-                                            WidthRequest="100"
+                                            CornerRadius="20"
                                             BackgroundColor="Orange"
                                             Command="{Binding Source={x:Reference viewPodroduct},
                                             Path=BindingContext.btnAddToCart}"
-                                            CommandParameter="{Binding .}"/>
+                                            CommandParameter="{Binding .}"
+                                            />
                                 </StackLayout>
                             </Frame>
                         </Grid>

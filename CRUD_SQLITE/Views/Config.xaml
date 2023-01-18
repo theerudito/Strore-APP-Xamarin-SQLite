@@ -216,10 +216,11 @@
                     ColumnDefinitions="*,100,100">
                     <Button
                         Grid.Column="0"
+                        x:Name="buttonUpdate"
                         Text="Save Company"
                         Margin="10"
                         CornerRadius="10"
-                        Command="{Binding btnSaveCompany}"
+                        Command="{Binding btnUpdateCompany}"
                         />
                     <Button
                         Grid.Column="2"
@@ -242,6 +243,7 @@
                             Text="{Binding CODE}"
                             Placeholder="CODE"
                             Keyboard="Numeric"
+                            IsPassword="True"
                             />
                     </Frame>
                 </Grid>

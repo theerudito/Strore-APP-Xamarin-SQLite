@@ -44,8 +44,8 @@ namespace CRUD_SQLITE
                 "(IdCompany INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Name TEXT, Owner TEXT, Direction TEXT, Email TEXT, " +
                 "RUC INTEGER, Phone INTEGER,  NumDocument INTEGER, " +
-                "Serie1 INTEGER, Serie2 INTEGER, DB TEXT, Document TEXT, " +
-                "Iva REAL, Current INTEGER)";
+                "Serie1 TEXT, Serie2 TEXT, DB TEXT, Document TEXT, " +
+                "Iva REAL, Current INTEGER, ExisteCompany BOOL)";
 
             //var deleteTableCompany = "DROP TABLE Company";
             //db.Execute(deleteTableCompany);

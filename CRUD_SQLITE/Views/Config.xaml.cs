@@ -1,6 +1,5 @@
-﻿using CRUD_SQLITE.Models;
+﻿
 using CRUD_SQLITE.ViewModels;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,8 +10,9 @@ namespace CRUD_SQLITE.Views
     {
         public Config()
         {
+            var buttonCHange = buttonUpdate;
             InitializeComponent();
-            BindingContext = new CompanyViewModel(Navigation);
+            BindingContext = new CompanyViewModel(Navigation, buttonCHange);
         }
     }
 }

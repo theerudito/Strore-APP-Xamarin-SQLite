@@ -1,41 +1,45 @@
 ﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
 using Xamarin.Forms;
 using System.Windows.Input;
-using SQLite;
+using System;
+using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    public class CompanyViewModel : BaseViewModel, ICompany
+    public class CompanyViewModel : BaseViewModel
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
+        Button btnUpdate;
         #region CONTRUCTOR
-        public CompanyViewModel(INavigation navigation)
+        public CompanyViewModel(INavigation navigation, Button buttonCHange)
         {
             Navigation = navigation;
+            //buttonUpdate.IsEnabled = false;
+            buttonCHange.BackgroundColor = Color.Gray;
+            //btnUpdate = buttonUpdate;
+            getCompanyAsync();
+
         }
         #endregion
 
         #region VARIABLES
-        string _TextNameCompany;
-        string _TextOwner;
-        string _TextDirection;
-        string _TextEmail;
-        int _TextRUC;
-        int _TextPhone;
-        int _TextNumDocument;
-        string _TextSerie1;
-        string _TextSerie2;
-        string _TextDB;
-        string _TextTypeDocument;
-        int _TextIVA;
-        string _TextCurrent;
-        bool _TextExiste;
-        string _TextCODE;
+        private string _TextNameCompany;
+        private string _TextOwner;
+        private string _TextDirection;
+        private string _TextEmail;
+        private string _TextRUC;
+        private string _TextPhone;
+        private string _TextNumDocument;
+        private string _TextSerie1;
+        private string _TextSerie2;
+        private string _TextDB;
+        private string _TextTypeDocument;
+        private string _TextIVA;
+        private string _TextCurrent;
+        private bool _TextExiste = true;
+        private int _TextCODE;
         #endregion
 
         #region OBJETOS
@@ -59,17 +63,17 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextEmail; }
             set { SetValue(ref _TextEmail, value); }
         }
-        public int RUC
+        public string RUC
         {
             get { return _TextRUC; }
             set { SetValue(ref _TextRUC, value); }
         }
-        public int Phone
+        public string Phone
         {
             get { return _TextPhone; }
             set { SetValue(ref _TextPhone, value); }
         }
-        public int NumDocument
+        public string NumDocument
         {
             get { return _TextNumDocument; }
             set { SetValue(ref _TextNumDocument, value); }
@@ -94,7 +98,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextTypeDocument; }
             set { SetValue(ref _TextTypeDocument, value); }
         }
-        public int Iva
+        public string Iva
         {
             get { return _TextIVA; }
             set { SetValue(ref _TextIVA, value); }
@@ -109,103 +113,92 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextExiste; }
             set { SetValue(ref _TextExiste, value); }
         }
-        public string CODE
+        public int CODE
         {
             get { return _TextCODE; }
             set { SetValue(ref _TextCODE, value); }
         }
         #endregion
 
-        #region METODOS ASYNC
-        public async Task Save_Company()
+        #region METHODS
+        public async Task getCompanyAsync()
         {
-            await Task.Delay(1000);
+            var id = 1;
+            var db = connection.openConnection();
+            var user = db.Table<Company>().Where(c => c.IdCompany == id).FirstOrDefault();
 
+            if (user != null)
+            {
+                Name = user.Name;
+                Owner = user.Owner;
+                Direction = user.Direction;
+                Email = user.Email;
+                RUC = Convert.ToString(user.RUC);
+                Phone = Convert.ToString(user.Phone);
+                NumDocument = Convert.ToString(user.NumDocument);
+                Serie1 = user.Serie1;
+                Serie2 = user.Serie2;
+                DB = user.DB;
+                Document = user.Document;
+                Iva = Convert.ToString(user.Iva);
+                Current = user.Current;
+                ExisteCompany = true;
+            }
+            else
+            {
+                ExisteCompany = false;
+            }
         }
-        public async Task Update_Company()
+        public async Task updateCompanyAsync()
         {
-            await Task.Delay(1000);
+            var db = connection.openConnection();
+            var id = 1;
+            var updateCompany = db.Table<Company>().Where(c => c.IdCompany == id);
 
+            if (updateCompany != null)
+            {
+                foreach (var item in updateCompany)
+                {
+                    item.Name = Name;
+                    item.Owner = Owner;
+                    item.Direction = Direction;
+                    item.Email = Email;
+                    item.RUC = Convert.ToInt32(RUC);
+                    item.Phone = Convert.ToInt32(Phone);
+                    item.NumDocument = Convert.ToInt32(NumDocument);
+                    item.Serie1 = Serie1;
+                    item.Serie2 = Serie2;
+                    item.DB = DB;
+                    item.Document = Document;
+                    item.Iva = Convert.ToDecimal(Iva);
+                    item.Current = Current;
+                    db.Update(item);
+                }
+            }
+            await DisplayAlert("alert", "The Company was update sussefully", "");
         }
+
         public async Task Activate()
         {
-            await Task.Delay(1000);
+            var db = connection.openConnection();
 
-        }
-        public async Task Logout()
-        {
-            await Task.Delay(1000);
-
-        }
-
-        #endregion
-
-        #region METODOS SIMPLE
-        public void MetodoSimple()
-        {
-
+            var getCode = db.Table<Code>().Where(c => c.CodeAdmin == CODE).FirstOrDefault();
+            if (getCode != null)
+            {
+                await DisplayAlert("infor", "the code is corect", "ok");
+            }
+            else
+            {
+                await DisplayAlert("infor", "the code is incorrecto ", "ok");
+            };
         }
         #endregion
 
-        #region COMANDOS
-        public ICommand btnSaveCompany => new Command(async () => await Save_Company());
-        public ICommand btnUpdateCompany => new Command(async () => await Update_Company());
-        public ICommand btnLogOut => new Command(async () => await Logout());
+
+        #region COMMANDS
+        public ICommand btnUpdateCompany => new Command(async () => await updateCompanyAsync());
+        //public ICommand btnLogOut => new Command(async () => await Logout());
         public ICommand btnAdmin => new Command(async () => await Activate());
         #endregion
-
-
-        public Task<Company> companyAsync()
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<Company> createCompanyAsync(Company company)
-        {
-            //Name, Owner, Direction, Email, RUC,  Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current
-            var db = connection.openConnection();
-            var sql = "INSERT INTO Company (Name, Owner, Direction, Email, RUC,  Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current) " +
-            "VALUES ('" + company.Name + "', '" + company.Owner + "', '" + company.Direction + "', '" + company.Email + "', '" + company.RUC + "', " +
-            "'" + company.Phone + "', '" + company.NumDocument + "', '" + company.Serie1 + "', '" + company.Serie2 + "', '" + company.DB + "', " +
-            "'" + company.Document + "', '" + company.Iva + "', '" + company.Current + "')";
-            db.Execute(sql);
-            return await Task.FromResult(company);
-        }
-
-        public Task<bool> deleteCompanyAsync(int ruc)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Company> getCompanyAsync(int ruc)
-        {
-            var db = connection.openConnection();
-            var sql = "SELECT * FROM Company WHERE RUC = " + ruc;
-            var company = db.Query<Company>(sql).FirstOrDefault();
-            return await Task.FromResult(company);
-        }
-
-        public async Task<bool> updateCompanyAsync(Company company, int ruc)
-        {
-            var db = connection.openConnection();
-            var sql = "UPDATE Company SET Name = '" + company.Name + "', Owner = '" + company.Owner + "', Direction = '" + company.Direction + "', " +
-                "Email = '" + company.Email + "', RUC = '" + company.RUC + "', Phone = '" + company.Phone + "', NumDocument = '" + company.NumDocument + "', " +
-                "Serie1 = '" + company.Serie1 + "', Serie2 = '" + company.Serie2 + "', DB = '" + company.DB + "', Document = '" + company.Document + "', " +
-                "Iva = '" + company.Iva + "', Current = '" + company.Current + "' WHERE RUC = '" + ruc + "'";
-
-            db.Execute(sql);
-            return await Task.FromResult(true);
-        }
-    }
-    public class CodeViewModel : ICode
-    {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
-        public async Task<Code> getCodeAsync(int codeAdmin)
-        {
-            Console.WriteLine("code", codeAdmin);
-            var db = connection.openConnection();
-            var sql = "SELECT * FROM Code";
-            var result = db.Query<Code>(sql);
-            return await Task.FromResult(result.FirstOrDefault());
-        }
     }
 }

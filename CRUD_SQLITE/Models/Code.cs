@@ -7,7 +7,7 @@ namespace CRUD_SQLITE.Models
         [PrimaryKey, AutoIncrement]
         public int IdCode { get; set; }
         [MaxLength(50)]
-        public string CodeAdmin { get; set; }
+        public int CodeAdmin { get; set; }
 
     }
 }

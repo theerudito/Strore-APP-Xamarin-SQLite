@@ -21,9 +21,9 @@ namespace CRUD_SQLITE.Models
         [MaxLength(50)]
         public int NumDocument { get; set; }
         [MaxLength(50)]
-        public int Serie1 { get; set; }
+        public string Serie1 { get; set; }
         [MaxLength(50)]
-        public int Serie2 { get; set; }
+        public string Serie2 { get; set; }
         [MaxLength(50)]
         public string DB { get; set; }
         [MaxLength(50)]

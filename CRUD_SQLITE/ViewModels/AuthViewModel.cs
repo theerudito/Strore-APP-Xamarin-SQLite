@@ -56,10 +56,6 @@ namespace CRUD_SQLITE.ViewModels
             this.showLogin = showLogin;
         }
 
-        public AuthViewModel(INavigation navigation)
-        {
-            Navigation = navigation;
-        }
         #endregion
 
         #region METHODS

@@ -38,7 +38,7 @@
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand">
                     <Label
-                        Text="By Jorge Loor 2022"
+                        Text="By Jorge Loor 2023"
                         HorizontalOptions="CenterAndExpand"
                         />
                     <Label
