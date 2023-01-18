@@ -10,14 +10,15 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
-
         #region CONTRUCTOR
         public CompanyViewModel(INavigation navigation)
         {
             Navigation = navigation;
             getCompanyAsync();
+            showBtnSave = false;
         }
         #endregion
+
 
         #region VARIABLES
         private string _TextNameCompany;
@@ -35,9 +36,16 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextCurrent;
         private bool _TextExiste = true;
         private int _TextCODE;
+        private bool _showBtnSave;
         #endregion
 
+
         #region OBJETOS
+        public bool showBtnSave
+        {
+            get { return _showBtnSave; }
+            set { SetValue(ref _showBtnSave, value); }
+        }
         public string Name
         {
             get { return _TextNameCompany; }
@@ -115,6 +123,7 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
+
         #region METHODS
         public async Task getCompanyAsync()
         {
@@ -167,8 +176,8 @@ namespace CRUD_SQLITE.ViewModels
                 item.Current = Current;
                 db.Update(item);
             }
+            showBtnSave = false;
         }
-
         public async Task Activate()
         {
             var db = connection.openConnection();
@@ -177,10 +186,12 @@ namespace CRUD_SQLITE.ViewModels
             if (getCode != null)
             {
                 await DisplayAlert("infor", "the code is correct", "ok");
+                showBtnSave = true;
             }
             else
             {
                 await DisplayAlert("infor", "the code is incorrect", "ok");
+                showBtnSave = false;
             };
         }
         #endregion

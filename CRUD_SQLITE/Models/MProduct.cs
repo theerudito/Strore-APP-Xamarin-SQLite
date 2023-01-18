@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using Xamarin.Forms;
 
 namespace CRUD_SQLITE.Models
 {
@@ -16,6 +17,8 @@ namespace CRUD_SQLITE.Models
         public string Description { get; set; }
         [MaxLength(50)]
         public decimal P_Unitary { get; set; }
+        [MaxLength(50)]
+        public decimal Iva { get; set; }
         [MaxLength(50)]
         public decimal P_Total { get; set; }
         [MaxLength(50)]

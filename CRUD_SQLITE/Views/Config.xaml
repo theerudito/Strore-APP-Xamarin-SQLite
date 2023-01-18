@@ -221,6 +221,7 @@
                         Margin="10"
                         CornerRadius="10"
                         Command="{Binding btnUpdateCompany}"
+                        IsEnabled="{Binding showBtnSave}"
                         />
                     <Button
                         Grid.Column="2"
@@ -229,6 +230,7 @@
                         CornerRadius="10"
                         BackgroundColor="orange"
                         Command="{Binding btnAdmin}"
+
                         />
                     <Frame
                         x:Name="FrameCode"

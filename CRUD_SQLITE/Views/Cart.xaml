@@ -269,7 +269,7 @@
                         Margin="10,0,0,0"
                         />
                     <Label
-                        Text="{Binding Date}"
+                        Text="{Binding Date_Now}"
                         Grid.Column="1"
                         Grid.Row="0"
                         TextColor="white"
@@ -282,7 +282,7 @@
                         Margin="10,0,0,0"
                         />
                     <Label
-                        Text="{Binding Hour}"
+                        Text="{Binding Hour_Now}"
                         Grid.Column="3"
                         Grid.Row="0"
                         TextColor="white"
@@ -316,7 +316,7 @@
                     <Label
                         Text="Serie1: "
                         Grid.Column="2"
-                        Grid.Row="2"
+                        Grid.Row="1"
                         Margin="10,0,0,0"
                         TextColor="white"
                         />
@@ -329,7 +329,7 @@
                     <Label
                         Text="Serie2: "
                         Grid.Column="2"
-                        Grid.Row="1"
+                        Grid.Row="2"
                         Margin="10,0,0,0"
                         TextColor="white"
                         />
@@ -359,6 +359,8 @@
                             Text="{Binding DNI}"
                             Placeholder="DNI"
                             HeightRequest="70"
+                            FontSize="{Binding FontSize}"
+                            SearchCommand="{Binding btnSearchDNICommand}"
                             />
                     </Frame>
                     <Frame
@@ -446,4 +448,4 @@
             </StackLayout>
         </Grid>
     </ContentPage.Content>
-</ContentPage> 
+</ContentPage>

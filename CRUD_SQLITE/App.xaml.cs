@@ -33,9 +33,12 @@ namespace CRUD_SQLITE
             //var deleteTableClient = "DROP TABLE Client";
             //db.Execute(deleteTableClient);
 
-            var queryAuth = "CREATE TABLE IF NOT EXISTS Auth" +
+            var queryAuth = "CREATE TABLE IF NOT EXISTS MAuth" +
                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Name TEXT, Email TEXT UNIQUE, PASSWORD TEXT)";
+
+            //var deleteTableAuth = "DROP TABLE Auth";
+            //db.Execute(deleteTableAuth);
 
 
             //Name, Owner, Direction, Email, RUC,  Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current

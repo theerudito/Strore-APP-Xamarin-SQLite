@@ -63,10 +63,12 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
             var user = db.Table<MAuth>().Where(u => u.Email == Email && u.Password == Password).FirstOrDefault();
-
             if (user != null)
             {
                 await DisplayAlert("Success", "User Logged In", "Ok");
+                Name = "";
+                Email = "";
+                Password = "";
             }
             else
             {
@@ -77,13 +79,22 @@ namespace CRUD_SQLITE.ViewModels
         public async Task Register()
         {
             var db = connection.openConnection();
-            var sql = "SELECT * FROM Auth WHERE Email = '" + Email + "'";
-            var result = db.Query<MAuth>(sql);
-            if (result.Count == 0)
+            var user = db.Table<MAuth>().Where(u => u.Email == Email).FirstOrDefault();
+
+            if (user == null)
             {
-                var sql2 = "INSERT INTO Auth (Name, Email, Password) VALUES ('" + Name + "', '" + Email + "', '" + Password + "')";
-                db.Execute(sql2);
+                var userRegister = new MAuth()
+                {
+                    Name = Name,
+                    Email = Email,
+                    Password = Password
+                };
+
+                db.Insert(userRegister);
                 await DisplayAlert("Success", "User Registered", "Ok");
+                Name = "";
+                Email = "";
+                Password = "";
             }
             else
             {

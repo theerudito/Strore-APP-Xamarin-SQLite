@@ -1,4 +1,5 @@
 ﻿using CRUD_SQLITE.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -8,7 +9,8 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
-        public MProduct receivedProduct { get; set; }
+
+        DB.SQLite_Config connection = new DB.SQLite_Config();
 
         #region CONSTRUCTOR
         public CartViewModel(INavigation navigation, MProduct product)
@@ -17,27 +19,32 @@ namespace CRUD_SQLITE.ViewModels
             receivedProduct = product;
             Get_Products_Cat();
             Total_Cart();
+            Get_Data_Company();
+            Hour_Now = DateTime.Now.ToString("HH:mm:ss");
+            Date_Now = DateTime.Now.ToString("dd/MM/yyyy");
+            FontSize = "18";
         }
         #endregion
 
         #region VARIABLES
-        private string _Date = "14/01/2023";
-        private string _Hour = "16:08 PM";
+        private string _Date;
+        private string _Hour;
 
+        private MProduct receivedProduct { get; set; }
+        private int _Id;
+        private string _FontSize;
 
         private int _subtotal;
         private int _subtotal0;
         private int _subtotal12;
-        private int _iva = 12;
+        private decimal _iva;
         private int _descuent;
         private int _Total;
 
-
-        private string _Document = "Factura";
-        private int _numDocument = 123456;
-        private string _Serie1 = "001";
-        private string _Serie2 = "002";
-
+        private string _Document;
+        private int _numDocument;
+        private string _Serie1;
+        private string _Serie2;
 
         private string _DNI;
         private string _Phone;
@@ -46,12 +53,10 @@ namespace CRUD_SQLITE.ViewModels
         private string _Email;
         private string _Direction;
 
-
         private int _Quantity;
         private string _Name;
         private int _P_Unitaty;
         private int _P_Total;
-
 
         ObservableCollection<MProduct> _list_Product;
         #endregion
@@ -67,7 +72,16 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
-
+        public string FontSize
+        {
+            get { return _FontSize; }
+            set { SetValue(ref _FontSize, value); }
+        }
+        public int Id
+        {
+            get { return _Id; }
+            set { SetValue(ref _Id, value); }
+        }
         public int Quantity
         {
             get { return _Quantity; }
@@ -89,7 +103,6 @@ namespace CRUD_SQLITE.ViewModels
             set { SetValue(ref _P_Total, value); }
         }
 
-
         public int SubTotal
         {
             get { return _subtotal; }
@@ -110,7 +123,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _subtotal0; }
             set { SetValue(ref _subtotal0, value); }
         }
-        public int Iva
+        public decimal Iva
         {
             get { return _iva; }
             set { SetValue(ref _iva, value); }
@@ -121,18 +134,16 @@ namespace CRUD_SQLITE.ViewModels
             set { SetValue(ref _Total, value); }
         }
 
-
-        public string Date
+        public string Date_Now
         {
             get { return _Date; }
             set { SetValue(ref _Date, value); }
         }
-        public string Hour
+        public string Hour_Now
         {
             get { return _Hour; }
             set { SetValue(ref _Hour, value); }
         }
-
 
         public string Document
         {
@@ -200,7 +211,21 @@ namespace CRUD_SQLITE.ViewModels
             });
 
         }
+        public void Get_Data_Company()
+        {
 
+            var id = 1;
+            var db = connection.openConnection();
+            var getCompany = db.Table<Company>().Where(c => c.IdCompany == id).FirstOrDefault();
+            if (getCompany != null)
+            {
+                Serie1 = getCompany.Serie1;
+                Serie2 = getCompany.Serie2;
+                NumDocument = getCompany.NumDocument;
+                Document = getCompany.Document;
+                Iva = getCompany.Iva;
+            }
+        }
 
         public async Task Save_Buy()
         {
@@ -226,18 +251,60 @@ namespace CRUD_SQLITE.ViewModels
             Total_Cart();
         }
 
-        public async Task Total_Cart()
+        public void Total_Cart()
         {
-            // Total = Subtotal * P_Unitary
+            SubTotal = 0;
+            SubTotal0 = 0;
+            SubTotal12 = 0;
+            Descuent = 0;
+            Iva = 0;
+            Total = 0;
 
-            Total = SubTotal * P_Unitary;
+            foreach (var item in List_Products)
+            {
+                SubTotal += Convert.ToInt32(item.P_Total);
+                if (item.Iva == 0)
+                {
+                    SubTotal0 += Convert.ToInt32(item.P_Total);
+                }
+                else
+                {
+                    SubTotal12 += Convert.ToInt32(item.P_Total);
+                }
+            }
+            Iva = (SubTotal12 * 12) / 100;
+            Total = SubTotal + Convert.ToInt32(Iva);
+        }
 
+        public async Task getClient()
+        {
+            var db = connection.openConnection();
+            var getCompany = "SELECT * FROM Client WHERE DNI = '" + DNI + "'";
+
+            var result = db.Query<MClient>(getCompany);
+
+            if (result.Count > 0)
+            {
+                Id = result[0].Id;
+                DNI = Convert.ToString(result[0].DNI);
+                FirstName = result[0].FirstName;
+                LastName = result[0].LastName;
+                Email = result[0].Email;
+                Phone = Convert.ToString(result[0].Phone);
+                Direction = result[0].Direction;
+                FontSize = "12";
+            }
+            else
+            {
+                await DisplayAlert("Infor", "Client not found", "Ok");
+            }
         }
         #endregion
 
 
         #region COMANDOS
         public ICommand btnSaveCartCommand => new Command(async () => await Save_Buy());
+        public ICommand btnSearchDNICommand => new Command(async () => await getClient());
         public ICommand btnDeleteProductCart => new Command(async () => await Delete_ProductCart());
         public ICommand btnSumQuantityCommand => new Command(async () => await Sum_Quantity());
         public ICommand btnRestQuantityCommand => new Command(async () => await Res_Quantity());
