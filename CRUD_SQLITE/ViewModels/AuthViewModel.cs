@@ -1,6 +1,4 @@
 ﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;

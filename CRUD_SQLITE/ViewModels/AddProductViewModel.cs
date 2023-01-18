@@ -18,14 +18,15 @@ namespace CRUD_SQLITE.ViewModels
         public bool _Editing;
         private string _Save;
         public string _textName;
-        public int _textCode;
+        public string _textCode;
         public string _textBrand;
         public string _textDescription;
-        public decimal _textPrice;
-        public int _textQuantity;
+        public string _textPrice;
+        public string _textQuantity;
         public string _imageProduct;
-        public string imageProduct = "https://i.postimg.cc/bY7xNvpV/hoja-white.png";
+        public string imageProduct = "https://i.postimg.cc/7YycB3Dg/image.png";
         #endregion
+
 
 
         #region CONSTRUCTOR
@@ -50,6 +51,7 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
 
+
         #region OBJECTS
         public string Save
         {
@@ -69,7 +71,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public int TextCode
+        public string TextCode
         {
             get { return _textCode; }
             set
@@ -96,7 +98,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public decimal TextPrice
+        public string TextPrice
         {
             get { return _textPrice; }
             set
@@ -105,7 +107,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public int TextQuantity
+        public string TextQuantity
         {
             get { return _textQuantity; }
             set
@@ -140,11 +142,11 @@ namespace CRUD_SQLITE.ViewModels
         public void obtenerData()
         {
             TextName = _product.Name;
-            TextCode = _product.Code;
+            TextCode = Convert.ToString(_product.Code);
             TextBrand = _product.Brand;
             TextDescription = _product.Description;
-            TextPrice = _product.P_Unitary;
-            TextQuantity = _product.Quantity;
+            TextPrice = Convert.ToString(_product.P_Unitary);
+            TextQuantity = Convert.ToString(_product.Quantity);
             ImageProduct = _product.ImageProduct;
         }
         public async Task openGalery(MProduct product)
@@ -163,26 +165,30 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MProduct> Insert_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var insertProduct = "INSERT INTO Product (Name, Code, Brand, Description, P_Unitary, Quantity, ImageProduct) "
-
+            var insertProduct = "INSERT INTO Product (Name, Code, Brand, Description, P_Unitary, Quantity, ImageProduct)"
                 + "VALUES ('" + TextName + "', " +
-                "'" + TextCode + "', " +
+                "'" + Convert.ToInt16(TextCode) + "', " +
                 "'" + TextBrand + "', " +
                 "'" + TextDescription + "', " +
-                "'" + TextPrice + "', " +
-                "'" + TextQuantity + "', " +
+                "'" + Convert.ToDecimal(TextPrice) + "', " +
+                "'" + Convert.ToInt16(TextQuantity) + "', " +
                 "'" + imagenProduct + "')";
-
-
             db.Execute(insertProduct);
-
             await Navigation.PushAsync(new Product());
             return await Task.FromResult<MProduct>(product);
         }
         public async Task<MProduct> Update_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var updateProduct = "UPDATE SET";
+            var updateProduct = "UPDATE Product SET " +
+                "Name = '" + TextName + "', " +
+                "Code = '" + Convert.ToInt16(TextCode) + "', " +
+                "Brand = '" + TextBrand + "', " +
+                "Description = '" + TextDescription + "', " +
+                "P_Unitary = '" + Convert.ToDecimal(TextPrice) + "', " +
+                "Quantity = '" + Convert.ToInt16(TextQuantity) + "', " +
+                "ImageProduct = '" + imagenProduct + "' " +
+                "WHERE Id = " + _product.Id;
             db.Execute(updateProduct);
 
             await Navigation.PushAsync(new Product());

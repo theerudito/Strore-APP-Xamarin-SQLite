@@ -1,5 +1,6 @@
 ﻿using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -15,14 +16,15 @@ namespace CRUD_SQLITE.ViewModels
         public MClient _client { get; set; }
         public bool _Editing;
         public string _Save;
-        public int _textDNI;
+        public string _textDNI;
         public string _textFirstName;
         public string _textLastName;
         public string _textDirection;
-        public int _textPhone;
+        public string _textPhone;
         public string _textEmail;
         public string _textCity;
         #endregion
+
 
 
         #region CONSTUCTOR
@@ -47,6 +49,7 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
 
+
         #region OBJECTS
         public string Save
         {
@@ -56,7 +59,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _Save, value);
             }
         }
-        public int TextDNI
+        public string TextDNI
         {
             get { return _textDNI; }
             set
@@ -91,7 +94,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public int TextPhone
+        public string TextPhone
         {
             get { return _textPhone; }
             set
@@ -125,10 +128,11 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public void obtenerData()
         {
-            TextDNI = _client.DNI;
+            TextDNI = Convert.ToString(_client.DNI);
             TextFirstName = _client.FirstName;
             TextLastName = _client.LastName;
             TextDirection = _client.Direction;
+            TextPhone = Convert.ToString(_client.Phone);
             TextEmail = _client.Email;
             TextCity = _client.City;
         }
@@ -138,11 +142,11 @@ namespace CRUD_SQLITE.ViewModels
 
             var addClient = "INSERT INTO Client " +
                "(DNI, FirstName, LastName, Direction, Phone, Email, City) " +
-               "VALUES (" + TextDNI + ", " +
+               "VALUES (" + Convert.ToInt16(TextDNI) + ", " +
                "'" + TextFirstName + "', " +
                "'" + TextLastName + "', " +
                "'" + TextDirection + "', " +
-               "" + TextPhone + ", " +
+               "" + Convert.ToInt16(TextPhone) + ", " +
                "'" + TextEmail + "', " +
                "'" + TextCity + "')";
 
@@ -156,11 +160,11 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
             var editClient = "UPDATE Client SET " +
-                "DNI = " + TextDNI + ", " +
+                "DNI = " + Convert.ToInt16(TextDNI) + ", " +
                 "FirstName = '" + TextFirstName + "', " +
                 "LastName = '" + TextLastName + "', " +
                 "Direction = '" + TextDirection + "', " +
-                "Phone = " + TextPhone + ", " +
+                "Phone = " + Convert.ToInt16(TextPhone) + ", " +
                 "Email = '" + TextEmail + "', " +
                 "City = '" + TextCity + "' " + "WHERE DNI = " + _client.DNI;
 

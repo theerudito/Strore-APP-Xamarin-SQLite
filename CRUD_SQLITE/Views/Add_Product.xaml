@@ -8,7 +8,9 @@
                 <ImageButton
                     Command="{Binding btnOpenGalery}"
                     Source="{Binding ImageProduct}"
-                    WidthRequest="100"
+                    WidthRequest="50"
+                    HeightRequest="110"
+                    Aspect="AspectFit"
                     Margin="10"
                     BackgroundColor="Transparent"
                     />
