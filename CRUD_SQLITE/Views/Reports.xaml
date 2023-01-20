@@ -3,170 +3,236 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Reports">
     <ContentPage.Content>
-        <StackLayout>
-            <FlexLayout
-                WidthRequest="100"
-                HeightRequest="40"
-                Margin="10">
-                <Image
-                    Source="reports"
-                    Aspect="AspectFit"
-                    WidthRequest="100"
-                    HeightRequest="50"
-                    />
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="50, 5, 20, -5"
-                    CornerRadius="10"
-                    Padding="0,0,0,-2"
-                    Grid.Row="1">
-                    <SearchBar
-                        Placeholder="Search # Document"
-                        HeightRequest="80"
-                        />
-                </Frame>
-            </FlexLayout>
+        <Grid
+            RowDefinitions="40,40,20,*,100,20"
+            ColumnDefinitions="*"
+            >
             <StackLayout
-                Background="Silver">
-                <FlexLayout
-                    WidthRequest="100"
-                    HeightRequest="40"
-                    Margin="0" >
+                Grid.Row="0"
+                Grid.Column="0"
+                >
+                <Grid ColumnDefinitions="50,*">
+                    <Image
+                        Source="reports"
+                        Aspect="AspectFit"
+                        VerticalOptions="Center"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        />
+                    <Frame
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="50, 5, 20,0"
+                        CornerRadius="10"
+                        Padding="0,0,0,-2"
+                        >
+                        <SearchBar
+                            Placeholder="Search # Document"
+                            HeightRequest="50"
+                            SearchCommand="{Binding numDocument}"
+                            />
+                    </Frame>
+
+
+                </Grid>
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                >
+                <Grid
+                    Grid.Row="1"
+                    ColumnDefinitions="*,*,50"
+                    RowDefinitions="*">
+                    <Frame
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="10, 2, 20,2"
+                        CornerRadius="10"
+                        Padding="0,0,0,-10"
+                        >
+                        <DatePicker
+
+                            />
+                    </Frame>
+                    <Frame
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="10, 2, 20,2"
+                        CornerRadius="10"
+                        Padding="0,0,0,-10"
+                        >
+                        <DatePicker
+                            HeightRequest="60"
+
+                            />
+                    </Frame>
+
+                    <ImageButton
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Source="trash"
+                        Command="{Binding btnSearchDocumentCommand}"
+                        />
+
+                </Grid>
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="2"
+                Grid.Column="0">
+                <Grid
+                    BackgroundColor="silver"
+                    HeightRequest="30"
+                    Margin="0,1,0,0">
                     <Label
-                        Text="Name"
-                        WidthRequest="100"
-                        Margin="10"
+                        VerticalOptions="Center"
+                        Text="Client"
+                        Grid.Column="0"
+                        Margin="5,0,0,0"
+                        MaxLines="1"
                         />
                     <Label
+                        VerticalOptions="Center"
                         Text="#Docu"
-                        WidthRequest="100"
-                        Margin="10"
+                        Grid.Column="1"
+                        MaxLines="1"
                         />
                     <Label
                         Text="Date"
-                        WidthRequest="100"
-                        Margin="10"
+                        Grid.Column="2"
+                        VerticalOptions="Center"
+                        MaxLines="1"
                         />
                     <Label
+                        VerticalOptions="Center"
                         Text="Total"
-                        WidthRequest="100"
-                        Margin="10"
+                        Grid.Column="3"
+                        MaxLines="1"
                         />
                     <Label
                         Text="Action"
-                        WidthRequest="100"
-                        Margin="10"
+                        Grid.Column="4"
+                        VerticalOptions="Center"
+                        MaxLines="1"
                         />
-                </FlexLayout>
-            </StackLayout>
-            <ListView
-                x:Name="myListViewReport">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell >
-                            <Grid
-                                BackgroundColor="white"
-                                RowDefinitions="Auto Auto"
-                                ColumnDefinitions="*,*,*,*,*">
-                                <Label
-                                    Text="{Binding FirstName}"
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    WidthRequest="100"
-                                    Margin="10"
-                                    />
-                                <Label
-                                    Text="{Binding Direction}"
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    WidthRequest="100"
-                                    Margin="10"
-                                    />
-                                <Label
-                                    Text="{Binding Phone}"
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    WidthRequest="100"
-                                    Margin="10"
-                                    />
-                                <Label
-                                    Text="{Binding Email}"
-                                    Grid.Row="0"
-                                    Grid.Column="3"
-                                    WidthRequest="100"
-                                    Margin="10"
-                                    />
-                                <FlexLayout
-                                    Grid.Row="0"
-                                    Grid.Column="4"
-                                    HorizontalOptions="Center">
-                                    <ImageButton
-                                        BackgroundColor="Transparent"
-                                        Source="edit"
-                                        Aspect="AspectFit"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Margin="0, 2, 5, 0"
-                                        />
-                                    <ImageButton
-                                        BackgroundColor="Transparent"
-                                        Source="trash"
-                                        Aspect="AspectFit"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Margin="0, 2, 5, 0"
-                                        />
-                                </FlexLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <StackLayout
-                HeightRequest="60"
-                Margin="20">
-                <Grid
-                    RowDefinitions="*">
-                    <FlexLayout
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        BackgroundColor="#0099FF">
-                        <Label
-                            Text="TOTAL:"
-                            WidthRequest="100"
-                            FontSize="20"
-                            HorizontalTextAlignment="Center"
-                            TextColor="white"
-                            />
-                        <Label
-                            x:Name="textTotal"
-                            Text="2000"
-                            WidthRequest="100"
-                            FontSize="20"
-                            TextColor="white"
-                            />
-                    </FlexLayout>
                 </Grid>
             </StackLayout>
+
             <StackLayout
-                HeightRequest="30">
+                Grid.Row="3"
+                Grid.Column="0">
+                <ListView
+                    Margin="0,-5,0,0"
+                    >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid
+                                    BackgroundColor="red"
+                                    RowDefinitions="*"
+                                    ColumnDefinitions="*,*,*,*,*">
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        TextColor="White"
+                                        Text="Jorge"/>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="123456"/>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Text="20/01/2023"/>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        Text="12.50"/>
+                                    <ImageButton
+                                        BackgroundColor="Transparent"
+                                        Source="eye_dark"
+                                        Aspect="AspectFit"
+                                        Grid.Row="0"
+                                        Grid.Column="4"
+                                        />
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="4"
+                Grid.Column="0"
+                Margin="0,0,0,10">
+                <Grid
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="*">
+                    <Frame
+                        Margin="20"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        CornerRadius="10"
+                        BackgroundColor="#0099FF">
+                        <StackLayout>
+                            <Label
+                                Margin="0,-12,0,0"
+                                Text="TOTAL:"
+                                WidthRequest="100"
+                                FontSize="20"
+                                VerticalOptions="Center"
+                                TextColor="white"
+                                />
+                            <Label
+                                Margin="70,-33,0,0"
+                                Text="20"
+                                WidthRequest="100"
+                                FontSize="20"
+                                TextColor="white"
+                                />
+                        </StackLayout>
+                    </Frame>
+
+                </Grid>
+            </StackLayout>
+
+
+
+            <StackLayout
+                Grid.Row="5"
+                Grid.Column="0"
+                >
                 <Grid
                     RowDefinitions="*">
                     <ImageButton
                         Source="left"
                         Grid.Column="0"
                         BackgroundColor="Transparent"
+                        Command="{Binding btnLeftReport}"
                         />
                     <ImageButton
                         Source="right"
                         Grid.Column="1"
+                        Command="{Binding btnRightReport}"
                         BackgroundColor="Transparent"
                         />
                 </Grid>
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

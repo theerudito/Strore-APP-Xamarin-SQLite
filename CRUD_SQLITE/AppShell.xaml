@@ -106,11 +106,9 @@
         <ShellContent Route="users" ContentTemplate="{DataTemplate local:Users}" />
     </FlyoutItem>
 
-
-    <FlyoutItem Title="API" Icon="avatar">
-        <ShellContent Route="API" ContentTemplate="{DataTemplate local:LlamadoAPI}" />
+    <FlyoutItem Title="Detail" Icon="avatar">
+        <ShellContent Route="Detail" ContentTemplate="{DataTemplate local:DetailsCart}" />
     </FlyoutItem>
-
 
 
 </Shell>
