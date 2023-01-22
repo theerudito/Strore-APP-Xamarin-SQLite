@@ -19,20 +19,19 @@ namespace CRUD_SQLITE.ViewModels
             Navigation = navigation;
             receivedProduct = product;
             Get_Products_Cat();
-            Total_Cart();
+            //Total_Cart();
             Get_Data_Company();
-            Hour_Now = DateTime.Now.ToString("HH:mm:ss");
-            Date_Now = DateTime.Now.ToString("dd/MM/yyyy");
+            //Hour_Now = DateTime.Now.ToString("HH:mm:ss");
+            //Date_Now = DateTime.Now.ToString("dd/MM/yyyy");
             FontSize = "18";
         }
         #endregion
 
         #region VARIABLES
-        private string _Date;
-        private string _Hour;
+        private string _Date = DateTime.Now.ToString("HH:mm:ss");
+        private string _Hour = DateTime.Now.ToString("dd/MM/yyyy");
 
         private MProduct receivedProduct { get; set; }
-        private int _Id;
         private string _FontSize;
 
         private decimal _subtotal;
@@ -56,7 +55,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _Direction;
 
         private int _Quantity;
-        private int _Code;
+        private string _Code;
         private string _Name;
         private string _Brand;
         private string _Description;
@@ -84,17 +83,12 @@ namespace CRUD_SQLITE.ViewModels
         }
 
         // DATA PRODUCT
-        public int Id
-        {
-            get { return _Id; }
-            set { SetValue(ref _Id, value); }
-        }
         public int Quantity
         {
             get { return _Quantity; }
             set { SetValue(ref _Quantity, value); }
         }
-        public int Code
+        public string Code
         {
             get { return _Code; }
             set { SetValue(ref _Code, value); }
@@ -263,7 +257,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
             var addCart = "INSERT INTO Cart (NumDocument, Serie1, Serie2, Document, Date_Now, Hour_Now, DNI, Phone, FirstName, LastName, Email, Direction, Quantity, Code, Name, Brand, Description P_Unitary, P_Total, Total, SubTotal, SubTotal12, SubTotal0, IvaCart, Descuent) " +
-                "VALUES ( '" + NumDocument + "', '" + Serie1 + "', '" + Serie2 + "', '" + Document + "', '" + Date_Now + "', '" + Hour_Now + "', '" + DNI + "', '" + Phone + "', '" + FirstName + "', '" + LastName + "', '" + Email + "', '" + Direction + "', '" + Quantity + "', '" + Name + "', '" + Code + "' ,'" + Brand + "', '" + Description + "', '" + Convert.ToDecimal(P_Unitary) + "', '" + P_Total + "', '" + Total + "', '" + SubTotal + "', '" + SubTotal12 + "', '" + SubTotal0 + "', '" + IvaCart + "', '" + Descuent + "')";
+                "VALUES ( '" + NumDocument + "', '" + Serie1 + "', '" + Serie2 + "', '" + Document + "', '" + Date_Now + "', '" + Hour_Now + "', '" + DNI + "', '" + Phone + "', '" + FirstName + "', '" + LastName + "', '" + Email + "', '" + Direction + "', '" + Quantity + "', '" + Name + "', '" + Code + "' ,'" + Brand + "', '" + Description + "', '" + 11 + "', '" + P_Total + "', '" + Total + "', '" + SubTotal + "', '" + SubTotal12 + "', '" + SubTotal0 + "', '" + IvaCart + "', '" + Descuent + "')";
             db.Execute(addCart);
         }
 
@@ -320,7 +314,7 @@ namespace CRUD_SQLITE.ViewModels
 
             if (result.Count > 0)
             {
-                Id = result[0].Id;
+
                 DNI = Convert.ToString(result[0].DNI);
                 FirstName = result[0].FirstName;
                 LastName = result[0].LastName;

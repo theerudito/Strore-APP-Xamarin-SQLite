@@ -28,13 +28,15 @@ namespace CRUD_SQLITE
 
 
 
+
+
             var queryClient = "CREATE TABLE IF NOT EXISTS MClient " +
                 "(IdClient INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "DNI TEXT, FirstName TEXT, LastName TEXT, " +
                 "Direction TEXT, Phone TEXT, Email TEXT, City TEXT)";
 
-            var deleteTableClient = "DROP TABLE MClient";
-            db.Execute(deleteTableClient);
+            //var deleteTableClient = "DROP TABLE MClient";
+            //db.Execute(deleteTableClient);
 
 
 
@@ -74,7 +76,10 @@ namespace CRUD_SQLITE
             //var deleteTableCart = "DROP TABLE Cart";
             //db.Execute(deleteTableCart);
 
+            //var insetarCart = "INSERT INTO Cart (NumDocument, Serie1, Serie2, Document, Date_Now, Hour_Now, DNI, Phone, FirstName, LastName, Email, Direction, Quantity, Code, Name, Brand, Description, P_Unitary, P_Total, Total, SubTotal, SubTotal12, SubTotal0, IvaCart, Descuent) " +
+            //"VALUES (1111, '001', '002', 'Factura', '14/07/2025', '11:40', '000', '1721457495', '0960806054', 'Jorge', 'Loor', 'Santo Domingo', 1, '545', '1121', '545', '54', 5, 1, 2, 3, 4, 5, 6, 7)";
 
+            //db.Execute(insetarCart);
 
             var queryCode = "CREATE TABLE IF NOT EXISTS Code" +
                 "(IdCode INTEGER PRIMARY KEY AUTOINCREMENT, " +

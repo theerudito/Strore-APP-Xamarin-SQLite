@@ -136,41 +136,54 @@
                 Grid.Column="0">
                 <ListView
                     Margin="0,-5,0,0"
+                    x:Name="list_report"
+                    ItemsSource="{Binding List_Report}"
                     >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell >
                                 <Grid
-                                    BackgroundColor="red"
-                                    RowDefinitions="*"
+                                    RowDefinitions="20"
                                     ColumnDefinitions="*,*,*,*,*">
                                     <Label
                                         Grid.Row="0"
                                         MaxLines="1"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
                                         Grid.Column="0"
-                                        TextColor="White"
-                                        Text="Jorge"/>
+                                        Text="{Binding client.FirstName}"/>
                                     <Label
                                         Grid.Row="0"
                                         MaxLines="1"
                                         Grid.Column="1"
-                                        Text="123456"/>
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding NumDocument}"/>
                                     <Label
                                         Grid.Row="0"
                                         MaxLines="1"
                                         Grid.Column="2"
-                                        Text="20/01/2023"/>
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding Date_Now}"/>
                                     <Label
                                         Grid.Row="0"
                                         MaxLines="1"
                                         Grid.Column="3"
-                                        Text="12.50"/>
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding Total}"/>
                                     <ImageButton
                                         BackgroundColor="Transparent"
                                         Source="eye_dark"
                                         Aspect="AspectFit"
                                         Grid.Row="0"
                                         Grid.Column="4"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Command="{Binding Source={x:Reference list_report},
+                                        Path=BindingContext.btnShowReportCommand}"
+                                        CommandParameter="{Binding .}"
                                         />
 
                                 </Grid>
@@ -227,12 +240,12 @@
                         Source="left"
                         Grid.Column="0"
                         BackgroundColor="Transparent"
-                        Command="{Binding btnLeftReport}"
+                        Command="{Binding btnLeftReportCommand}"
                         />
                     <ImageButton
                         Source="right"
                         Grid.Column="1"
-                        Command="{Binding btnRightReport}"
+                        Command="{Binding btnRightReportCommand}"
                         BackgroundColor="Transparent"
                         />
                 </Grid>

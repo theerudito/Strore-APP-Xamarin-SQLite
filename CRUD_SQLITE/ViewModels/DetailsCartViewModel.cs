@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CRUD_SQLITE.Models;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,10 +7,13 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class DetailsCartViewModel : BaseViewModel
     {
-        public DetailsCartViewModel(INavigation navigation)
+        private MCart myReport { get; set; }
+        public DetailsCartViewModel(INavigation navigation, MCart report)
         {
             Navigation = navigation;
+            myReport = report;
         }
+
 
         #region METHODS
         public async Task generatePDF()
