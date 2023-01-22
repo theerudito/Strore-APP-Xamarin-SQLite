@@ -12,6 +12,7 @@ namespace CRUD_SQLITE.ViewModels
 
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
+
         #region CONSTRUCTOR
         public CartViewModel(INavigation navigation, MProduct product)
         {
@@ -34,17 +35,18 @@ namespace CRUD_SQLITE.ViewModels
         private int _Id;
         private string _FontSize;
 
-        private int _subtotal;
-        private int _subtotal0;
-        private int _subtotal12;
-        private decimal _iva;
-        private int _descuent;
-        private int _Total;
+        private decimal _subtotal;
+        private decimal _subtotal0;
+        private decimal _subtotal12;
+        private decimal _ivaCart;
+        private decimal _descuent;
+        private decimal _Total;
 
         private string _Document;
         private int _numDocument;
         private string _Serie1;
         private string _Serie2;
+        private decimal _iva;
 
         private string _DNI;
         private string _Phone;
@@ -54,9 +56,12 @@ namespace CRUD_SQLITE.ViewModels
         private string _Direction;
 
         private int _Quantity;
+        private int _Code;
         private string _Name;
-        private int _P_Unitaty;
-        private int _P_Total;
+        private string _Brand;
+        private string _Description;
+        private decimal _P_Unitaty;
+        private decimal _P_Total;
 
         ObservableCollection<MProduct> _list_Product;
         #endregion
@@ -77,6 +82,8 @@ namespace CRUD_SQLITE.ViewModels
             get { return _FontSize; }
             set { SetValue(ref _FontSize, value); }
         }
+
+        // DATA PRODUCT
         public int Id
         {
             get { return _Id; }
@@ -87,53 +94,72 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Quantity; }
             set { SetValue(ref _Quantity, value); }
         }
+        public int Code
+        {
+            get { return _Code; }
+            set { SetValue(ref _Code, value); }
+        }
         public string Name
         {
             get { return _Name; }
             set { SetValue(ref _Name, value); }
         }
-        public int P_Unitary
+        public string Brand
+        {
+            get { return _Brand; }
+            set { SetValue(ref _Brand, value); }
+        }
+        public string Description
+        {
+            get { return _Description; }
+            set { SetValue(ref _Description, value); }
+        }
+        public decimal P_Unitary
         {
             get { return _P_Unitaty; }
             set { SetValue(ref _P_Unitaty, value); }
         }
-        public int P_Total
+        public decimal P_Total
         {
             get { return _P_Total; }
             set { SetValue(ref _P_Total, value); }
         }
 
-        public int SubTotal
+
+        // DATA CART VALUES
+        public decimal SubTotal
         {
             get { return _subtotal; }
             set { SetValue(ref _subtotal, value); }
         }
-        public int Descuent
-        {
-            get { return _descuent; }
-            set { SetValue(ref _descuent, value); }
-        }
-        public int SubTotal12
+        public decimal SubTotal12
         {
             get { return _subtotal12; }
             set { SetValue(ref _subtotal12, value); }
         }
-        public int SubTotal0
+        public decimal SubTotal0
         {
             get { return _subtotal0; }
             set { SetValue(ref _subtotal0, value); }
         }
-        public decimal Iva
+        public decimal IvaCart
         {
             get { return _iva; }
             set { SetValue(ref _iva, value); }
         }
-        public int Total
+        public decimal Total
         {
             get { return _Total; }
             set { SetValue(ref _Total, value); }
         }
+        public decimal Descuent
+        {
+            get { return _descuent; }
+            set { SetValue(ref _descuent, value); }
+        }
 
+
+        // DATOS DE LA EMPRESA
         public string Date_Now
         {
             get { return _Date; }
@@ -144,7 +170,6 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Hour; }
             set { SetValue(ref _Hour, value); }
         }
-
         public string Document
         {
             get { return _Document; }
@@ -165,6 +190,13 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Serie2; }
             set { SetValue(ref _Serie2, value); }
         }
+        public decimal IvaCompany
+        {
+            get { return _ivaCart; }
+            set { SetValue(ref _ivaCart, value); }
+        }
+
+        // DATA CLIENT
         public string DNI
         {
             get { return _DNI; }
@@ -204,10 +236,10 @@ namespace CRUD_SQLITE.ViewModels
             List_Products = new ObservableCollection<MProduct>();
             List_Products.Add(new MProduct
             {
-                Name = receivedProduct.Name,
-                Quantity = receivedProduct.Quantity,
-                P_Unitary = receivedProduct.P_Unitary,
-                P_Total = receivedProduct.P_Unitary * receivedProduct.Quantity
+                Name = "Producto 1",
+                Quantity = 2,
+                P_Unitary = 100,
+                P_Total = Quantity * P_Unitary
             });
 
         }
@@ -223,13 +255,16 @@ namespace CRUD_SQLITE.ViewModels
                 Serie2 = getCompany.Serie2;
                 NumDocument = getCompany.NumDocument;
                 Document = getCompany.Document;
-                Iva = getCompany.Iva;
+                IvaCompany = getCompany.Iva;
             }
         }
 
         public async Task Save_Buy()
         {
-            await DisplayAlert("Infor", "Gracias por tu compra", "Ok");
+            var db = connection.openConnection();
+            var addCart = "INSERT INTO Cart (NumDocument, Serie1, Serie2, Document, Date_Now, Hour_Now, DNI, Phone, FirstName, LastName, Email, Direction, Quantity, Code, Name, Brand, Description P_Unitary, P_Total, Total, SubTotal, SubTotal12, SubTotal0, IvaCart, Descuent) " +
+                "VALUES ( '" + NumDocument + "', '" + Serie1 + "', '" + Serie2 + "', '" + Document + "', '" + Date_Now + "', '" + Hour_Now + "', '" + DNI + "', '" + Phone + "', '" + FirstName + "', '" + LastName + "', '" + Email + "', '" + Direction + "', '" + Quantity + "', '" + Name + "', '" + Code + "' ,'" + Brand + "', '" + Description + "', '" + Convert.ToDecimal(P_Unitary) + "', '" + P_Total + "', '" + Total + "', '" + SubTotal + "', '" + SubTotal12 + "', '" + SubTotal0 + "', '" + IvaCart + "', '" + Descuent + "')";
+            db.Execute(addCart);
         }
 
         public async Task Delete_ProductCart()
@@ -253,12 +288,12 @@ namespace CRUD_SQLITE.ViewModels
 
         public void Total_Cart()
         {
-            SubTotal = 0;
-            SubTotal0 = 0;
-            SubTotal12 = 0;
-            Descuent = 0;
-            Iva = 0;
-            Total = 0;
+            //SubTotal = 0
+            //SubTotal0 = 0;
+            //SubTotal12 = 0;
+            //Descuent = 0;
+            //IvaCompany = 0;
+            //Total = 0;
 
             foreach (var item in List_Products)
             {
@@ -272,8 +307,8 @@ namespace CRUD_SQLITE.ViewModels
                     SubTotal12 += Convert.ToInt32(item.P_Total);
                 }
             }
-            Iva = (SubTotal12 * 12) / 100;
-            Total = SubTotal + Convert.ToInt32(Iva);
+            IvaCompany = (SubTotal12 * 12) / 100;
+            Total = SubTotal + Convert.ToInt32(IvaCompany);
         }
 
         public async Task getClient()

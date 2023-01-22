@@ -39,7 +39,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task Delete_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var sql = "DELETE FROM Product WHERE Id = " + product.Id;
+            var sql = "DELETE FROM MProduct WHERE IdProduct = " + product.Id;
             db.Execute(sql);
 
             await Navigation.PopAsync();
@@ -47,7 +47,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task GET_ALL_Products()
         {
             var db = connection.openConnection();
-            var sql = "SELECT * FROM Product";
+            var sql = "SELECT * FROM MProduct";
             var result = db.Query<MProduct>(sql);
 
             List_Product = new ObservableCollection<MProduct>(result);

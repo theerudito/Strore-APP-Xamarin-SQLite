@@ -15,9 +15,9 @@ namespace CRUD_SQLITE.Models
         [MaxLength(50)]
         public string Email { get; set; }
         [MaxLength(15)]
-        public int RUC { get; set; }
+        public string RUC { get; set; }
         [MaxLength(20)]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         [MaxLength(50)]
         public int NumDocument { get; set; }
         [MaxLength(50)]

@@ -6,7 +6,7 @@ namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
-        //public static string FilePath { get; internal set; }
+
         public App()
         {
             InitializeComponent();
@@ -17,28 +17,34 @@ namespace CRUD_SQLITE
 
             var db = connection.openConnection();
 
-            var queryProduct = "CREATE TABLE IF NOT EXISTS Product" +
-                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, " +
-                "Code INTEGER, Brand TEXT, Description TEXT, " +
+
+            var queryProduct = "CREATE TABLE IF NOT EXISTS MProduct" +
+                "(IdProduct INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, " +
+                "Code TEXT, Brand TEXT, Description TEXT, " +
                 "P_Unitary REAL, P_Total REAL, Quantity INTEGER, ImageProduct TEXT )";
 
-            //var deleteTableProduct = "DROP TABLE Product";
+            //var deleteTableProduct = "DROP TABLE MProduct";
             //db.Execute(deleteTableProduct);
 
-            var queryClient = "CREATE TABLE IF NOT EXISTS Client " +
-                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "DNI INTEGER, FirstName TEXT, LastName TEXT, " +
-                "Direction TEXT, Phone INTEGER, Email TEXT, City TEXT)";
 
-            //var deleteTableClient = "DROP TABLE Client";
-            //db.Execute(deleteTableClient);
+
+            var queryClient = "CREATE TABLE IF NOT EXISTS MClient " +
+                "(IdClient INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "DNI TEXT, FirstName TEXT, LastName TEXT, " +
+                "Direction TEXT, Phone TEXT, Email TEXT, City TEXT)";
+
+            var deleteTableClient = "DROP TABLE MClient";
+            db.Execute(deleteTableClient);
+
+
 
             var queryAuth = "CREATE TABLE IF NOT EXISTS MAuth" +
-                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "(IdAuth INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Name TEXT, Email TEXT UNIQUE, PASSWORD TEXT)";
 
-            //var deleteTableAuth = "DROP TABLE Auth";
+            //var deleteTableAuth = "DROP TABLE MAuth";
             //db.Execute(deleteTableAuth);
+
 
 
             //Name, Owner, Direction, Email, RUC,  Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Current
@@ -46,7 +52,7 @@ namespace CRUD_SQLITE
                 "CREATE TABLE IF NOT EXISTS Company" +
                 "(IdCompany INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Name TEXT, Owner TEXT, Direction TEXT, Email TEXT, " +
-                "RUC INTEGER, Phone INTEGER,  NumDocument INTEGER, " +
+                "RUC TEXT, Phone TEXT,  NumDocument INTEGER, " +
                 "Serie1 TEXT, Serie2 TEXT, DB TEXT, Document TEXT, " +
                 "Iva REAL, Current INTEGER, ExisteCompany BOOL)";
 
@@ -54,32 +60,24 @@ namespace CRUD_SQLITE
             //db.Execute(deleteTableCompany);
 
 
-            //// crear un tabla que tenga las dos tablas tanto client como product como referencia
+            // NumDocument, Serie1, Serie2, Document, Date_Now, Hour_Now, DNI, Phone, FirstName, LastName, Email, Direction, Quantity, Code, Name, Brand, Description P_Unitary, P_Total, Total, SubTotal, SubTotal12, SubTotal0, IvaCart, Descuent
 
-            //var queryCart = "CREATE TABLE IF NOT EXISTS Cart" +
-            //    "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            //    "IdProduct INTEGER, IdClient INTEGER, " +
-            //    "FOREIGN KEY(IdProduct) REFERENCES Product(Id), " +
-            //    "FOREIGN KEY(IdClient) REFERENCES Client(Id))";
+            var queryCart = "CREATE TABLE IF NOT EXISTS Cart " +
+                "(IdCart INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "NumDocument INTEGER, Serie1 TEXT, Serie2 TEXT, Document TEXT, " +
+                "Date_Now TEXT, Hour_Now TEXT, DNI TEXT, Phone TEXT, " +
+                "FirstName TEXT, LastName TEXT, Email TEXT, Direction TEXT, " +
+                "Quantity INTEGER, Code TEXT, Name TEXT, Brand TEXT, Description TEXT, " +
+                "P_Unitary REAL, P_Total REAL, Total REAL, SubTotal REAL, " +
+                "SubTotal12 REAL, SubTotal0 REAL, IvaCart REAL, Descuent REAL)";
 
-            var queryCart = "CREATE TABLE IF NOT EXISTS Cart" +
-                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "NameProduct TEXT " +
-                "Brand TEXT, " +
-                "Code TEXT, " +
-                "Description INTEGER, " +
-                "vUnitary REAL, " +
-                "vTotal Real, " +
-                "Quantity INTEGER, " +
-                "IdClient INTEGER, " +
-                "date TEXT, " +
-                "hour TEXT, " +
-                "Total REAL, " +
-                "FOREIGN KEY(IdClient) REFERENCES Client(Id))";
+            //var deleteTableCart = "DROP TABLE Cart";
+            //db.Execute(deleteTableCart);
+
 
 
             var queryCode = "CREATE TABLE IF NOT EXISTS Code" +
-                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "(IdCode INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "CodeAdmin INTEGER UNIQUE)";
 
             db.Execute(queryCode);
@@ -115,11 +113,7 @@ namespace CRUD_SQLITE
             {
                 db.Execute(queryInsertCode);
             }
-
         }
-
-
-
         protected override void OnStart()
         {
         }

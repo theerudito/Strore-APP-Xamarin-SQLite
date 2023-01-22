@@ -52,7 +52,7 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Get_Company()
         {
-            var RUC = 1234567890;
+            var RUC = "1234567890";
             var db = connection.openConnection();
             //var queryFindCompany = "SELECT * FROM Company WHERE RUC = " + RUC;
             var user = db.Table<Company>().Where(c => c.RUC == RUC).FirstOrDefault();

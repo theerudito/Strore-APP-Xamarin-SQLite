@@ -107,7 +107,7 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="4"
-                                    Text="{Binding Price}"
+                                    Text="{Binding P_Unitary}"
                                     Margin="5,10,0,0"
                                     HorizontalOptions="End"
                                     />
@@ -216,7 +216,7 @@
                                 />
                             <Label
                                 HorizontalOptions="End"
-                                Text="{Binding Iva}"
+                                Text="{Binding IvaCompany}"
                                 Grid.Row="4"
                                 Grid.Column="2"
                                 TextColor="White"
@@ -359,6 +359,7 @@
                             Text="{Binding DNI}"
                             Placeholder="DNI"
                             HeightRequest="70"
+                            Keyboard="Numeric"
                             FontSize="{Binding FontSize}"
                             SearchCommand="{Binding btnSearchDNICommand}"
                             />
@@ -443,7 +444,7 @@
                     Text="SAVE"
                     Margin="20,10,20,0"
                     CornerRadius="10"
-                    Command="{Binding Save_Buy}"
+                    Command="{Binding btnSaveCartCommand}"
                     />
             </StackLayout>
         </Grid>

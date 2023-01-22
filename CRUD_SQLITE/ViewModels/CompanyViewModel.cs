@@ -137,8 +137,8 @@ namespace CRUD_SQLITE.ViewModels
                 Owner = user.Owner;
                 Direction = user.Direction;
                 Email = user.Email;
-                RUC = Convert.ToString(user.RUC);
-                Phone = Convert.ToString(user.Phone);
+                RUC = user.RUC;
+                Phone = user.Phone;
                 NumDocument = Convert.ToString(user.NumDocument);
                 Serie1 = user.Serie1;
                 Serie2 = user.Serie2;
@@ -165,8 +165,8 @@ namespace CRUD_SQLITE.ViewModels
                 item.Owner = Owner;
                 item.Direction = Direction;
                 item.Email = Email;
-                item.RUC = Convert.ToInt32(RUC);
-                item.Phone = Convert.ToInt32(Phone);
+                item.RUC = RUC;
+                item.Phone = Phone;
                 item.NumDocument = Convert.ToInt32(NumDocument);
                 item.Serie1 = Serie1;
                 item.Serie2 = Serie2;

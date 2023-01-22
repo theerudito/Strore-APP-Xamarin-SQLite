@@ -5,38 +5,22 @@ namespace CRUD_SQLITE.Models
     public class MCart
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int IdCart { get; set; }
+        public MClient client { get; set; }
+        public MProduct product { get; set; }
+        public Company company { get; set; }
         [MaxLength(50)]
-        public string NameProduct { get; set; }
+        public decimal SubTotal { get; set; }
         [MaxLength(50)]
-        public string Code { get; set; }
+        public decimal Descuent { get; set; }
         [MaxLength(50)]
-        public string Brand { get; set; }
+        public decimal SubTotal12 { get; set; }
         [MaxLength(50)]
-        public string Description { get; set; }
+        public decimal SubTotal0 { get; set; }
         [MaxLength(50)]
-        public double vUnitary { get; set; }
+        public decimal Total { get; set; }
         [MaxLength(50)]
-        public int Quantity { get; set; }
-        [MaxLength(50)]
-        public double vTotal { get; set; }
-        [MaxLength(50)]
-        public string FirstName { get; set; }
-        [MaxLength(50)]
-        public string LastName { get; set; }
-        [MaxLength(50)]
-        public int DNI { get; set; }
-        [MaxLength(50)]
-        public string Direction { get; set; }
-        [MaxLength(50)]
-        public string Email { get; set; }
-        [MaxLength(50)]
-        public int Phone { get; set; }
-        [MaxLength(50)]
-        public double Total { get; set; }
-        [MaxLength(50)]
-        public string Date { get; set; }
-        [MaxLength(50)]
-        public string Hour { get; set; }
+        public decimal IvaCart { get; set; }
+
     }
 }

@@ -146,19 +146,23 @@
                                     ColumnDefinitions="*,*,*,*,*">
                                     <Label
                                         Grid.Row="0"
+                                        MaxLines="1"
                                         Grid.Column="0"
                                         TextColor="White"
                                         Text="Jorge"/>
                                     <Label
                                         Grid.Row="0"
+                                        MaxLines="1"
                                         Grid.Column="1"
                                         Text="123456"/>
                                     <Label
                                         Grid.Row="0"
+                                        MaxLines="1"
                                         Grid.Column="2"
                                         Text="20/01/2023"/>
                                     <Label
                                         Grid.Row="0"
+                                        MaxLines="1"
                                         Grid.Column="3"
                                         Text="12.50"/>
                                     <ImageButton

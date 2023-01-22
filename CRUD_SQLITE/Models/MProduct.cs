@@ -8,7 +8,7 @@ namespace CRUD_SQLITE.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         [MaxLength(50)]
-        public int Code { get; set; }
+        public string Code { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(50)]

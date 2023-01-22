@@ -165,13 +165,13 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MProduct> Insert_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var insertProduct = "INSERT INTO Product (Name, Code, Brand, Description, P_Unitary, Quantity, ImageProduct)"
+            var insertProduct = "INSERT INTO MProduct (Name, Code, Brand, Description, P_Unitary, Quantity, ImageProduct)"
                 + "VALUES ('" + TextName + "', " +
-                "'" + Convert.ToInt16(TextCode) + "', " +
+                "'" + TextCode + "', " +
                 "'" + TextBrand + "', " +
                 "'" + TextDescription + "', " +
                 "'" + Convert.ToDecimal(TextPrice) + "', " +
-                "'" + Convert.ToInt16(TextQuantity) + "', " +
+                "'" + Convert.ToInt32(TextQuantity) + "', " +
                 "'" + imagenProduct + "')";
             db.Execute(insertProduct);
             await Navigation.PushAsync(new Product());
@@ -180,15 +180,15 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MProduct> Update_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var updateProduct = "UPDATE Product SET " +
+            var updateProduct = "UPDATE MProduct SET " +
                 "Name = '" + TextName + "', " +
-                "Code = '" + Convert.ToInt16(TextCode) + "', " +
+                "Code = '" + TextCode + "', " +
                 "Brand = '" + TextBrand + "', " +
                 "Description = '" + TextDescription + "', " +
                 "P_Unitary = '" + Convert.ToDecimal(TextPrice) + "', " +
-                "Quantity = '" + Convert.ToInt16(TextQuantity) + "', " +
+                "Quantity = '" + Convert.ToInt32(TextQuantity) + "', " +
                 "ImageProduct = '" + imagenProduct + "' " +
-                "WHERE Id = " + _product.Id;
+                "WHERE IdProduct = " + _product.Id;
             db.Execute(updateProduct);
 
             await Navigation.PushAsync(new Product());

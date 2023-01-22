@@ -140,13 +140,13 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var addClient = "INSERT INTO Client " +
+            var addClient = "INSERT INTO MClient " +
                "(DNI, FirstName, LastName, Direction, Phone, Email, City) " +
-               "VALUES (" + Convert.ToInt16(TextDNI) + ", " +
+               "VALUES (" + TextDNI + ", " +
                "'" + TextFirstName + "', " +
                "'" + TextLastName + "', " +
                "'" + TextDirection + "', " +
-               "" + Convert.ToInt16(TextPhone) + ", " +
+               "" + TextPhone + ", " +
                "'" + TextEmail + "', " +
                "'" + TextCity + "')";
 
@@ -159,14 +159,15 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MClient> editClientAsync(MClient client)
         {
             var db = connection.openConnection();
-            var editClient = "UPDATE Client SET " +
-                "DNI = " + Convert.ToInt16(TextDNI) + ", " +
+            var editClient = "UPDATE MClient SET " +
+                "DNI = " + TextDNI + ", " +
                 "FirstName = '" + TextFirstName + "', " +
                 "LastName = '" + TextLastName + "', " +
                 "Direction = '" + TextDirection + "', " +
-                "Phone = " + Convert.ToInt16(TextPhone) + ", " +
+                "Phone = " + TextPhone + ", " +
                 "Email = '" + TextEmail + "', " +
-                "City = '" + TextCity + "' " + "WHERE DNI = " + _client.DNI;
+                "City = '" + TextCity + "' " +
+                "WHERE IdClient = " + _client.Id;
 
             db.Execute(editClient);
 

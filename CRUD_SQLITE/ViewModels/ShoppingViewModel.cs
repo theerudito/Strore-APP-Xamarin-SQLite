@@ -74,7 +74,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task getAllProducts()
         {
             var db = connection.openConnection();
-            var sql = "SELECT * FROM Product";
+            var sql = "SELECT * FROM MProduct";
 
             var result = db.Query<MProduct>(sql);
 
@@ -84,7 +84,6 @@ namespace CRUD_SQLITE.ViewModels
         {
             //await Navigation.PushAsync(new Cart());
         }
-
         public async Task add_To_Cart(MProduct product)
         {
             await Navigation.PushAsync(new Cart(product));

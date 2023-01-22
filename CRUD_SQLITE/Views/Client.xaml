@@ -85,21 +85,25 @@
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Text="{Binding FirstName}"
+                                    MaxLines="1"
                                     Margin="10"/>
                                 <Label
                                     Text="{Binding Direction}"
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    MaxLines="1"
                                     Margin="10"/>
                                 <Label
                                     Text="{Binding Phone}"
                                     Grid.Row="0"
                                     Grid.Column="2"
+                                    MaxLines="1"
                                     Margin="10"/>
                                 <Label
                                     Text="{Binding Email}"
                                     Grid.Row="0"
                                     Grid.Column="3"
+                                    MaxLines="1"
                                     Margin="10"/>
                                 <FlexLayout
                                     Grid.Row="0"

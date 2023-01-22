@@ -46,7 +46,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var sql = "SELECT * FROM Client";
+            var sql = "SELECT * FROM MClient";
 
             var result = db.Query<MClient>(sql);
 
@@ -66,7 +66,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var deleteClient = "DELETE FROM Client WHERE Id = " + client.Id;
+            var deleteClient = "DELETE FROM Client WHERE IdClient = " + client.Id;
 
             db.Execute(deleteClient);
 
