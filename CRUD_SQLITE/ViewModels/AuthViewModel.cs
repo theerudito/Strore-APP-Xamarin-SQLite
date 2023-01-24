@@ -13,7 +13,7 @@ namespace CRUD_SQLITE.ViewModels
         #region  VARIABLES
         private string _email;
         private string _password;
-        private string _name;
+        private string _user;
         ObservableCollection<MAuth> _List_Users;
         private StackLayout showRegister;
         private StackLayout showLogin;
@@ -31,8 +31,8 @@ namespace CRUD_SQLITE.ViewModels
         }
         public string User
         {
-            get { return _name; }
-            set { SetValue(ref _name, value); }
+            get { return _user; }
+            set { SetValue(ref _user, value); }
         }
         public string Email
         {

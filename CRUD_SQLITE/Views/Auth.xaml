@@ -81,7 +81,7 @@
                     CornerRadius="10"
                     Padding="0,-10,0,-10">
                     <Entry
-                        Text="{Binding Name}"
+                        Text="{Binding User}"
                         Placeholder="Name"
                         HeightRequest="70"
                         />

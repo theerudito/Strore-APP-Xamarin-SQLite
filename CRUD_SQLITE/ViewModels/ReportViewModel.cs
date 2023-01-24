@@ -39,7 +39,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var getReport = "SELECT * FROM Cart";
+            var getReport = "SELECT * FROM MCart";
 
             var listReport = db.Query<MCart>(getReport);
 

@@ -13,9 +13,5 @@ namespace CRUD_SQLITE.Models
         public string Email { get; set; } = "";
         [MaxLength(50)]
         public string Password { get; set; } = "";
-        [MaxLength(100)]
-        public DateTime created_at { get; set; }
-        [MaxLength(100)]
-        public DateTime updated_at { get; set; }
     }
 }

@@ -137,7 +137,7 @@ namespace CRUD_SQLITE.ViewModels
         public void obtenerData()
         {
             TextName = _product.NameProduct;
-            TextCode = Convert.ToString(_product.CodeProduct);
+            TextCode = _product.CodeProduct;
             TextBrand = _product.Brand;
             TextDescription = _product.Description;
             TextPrice = _product.P_Unitary;
@@ -159,7 +159,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MProduct> Insert_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var insertProduct = "INSERT INTO MProduct (Name, Code, Brand, Description, P_Unitary, Quantity, ImageProduct)"
+            var insertProduct = "INSERT INTO MProduct (NameProduct, CodeProduct, Brand, Description, P_Unitary, Quantity, Image_Product)"
                 + "VALUES ('" + TextName + "', " +
                 "'" + TextCode + "', " +
                 "'" + TextBrand + "', " +
@@ -175,13 +175,13 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
             var updateProduct = "UPDATE MProduct SET " +
-                "Name = '" + TextName + "', " +
-                "Code = '" + TextCode + "', " +
+                "NameProduct = '" + TextName + "', " +
+                "CodeProduct = '" + TextCode + "', " +
                 "Brand = '" + TextBrand + "', " +
                 "Description = '" + TextDescription + "', " +
                 "P_Unitary = '" + TextPrice + "', " +
                 "Quantity = '" + Convert.ToInt32(TextQuantity) + "', " +
-                "ImageProduct = '" + imagenProduct + "' " +
+                "Image_Product = '" + imagenProduct + "' " +
                 "WHERE IdProduct = " + _product.IdProduct;
             db.Execute(updateProduct);
 

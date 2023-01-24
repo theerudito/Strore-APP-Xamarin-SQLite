@@ -204,7 +204,7 @@
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            Text="{Binding Current}"
+                            Text="{Binding Coin}"
                             Placeholder="Current"
                             Keyboard="Text"
                             HeightRequest="70"

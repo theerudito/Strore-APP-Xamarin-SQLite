@@ -90,7 +90,7 @@
 
                                     BackgroundColor="black"
                                     Aspect="Fill"
-                                    Source="{Binding ImageProduct}"
+                                    Source="{Binding Image_Product}"
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     WidthRequest="50"
@@ -105,7 +105,7 @@
                                 Margin="10"
                                 />-->
                                 <Label
-                                    Text="{Binding Name}"
+                                    Text="{Binding NameProduct}"
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     MaxLines="1"
