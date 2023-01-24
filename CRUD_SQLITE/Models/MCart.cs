@@ -6,21 +6,11 @@ namespace CRUD_SQLITE.Models
     {
         [PrimaryKey, AutoIncrement]
         public int IdCart { get; set; }
-        public MClient client { get; set; }
-        public MProduct product { get; set; }
-        public Company company { get; set; }
         [MaxLength(50)]
-        public decimal SubTotal { get; set; }
+        public int IdClient { get; set; }
         [MaxLength(50)]
-        public decimal Descuent { get; set; }
+        public int IdProduct { get; set; }
         [MaxLength(50)]
-        public decimal SubTotal12 { get; set; }
-        [MaxLength(50)]
-        public decimal SubTotal0 { get; set; }
-        [MaxLength(50)]
-        public decimal Total { get; set; }
-        [MaxLength(50)]
-        public decimal IvaCart { get; set; }
-
+        public float P_Total { get; set; }
     }
 }

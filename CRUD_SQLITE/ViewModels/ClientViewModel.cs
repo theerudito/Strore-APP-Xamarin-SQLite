@@ -12,12 +12,10 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
-
         #region VARIABLES
         ObservableCollection<MClient> _List_client;
         public bool _goEditing = true;
         #endregion
-
 
         #region CONSTRUCTOR
         public ClientViewModel(INavigation navigation)
@@ -26,7 +24,6 @@ namespace CRUD_SQLITE.ViewModels
             GetAllClientAsync();
         }
         #endregion
-
 
         #region OBJECTS
         public ObservableCollection<MClient> List_Clients
@@ -39,7 +36,6 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
         #endregion
-
 
         #region METHODS
         public Task<IEnumerable<MClient>> GetAllClientAsync()
@@ -66,7 +62,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var deleteClient = "DELETE FROM Client WHERE IdClient = " + client.Id;
+            var deleteClient = "DELETE FROM Client WHERE IdClient = " + client.IdClient;
 
             db.Execute(deleteClient);
 
@@ -75,7 +71,6 @@ namespace CRUD_SQLITE.ViewModels
             return await Task.FromResult<bool>(true);
         }
         #endregion
-
 
         #region COMMANDS
         public ICommand btnDeleteClient => new Command<MClient>(async (cli) => await deleteClientAsync(cli));

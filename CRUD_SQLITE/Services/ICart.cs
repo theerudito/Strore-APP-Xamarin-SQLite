@@ -15,7 +15,7 @@ namespace CRUD_SQLITE.Services
         Task<IClient> getOneClientAsync(int id);
 
 
-        Task<Company> getOneCompanyAsync(int id);
+        Task<MCompany> getOneCompanyAsync(int id);
 
     }
 }

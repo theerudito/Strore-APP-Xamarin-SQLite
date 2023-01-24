@@ -11,7 +11,6 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
-
         #region VARIABLES
         public MClient _client { get; set; }
         public bool _Editing;
@@ -24,8 +23,6 @@ namespace CRUD_SQLITE.ViewModels
         public string _textEmail;
         public string _textCity;
         #endregion
-
-
 
         #region CONSTUCTOR
         public AddClientViewModel(INavigation navigation, MClient client, bool _goEditing)
@@ -47,8 +44,6 @@ namespace CRUD_SQLITE.ViewModels
             obtenerData();
         }
         #endregion
-
-
 
         #region OBJECTS
         public string Save
@@ -123,8 +118,6 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
-
-
         #region METHODS
         public void obtenerData()
         {
@@ -167,7 +160,7 @@ namespace CRUD_SQLITE.ViewModels
                 "Phone = " + TextPhone + ", " +
                 "Email = '" + TextEmail + "', " +
                 "City = '" + TextCity + "' " +
-                "WHERE IdClient = " + _client.Id;
+                "WHERE IdClient = " + _client.IdClient;
 
             db.Execute(editClient);
 
@@ -187,8 +180,6 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
         #endregion
-
-
 
         #region COMMANDS
         public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createOrEditClientAsync(cli));

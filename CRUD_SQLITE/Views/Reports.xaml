@@ -151,14 +151,14 @@
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center"
                                         Grid.Column="0"
-                                        Text="{Binding client.FirstName}"/>
+                                        Text="{Binding FirstName}"/>
                                     <Label
                                         Grid.Row="0"
                                         MaxLines="1"
                                         Grid.Column="1"
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center"
-                                        Text="{Binding NumDocument}"/>
+                                        Text="{Binding company.NumDocument}"/>
                                     <Label
                                         Grid.Row="0"
                                         MaxLines="1"

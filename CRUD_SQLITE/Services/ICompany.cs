@@ -8,13 +8,13 @@ namespace CRUD_SQLITE.Services
 {
     internal interface ICompany
     {
-        Task<Company> createCompanyAsync(Company company);
+        Task<MCompany> createCompanyAsync(MCompany company);
 
-        Task<Company> companyAsync();
+        Task<MCompany> companyAsync();
 
-        Task<Company> getCompanyAsync(int ruc);
+        Task<MCompany> getCompanyAsync(int ruc);
 
-        Task<bool> updateCompanyAsync(Company company, int ruc);
+        Task<bool> updateCompanyAsync(MCompany company, int ruc);
 
         Task<bool> deleteCompanyAsync(int ruc);
     }

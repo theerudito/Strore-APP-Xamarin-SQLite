@@ -54,12 +54,12 @@ namespace CRUD_SQLITE.ViewModels
         {
             var RUC = "1234567890";
             var db = connection.openConnection();
-            //var queryFindCompany = "SELECT * FROM Company WHERE RUC = " + RUC;
-            var user = db.Table<Company>().Where(c => c.RUC == RUC).FirstOrDefault();
+            //var queryFindCompany = "SELECT * FROM MCompany WHERE RUC = " + RUC;
+            var user = db.Table<MCompany>().Where(c => c.RUC == RUC).FirstOrDefault();
             if (user != null)
             {
-                Name = $"Name Store: {user.Name}";
-                Owner = $"Welcome: {user.Owner}";
+                Name = $"Name Store: {user.NameCompany}";
+                Owner = $"Welcome: {user.NameOwner}";
             }
         }
 

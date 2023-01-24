@@ -11,19 +11,14 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
 
-
         #region VARIABLES
         ObservableCollection<MProduct> _List_product;
         public bool _goEditingProduct = true;
         #endregion
 
-
-
         #region OBJECTS
         public ObservableCollection<MProduct> List_Product { get; set; }
         #endregion
-
-
 
         #region CONSTRUCTOR
         public ProductViewModel(INavigation navigation)
@@ -33,13 +28,11 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
-
-
         #region METHODS
         public async Task Delete_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var sql = "DELETE FROM MProduct WHERE IdProduct = " + product.Id;
+            var sql = "DELETE FROM MProduct WHERE IdProduct = " + product.IdProduct;
             db.Execute(sql);
 
             await Navigation.PopAsync();
@@ -61,8 +54,6 @@ namespace CRUD_SQLITE.ViewModels
             await Navigation.PushAsync(new Add_Product(product, _goEditingProduct));
         }
         #endregion
-
-
 
         #region COMMANDS   
         public ICommand btnDeleteProduct => new Command<MProduct>(async (prod) => await Delete_Product(prod));

@@ -22,7 +22,7 @@ namespace CRUD_SQLITE.ViewModels
 
         #region VARIABLES
         private string _TextNameCompany;
-        private string _TextOwner;
+        private string _TextNameOwner;
         private string _TextDirection;
         private string _TextEmail;
         private string _TextRUC;
@@ -32,9 +32,8 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextSerie2;
         private string _TextDB;
         private string _TextTypeDocument;
-        private string _TextIVA;
-        private string _TextCurrent;
-        private bool _TextExiste = true;
+        private float _TextIVA;
+        private string _TextCoin;
         private int _TextCODE;
         private bool _showBtnSave;
         #endregion
@@ -53,8 +52,8 @@ namespace CRUD_SQLITE.ViewModels
         }
         public string Owner
         {
-            get { return _TextOwner; }
-            set { SetValue(ref _TextOwner, value); }
+            get { return _TextNameOwner; }
+            set { SetValue(ref _TextNameOwner, value); }
         }
         public string Direction
         {
@@ -101,20 +100,15 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextTypeDocument; }
             set { SetValue(ref _TextTypeDocument, value); }
         }
-        public string Iva
+        public float Iva
         {
             get { return _TextIVA; }
             set { SetValue(ref _TextIVA, value); }
         }
-        public string Current
+        public string Coin
         {
-            get { return _TextCurrent; }
-            set { SetValue(ref _TextCurrent, value); }
-        }
-        public bool ExisteCompany
-        {
-            get { return _TextExiste; }
-            set { SetValue(ref _TextExiste, value); }
+            get { return _TextCoin; }
+            set { SetValue(ref _TextCoin, value); }
         }
         public int CODE
         {
@@ -129,12 +123,12 @@ namespace CRUD_SQLITE.ViewModels
         {
             var id = 1;
             var db = connection.openConnection();
-            var user = db.Table<Company>().Where(c => c.IdCompany == id).FirstOrDefault();
+            var user = db.Table<MCompany>().Where(c => c.IdCompany == id).FirstOrDefault();
 
             if (user != null)
             {
-                Name = user.Name;
-                Owner = user.Owner;
+                Name = user.NameCompany;
+                Owner = user.NameOwner;
                 Direction = user.Direction;
                 Email = user.Email;
                 RUC = user.RUC;
@@ -144,25 +138,21 @@ namespace CRUD_SQLITE.ViewModels
                 Serie2 = user.Serie2;
                 DB = user.DB;
                 Document = user.Document;
-                Iva = Convert.ToString(user.Iva);
-                Current = user.Current;
-                ExisteCompany = true;
+                Iva = user.Iva;
+                Coin = user.Coin;
             }
-            else
-            {
-                ExisteCompany = false;
-            }
+
         }
         public async Task updateCompanyAsync()
         {
             var db = connection.openConnection();
             var id = 1;
-            var updateCompany = db.Table<Company>().Where(c => c.IdCompany == id);
+            var updateCompany = db.Table<MCompany>().Where(c => c.IdCompany == id);
 
             foreach (var item in updateCompany)
             {
-                item.Name = Name;
-                item.Owner = Owner;
+                item.NameCompany = Name;
+                item.NameOwner = Owner;
                 item.Direction = Direction;
                 item.Email = Email;
                 item.RUC = RUC;
@@ -172,8 +162,8 @@ namespace CRUD_SQLITE.ViewModels
                 item.Serie2 = Serie2;
                 item.DB = DB;
                 item.Document = Document;
-                item.Iva = Convert.ToDecimal(Iva);
-                item.Current = Current;
+                item.Iva = Iva;
+                item.Coin = Coin;
                 db.Update(item);
             }
             showBtnSave = false;
@@ -182,7 +172,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var getCode = db.Table<Code>().Where(c => c.CodeAdmin == CODE).FirstOrDefault();
+            var getCode = db.Table<MCodeApp>().Where(c => c.CodeAdmin == CODE).FirstOrDefault();
             if (getCode != null)
             {
                 await DisplayAlert("infor", "the code is correct", "ok");

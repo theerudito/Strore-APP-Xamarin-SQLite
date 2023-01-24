@@ -59,7 +59,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task DeleteUser(MAuth auth)
         {
             var db = connection.openConnection();
-            var deleteUser = "DELETE FROM MAUTH WHERE Id =" + auth.Id;
+            var deleteUser = "DELETE FROM MAUTH WHERE Id =" + auth.IdAuth;
 
             db.Execute(deleteUser);
         }

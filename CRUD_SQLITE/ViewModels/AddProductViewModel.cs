@@ -21,13 +21,11 @@ namespace CRUD_SQLITE.ViewModels
         public string _textCode;
         public string _textBrand;
         public string _textDescription;
-        public string _textPrice;
+        public double _textPrice;
         public string _textQuantity;
         public string _imageProduct;
         public string imageProduct = "https://i.postimg.cc/7YycB3Dg/image.png";
         #endregion
-
-
 
         #region CONSTRUCTOR
         public AddProductViewModel(INavigation navigation, MProduct product, bool _goEditingProduct)
@@ -49,7 +47,6 @@ namespace CRUD_SQLITE.ViewModels
             obtenerData();
         }
         #endregion
-
 
 
         #region OBJECTS
@@ -98,7 +95,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public string TextPrice
+        public double TextPrice
         {
             get { return _textPrice; }
             set
@@ -136,18 +133,16 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
-
-
         #region METHODS
         public void obtenerData()
         {
-            TextName = _product.Name;
-            TextCode = Convert.ToString(_product.Code);
+            TextName = _product.NameProduct;
+            TextCode = Convert.ToString(_product.CodeProduct);
             TextBrand = _product.Brand;
             TextDescription = _product.Description;
-            TextPrice = Convert.ToString(_product.P_Unitary);
+            TextPrice = _product.P_Unitary;
             TextQuantity = Convert.ToString(_product.Quantity);
-            ImageProduct = _product.ImageProduct;
+            ImageProduct = _product.Image_Product;
         }
         public async Task openGalery(MProduct product)
         {
@@ -161,7 +156,6 @@ namespace CRUD_SQLITE.ViewModels
             //}
             await DisplayAlert("Alert", "Image selected", "OK");
         }
-
         public async Task<MProduct> Insert_Product(MProduct product)
         {
             var db = connection.openConnection();
@@ -170,7 +164,7 @@ namespace CRUD_SQLITE.ViewModels
                 "'" + TextCode + "', " +
                 "'" + TextBrand + "', " +
                 "'" + TextDescription + "', " +
-                "'" + Convert.ToDecimal(TextPrice) + "', " +
+                "'" + TextPrice + "', " +
                 "'" + Convert.ToInt32(TextQuantity) + "', " +
                 "'" + imagenProduct + "')";
             db.Execute(insertProduct);
@@ -185,10 +179,10 @@ namespace CRUD_SQLITE.ViewModels
                 "Code = '" + TextCode + "', " +
                 "Brand = '" + TextBrand + "', " +
                 "Description = '" + TextDescription + "', " +
-                "P_Unitary = '" + Convert.ToDecimal(TextPrice) + "', " +
+                "P_Unitary = '" + TextPrice + "', " +
                 "Quantity = '" + Convert.ToInt32(TextQuantity) + "', " +
                 "ImageProduct = '" + imagenProduct + "' " +
-                "WHERE IdProduct = " + _product.Id;
+                "WHERE IdProduct = " + _product.IdProduct;
             db.Execute(updateProduct);
 
             await Navigation.PushAsync(new Product());
@@ -206,8 +200,6 @@ namespace CRUD_SQLITE.ViewModels
             };
         }
         #endregion
-
-
 
         #region COMMAND
         public ICommand btnCreateProduct => new Command<MProduct>(async (prod) => await createOrEditProductAsync(prod));

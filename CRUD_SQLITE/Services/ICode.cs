@@ -8,6 +8,6 @@ namespace CRUD_SQLITE.Services
 {
     public interface ICode
     {
-        Task<Code> getCodeAsync(int codeAdmin);
+        Task<MCodeApp> getCodeAsync(int codeAdmin);
     }
 }

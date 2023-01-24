@@ -29,7 +29,7 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
-        public string Name
+        public string User
         {
             get { return _name; }
             set { SetValue(ref _name, value); }
@@ -66,7 +66,7 @@ namespace CRUD_SQLITE.ViewModels
             if (user != null)
             {
                 await DisplayAlert("Success", "User Logged In", "Ok");
-                Name = "";
+                User = "";
                 Email = "";
                 Password = "";
             }
@@ -85,14 +85,14 @@ namespace CRUD_SQLITE.ViewModels
             {
                 var userRegister = new MAuth()
                 {
-                    Name = Name,
+                    User = User,
                     Email = Email,
                     Password = Password
                 };
 
                 db.Insert(userRegister);
                 await DisplayAlert("Success", "User Registered", "Ok");
-                Name = "";
+                User = "";
                 Email = "";
                 Password = "";
             }
