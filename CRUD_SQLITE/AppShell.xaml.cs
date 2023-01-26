@@ -1,7 +1,4 @@
-﻿using CRUD_SQLITE.ViewModels;
-using CRUD_SQLITE.Views;
-using System;
-using System.Collections.Generic;
+﻿using CRUD_SQLITE.Views;
 using Xamarin.Forms;
 
 namespace CRUD_SQLITE

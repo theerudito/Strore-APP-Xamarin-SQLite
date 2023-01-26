@@ -17,7 +17,9 @@ namespace CRUD_SQLITE.ViewModels
         string _nameProduct;
         int _prewProduct = 10;
         int _nextProduct = -10;
+
         ObservableCollection<MProduct> _List_Product;
+
         #endregion
 
 
@@ -98,21 +100,11 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
-
-        #region METODOS SIMPLE
-        public void MetodoSimple()
-        {
-
-        }
-        #endregion
-
-
         #region COMANDOS
         public ICommand goCart => new Command(async () => await goPageCart());
         public ICommand btnAddToCart => new Command<MProduct>(async (prod) => await add_To_Cart(prod));
         public ICommand btnPrewPorduct => new Command(async () => await prew_Product());
         public ICommand nextProduct => new Command(async () => await next_Product());
-        public ICommand AlertaSimple => new Command(() => MetodoSimple());
         #endregion
     }
 }

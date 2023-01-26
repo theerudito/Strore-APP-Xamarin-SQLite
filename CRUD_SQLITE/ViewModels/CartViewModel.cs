@@ -1,4 +1,5 @@
 ﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -11,18 +12,22 @@ namespace CRUD_SQLITE.ViewModels
     {
 
         DB.SQLite_Config connection = new DB.SQLite_Config();
+        public MProduct receivedProduct { get; set; }
 
         #region CONSTRUCTOR
         public CartViewModel(INavigation navigation, MProduct product)
         {
             Navigation = navigation;
             receivedProduct = product;
-            Get_Products_Cat();
-            //Total_Cart();
+            Cantidad = 1;
+            Get_Products_Cart();
+            Total_Cart();
             Get_Data_Company();
             //Hour_Now = DateTime.Now.ToString("HH:mm:ss");
             //Date_Now = DateTime.Now.ToString("dd/MM/yyyy");
             FontSize = "18";
+
+            getClientFinal();
         }
         #endregion
 
@@ -30,7 +35,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _Date = DateTime.Now.ToString("HH:mm:ss");
         private string _Hour = DateTime.Now.ToString("dd/MM/yyyy");
 
-        private MProduct receivedProduct { get; set; }
+
         private string _FontSize;
 
         private float _subtotal;
@@ -60,11 +65,17 @@ namespace CRUD_SQLITE.ViewModels
         private string _Description;
         private float _P_Unitaty;
         private float _P_Total;
+        private int _cantidad;
 
         ObservableCollection<MProduct> _list_Product;
         #endregion
 
         #region OBJETOS
+        public int Cantidad
+        {
+            get { return _cantidad; }
+            set { SetValue(ref _cantidad, value); }
+        }
         public ObservableCollection<MProduct> List_Products
         {
             get { return _list_Product; }
@@ -220,20 +231,71 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Direction; }
             set { SetValue(ref _Direction, value); }
         }
+
+
         #endregion
 
+        int IdClient;
+        int IdProduct;
         #region METODOS ASYNC
-        public void Get_Products_Cat()
+
+        public void getClientFinal()
         {
+            var db = connection.openConnection();
+            var getCompany = "SELECT * FROM MClient WHERE IdClient = '" + IdClient + "'";
+
+            var result = db.Query<MClient>(getCompany);
+
+            if (result.Count > 0)
+            {
+                foreach (var item in result)
+                {
+                    DNI = item.DNI;
+                    Phone = item.Phone;
+                    FirstName = item.FirstName;
+                    LastName = item.LastName;
+                    Email = item.Email;
+                    Direction = item.Direction;
+                    IdClient = item.IdClient;
+                }
+            }
+            else
+            {
+                DNI = "999999999";
+                Phone = "999999999";
+                FirstName = "Consumidor";
+                LastName = "Final";
+                Email = "correo@gmail.com";
+                Direction = "SN";
+                IdClient = 2;
+
+            }
+        }
+
+        public async void Get_Products_Cart()
+        {
+
             List_Products = new ObservableCollection<MProduct>();
+
             List_Products.Add(new MProduct
             {
-                NameProduct = "Producto 1",
-                Quantity = 2,
-                P_Unitary = 100,
-                P_Total = Quantity * P_Unitary
+                Quantity = Cantidad,
+                NameProduct = receivedProduct.NameProduct,
+                Brand = receivedProduct.Brand,
+                Description = receivedProduct.Description,
+                P_Unitary = receivedProduct.P_Unitary,
+                P_Total = Cantidad * receivedProduct.Quantity,
+                IdProduct = receivedProduct.IdProduct
             });
 
+            var db = connection.openConnection();
+
+            var addCart = "INSERT INTO MCart (IdClient, IdProduct, P_Total) VALUES " +
+                "('" + 1 + "', '" + receivedProduct.IdProduct + "', '" + 9 + "')";
+
+            db.Execute(addCart);
+
+            await DisplayAlert("Agregado", "Producto agregado al carrito", "OK");
         }
         public void Get_Data_Company()
         {
@@ -264,29 +326,27 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Res_Quantity()
         {
-            SubTotal++;
-            //Quantity++;
+            Cantidad += 1;
             Total_Cart();
         }
 
         public async Task Sum_Quantity()
         {
-            SubTotal--;
-            //Quantity--;
+            Cantidad -= 1;
             Total_Cart();
         }
 
         public void Total_Cart()
         {
-            //SubTotal = 0
-            //SubTotal0 = 0;
-            //SubTotal12 = 0;
-            //Descuent = 0;
-            //IvaCompany = 0;
-            //Total = 0;
-
-            IvaCompany = (SubTotal12 * 12) / 100;
-            Total = SubTotal + Convert.ToInt32(IvaCompany);
+            foreach (var item in List_Products)
+            {
+                SubTotal = item.P_Total;
+                SubTotal0 = item.P_Total;
+                SubTotal12 = item.P_Total;
+                Descuent = item.P_Total;
+                IvaCart = SubTotal * IvaCompany;
+                Total = SubTotal + IvaCart;
+            }
         }
 
         public async Task getClient()
@@ -305,6 +365,7 @@ namespace CRUD_SQLITE.ViewModels
                 Email = result[0].Email;
                 Phone = Convert.ToString(result[0].Phone);
                 Direction = result[0].Direction;
+                IdClient = result[0].IdClient;
                 FontSize = "12";
             }
             else

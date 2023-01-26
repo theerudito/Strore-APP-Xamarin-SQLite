@@ -23,11 +23,11 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region VARIABLES
-        ObservableCollection<MCart> _list_report;
+        ObservableCollection<MProduct> _list_report;
         #endregion
 
         #region OBJECTS
-        public ObservableCollection<MCart> List_Report
+        public ObservableCollection<MProduct> List_Report
         {
             get { return this._list_report; }
             set { SetValue(ref this._list_report, value); }
@@ -41,9 +41,9 @@ namespace CRUD_SQLITE.ViewModels
 
             var getReport = "SELECT * FROM MCart";
 
-            var listReport = db.Query<MCart>(getReport);
+            var listReport = db.Query<MProduct>(getReport);
 
-            List_Report = new ObservableCollection<MCart>(listReport);
+            List_Report = new ObservableCollection<MProduct>(listReport);
 
         }
         public async Task pickerDocumentReport()
@@ -63,7 +63,7 @@ namespace CRUD_SQLITE.ViewModels
             await DisplayAlert("info", "right", "ok");
         }
 
-        public async Task seeReport(MCart report)
+        public async Task seeReport(MProduct report)
         {
             await Navigation.PushAsync(new DetailsCart(report));
         }
@@ -75,7 +75,7 @@ namespace CRUD_SQLITE.ViewModels
         public ICommand btnLeftReportCommand => new Command(async () => await leftReport());
         public ICommand btnRightReportCommand => new Command(async () => await rightReport());
         public ICommand btnSearchDocumentCommand => new Command(async () => await seachDocumentReport());
-        public ICommand btnShowReportCommand => new Command<MCart>(async (r) => await seeReport(r));
+        public ICommand btnShowReportCommand => new Command<MProduct>(async (r) => await seeReport(r));
         #endregion
     }
 }

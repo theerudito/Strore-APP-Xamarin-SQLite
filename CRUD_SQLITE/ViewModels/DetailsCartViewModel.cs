@@ -7,8 +7,8 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class DetailsCartViewModel : BaseViewModel
     {
-        private MCart myReport { get; set; }
-        public DetailsCartViewModel(INavigation navigation, MCart report)
+        private MProduct myReport { get; set; }
+        public DetailsCartViewModel(INavigation navigation, MProduct report)
         {
             Navigation = navigation;
             myReport = report;

@@ -62,7 +62,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var deleteClient = "DELETE FROM Client WHERE IdClient = " + client.IdClient;
+            var deleteClient = "DELETE FROM MClient WHERE IdClient = " + client.IdClient;
 
             db.Execute(deleteClient);
 

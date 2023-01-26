@@ -12,5 +12,6 @@ namespace CRUD_SQLITE.Models
         public int IdProduct { get; set; }
         [MaxLength(50)]
         public float P_Total { get; set; }
+
     }
 }
