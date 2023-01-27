@@ -1,4 +1,5 @@
 ﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -7,8 +8,8 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class DetailsCartViewModel : BaseViewModel
     {
-        private MProduct myReport { get; set; }
-        public DetailsCartViewModel(INavigation navigation, MProduct report)
+        private MDetailsCart myReport { get; set; }
+        public DetailsCartViewModel(INavigation navigation, MDetailsCart report)
         {
             Navigation = navigation;
             myReport = report;

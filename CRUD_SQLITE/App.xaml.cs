@@ -124,6 +124,11 @@ namespace CRUD_SQLITE
             //db.Execute(deleteTableDetailsCart);
 
 
+            var insertarDetalle = "INSERT into MDetailCart(IdCart, Date_Now, Hour_Now, SubTotal, SubTotal0, SubTotal12, Iva, Total)" +
+                "VALUES (1, '14/24/45', '11:40', 2,2,2,2,3)";
+
+            //db.Execute(insertarDetalle);
+
             db.Execute(queryCode);
             db.Execute(queryClient);
             db.Execute(queryProduct);

@@ -317,6 +317,15 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
+
+
+            var insertarDetalle = "INSERT into MDetailCart(IdCart, Date_Now, Hour_Now, SubTotal, SubTotal0, SubTotal12, Iva, Total)" +
+                "VALUES ('" + 1 + "', '" + Date_Now + "', '" + Hour_Now + "', '" + SubTotal + "', '" + SubTotal0 + "', '" + SubTotal12 + "', '" + IvaCart + "', '" + Total + "')";
+
+            db.Execute(insertarDetalle);
+
+            await DisplayAlert("Compra", "Compra realizada con exito", "OK");
+
         }
 
         public async Task Delete_ProductCart()

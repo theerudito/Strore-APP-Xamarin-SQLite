@@ -23,14 +23,14 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region VARIABLES
-        ObservableCollection<MProduct> _list_report;
+        ObservableCollection<MDetailsCart> _list_report;
         #endregion
 
         #region OBJECTS
-        public ObservableCollection<MProduct> List_Report
+        public ObservableCollection<MDetailsCart> List_Report
         {
-            get { return this._list_report; }
-            set { SetValue(ref this._list_report, value); }
+            get { return _list_report; }
+            set { SetValue(ref _list_report, value); }
         }
         #endregion
 
@@ -39,11 +39,13 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var getReport = "SELECT * FROM MCart";
+            //var getReport = "SELECT * FROM MDetailCart";
 
-            var listReport = db.Query<MProduct>(getReport);
+            var getReport = "select * from MDetailCart join MClient on MDetailCart.IdDetailCart = MClient.IdClient join MProduct on MDetailCart.IdDetailCart = MProduct.IdProduct";
 
-            List_Report = new ObservableCollection<MProduct>(listReport);
+            var listReport = db.Query<MDetailsCart>(getReport);
+
+            List_Report = new ObservableCollection<MDetailsCart>(listReport);
 
         }
         public async Task pickerDocumentReport()
@@ -63,7 +65,7 @@ namespace CRUD_SQLITE.ViewModels
             await DisplayAlert("info", "right", "ok");
         }
 
-        public async Task seeReport(MProduct report)
+        public async Task seeReport(MDetailsCart report)
         {
             await Navigation.PushAsync(new DetailsCart(report));
         }
@@ -75,7 +77,7 @@ namespace CRUD_SQLITE.ViewModels
         public ICommand btnLeftReportCommand => new Command(async () => await leftReport());
         public ICommand btnRightReportCommand => new Command(async () => await rightReport());
         public ICommand btnSearchDocumentCommand => new Command(async () => await seachDocumentReport());
-        public ICommand btnShowReportCommand => new Command<MProduct>(async (r) => await seeReport(r));
+        public ICommand btnShowReportCommand => new Command<MDetailsCart>(async (r) => await seeReport(r));
         #endregion
     }
 }

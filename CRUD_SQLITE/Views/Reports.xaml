@@ -151,7 +151,7 @@
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center"
                                         Grid.Column="0"
-                                        Text="{Binding FirstName}"/>
+                                        Text="{Binding List_Report.IdCart.FirstName}"/>
                                     <Label
                                         Grid.Row="0"
                                         MaxLines="1"
