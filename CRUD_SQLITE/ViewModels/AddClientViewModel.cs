@@ -133,7 +133,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var addClient = "INSERT INTO MClient " +
+            var addClient = "INSERT INTO MClients " +
                "(DNI, FirstName, LastName, Direction, Phone, Email, City) " +
                "VALUES (" + TextDNI + ", " +
                "'" + TextFirstName + "', " +
@@ -152,7 +152,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MClient> editClientAsync(MClient client)
         {
             var db = connection.openConnection();
-            var editClient = "UPDATE MClient SET " +
+            var editClient = "UPDATE MClients SET " +
                 "DNI = " + TextDNI + ", " +
                 "FirstName = '" + TextFirstName + "', " +
                 "LastName = '" + TextLastName + "', " +

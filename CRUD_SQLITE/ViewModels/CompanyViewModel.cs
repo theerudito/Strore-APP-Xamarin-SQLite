@@ -131,15 +131,15 @@ namespace CRUD_SQLITE.ViewModels
                 Owner = company.NameOwner;
                 Direction = company.Direction;
                 Email = company.Email;
-                RUC = company.DNI;
+                RUC = company.RUC;
                 Phone = company.Phone;
                 NumDocument = Convert.ToString(company.NumDocument);
                 Serie1 = company.Serie1;
                 Serie2 = company.Serie2;
-                DB = company.DataBase;
+                DB = company.DB;
                 Document = company.Document;
                 Iva = Convert.ToSingle(company.Iva);
-                Coin = company.Current;
+                Coin = company.Coin;
             }
 
         }
@@ -155,15 +155,15 @@ namespace CRUD_SQLITE.ViewModels
                 item.NameOwner = Owner;
                 item.Direction = Direction;
                 item.Email = Email;
-                item.DNI = RUC;
+                item.RUC = RUC;
                 item.Phone = Phone;
-                item.NumDocument = Convert.ToString(NumDocument);
+                item.NumDocument = Convert.ToInt32(NumDocument);
                 item.Serie1 = Serie1;
                 item.Serie2 = Serie2;
-                item.DataBase = DB;
+                item.DB = DB;
                 item.Document = Document;
-                item.Iva =
-                item.Current = Coin;
+                item.Iva = Convert.ToSingle(Iva);
+                item.Coin = Coin;
                 db.Update(item);
             }
             showBtnSave = false;

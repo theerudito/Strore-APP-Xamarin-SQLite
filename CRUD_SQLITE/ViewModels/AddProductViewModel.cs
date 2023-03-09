@@ -159,7 +159,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MProduct> Insert_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var insertProduct = "INSERT INTO MProduct (NameProduct, CodeProduct, Brand, Description, P_Unitary, Quantity, Image_Product)"
+            var insertProduct = "INSERT INTO MProducts (NameProduct, CodeProduct, Brand, Description, P_Unitary, Quantity, Image_Product)"
                 + "VALUES ('" + TextName + "', " +
                 "'" + TextCode + "', " +
                 "'" + TextBrand + "', " +
@@ -174,7 +174,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<MProduct> Update_Product(MProduct product)
         {
             var db = connection.openConnection();
-            var updateProduct = "UPDATE MProduct SET " +
+            var updateProduct = "UPDATE MProducts SET " +
                 "NameProduct = '" + TextName + "', " +
                 "CodeProduct = '" + TextCode + "', " +
                 "Brand = '" + TextBrand + "', " +

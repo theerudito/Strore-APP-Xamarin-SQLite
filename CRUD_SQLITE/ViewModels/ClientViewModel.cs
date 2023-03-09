@@ -1,4 +1,5 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.DB;
+using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,7 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class ClientViewModel : BaseViewModel
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
+        SQLite_Config connection = new SQLite_Config();
 
         #region VARIABLES
         ObservableCollection<MClient> _List_client;
@@ -42,7 +43,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var sql = "SELECT * FROM MClient";
+            var sql = "SELECT * FROM MClients";
 
             var result = db.Query<MClient>(sql);
 
@@ -62,7 +63,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             var db = connection.openConnection();
 
-            var deleteClient = "DELETE FROM MClient WHERE IdClient = " + client.IdClient;
+            var deleteClient = "DELETE FROM MClients WHERE IdClient = " + client.IdClient;
 
             db.Execute(deleteClient);
 

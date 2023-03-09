@@ -11,7 +11,7 @@ namespace CRUD_SQLITE.DB
 
         public SQLite_Config()
         {
-            myconnection = new SQLite.SQLiteConnection(GetLocalFilePath("MyStore.db3"));
+            myconnection = new SQLite.SQLiteConnection(GetLocalFilePath("myStore.db3"));
         }
 
         private string GetLocalFilePath(string dbFileName)
