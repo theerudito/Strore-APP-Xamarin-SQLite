@@ -123,23 +123,23 @@ namespace CRUD_SQLITE.ViewModels
         {
             var id = 1;
             var db = connection.openConnection();
-            var user = db.Table<MCompany>().Where(c => c.IdCompany == id).FirstOrDefault();
+            var company = db.Table<MCompany>().Where(c => c.IdCompany == id).FirstOrDefault();
 
-            if (user != null)
+            if (company != null)
             {
-                Name = user.NameCompany;
-                Owner = user.NameOwner;
-                Direction = user.Direction;
-                Email = user.Email;
-                RUC = user.RUC;
-                Phone = user.Phone;
-                NumDocument = Convert.ToString(user.NumDocument);
-                Serie1 = user.Serie1;
-                Serie2 = user.Serie2;
-                DB = user.DB;
-                Document = user.Document;
-                Iva = user.Iva;
-                Coin = user.Coin;
+                Name = company.NameCompany;
+                Owner = company.NameOwner;
+                Direction = company.Direction;
+                Email = company.Email;
+                RUC = company.DNI;
+                Phone = company.Phone;
+                NumDocument = Convert.ToString(company.NumDocument);
+                Serie1 = company.Serie1;
+                Serie2 = company.Serie2;
+                DB = company.DataBase;
+                Document = company.Document;
+                Iva = Convert.ToSingle(company.Iva);
+                Coin = company.Current;
             }
 
         }
@@ -155,15 +155,15 @@ namespace CRUD_SQLITE.ViewModels
                 item.NameOwner = Owner;
                 item.Direction = Direction;
                 item.Email = Email;
-                item.RUC = RUC;
+                item.DNI = RUC;
                 item.Phone = Phone;
-                item.NumDocument = Convert.ToInt32(NumDocument);
+                item.NumDocument = Convert.ToString(NumDocument);
                 item.Serie1 = Serie1;
                 item.Serie2 = Serie2;
-                item.DB = DB;
+                item.DataBase = DB;
                 item.Document = Document;
-                item.Iva = Iva;
-                item.Coin = Coin;
+                item.Iva =
+                item.Current = Coin;
                 db.Update(item);
             }
             showBtnSave = false;

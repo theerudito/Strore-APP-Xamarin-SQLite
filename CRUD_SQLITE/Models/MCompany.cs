@@ -19,7 +19,6 @@ namespace CRUD_SQLITE.Models
         public string RUC { get; set; } = "";
         [MaxLength(50)]
         public string Phone { get; set; } = "";
-        [MaxLength(50)]
         public int NumDocument { get; set; }
         [MaxLength(50)]
         public string Serie1 { get; set; } = "";
@@ -29,7 +28,6 @@ namespace CRUD_SQLITE.Models
         public string Document { get; set; } = "";
         [MaxLength(50)]
         public string DB { get; set; } = "";
-        [MaxLength(50)]
         public float Iva { get; set; }
         [MaxLength(50)]
         public string Coin { get; set; } = "";

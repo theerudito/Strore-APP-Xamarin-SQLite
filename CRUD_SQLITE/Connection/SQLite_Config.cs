@@ -1,11 +1,6 @@
-﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
+﻿using System;
 using System.IO;
-using System.Net.NetworkInformation;
-using System.Runtime.Versioning;
-using System.Text;
+
 
 namespace CRUD_SQLITE.DB
 {
@@ -16,7 +11,7 @@ namespace CRUD_SQLITE.DB
 
         public SQLite_Config()
         {
-            myconnection = new SQLite.SQLiteConnection(GetLocalFilePath("mystore.db3"));
+            myconnection = new SQLite.SQLiteConnection(GetLocalFilePath("MyStore.db3"));
         }
 
         private string GetLocalFilePath(string dbFileName)

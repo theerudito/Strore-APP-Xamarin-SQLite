@@ -1,5 +1,6 @@
-﻿using CRUD_SQLITE.Models;
-using System.Data;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.DB;
+using CRUD_SQLITE.Models;
 using Xamarin.Forms;
 
 
@@ -7,27 +8,32 @@ namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
+        private readonly DB_Context context;
+
+        SQLite_Config connection = new SQLite_Config();
+
+
+
         public App()
         {
             InitializeComponent();
 
             MainPage = new AppShell();
 
-            DB.SQLite_Config connection = new DB.SQLite_Config();
-
             var db = connection.openConnection();
 
 
+
             var queryClient = "CREATE TABLE IF NOT EXISTS MClient" +
-                "(IdClient  INTEGER NOT NULL PRIMARY KEY, " +
+                "(IdClient  INTEGER NOT NULL, " +
                     " DNI TEXT NOT NULL, " +
                     " FirstName TEXT NOT NULL, " +
                     " LastName  TEXT NOT NULL, " +
                     " Direction TEXT NOT NULL, " +
                     " Phone TEXT NOT NULL, " +
                     " Email TEXT NOT NULL, " +
-                    " City TEXT)";
-
+                    " City TEXT, " +
+                    " PRIMARY KEY(IdClient AUTOINCREMENT))";
 
             //var deleteTableClient = "DROP TABLE MClient";
             //db.Execute(deleteTableClient);
@@ -57,8 +63,8 @@ namespace CRUD_SQLITE
                     "PRIMARY KEY(IdAuth AUTOINCREMENT))";
 
 
-            var deleteTableAuth = "DROP TABLE MAuth";
-            db.Execute(deleteTableAuth);
+            ///var deleteTableAuth = "DROP TABLE MAuth";
+            //db.Execute(deleteTableAuth);
 
 
             var queryCompany = "CREATE TABLE IF NOT EXISTS MCompany" +
@@ -75,7 +81,7 @@ namespace CRUD_SQLITE
                     "Document TEXT NOT NULL, " +
                     "DB TEXT NOT NULL, " +
                     "Iva REAL NOT NULL, " +
-                    "Coin TEXT NOT NULL, " +
+                    "Current TEXT NOT NULL, " +
                     "PRIMARY KEY(IdCompany AUTOINCREMENT))";
 
             //var deleteTableCompany = "DROP TABLE MCompany";
@@ -139,12 +145,12 @@ namespace CRUD_SQLITE
 
 
             ////insert company
-            var queryInsertCompany = "INSERT INTO MCompany (NameCompany, NameOwner, Direction, Email, RUC, Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Coin) " +
+            var queryInsertCompany = "INSERT INTO MCompany (NameCompany, NameOwner, Direction, Email, DNI, Phone, NumDocument, Serie1,  Serie2, DB, Document, Iva, Coin) " +
                 "VALUES ('By Here', 'Jorge Loor', 'Ecuador', 'erudito.tv@gmail.com', 1234567890, 09060806054, 123456789, 123, 456, 'Firebase', 'Factura', 0.12, 'Dollar')";
 
             //// find company
 
-            var queryFindCompany = "SELECT * FROM MCompany WHERE RUC = 1234567890";
+            var queryFindCompany = "SELECT * FROM MCompany WHERE DNI = 1234567890";
 
             if (db.Find<MCompany>(queryFindCompany) == null)
             {
@@ -163,6 +169,9 @@ namespace CRUD_SQLITE
                 db.Execute(queryInsertCode);
             }
         }
+
+
+
         protected override void OnStart()
         {
         }

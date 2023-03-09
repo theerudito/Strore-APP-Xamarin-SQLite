@@ -1,5 +1,4 @@
 ﻿using SQLite;
-using System;
 
 namespace CRUD_SQLITE.Models
 {
@@ -11,7 +10,7 @@ namespace CRUD_SQLITE.Models
         public string User { get; set; } = "";
         [MaxLength(50)]
         public string Email { get; set; } = "";
-        [MaxLength(50)]
+        [MaxLength(300)]
         public string Password { get; set; } = "";
     }
 }

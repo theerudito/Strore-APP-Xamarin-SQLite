@@ -55,7 +55,7 @@ namespace CRUD_SQLITE.ViewModels
             var RUC = "1234567890";
             var db = connection.openConnection();
             //var queryFindCompany = "SELECT * FROM MCompany WHERE RUC = " + RUC;
-            var user = db.Table<MCompany>().Where(c => c.RUC == RUC).FirstOrDefault();
+            var user = db.Table<MCompany>().Where(c => c.DNI == RUC).FirstOrDefault();
             if (user != null)
             {
                 Name = $"Name Store: {user.NameCompany}";
