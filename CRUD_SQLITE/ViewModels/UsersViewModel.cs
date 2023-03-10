@@ -1,9 +1,10 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Services;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,7 +13,7 @@ namespace CRUD_SQLITE.ViewModels
 {
     internal class UsersViewModel : BaseViewModel, IAuth
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
 
         ObservableCollection<MAuth> _List_Users;
 
@@ -33,17 +34,13 @@ namespace CRUD_SQLITE.ViewModels
         }
 
 
-        public Task<IEnumerable<MAuth>> GetAllUsersAsync()
+        public async Task<IEnumerable<MAuth>> GetAllUsersAsync()
         {
-            var db = connection.openConnection();
-
-            var getUsers = "SELECT * FROM MAuth";
-
-            var result = db.Query<MAuth>(getUsers);
+            var result = await _dbContext.Auth.ToListAsync();
 
             List_Users = new ObservableCollection<MAuth>(result);
 
-            return Task.FromResult<IEnumerable<MAuth>>(result);
+            return result;
         }
 
         public bool Login(string email, string password)
@@ -58,10 +55,9 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task DeleteUser(MAuth auth)
         {
-            var db = connection.openConnection();
-            var deleteUser = "DELETE FROM MAuth WHERE Id =" + auth.IdAuth;
-
-            db.Execute(deleteUser);
+            _dbContext.Auth.Remove(auth);
+            await _dbContext.SaveChangesAsync();
+            await GetAllUsersAsync();
         }
 
         public async Task UpdateUser()

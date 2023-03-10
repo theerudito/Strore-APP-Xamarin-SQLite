@@ -1,5 +1,7 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,6 +14,7 @@ namespace CRUD_SQLITE.ViewModels
     {
 
         DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
         public MProduct _product { get; set; }
@@ -21,7 +24,7 @@ namespace CRUD_SQLITE.ViewModels
         public string _textCode;
         public string _textBrand;
         public string _textDescription;
-        public double _textPrice;
+        public float _textPrice;
         public string _textQuantity;
         public string _imageProduct;
         public string imageProduct = "https://i.postimg.cc/7YycB3Dg/image.png";
@@ -95,7 +98,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        public double TextPrice
+        public float TextPrice
         {
             get { return _textPrice; }
             set
@@ -156,47 +159,57 @@ namespace CRUD_SQLITE.ViewModels
             //}
             await DisplayAlert("Alert", "Image selected", "OK");
         }
-        public async Task<MProduct> Insert_Product(MProduct product)
+        public async Task<MProduct> Insert_Product()
         {
-            var db = connection.openConnection();
-            var insertProduct = "INSERT INTO MProducts (NameProduct, CodeProduct, Brand, Description, P_Unitary, Quantity, Image_Product)"
-                + "VALUES ('" + TextName + "', " +
-                "'" + TextCode + "', " +
-                "'" + TextBrand + "', " +
-                "'" + TextDescription + "', " +
-                "'" + TextPrice + "', " +
-                "'" + Convert.ToInt32(TextQuantity) + "', " +
-                "'" + imagenProduct + "')";
-            db.Execute(insertProduct);
-            await Navigation.PushAsync(new Product());
-            return await Task.FromResult<MProduct>(product);
-        }
-        public async Task<MProduct> Update_Product(MProduct product)
-        {
-            var db = connection.openConnection();
-            var updateProduct = "UPDATE MProducts SET " +
-                "NameProduct = '" + TextName + "', " +
-                "CodeProduct = '" + TextCode + "', " +
-                "Brand = '" + TextBrand + "', " +
-                "Description = '" + TextDescription + "', " +
-                "P_Unitary = '" + TextPrice + "', " +
-                "Quantity = '" + Convert.ToInt32(TextQuantity) + "', " +
-                "Image_Product = '" + imagenProduct + "' " +
-                "WHERE IdProduct = " + _product.IdProduct;
-            db.Execute(updateProduct);
+            var newProducto = await _dbContext.Product.FirstOrDefaultAsync(pro => pro.CodeProduct == TextCode);
 
-            await Navigation.PushAsync(new Product());
-            return await Task.FromResult<MProduct>(product);
+            if (newProducto == null)
+            {
+                var product = new MProduct
+                {
+                    NameProduct = TextName,
+                    CodeProduct = TextCode,
+                    Brand = TextBrand,
+                    Description = TextDescription,
+                    P_Unitary = TextPrice,
+                    Quantity = Convert.ToInt32(TextQuantity),
+                    Image_Product = ImageProduct
+                };
+                await _dbContext.Product.AddAsync(product);
+                await _dbContext.SaveChangesAsync();
+                await Navigation.PopAsync();
+                return product;
+            }
+            else
+            {
+                await DisplayAlert("Alert", "Product already exists", "OK");
+                return null;
+            }
+        }
+        public async Task<MProduct> Update_Product()
+        {
+            _product.NameProduct = TextName;
+            _product.CodeProduct = TextCode;
+            _product.Brand = TextBrand;
+            _product.Description = TextDescription;
+            _product.P_Unitary = TextPrice;
+            _product.Quantity = Convert.ToInt32(TextQuantity);
+            _product.Image_Product = ImageProduct;
+
+            _dbContext.Product.Update(_product);
+            await _dbContext.SaveChangesAsync();
+            await Navigation.PopAsync();
+            return _product;
         }
         public async Task<MProduct> createOrEditProductAsync(MProduct product)
         {
             if (_Editing)
             {
-                return await Update_Product(product);
+                return await Update_Product();
             }
             else
             {
-                return await Insert_Product(product);
+                return await Insert_Product();
             };
         }
         #endregion

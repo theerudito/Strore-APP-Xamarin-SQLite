@@ -10,8 +10,8 @@ namespace CRUD_SQLITE.ViewModels
 {
     class AuthViewModel : BaseViewModel
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
         DB_Context _dbContext = new DB_Context();
+        //private readonly DB_Context _dbContext;
 
         #region  VARIABLES
         private string _email;

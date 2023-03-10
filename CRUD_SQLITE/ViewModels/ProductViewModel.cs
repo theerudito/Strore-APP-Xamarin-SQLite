@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using CRUD_SQLITE.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace CRUD_SQLITE.ViewModels
 {
@@ -44,10 +45,11 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
-        public async Task GET_ALL_Products()
+        public async Task<List<MProduct>> GET_ALL_Products()
         {
             var result = await _dbContext.Product.ToListAsync();
             List_Product = new ObservableCollection<MProduct>(result);
+            return result;
         }
         public async Task goUpdate_Product(MProduct product)
         {
