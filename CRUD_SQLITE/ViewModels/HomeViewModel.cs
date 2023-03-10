@@ -1,4 +1,5 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -8,7 +9,7 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbCcontext = new DB_Context();
 
         #region CONSTRUCTOR
         public HomeViewModel(INavigation navigation)
@@ -52,17 +53,14 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Get_Company()
         {
-            var RUC = "1234567890";
-            var db = connection.openConnection();
-            //var queryFindCompany = "SELECT * FROM MCompany WHERE RUC = " + RUC;
-            var user = db.Table<MCompany>().Where(c => c.RUC == RUC).FirstOrDefault();
+            var RUC = "123456789";
+            var user = await _dbCcontext.Company.FirstOrDefaultAsync(com => com.RUC == RUC);
             if (user != null)
             {
                 Name = $"Name Store: {user.NameCompany}";
                 Owner = $"Welcome: {user.NameOwner}";
             }
         }
-
 
         public async Task Go_GitHub()
         {

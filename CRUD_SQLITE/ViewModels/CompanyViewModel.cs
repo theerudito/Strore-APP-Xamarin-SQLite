@@ -4,7 +4,6 @@ using System.Windows.Input;
 using System;
 using System.Threading.Tasks;
 using CRUD_SQLITE.Context;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_SQLITE.ViewModels
@@ -98,7 +97,6 @@ namespace CRUD_SQLITE.ViewModels
         {
             get { return _TextDB; }
             set { SetValue(ref _TextDB, value); }
-            s
         }
         public string Document
         {
