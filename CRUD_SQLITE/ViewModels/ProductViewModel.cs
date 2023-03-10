@@ -4,12 +4,14 @@ using System.Collections.ObjectModel;
 using CRUD_SQLITE.Views;
 using System.Windows.Input;
 using Xamarin.Forms;
+using CRUD_SQLITE.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_SQLITE.ViewModels
 {
     public class ProductViewModel : BaseViewModel
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
         ObservableCollection<MProduct> _List_product;
@@ -31,18 +33,20 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Delete_Product(MProduct product)
         {
-            var db = connection.openConnection();
-            var sql = "DELETE FROM MProducts WHERE IdProduct = " + product.IdProduct;
-            db.Execute(sql);
-
-            await Navigation.PopAsync();
+            var result = await _dbContext.Product.FirstOrDefaultAsync(pro => pro.IdProduct == product.IdProduct);
+            if (result != null)
+            {
+                if (await DisplayAlert("Delete Client", "Are you sure you want to delete this product?", "Yes", "No"))
+                {
+                    _dbContext.Product.Remove(result);
+                    await _dbContext.SaveChangesAsync();
+                    await GET_ALL_Products();
+                }
+            }
         }
         public async Task GET_ALL_Products()
         {
-            var db = connection.openConnection();
-            var sql = "SELECT * FROM MProducts";
-            var result = db.Query<MProduct>(sql);
-
+            var result = await _dbContext.Product.ToListAsync();
             List_Product = new ObservableCollection<MProduct>(result);
         }
         public async Task goUpdate_Product(MProduct product)

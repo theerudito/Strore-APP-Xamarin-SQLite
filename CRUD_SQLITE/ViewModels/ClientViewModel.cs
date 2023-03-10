@@ -1,6 +1,4 @@
-﻿using Android.Content;
-using CRUD_SQLITE.Context;
-using CRUD_SQLITE.DB;
+﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +13,6 @@ namespace CRUD_SQLITE.ViewModels
     public class ClientViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-
 
 
         #region VARIABLES
@@ -58,7 +55,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             await Navigation.PushAsync(new Add_Client(client, _goEditing));
         }
-        public async Task<bool> deleteClientAsync(MClient client)
+        public async Task deleteClientAsync(MClient client)
         {
             var result = await _dbContext.Client.FirstOrDefaultAsync(cli => cli.IdClient == client.IdClient);
             if (result != null)
@@ -69,14 +66,8 @@ namespace CRUD_SQLITE.ViewModels
                     _dbContext.Client.Remove(result);
                     await _dbContext.SaveChangesAsync();
                     await GetAllClientAsync();
-                    return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
-            return false;
         }
         #endregion
 

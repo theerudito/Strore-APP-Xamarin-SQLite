@@ -10,7 +10,7 @@ namespace CRUD_SQLITE.Context
     public class DB_Context : DbContext
     {
         public DbSet<MClient> Client { get; set; }
-        public DbSet<MClient> Product { get; set; }
+        public DbSet<MProduct> Product { get; set; }
         public DbSet<MAuth> Auth { get; set; }
         public DbSet<MCart> Cart { get; set; }
         public DbSet<MCodeApp> CodeApp { get; set; }

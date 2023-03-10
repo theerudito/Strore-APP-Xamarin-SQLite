@@ -1,4 +1,6 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,6 +11,7 @@ namespace CRUD_SQLITE.ViewModels
     class AuthViewModel : BaseViewModel
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
 
         #region  VARIABLES
         private string _email;
@@ -61,37 +64,38 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Login()
         {
-            var db = connection.openConnection();
-            var user = db.Table<MAuth>().Where(u => u.Email == Email && u.Password == Password).FirstOrDefault();
-            if (user != null)
+            var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
+
+            if (query == null)
             {
-                await DisplayAlert("Success", "User Logged In", "Ok");
-                User = "";
-                Email = "";
-                Password = "";
+                await DisplayAlert("Error", "User does not exist", "Ok");
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(query.Password, Password))
+            {
+                await DisplayAlert("Error", "Password or email is wrong", "Ok");
             }
             else
             {
-                await DisplayAlert("Error", "Email or Password is incorrect", "Ok");
+                await DisplayAlert("Success", "Welcome", "Ok");
             }
         }
 
         public async Task Register()
         {
-            var db = connection.openConnection();
-            var user = db.Table<MAuth>().Where(u => u.Email == Email).FirstOrDefault();
+            var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
 
-            if (user == null)
+            if (query == null)
             {
-                var userRegister = new MAuth()
+                var user = new MAuth()
                 {
                     User = User,
                     Email = Email,
-                    Password = Password
+                    Password = BCrypt.Net.BCrypt.HashPassword(Password)
                 };
-
-                db.Insert(userRegister);
-                await DisplayAlert("Success", "User Registered", "Ok");
+                _dbContext.Auth.Add(user);
+                await _dbContext.SaveChangesAsync();
+                await DisplayAlert("Register", "Register Success", "Ok");
                 User = "";
                 Email = "";
                 Password = "";
@@ -100,6 +104,7 @@ namespace CRUD_SQLITE.ViewModels
             {
                 await DisplayAlert("Error", "Email already exists", "Ok");
             }
+
         }
         public void show_Login()
         {
