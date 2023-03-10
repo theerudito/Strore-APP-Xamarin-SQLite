@@ -2,29 +2,46 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace CRUD_SQLITE.Context
 {
     public class DB_Context : DbContext
     {
-        //SQLite_Config connection = new SQLite_Config();
-        private readonly string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "MyStore.db3");
+        public DbSet<MClient> Client { get; set; }
+        public DbSet<MClient> Product { get; set; }
+        public DbSet<MAuth> Auth { get; set; }
+        public DbSet<MCart> Cart { get; set; }
+        public DbSet<MCodeApp> CodeApp { get; set; }
+        public DbSet<MCompany> Company { get; set; }
+        public DbSet<MDetailsCart> DetailsCart { get; set; }
+        public DbSet<MReport> Reports { get; set; }
 
+        private const string DatabaseName = "myItems.db3";
 
-        public DbSet<MClient> Clients { get; set; }
+        public DB_Context()
+        {
+            SQLitePCL.Batteries_V2.Init();
 
-        public DbSet<MProduct> Products { get; set; }
-
+            this.Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(dbPath);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MClient>().ToTable("Client");
-            modelBuilder.Entity<MProduct>().ToTable("Product");
+            String databasePath;
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DatabaseName);
+                    break;
+                case Device.Android:
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseName);
+                    break;
+                default:
+                    throw new NotImplementedException("Platform not supported");
+            }
+            optionsBuilder.UseSqlite($"Filename={databasePath}");
         }
     }
 }

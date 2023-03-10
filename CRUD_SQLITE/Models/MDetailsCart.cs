@@ -1,11 +1,12 @@
 ﻿using SQLite;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUD_SQLITE.Models
 {
     public class MDetailsCart
     {
-        [PrimaryKey, AutoIncrement]
+        [Key]
         public int IdDetailCart { get; set; }
         public int IdCart { get; set; }
         public string Date_Now { get; set; } = "";

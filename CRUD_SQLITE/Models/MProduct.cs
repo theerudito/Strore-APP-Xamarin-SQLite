@@ -1,12 +1,13 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUD_SQLITE.Models
 {
     public class MProduct
     {
-        [PrimaryKey, AutoIncrement]
+        [Key]
         public int IdProduct { get; set; }
         public string NameProduct { get; set; } = "";
         public string CodeProduct { get; set; } = "";

@@ -1,6 +1,9 @@
-﻿using CRUD_SQLITE.Context;
+﻿using Android.Views;
+using CRUD_SQLITE.Context;
 using CRUD_SQLITE.DB;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
+using Microsoft.EntityFrameworkCore;
 using Xamarin.Forms;
 
 
@@ -15,6 +18,11 @@ namespace CRUD_SQLITE
 
         public App()
         {
+
+            var context = new DB_Context();
+
+            context.Database.Migrate();
+
             InitializeComponent();
 
             MainPage = new AppShell();

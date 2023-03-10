@@ -1,4 +1,5 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using System;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace CRUD_SQLITE.ViewModels
 {
     internal class AddClientViewModel : BaseViewModel
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
         public MClient _client { get; set; }
@@ -129,60 +130,55 @@ namespace CRUD_SQLITE.ViewModels
             TextEmail = _client.Email;
             TextCity = _client.City;
         }
-        public async Task<MClient> createClientAsync(MClient client)
+        public async Task<MClient> createClientAsync()
         {
-            var db = connection.openConnection();
+            var client = new MClient
+            {
+                DNI = TextDNI,
+                FirstName = TextFirstName,
+                LastName = TextLastName,
+                Direction = TextDirection,
+                Phone = TextPhone,
+                Email = TextEmail,
+                City = TextCity
+            };
 
-            var addClient = "INSERT INTO MClients " +
-               "(DNI, FirstName, LastName, Direction, Phone, Email, City) " +
-               "VALUES (" + TextDNI + ", " +
-               "'" + TextFirstName + "', " +
-               "'" + TextLastName + "', " +
-               "'" + TextDirection + "', " +
-               "" + TextPhone + ", " +
-               "'" + TextEmail + "', " +
-               "'" + TextCity + "')";
-
-            db.Execute(addClient);
+            _dbContext.Client.Add(client);
+            await _dbContext.SaveChangesAsync();
             await Navigation.PushAsync(new Client());
-
-            return await Task.FromResult<MClient>(client);
+            return client;
 
         }
-        public async Task<MClient> editClientAsync(MClient client)
+        public async Task<MClient> editClientAsync()
         {
-            var db = connection.openConnection();
-            var editClient = "UPDATE MClients SET " +
-                "DNI = " + TextDNI + ", " +
-                "FirstName = '" + TextFirstName + "', " +
-                "LastName = '" + TextLastName + "', " +
-                "Direction = '" + TextDirection + "', " +
-                "Phone = " + TextPhone + ", " +
-                "Email = '" + TextEmail + "', " +
-                "City = '" + TextCity + "' " +
-                "WHERE IdClient = " + _client.IdClient;
+            _client.DNI = TextDNI;
+            _client.FirstName = TextFirstName;
+            _client.LastName = TextLastName;
+            _client.Direction = TextDirection;
+            _client.Phone = TextPhone;
+            _client.Email = TextEmail;
+            _client.City = TextCity;
 
-            db.Execute(editClient);
-
+            _dbContext.Client.Update(_client);
+            await _dbContext.SaveChangesAsync();
             await Navigation.PushAsync(new Client());
-
-            return await Task.FromResult<MClient>(client);
+            return _client;
         }
-        public async Task<MClient> createOrEditClientAsync(MClient client)
+        public async Task<MClient> createOrEditClientAsync()
         {
             if (_Editing)
             {
-                return await editClientAsync(client);
+                return await editClientAsync();
             }
             else
             {
-                return await createClientAsync(client);
+                return await createClientAsync();
             }
         }
         #endregion
 
         #region COMMANDS
-        public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createOrEditClientAsync(cli));
+        public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createOrEditClientAsync());
         #endregion
 
     }

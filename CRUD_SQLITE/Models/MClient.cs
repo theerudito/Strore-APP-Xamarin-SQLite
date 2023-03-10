@@ -1,12 +1,15 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CRUD_SQLITE.Models
 {
+
     public class MClient
     {
-        [PrimaryKey, AutoIncrement]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int IdClient { get; set; }
         public string DNI { get; set; } = "";
         public string FirstName { get; set; } = "";

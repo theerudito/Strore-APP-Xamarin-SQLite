@@ -1,6 +1,9 @@
-﻿using CRUD_SQLITE.DB;
+﻿using Android.Content;
+using CRUD_SQLITE.Context;
+using CRUD_SQLITE.DB;
 using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -11,7 +14,9 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class ClientViewModel : BaseViewModel
     {
-        SQLite_Config connection = new SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
+
+
 
         #region VARIABLES
         ObservableCollection<MClient> _List_client;
@@ -39,17 +44,11 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region METHODS
-        public Task<IEnumerable<MClient>> GetAllClientAsync()
+        public async Task<List<MClient>> GetAllClientAsync()
         {
-            var db = connection.openConnection();
-
-            var sql = "SELECT * FROM MClients";
-
-            var result = db.Query<MClient>(sql);
-
+            var result = await _dbContext.Client.ToListAsync();
             List_Clients = new ObservableCollection<MClient>(result);
-
-            return Task.FromResult<IEnumerable<MClient>>(result);
+            return result;
         }
         public async Task go_Update_Client(MClient client)
         {
@@ -61,15 +60,23 @@ namespace CRUD_SQLITE.ViewModels
         }
         public async Task<bool> deleteClientAsync(MClient client)
         {
-            var db = connection.openConnection();
-
-            var deleteClient = "DELETE FROM MClients WHERE IdClient = " + client.IdClient;
-
-            db.Execute(deleteClient);
-
-            OnpropertyChanged();
-
-            return await Task.FromResult<bool>(true);
+            var result = await _dbContext.Client.FirstOrDefaultAsync(cli => cli.IdClient == client.IdClient);
+            if (result != null)
+            {
+                // hacer una alerta de confirmacion
+                if (await DisplayAlert("Delete Client", "Are you sure you want to delete this client?", "Yes", "No"))
+                {
+                    _dbContext.Client.Remove(result);
+                    await _dbContext.SaveChangesAsync();
+                    await GetAllClientAsync();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
         #endregion
 
@@ -84,182 +91,3 @@ namespace CRUD_SQLITE.ViewModels
     }
 }
 
-
-//public async void Insert()
-//{
-
-//}
-
-//public async void Delete()
-//{
-
-//}
-
-//public async void GET()
-//{
-
-//}
-
-//public async void Update()
-//{
-
-//}
-
-//public async void goUpDate()
-//{
-
-//}
-
-//public async void goNewClient()
-//{
-
-//}
-
-
-//public async void prew()
-//{
-
-//}
-
-//public async void next()
-//{
-
-//}
-
-
-
-
-//DB.SQLite_Config connection = new DB.SQLite_Config();
-//#region VARIABLES
-//public int _textDNI;
-//public string _textFirstName;
-//public string _textLastName;
-//public string _textDirection;
-//public int _textPhone;
-//public string _textEmail;
-//public string _textCity;
-//#endregion
-
-
-
-//#region CONSTROCTOR
-//public ClientViewModel(INavigation navigation)
-//{
-
-//    Navigation = navigation;
-//}
-//#endregion
-
-
-
-//#region OBJECTS
-//public int TextDNI
-//{
-//    get { return _textDNI; }
-//    set
-//    {
-//        SetValue(ref _textDNI, value);
-//        //OnPropertyChanged();
-//    }
-//}
-//public string textFirstName
-//{
-//    get { return _textFirstName; }
-//    set
-//    {
-//        SetValue(ref _textFirstName, value);
-//        //OnPropertyChanged();
-//    }
-//}
-//public string textLastName
-//{
-//    get { return _textLastName; }
-//    set
-//    {
-//        SetValue(ref _textLastName, value);
-//        //OnPropertyChanged();
-//    }
-//}
-//public string textDirection
-//{
-//    get { return _textDirection; }
-//    set
-//    {
-//        SetValue(ref _textDirection, value);
-//        //OnPropertyChanged();
-//    }
-//}
-//public int textPhone
-//{
-//    get { return _textPhone; }
-//    set
-//    {
-//        SetValue(ref _textPhone, value);
-//        //OnPropertyChanged();
-//    }
-//}
-//public string textEmail
-//{
-//    get { return _textEmail; }
-//    set
-//    {
-//        SetValue(ref _textEmail, value);
-//        //OnPropertyChanged();
-//    }
-//}
-//public string textCity
-//{
-//    get { return _textCity; }
-//    set
-//    {
-//        SetValue(ref _textCity, value);
-//        //OnPropertyChanged();
-//    }
-//}
-//#endregion
-
-//#region METHODS
-//public async Task Get_All_Client()
-//{
-
-//}
-
-//public async Task Insert_Client()
-//{
-
-//}
-
-//public async Task Delete_Client()
-//{
-
-//}
-
-//public async Task GET_ALL_Clients()
-//{
-
-//}
-
-//public async Task Update_Client()
-//{
-
-//}
-
-
-//public async Task go_Update_Client()
-//{
-
-//}
-
-//public async Task go_New_Client()
-//{
-
-//}
-//#endregion
-
-
-//#region COMMANDS
-//public ICommand btnSaveClient => new Command(async () => await Insert_Client());
-//public ICommand btnDeleteClient => new Command(async () => await Delete_Client());
-//public ICommand btnGoNewClient => new Command(async () => await go_Update_Client());
-//public ICommand btnUpdateClient => new Command(async () => await go_New_Client());
-//#endregion
