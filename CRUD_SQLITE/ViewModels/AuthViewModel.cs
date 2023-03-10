@@ -11,7 +11,6 @@ namespace CRUD_SQLITE.ViewModels
     class AuthViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-        //private readonly DB_Context _dbContext;
 
         #region  VARIABLES
         private string _email;
@@ -66,18 +65,24 @@ namespace CRUD_SQLITE.ViewModels
         {
             var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
 
-            if (query == null)
+            if (query != null)
             {
-                await DisplayAlert("Error", "User does not exist", "Ok");
-            }
-
-            if (!BCrypt.Net.BCrypt.Verify(query.Password, Password))
-            {
-                await DisplayAlert("Error", "Password or email is wrong", "Ok");
+                // verificar si la contraseña es correcta
+                if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
+                {
+                    await DisplayAlert("Login", "Welcome " + query.User, "Ok");
+                    User = "";
+                    Email = "";
+                    Password = "";
+                }
+                else
+                {
+                    await DisplayAlert("Login", "Password or Email is Wrong", "Ok");
+                }
             }
             else
             {
-                await DisplayAlert("Success", "Welcome", "Ok");
+                await DisplayAlert("Login", "User not found", "Ok");
             }
         }
 

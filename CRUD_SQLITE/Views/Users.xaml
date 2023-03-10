@@ -44,7 +44,7 @@
                                 ColumnDefinitions="60, 170, 80, *,*"
                                 BackgroundColor="white">
                                 <Label
-                                    Text="{Binding Name}"
+                                    Text="{Binding User}"
                                     Grid.Row="0"
                                     MaxLines="1"
                                     Grid.Column="0"

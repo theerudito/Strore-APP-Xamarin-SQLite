@@ -12,8 +12,6 @@ namespace CRUD_SQLITE.ViewModels
 {
     internal class AddProductViewModel : BaseViewModel
     {
-
-        DB.SQLite_Config connection = new DB.SQLite_Config();
         DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
@@ -177,7 +175,7 @@ namespace CRUD_SQLITE.ViewModels
                 };
                 await _dbContext.Product.AddAsync(product);
                 await _dbContext.SaveChangesAsync();
-                await Navigation.PopAsync();
+                await Navigation.PushAsync(new Product());
                 return product;
             }
             else
@@ -198,10 +196,10 @@ namespace CRUD_SQLITE.ViewModels
 
             _dbContext.Product.Update(_product);
             await _dbContext.SaveChangesAsync();
-            await Navigation.PopAsync();
+            await Navigation.PushAsync(new Product());
             return _product;
         }
-        public async Task<MProduct> createOrEditProductAsync(MProduct product)
+        public async Task<MProduct> createOrEditProductAsync()
         {
             if (_Editing)
             {
@@ -215,7 +213,7 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region COMMAND
-        public ICommand btnCreateProduct => new Command<MProduct>(async (prod) => await createOrEditProductAsync(prod));
+        public ICommand btnCreateProduct => new Command<MProduct>(async (prod) => await createOrEditProductAsync());
         public ICommand btnOpenGalery => new Command<MProduct>(async (prod) => await openGalery(prod));
         #endregion
     }

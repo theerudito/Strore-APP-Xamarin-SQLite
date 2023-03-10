@@ -1,6 +1,8 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
-using System;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,8 +12,7 @@ namespace CRUD_SQLITE.ViewModels
 {
     class ShoppingViewModel : BaseViewModel
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
-
+        DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
         string _nameProduct;
@@ -73,14 +74,11 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region METODOS ASYNC
-        public async Task getAllProducts()
+        public async Task<List<MProduct>> getAllProducts()
         {
-            var db = connection.openConnection();
-            var sql = "SELECT * FROM MProduct";
-
-            var result = db.Query<MProduct>(sql);
-
+            var result = await _dbContext.Product.ToListAsync();
             List_Product = new ObservableCollection<MProduct>(result);
+            return result;
         }
         public async Task goPageCart()
         {

@@ -7,6 +7,6 @@ namespace CRUD_SQLITE.Models
     {
         [Key]
         public int IdCode { get; set; }
-        public int CodeAdmin { get; set; }
+        public string CodeAdmin { get; set; } = "";
     }
 }

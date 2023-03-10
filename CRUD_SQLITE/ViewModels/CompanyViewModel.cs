@@ -3,12 +3,16 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using System;
 using System.Threading.Tasks;
+using CRUD_SQLITE.Context;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_SQLITE.ViewModels
 {
     public class CompanyViewModel : BaseViewModel
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
 
         #region CONTRUCTOR
         public CompanyViewModel(INavigation navigation)
@@ -34,7 +38,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextTypeDocument;
         private float _TextIVA;
         private string _TextCoin;
-        private int _TextCODE;
+        private string _TextCODE;
         private bool _showBtnSave;
         #endregion
 
@@ -94,6 +98,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             get { return _TextDB; }
             set { SetValue(ref _TextDB, value); }
+            s
         }
         public string Document
         {
@@ -110,7 +115,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextCoin; }
             set { SetValue(ref _TextCoin, value); }
         }
-        public int CODE
+        public string CODE
         {
             get { return _TextCODE; }
             set { SetValue(ref _TextCODE, value); }
@@ -119,11 +124,10 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region METHODS
-        public async Task getCompanyAsync()
+        public async Task<MCompany> getCompanyAsync()
         {
             var id = 1;
-            var db = connection.openConnection();
-            var company = db.Table<MCompany>().Where(c => c.IdCompany == id).FirstOrDefault();
+            var company = await _dbContext.Company.FindAsync(id);
 
             if (company != null)
             {
@@ -141,39 +145,38 @@ namespace CRUD_SQLITE.ViewModels
                 Iva = Convert.ToSingle(company.Iva);
                 Coin = company.Coin;
             }
-
+            return company;
         }
-        public async Task updateCompanyAsync()
+        public async Task<MCompany> updateCompanyAsync()
         {
-            var db = connection.openConnection();
             var id = 1;
-            var updateCompany = db.Table<MCompany>().Where(c => c.IdCompany == id);
+            var company = await _dbContext.Company.FindAsync(id);
 
-            foreach (var item in updateCompany)
+            if (company != null)
             {
-                item.NameCompany = Name;
-                item.NameOwner = Owner;
-                item.Direction = Direction;
-                item.Email = Email;
-                item.RUC = RUC;
-                item.Phone = Phone;
-                item.NumDocument = Convert.ToInt32(NumDocument);
-                item.Serie1 = Serie1;
-                item.Serie2 = Serie2;
-                item.DB = DB;
-                item.Document = Document;
-                item.Iva = Convert.ToSingle(Iva);
-                item.Coin = Coin;
-                db.Update(item);
+                company.NameCompany = Name;
+                company.NameOwner = Owner;
+                company.Direction = Direction;
+                company.Email = Email;
+                company.RUC = RUC;
+                company.Phone = Phone;
+                company.NumDocument = Convert.ToInt32(NumDocument);
+                company.Serie1 = Serie1;
+                company.Serie2 = Serie2;
+                company.DB = DB;
+                company.Document = Document;
+                company.Iva = Iva;
+                company.Coin = Coin;
+                await _dbContext.SaveChangesAsync();
             }
             showBtnSave = false;
+            return company;
         }
         public async Task Activate()
         {
-            var db = connection.openConnection();
+            var company = await _dbContext.CodeApp.FirstOrDefaultAsync();
 
-            var getCode = db.Table<MCodeApp>().Where(c => c.CodeAdmin == CODE).FirstOrDefault();
-            if (getCode != null)
+            if (BCrypt.Net.BCrypt.Verify(CODE, company.CodeAdmin))
             {
                 await DisplayAlert("infor", "the code is correct", "ok");
                 showBtnSave = true;
@@ -181,8 +184,7 @@ namespace CRUD_SQLITE.ViewModels
             else
             {
                 await DisplayAlert("infor", "the code is incorrect", "ok");
-                showBtnSave = false;
-            };
+            }
         }
         #endregion
 
