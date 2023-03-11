@@ -55,9 +55,16 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task DeleteUser(MAuth auth)
         {
-            _dbContext.Auth.Remove(auth);
-            await _dbContext.SaveChangesAsync();
-            await GetAllUsersAsync();
+            var result = await _dbContext.Auth.FirstOrDefaultAsync(user => user.IdAuth == auth.IdAuth);
+            if (result != null)
+            {
+                if (await DisplayAlert("Delete User", "Are you sure you want to delete this user?", "Yes", "No"))
+                {
+                    _dbContext.Auth.Remove(result);
+                    await _dbContext.SaveChangesAsync();
+                    await GetAllUsersAsync();
+                }
+            }
         }
 
         public async Task UpdateUser()

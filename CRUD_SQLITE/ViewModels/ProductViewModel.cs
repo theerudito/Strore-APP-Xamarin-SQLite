@@ -20,7 +20,15 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region OBJECTS
-        public ObservableCollection<MProduct> List_Product { get; set; }
+        public ObservableCollection<MProduct> List_Product
+        {
+            get { return _List_product; }
+            set
+            {
+                _List_product = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region CONSTRUCTOR

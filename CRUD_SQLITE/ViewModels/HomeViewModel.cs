@@ -20,7 +20,7 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region VARIABLES
-        private string _Version = "v1.1.0";
+        private string _Version = "v1.2.0";
         private string _NameStore;
         private string _NameOwner;
         private string GitHub = "https://github.com/theerudito";

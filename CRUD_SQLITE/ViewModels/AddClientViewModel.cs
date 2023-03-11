@@ -1,6 +1,7 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -132,21 +133,41 @@ namespace CRUD_SQLITE.ViewModels
         }
         public async Task<MClient> createClientAsync()
         {
-            var client = new MClient
+            var newClient = await _dbContext.Client.FirstOrDefaultAsync(cli => cli.DNI == TextDNI);
+            if (newClient == null)
             {
-                DNI = TextDNI,
-                FirstName = TextFirstName,
-                LastName = TextLastName,
-                Direction = TextDirection,
-                Phone = TextPhone,
-                Email = TextEmail,
-                City = TextCity
-            };
+                var client = new MClient
+                {
+                    DNI = TextDNI,
+                    FirstName = TextFirstName,
+                    LastName = TextLastName,
+                    Direction = TextDirection,
+                    Phone = TextPhone,
+                    Email = TextEmail,
+                    City = TextCity
+                };
 
-            _dbContext.Client.Add(client);
-            await _dbContext.SaveChangesAsync();
-            await Navigation.PushAsync(new Client());
-            return client;
+                _dbContext.Client.Add(client);
+                await _dbContext.SaveChangesAsync();
+                ResetField();
+                await Navigation.PushAsync(new Client());
+                return client;
+
+            }
+            else
+            {
+                await DisplayAlert("Error", "The client already exists", "OK");
+                _Editing = true;
+                Save = "EDIT CLIENT";
+                TextDNI = newClient.DNI;
+                TextFirstName = newClient.FirstName;
+                TextLastName = newClient.LastName;
+                TextDirection = newClient.Direction;
+                TextPhone = newClient.Phone;
+                TextEmail = newClient.Email;
+                TextCity = newClient.City;
+                return null;
+            }
 
         }
         public async Task<MClient> editClientAsync()
@@ -161,6 +182,7 @@ namespace CRUD_SQLITE.ViewModels
 
             _dbContext.Client.Update(_client);
             await _dbContext.SaveChangesAsync();
+            ResetField();
             await Navigation.PushAsync(new Client());
             return _client;
         }
@@ -174,6 +196,16 @@ namespace CRUD_SQLITE.ViewModels
             {
                 return await createClientAsync();
             }
+        }
+        public void ResetField()
+        {
+            TextDNI = "";
+            TextFirstName = "";
+            TextLastName = "";
+            TextDirection = "";
+            TextPhone = "";
+            TextEmail = "";
+            TextCity = "";
         }
         #endregion
 

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CRUD_SQLITE.Context
@@ -18,7 +17,7 @@ namespace CRUD_SQLITE.Context
         public DbSet<MDetailsCart> DetailsCart { get; set; }
         public DbSet<MReport> Reports { get; set; }
 
-        private const string DatabaseName = "Store.db3";
+        private const string DatabaseName = "store.db3";
 
         public DB_Context()
         {

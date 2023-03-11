@@ -1,6 +1,8 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Xamarin.Forms;
 
 
@@ -50,7 +52,6 @@ namespace CRUD_SQLITE
                 Coin = "Dollar",
             };
 
-            // buscar en la base de datos si existe el registro
             var company = _dbCcontext.Company.Find(1);
 
             if (company == null)
