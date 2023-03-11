@@ -2,7 +2,6 @@
 using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using Xamarin.Forms;
 
 
@@ -20,7 +19,7 @@ namespace CRUD_SQLITE
 
             MainPage = new AppShell();
 
-
+            int id = 1;
             string conde = "250787";
 
             var codeAdmin = new MCodeApp
@@ -52,13 +51,54 @@ namespace CRUD_SQLITE
                 Coin = "Dollar",
             };
 
-            var company = _dbCcontext.Company.Find(1);
+            var company = _dbCcontext.Company.Find(id);
 
             if (company == null)
             {
                 _dbCcontext.Add(myCompany);
                 _dbCcontext.SaveChanges();
             }
+
+
+
+            var client = new MClient
+            {
+                DNI = "0999999999",
+                FirstName = "Consumidor",
+                LastName = "Final",
+                Email = "consumidorfinal@gmail.com",
+                Phone = "0999999999",
+                Direction = "SN",
+                City = "SN",
+            };
+            var myClient = _dbCcontext.Client.Find(id);
+
+            if (myClient == null)
+            {
+                _dbCcontext.Add(client);
+                _dbCcontext.SaveChanges();
+            }
+
+
+
+            var product = new MProduct
+            {
+                NameProduct = "Coca Cola",
+                CodeProduct = "0001",
+                Brand = "Coca Cola",
+                Description = "Bebida Gaseosa",
+                P_Unitary = 1.50f,
+                Quantity = 10,
+                Image_Product = "https://i.postimg.cc/7YycB3Dg/image.png"
+            };
+            var myProduct = _dbCcontext.Product.Find(id);
+
+            if (myProduct == null)
+            {
+                _dbCcontext.Add(product);
+                _dbCcontext.SaveChanges();
+            }
+
         }
         protected override void OnStart()
         {

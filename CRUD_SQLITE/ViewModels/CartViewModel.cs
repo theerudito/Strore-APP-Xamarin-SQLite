@@ -254,16 +254,17 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task getClientFinal()
         {
-            var seachCliFInal = await _dbContext.Client.Where(cli => cli.IdClient == cliFinal).FirstOrDefaultAsync();
+            var seachClientFinal = await _dbContext.Client.Where(cli => cli.IdClient == cliFinal).FirstOrDefaultAsync();
 
-            if (seachCliFInal != null)
+            if (seachClientFinal != null)
             {
-                IdClient = seachCliFInal.IdClient;
-                FirstName = seachCliFInal.FirstName;
-                LastName = seachCliFInal.LastName;
-                Phone = seachCliFInal.Phone;
-                Email = seachCliFInal.Email;
-                Direction = seachCliFInal.Direction;
+                DNI = seachClientFinal.DNI;
+                IdClient = seachClientFinal.IdClient;
+                FirstName = seachClientFinal.FirstName;
+                LastName = seachClientFinal.LastName;
+                Phone = seachClientFinal.Phone;
+                Email = seachClientFinal.Email;
+                Direction = seachClientFinal.Direction;
             }
             else
             {
@@ -271,7 +272,7 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
 
-        public async void Get_Products_Cart()
+        public async Task Get_Products_Cart()
         {
 
             List_Products = new ObservableCollection<MProduct>();
@@ -295,7 +296,7 @@ namespace CRUD_SQLITE.ViewModels
 
         }
 
-        public void Get_Data_Company()
+        public async void Get_Data_Company()
         {
             var id = 1;
             var getCompany = _dbContext.Company.Where(c => c.IdCompany == id).FirstOrDefault();
@@ -323,27 +324,17 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Res_Quantity()
         {
-            Cantidad += 1;
-            Total_Cart();
+
         }
 
         public async Task Sum_Quantity()
         {
-            Cantidad -= 1;
-            Total_Cart();
+
         }
 
         public void Total_Cart()
         {
-            foreach (var item in List_Products)
-            {
-                SubTotal = item.P_Total;
-                SubTotal0 = item.P_Total;
-                SubTotal12 = item.P_Total;
-                Descuent = item.P_Total;
-                IvaCart = SubTotal * IvaCompany;
-                Total = SubTotal + IvaCart;
-            }
+
         }
 
         public async Task getClient()
@@ -351,6 +342,7 @@ namespace CRUD_SQLITE.ViewModels
             var seachClient = await _dbContext.Client.Where(cli => cli.DNI == DNI).FirstOrDefaultAsync();
             if (seachClient != null)
             {
+                DNI = seachClient.DNI;
                 IdClient = seachClient.IdClient;
                 FirstName = seachClient.FirstName;
                 LastName = seachClient.LastName;
@@ -361,7 +353,7 @@ namespace CRUD_SQLITE.ViewModels
             else
             {
                 await DisplayAlert("Error", "El cliente no existe", "OK");
-                getClientFinal();
+                await getClientFinal();
             }
         }
         #endregion
