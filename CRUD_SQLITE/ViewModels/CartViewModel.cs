@@ -1,7 +1,10 @@
-﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
+﻿using Android.OS;
+using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,8 +13,7 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
-
-        DB.SQLite_Config connection = new DB.SQLite_Config();
+        DB_Context _dbContext = new DB_Context();
         public MProduct receivedProduct { get; set; }
 
         #region CONSTRUCTOR
@@ -66,6 +68,9 @@ namespace CRUD_SQLITE.ViewModels
         private float _P_Unitaty;
         private float _P_Total;
         private int _cantidad;
+        private int _IdClient;
+        private int _IdProduct;
+        private int cliFinal = 1;
 
         ObservableCollection<MProduct> _list_Product;
         #endregion
@@ -232,43 +237,37 @@ namespace CRUD_SQLITE.ViewModels
             set { SetValue(ref _Direction, value); }
         }
 
-
+        public int IdClient
+        {
+            get { return _IdClient; }
+            set { SetValue(ref _IdClient, value); }
+        }
+        public int IdProduct
+        {
+            get { return _IdProduct; }
+            set { SetValue(ref _IdProduct, value); }
+        }
         #endregion
 
-        int IdClient;
-        int IdProduct;
+
         #region METODOS ASYNC
 
-        public void getClientFinal()
+        public async Task getClientFinal()
         {
-            var db = connection.openConnection();
-            var getCompany = "SELECT * FROM MClient WHERE IdClient = '" + IdClient + "'";
+            var seachCliFInal = await _dbContext.Client.Where(cli => cli.IdClient == cliFinal).FirstOrDefaultAsync();
 
-            var result = db.Query<MClient>(getCompany);
-
-            if (result.Count > 0)
+            if (seachCliFInal != null)
             {
-                foreach (var item in result)
-                {
-                    DNI = item.DNI;
-                    Phone = item.Phone;
-                    FirstName = item.FirstName;
-                    LastName = item.LastName;
-                    Email = item.Email;
-                    Direction = item.Direction;
-                    IdClient = item.IdClient;
-                }
+                IdClient = seachCliFInal.IdClient;
+                FirstName = seachCliFInal.FirstName;
+                LastName = seachCliFInal.LastName;
+                Phone = seachCliFInal.Phone;
+                Email = seachCliFInal.Email;
+                Direction = seachCliFInal.Direction;
             }
             else
             {
-                DNI = "999999999";
-                Phone = "999999999";
-                FirstName = "Consumidor";
-                LastName = "Final";
-                Email = "correo@gmail.com";
-                Direction = "SN";
-                IdClient = 2;
-
+                await DisplayAlert("Error", "El cliente no existe", "OK");
             }
         }
 
@@ -277,32 +276,29 @@ namespace CRUD_SQLITE.ViewModels
 
             List_Products = new ObservableCollection<MProduct>();
 
-            List_Products.Add(new MProduct
+            var products = await _dbContext.Product.ToListAsync();
+
+            foreach (var item in products)
             {
-                Quantity = Cantidad,
-                NameProduct = receivedProduct.NameProduct,
-                Brand = receivedProduct.Brand,
-                Description = receivedProduct.Description,
-                P_Unitary = receivedProduct.P_Unitary,
-                P_Total = Cantidad * receivedProduct.Quantity,
-                IdProduct = receivedProduct.IdProduct
-            });
+                List_Products.Add(new MProduct
+                {
+                    IdProduct = item.IdProduct,
+                    CodeProduct = item.CodeProduct,
+                    NameProduct = item.NameProduct,
+                    Brand = item.Brand,
+                    Description = item.Description,
+                    P_Unitary = item.P_Unitary,
+                    P_Total = item.P_Total,
+                    Quantity = item.Quantity
+                });
+            }
 
-            var db = connection.openConnection();
-
-            var addCart = "INSERT INTO MCart (IdClient, IdProduct, P_Total) VALUES " +
-                "('" + 1 + "', '" + receivedProduct.IdProduct + "', '" + 9 + "')";
-
-            db.Execute(addCart);
-
-            await DisplayAlert("Agregado", "Producto agregado al carrito", "OK");
         }
+
         public void Get_Data_Company()
         {
-
             var id = 1;
-            var db = connection.openConnection();
-            var getCompany = db.Table<MCompany>().Where(c => c.IdCompany == id).FirstOrDefault();
+            var getCompany = _dbContext.Company.Where(c => c.IdCompany == id).FirstOrDefault();
             if (getCompany != null)
             {
                 Serie1 = getCompany.Serie1;
@@ -315,14 +311,6 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Save_Buy()
         {
-            var db = connection.openConnection();
-
-
-
-            var insertarDetalle = "INSERT into MDetailCart(IdCart, Date_Now, Hour_Now, SubTotal, SubTotal0, SubTotal12, Iva, Total)" +
-                "VALUES ('" + 1 + "', '" + Date_Now + "', '" + Hour_Now + "', '" + SubTotal + "', '" + SubTotal0 + "', '" + SubTotal12 + "', '" + IvaCart + "', '" + Total + "')";
-
-            db.Execute(insertarDetalle);
 
             await DisplayAlert("Compra", "Compra realizada con exito", "OK");
 
@@ -360,26 +348,20 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task getClient()
         {
-            var db = connection.openConnection();
-            var getCompany = "SELECT * FROM MClient WHERE DNI = '" + DNI + "'";
-
-            var result = db.Query<MClient>(getCompany);
-
-            if (result.Count > 0)
+            var seachClient = await _dbContext.Client.Where(cli => cli.DNI == DNI).FirstOrDefaultAsync();
+            if (seachClient != null)
             {
-
-                DNI = Convert.ToString(result[0].DNI);
-                FirstName = result[0].FirstName;
-                LastName = result[0].LastName;
-                Email = result[0].Email;
-                Phone = Convert.ToString(result[0].Phone);
-                Direction = result[0].Direction;
-                IdClient = result[0].IdClient;
-                FontSize = "12";
+                IdClient = seachClient.IdClient;
+                FirstName = seachClient.FirstName;
+                LastName = seachClient.LastName;
+                Phone = seachClient.Phone;
+                Email = seachClient.Email;
+                Direction = seachClient.Direction;
             }
             else
             {
-                await DisplayAlert("Infor", "Client not found", "Ok");
+                await DisplayAlert("Error", "El cliente no existe", "OK");
+                getClientFinal();
             }
         }
         #endregion
