@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
@@ -16,6 +17,7 @@ namespace CRUD_SQLITE.ViewModels
         DB_Context _dbContext = new DB_Context();
 
         ObservableCollection<MAuth> _List_Users;
+        private string LocalStorage = "user";
 
         public UsersViewModel(INavigation navigation)
         {
@@ -62,6 +64,7 @@ namespace CRUD_SQLITE.ViewModels
                 {
                     _dbContext.Auth.Remove(result);
                     await _dbContext.SaveChangesAsync();
+                    SecureStorage.Remove(LocalStorage);
                     await GetAllUsersAsync();
                 }
             }

@@ -28,6 +28,7 @@ namespace CRUD_SQLITE.ViewModels
         private string Twitter = "https://twitter.com/theerudito";
         private string Web = "https://byerudito.web.app/";
         private string Linkedin = "https://www.linkedin.com/in/theerudito";
+        private string LocalStorage = "user";
         #endregion
 
         #region OBJECTS
@@ -53,12 +54,13 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Get_Company()
         {
-            var RUC = "123456789";
-            var user = await _dbCcontext.Company.FirstOrDefaultAsync(com => com.RUC == RUC);
+            var auth = await SecureStorage.GetAsync(LocalStorage);
+            var id = 1;
+            var user = await _dbCcontext.Company.FirstOrDefaultAsync(com => com.IdCompany == id);
             if (user != null)
             {
                 Name = $"Name Store: {user.NameCompany}";
-                Owner = $"Welcome: {user.NameOwner}";
+                Owner = auth == null ? $"Welcome: {user.NameOwner}" : $"Welcome: {auth}";
             }
         }
 

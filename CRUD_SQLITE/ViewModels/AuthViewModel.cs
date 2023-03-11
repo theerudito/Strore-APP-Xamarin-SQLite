@@ -1,6 +1,5 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using Java.IO;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -20,6 +19,7 @@ namespace CRUD_SQLITE.ViewModels
         ObservableCollection<MAuth> _List_Users;
         private StackLayout showRegister;
         private StackLayout showLogin;
+        private string LocalStorage = "user";
         #endregion
 
         #region  OBJECTS
@@ -68,10 +68,11 @@ namespace CRUD_SQLITE.ViewModels
 
             if (query != null)
             {
-                // verificar si la contraseña es correcta
+                // check the password
                 if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
                 {
                     await DisplayAlert("Login", "Welcome " + query.User, "Ok");
+                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorage, query.User);
                     User = "";
                     Email = "";
                     Password = "";

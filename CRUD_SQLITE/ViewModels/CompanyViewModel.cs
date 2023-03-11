@@ -5,12 +5,12 @@ using System;
 using System.Threading.Tasks;
 using CRUD_SQLITE.Context;
 using Microsoft.EntityFrameworkCore;
+using CRUD_SQLITE.Views;
 
 namespace CRUD_SQLITE.ViewModels
 {
     public class CompanyViewModel : BaseViewModel
     {
-        DB.SQLite_Config connection = new DB.SQLite_Config();
         DB_Context _dbContext = new DB_Context();
 
         #region CONTRUCTOR
@@ -39,6 +39,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextCoin;
         private string _TextCODE;
         private bool _showBtnSave;
+        private string LocalStorage = "user";
         #endregion
 
 
@@ -167,6 +168,7 @@ namespace CRUD_SQLITE.ViewModels
                 company.Coin = Coin;
                 await _dbContext.SaveChangesAsync();
             }
+            CODE = "";
             showBtnSave = false;
             return company;
         }
@@ -184,12 +186,18 @@ namespace CRUD_SQLITE.ViewModels
                 await DisplayAlert("infor", "the code is incorrect", "ok");
             }
         }
+
+        public void Logout()
+        {
+            Xamarin.Essentials.SecureStorage.Remove(LocalStorage);
+            Navigation.PushAsync(new Auth());
+        }
         #endregion
 
 
         #region COMMANDS
         public ICommand btnUpdateCompany => new Command(async () => await updateCompanyAsync());
-        //public ICommand btnLogOut => new Command(async () => await Logout());
+        public ICommand btnLogOut => new Command(Logout);
         public ICommand btnAdmin => new Command(async () => await Activate());
         #endregion
     }
