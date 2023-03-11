@@ -1,6 +1,6 @@
-﻿using Android.OS;
-using CRUD_SQLITE.Context;
+﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.ObjectModel;
@@ -25,9 +25,10 @@ namespace CRUD_SQLITE.ViewModels
             Get_Products_Cart();
             Total_Cart();
             Get_Data_Company();
-            //Hour_Now = DateTime.Now.ToString("HH:mm:ss");
-            //Date_Now = DateTime.Now.ToString("dd/MM/yyyy");
             FontSize = "18";
+
+
+
 
             getClientFinal();
         }
@@ -72,7 +73,7 @@ namespace CRUD_SQLITE.ViewModels
         private int _IdProduct;
         private int cliFinal = 1;
 
-        ObservableCollection<MProduct> _list_Product;
+        ObservableCollection<MCart> _list_Product;
         #endregion
 
         #region OBJETOS
@@ -81,7 +82,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _cantidad; }
             set { SetValue(ref _cantidad, value); }
         }
-        public ObservableCollection<MProduct> List_Products
+        public ObservableCollection<MCart> List_Products
         {
             get { return _list_Product; }
             set
@@ -274,29 +275,23 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Get_Products_Cart()
         {
+            var products = await _dbContext.Product.FindAsync(receivedProduct);
+            var clients = await _dbContext.Client.FindAsync(IdClient);
 
-            List_Products = new ObservableCollection<MProduct>();
-
-            var products = await _dbContext.Product.ToListAsync();
-
-            foreach (var item in products)
+            var data = new MCart
             {
-                List_Products.Add(new MProduct
-                {
-                    IdProduct = item.IdProduct,
-                    CodeProduct = item.CodeProduct,
-                    NameProduct = item.NameProduct,
-                    Brand = item.Brand,
-                    Description = item.Description,
-                    P_Unitary = item.P_Unitary,
-                    P_Total = item.P_Total,
-                    Quantity = item.Quantity
-                });
-            }
+                IdClient = clients.IdClient,
+                IdProduct = products.IdProduct,
+            };
+            _dbContext.Cart.Add(data);
+            await _dbContext.SaveChangesAsync();
+
+            var cart = await _dbContext.Cart.ToListAsync();
+            List_Products = new ObservableCollection<MCart>(cart);
 
         }
 
-        public async void Get_Data_Company()
+        public void Get_Data_Company()
         {
             var id = 1;
             var getCompany = _dbContext.Company.Where(c => c.IdCompany == id).FirstOrDefault();
@@ -306,7 +301,7 @@ namespace CRUD_SQLITE.ViewModels
                 Serie2 = getCompany.Serie2;
                 NumDocument = Convert.ToInt32(getCompany.NumDocument);
                 Document = getCompany.Document;
-                IvaCompany = Convert.ToSingle(getCompany.Iva);
+                IvaCompany = getCompany.Iva;
             }
         }
 
@@ -314,27 +309,41 @@ namespace CRUD_SQLITE.ViewModels
         {
 
             await DisplayAlert("Compra", "Compra realizada con exito", "OK");
+            //var detaildCart = new MDetailsCart
+            //{
 
+            //};
+
+
+            //_dbContext.DetailsCart.Add(detaildCart);
+            //await _dbContext.SaveChangesAsync();
         }
 
         public async Task Delete_ProductCart()
         {
-            await DisplayAlert("Infor", "product eliminated on the cart", "Ok");
+            var deleteProduct = await _dbContext.Cart.FindAsync(receivedProduct.IdProduct);
+            _dbContext.Cart.Remove(deleteProduct);
+            await _dbContext.SaveChangesAsync();
+            await DisplayAlert("Eliminar", "Producto eliminado", "OK");
         }
 
-        public async Task Res_Quantity()
+        public void Res_Quantity()
         {
-
+            Quantity = Quantity - 1;
         }
 
-        public async Task Sum_Quantity()
+        public void Sum_Quantity()
         {
-
+            Quantity = Quantity + 1;
         }
 
         public void Total_Cart()
         {
-
+            SubTotal = P_Total * Quantity;
+            Descuent = 10;
+            SubTotal = SubTotal12 + SubTotal0;
+            IvaCart = SubTotal * IvaCompany / 100;
+            Total = SubTotal + IvaCart;
         }
 
         public async Task getClient()
@@ -362,8 +371,8 @@ namespace CRUD_SQLITE.ViewModels
         public ICommand btnSaveCartCommand => new Command(async () => await Save_Buy());
         public ICommand btnSearchDNICommand => new Command(async () => await getClient());
         public ICommand btnDeleteProductCart => new Command(async () => await Delete_ProductCart());
-        public ICommand btnSumQuantityCommand => new Command(async () => await Sum_Quantity());
-        public ICommand btnRestQuantityCommand => new Command(async () => await Res_Quantity());
+        public ICommand btnSumQuantityCommand => new Command(Sum_Quantity);
+        public ICommand btnRestQuantityCommand => new Command(Res_Quantity);
         #endregion
     }
 }

@@ -1,5 +1,7 @@
-﻿using CRUD_SQLITE.Models;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,7 +12,7 @@ namespace CRUD_SQLITE.ViewModels
     public class ReportViewModel : BaseViewModel
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
-
+        DB_Context _dbContext = new DB_Context();
 
 
         #region CONSTRUCTOR
@@ -37,15 +39,8 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Get_All_Report()
         {
-            var db = connection.openConnection();
-
-            //var getReport = "SELECT * FROM MDetailCart";
-
-            var getReport = "select * from MDetailCart join MClient on MDetailCart.IdDetailCart = MClient.IdClient join MProduct on MDetailCart.IdDetailCart = MProduct.IdProduct";
-
-            var listReport = db.Query<MDetailsCart>(getReport);
-
-            List_Report = new ObservableCollection<MDetailsCart>(listReport);
+            var result = await _dbContext.DetailsCart.ToListAsync();
+            List_Report = new ObservableCollection<MDetailsCart>(result);
 
         }
         public async Task pickerDocumentReport()

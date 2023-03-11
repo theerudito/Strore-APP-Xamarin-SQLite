@@ -1,6 +1,5 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using Xamarin.Forms;
 
