@@ -27,9 +27,6 @@ namespace CRUD_SQLITE.ViewModels
             Get_Data_Company();
             FontSize = "18";
 
-
-
-
             getClientFinal();
         }
         #endregion
@@ -275,20 +272,12 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Get_Products_Cart()
         {
-            var products = await _dbContext.Product.FindAsync(receivedProduct);
-            var clients = await _dbContext.Client.FindAsync(IdClient);
-
-            var data = new MCart
-            {
-                IdClient = clients.IdClient,
-                IdProduct = products.IdProduct,
-            };
-            _dbContext.Cart.Add(data);
+            _dbContext.Cart.Add(new MCart { IdClient = IdClient, IdProduct = receivedProduct.IdProduct });
             await _dbContext.SaveChangesAsync();
 
-            var cart = await _dbContext.Cart.ToListAsync();
-            List_Products = new ObservableCollection<MCart>(cart);
+            var searchCart = await _dbContext.Cart.Where(cart => cart.IdClient == IdClient).ToListAsync();
 
+            List_Products = new ObservableCollection<MCart>(searchCart);
         }
 
         public void Get_Data_Company()
