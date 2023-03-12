@@ -37,7 +37,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextCODE;
         private bool _showBtnSave;
         private string _TextDB;
-        private float _TextIVA;
+        private string _TextIVA;
         private string _TextCoin;
         private string LocalStorage = "user";
 
@@ -110,7 +110,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextDB; }
             set { SetValue(ref _TextDB, value); }
         }
-        public float Iva
+        public string Iva
         {
             get { return _TextIVA; }
             set { SetValue(ref _TextIVA, value); }
@@ -120,7 +120,6 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextCoin; }
             set { SetValue(ref _TextCoin, value); }
         }
-
         public string SelectDB
         {
             get { return _TextDB; }
@@ -131,8 +130,7 @@ namespace CRUD_SQLITE.ViewModels
 
             }
         }
-
-        public float SelectIva
+        public string SelectIva
         {
             get { return _TextIVA; }
             set
@@ -142,7 +140,6 @@ namespace CRUD_SQLITE.ViewModels
 
             }
         }
-
         public string SelectCoin
         {
             get { return _TextCoin; }
@@ -176,7 +173,7 @@ namespace CRUD_SQLITE.ViewModels
                 Serie2 = company.Serie2;
                 DB = company.DB;
                 Document = company.Document;
-                Iva = Convert.ToSingle(company.Iva);
+                Iva = company.Iva.ToString();
                 Coin = company.Coin;
             }
             return company;

@@ -17,7 +17,7 @@ namespace CRUD_SQLITE.Context
         public DbSet<MDetailsCart> DetailsCart { get; set; }
         public DbSet<MReport> Reports { get; set; }
 
-        private const string DatabaseName = "storeeh.db3";
+        private const string DatabaseName = "storeehd.db3";
 
         public DB_Context()
         {

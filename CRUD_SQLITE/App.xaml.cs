@@ -46,8 +46,8 @@ namespace CRUD_SQLITE
                 Serie2 = "002",
                 Document = "Factura",
                 DB = "Firebase",
-                Iva = 1.12f,
-                Coin = "Dollar",
+                Iva = "0.12",
+                Coin = "USD",
             };
 
             var company = _dbCcontext.Company.Find(id);

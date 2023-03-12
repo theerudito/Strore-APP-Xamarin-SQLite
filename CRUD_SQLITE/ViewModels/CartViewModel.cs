@@ -298,7 +298,7 @@ namespace CRUD_SQLITE.ViewModels
                 Serie2 = getCompany.Serie2;
                 NumDocument = Convert.ToInt32(getCompany.NumDocument);
                 Document = getCompany.Document;
-                IvaCompany = getCompany.Iva;
+                IvaCompany = Convert.ToSingle(getCompany.Iva);
             }
         }
 
