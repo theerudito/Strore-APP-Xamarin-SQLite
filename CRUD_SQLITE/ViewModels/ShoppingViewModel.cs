@@ -19,6 +19,7 @@ namespace CRUD_SQLITE.ViewModels
         string _nameProduct;
         int _prewProduct = 10;
         int _nextProduct = -10;
+        int _quantityProduct = 0;
 
         ObservableCollection<MProduct> _List_Product;
 
@@ -71,12 +72,23 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
+        public int QuantityProduct
+        {
+            get { return _quantityProduct; }
+            set
+            {
+                SetValue(ref _quantityProduct, value);
+                OnpropertyChanged();
+            }
+        }
         #endregion
 
 
         #region METODOS ASYNC
         public async Task<List<MProduct>> getAllProducts()
         {
+            CartViewModel _cart = new CartViewModel(Navigation);
+            QuantityProduct = _cart.QuantityOnCart();
             var result = await _dbContext.Product.ToListAsync();
             List_Product = new ObservableCollection<MProduct>(result);
             return result;
@@ -101,6 +113,8 @@ namespace CRUD_SQLITE.ViewModels
             };
             await _cart.Get_Products_Cart(toCart);
             //await Navigation.PushAsync(new Cart());
+
+
         }
         public async Task prew_Product()
         {

@@ -20,17 +20,14 @@ namespace CRUD_SQLITE.ViewModels
 
         #region CONSTRUCTOR
 
-        public async Task Get_Products_Cart(MProduct product)
-        {
-            products.Add(product);
-        }
+
         public CartViewModel(INavigation navigation)
         {
-            List_Products = new ObservableCollection<MProduct>(products);
+
             Navigation = navigation;
+            Get_Data_Company();
             Cantidad = 1;
             Total_Cart();
-            Task.Run(async () => await Get_Data_Company());
             Task.Run(async () => await getClientFinal());
             FontSize = "18";
         }
@@ -256,6 +253,20 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region METODOS ASYNC
+        public async Task Get_Products_Cart(MProduct product)
+        {
+            products.Add(product);
+
+            if (products.Count > 0)
+            {
+                List_Products = new ObservableCollection<MProduct>(products);
+                //await Get_Products_Cart();
+            }
+            else
+            {
+                await DisplayAlert("Error", "No hay productos en el carrito", "Aceptar");
+            }
+        }
 
         public async Task getClientFinal()
         {
@@ -341,6 +352,11 @@ namespace CRUD_SQLITE.ViewModels
                 await DisplayAlert("Error", "El cliente no existe", "OK");
                 await getClientFinal();
             }
+        }
+
+        public int QuantityOnCart()
+        {
+            return products.Count;
         }
         #endregion
 

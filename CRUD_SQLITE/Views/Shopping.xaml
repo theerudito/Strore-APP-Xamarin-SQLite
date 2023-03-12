@@ -40,7 +40,7 @@
                     WidthRequest="25">
                     <Label
                         x:Name="textCounter"
-                        Text="{Binding counter}"
+                        Text="{Binding QuantityProduct}"
                         TextColor="White"
                         VerticalTextAlignment="Center"/>
                 </Frame>
