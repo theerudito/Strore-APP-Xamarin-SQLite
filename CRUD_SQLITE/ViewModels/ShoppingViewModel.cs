@@ -29,8 +29,7 @@ namespace CRUD_SQLITE.ViewModels
         public ShoppingViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            getAllProducts();
-
+            Task.Run(async () => await getAllProducts());
         }
         #endregion
 
@@ -87,7 +86,7 @@ namespace CRUD_SQLITE.ViewModels
             await Navigation.PushAsync(new Cart());
         }
 
-        public void add_To_Cart(MProduct product)
+        public async Task add_To_Cart(MProduct product)
         {
             CartViewModel _cart = new CartViewModel(Navigation);
             var toCart = new MProduct()
@@ -100,7 +99,7 @@ namespace CRUD_SQLITE.ViewModels
                 P_Unitary = product.P_Unitary,
                 Quantity = 1,
             };
-            _cart.Get_Products_Cart(toCart);
+            await _cart.Get_Products_Cart(toCart);
             //await Navigation.PushAsync(new Cart());
         }
         public async Task prew_Product()
@@ -115,7 +114,7 @@ namespace CRUD_SQLITE.ViewModels
 
         #region COMANDOS
         public ICommand goCart => new Command(async () => await goPageCart());
-        public ICommand btnAddToCart => new Command<MProduct>((prod) => add_To_Cart(prod));
+        public ICommand btnAddToCart => new Command<MProduct>(async (prod) => await add_To_Cart(prod));
         public ICommand btnPrewPorduct => new Command(async () => await prew_Product());
         public ICommand nextProduct => new Command(async () => await next_Product());
         #endregion

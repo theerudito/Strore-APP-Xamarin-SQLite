@@ -20,7 +20,7 @@ namespace CRUD_SQLITE.ViewModels
 
         #region CONSTRUCTOR
 
-        public void Get_Products_Cart(MProduct product)
+        public async Task Get_Products_Cart(MProduct product)
         {
             products.Add(product);
         }
@@ -30,8 +30,8 @@ namespace CRUD_SQLITE.ViewModels
             Navigation = navigation;
             Cantidad = 1;
             Total_Cart();
-            Get_Data_Company();
-            getClientFinal();
+            Task.Run(async () => await Get_Data_Company());
+            Task.Run(async () => await getClientFinal());
             FontSize = "18";
         }
 
@@ -276,8 +276,6 @@ namespace CRUD_SQLITE.ViewModels
                 await DisplayAlert("Error", "El cliente no existe", "OK");
             }
         }
-
-
 
         public async Task Get_Data_Company()
         {
