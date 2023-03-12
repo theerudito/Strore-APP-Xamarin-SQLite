@@ -1,6 +1,5 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,19 +17,22 @@ namespace CRUD_SQLITE.ViewModels
 
         List<MProduct> products = new List<MProduct>();
 
+
         #region CONSTRUCTOR
+
+        public void Get_Products_Cart(MProduct product)
+        {
+            products.Add(product);
+        }
         public CartViewModel(INavigation navigation)
         {
+            List_Products = new ObservableCollection<MProduct>(products);
             Navigation = navigation;
             Cantidad = 1;
-
-            List_Products = new ObservableCollection<MProduct>(products);
-
             Total_Cart();
             Get_Data_Company();
             getClientFinal();
             FontSize = "18";
-            Get_Products_Cart(null);
         }
 
 
@@ -275,15 +277,12 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
 
-        public void Get_Products_Cart(MProduct product)
-        {
-            products.Add(product);
-        }
 
-        public void Get_Data_Company()
+
+        public async Task Get_Data_Company()
         {
             var id = 1;
-            var getCompany = _dbContext.Company.Where(c => c.IdCompany == id).FirstOrDefault();
+            var getCompany = await _dbContext.Company.Where(c => c.IdCompany == id).FirstOrDefaultAsync();
             if (getCompany != null)
             {
                 Serie1 = getCompany.Serie1;
