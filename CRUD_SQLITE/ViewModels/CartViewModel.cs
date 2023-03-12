@@ -1,8 +1,8 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,18 +16,22 @@ namespace CRUD_SQLITE.ViewModels
         DB_Context _dbContext = new DB_Context();
         public MProduct receivedProduct { get; set; }
 
+        List<MProduct> products = new List<MProduct>();
+
         #region CONSTRUCTOR
         public CartViewModel(INavigation navigation, MProduct product)
         {
             Navigation = navigation;
             receivedProduct = product;
+            products.Add(product);
             Cantidad = 1;
-            Get_Products_Cart();
             Total_Cart();
             Get_Data_Company();
+            getClientFinal();
             FontSize = "18";
 
-            getClientFinal();
+
+            List_Products = new ObservableCollection<MProduct>(products);
         }
         #endregion
 
@@ -70,7 +74,7 @@ namespace CRUD_SQLITE.ViewModels
         private int _IdProduct;
         private int cliFinal = 1;
 
-        ObservableCollection<MCart> _list_Product;
+        ObservableCollection<MProduct> _list_Product;
         #endregion
 
         #region OBJETOS
@@ -79,7 +83,7 @@ namespace CRUD_SQLITE.ViewModels
             get { return _cantidad; }
             set { SetValue(ref _cantidad, value); }
         }
-        public ObservableCollection<MCart> List_Products
+        public ObservableCollection<MProduct> List_Products
         {
             get { return _list_Product; }
             set
@@ -272,12 +276,8 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Get_Products_Cart()
         {
-            _dbContext.Cart.Add(new MCart { IdClient = IdClient, IdProduct = receivedProduct.IdProduct });
-            await _dbContext.SaveChangesAsync();
 
-            var searchCart = await _dbContext.Cart.Where(cart => cart.IdClient == IdClient).ToListAsync();
 
-            List_Products = new ObservableCollection<MCart>(searchCart);
         }
 
         public void Get_Data_Company()
@@ -296,16 +296,7 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Save_Buy()
         {
-
             await DisplayAlert("Compra", "Compra realizada con exito", "OK");
-            //var detaildCart = new MDetailsCart
-            //{
-
-            //};
-
-
-            //_dbContext.DetailsCart.Add(detaildCart);
-            //await _dbContext.SaveChangesAsync();
         }
 
         public async Task Delete_ProductCart()

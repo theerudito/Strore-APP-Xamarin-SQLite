@@ -62,6 +62,7 @@ namespace CRUD_SQLITE
 
             var client = new MClient
             {
+                IdClient = 1,
                 DNI = "0999999999",
                 FirstName = "Consumidor",
                 LastName = "Final",
@@ -78,10 +79,9 @@ namespace CRUD_SQLITE
                 _dbCcontext.SaveChanges();
             }
 
-
-
             var product = new MProduct
             {
+                IdProduct = 1,
                 NameProduct = "Coca Cola",
                 CodeProduct = "0001",
                 Brand = "Coca Cola",
