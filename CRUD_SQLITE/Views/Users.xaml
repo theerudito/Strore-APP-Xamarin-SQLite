@@ -3,97 +3,99 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Users">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
 
-            <Grid
-                ColumnDefinitions="60, 170, 70, 50"
-                BackgroundColor="silver"
-                HeightRequest="25"
-                Margin="0,1,0,0">
-                <Label
-                    Text="User"
-                    Grid.Column="0"
-                    Margin="10,0,0,0"
-                    />
-                <Label
-                    Text="Email"
-                    Grid.Column="1"
-                    Margin="10,0,0,0"
-                    />
-                <Label
-                    Text="Password"
-                    Grid.Column="2"
+                <Grid
+                    ColumnDefinitions="60, 170, 70, 50"
+                    BackgroundColor="silver"
+                    HeightRequest="25"
+                    Margin="0,1,0,0">
+                    <Label
+                        Text="User"
+                        Grid.Column="0"
+                        Margin="10,0,0,0"
+                        />
+                    <Label
+                        Text="Email"
+                        Grid.Column="1"
+                        Margin="10,0,0,0"
+                        />
+                    <Label
+                        Text="Password"
+                        Grid.Column="2"
 
-                    />
-                <Label
-                    Text="Action"
-                    Grid.Column="3"
-                    Margin="10,0,0,0"
-                    />
-            </Grid>
+                        />
+                    <Label
+                        Text="Action"
+                        Grid.Column="3"
+                        Margin="10,0,0,0"
+                        />
+                </Grid>
 
-            <ListView
-                Margin="0,-10,0,0"
-                x:Name="viewUser"
-                ItemsSource="{Binding List_Users}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell >
-                            <Grid
-                                RowDefinitions="*"
-                                ColumnDefinitions="60, 170, 80, *,*"
-                                BackgroundColor="white">
-                                <Label
-                                    Text="{Binding User}"
-                                    Grid.Row="0"
-                                    MaxLines="1"
-                                    Grid.Column="0"
-                                    Margin="5,10,0,0"
-                                    />
-                                <Label
-                                    Text="{Binding Email}"
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    MaxLines="1"
-                                    Margin="0,10,0,0"
-                                    WidthRequest="300"
-                                    />
-                                <Label
-                                    Text="{Binding Password}"
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    MaxLines="1"
-                                    Margin="0,10,0,0"
-                                    />
-                                <ImageButton
-                                    Grid.Column="3"
-                                    BackgroundColor="Transparent"
-                                    Source="edit"
-                                    Aspect="AspectFit"
-                                    WidthRequest="40"
-                                    HeightRequest="40"
-                                    Margin="0,0,0,0"
-                                    Command="{Binding Source={x:Reference viewUser},
-                                    Path=BindingContext.btnGoUpdateCommand}"
-                                    CommandParameter="{Binding .}"
-                                    />
-                                <ImageButton
-                                    Grid.Column="4"
-                                    BackgroundColor="Transparent"
-                                    Source="trash"
-                                    Aspect="AspectFit"
-                                    WidthRequest="40"
-                                    HeightRequest="40"
-                                    Margin="0,0,0,0"
-                                    Command="{Binding Source={x:Reference viewUser},
-                                    Path=BindingContext.btnDeleteCommand}"
-                                    CommandParameter="{Binding .}"
-                                    />
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                <ListView
+                    Margin="0,-10,0,0"
+                    x:Name="viewUser"
+                    ItemsSource="{Binding List_Users}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid
+                                    RowDefinitions="*"
+                                    ColumnDefinitions="60, 170, 80, *,*"
+                                    BackgroundColor="white">
+                                    <Label
+                                        Text="{Binding User}"
+                                        Grid.Row="0"
+                                        MaxLines="1"
+                                        Grid.Column="0"
+                                        Margin="5,10,0,0"
+                                        />
+                                    <Label
+                                        Text="{Binding Email}"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        MaxLines="1"
+                                        Margin="0,10,0,0"
+                                        WidthRequest="300"
+                                        />
+                                    <Label
+                                        Text="{Binding Password}"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        MaxLines="1"
+                                        Margin="0,10,0,0"
+                                        />
+                                    <ImageButton
+                                        Grid.Column="3"
+                                        BackgroundColor="Transparent"
+                                        Source="edit"
+                                        Aspect="AspectFit"
+                                        WidthRequest="40"
+                                        HeightRequest="40"
+                                        Margin="0,0,0,0"
+                                        Command="{Binding Source={x:Reference viewUser},
+                                        Path=BindingContext.btnGoUpdateCommand}"
+                                        CommandParameter="{Binding .}"
+                                        />
+                                    <ImageButton
+                                        Grid.Column="4"
+                                        BackgroundColor="Transparent"
+                                        Source="trash"
+                                        Aspect="AspectFit"
+                                        WidthRequest="40"
+                                        HeightRequest="40"
+                                        Margin="0,0,0,0"
+                                        Command="{Binding Source={x:Reference viewUser},
+                                        Path=BindingContext.btnDeleteCommand}"
+                                        CommandParameter="{Binding .}"
+                                        />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

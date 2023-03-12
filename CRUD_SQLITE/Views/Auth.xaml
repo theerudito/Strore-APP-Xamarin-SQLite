@@ -3,130 +3,135 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Auth">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout x:Name="showRegister" VerticalOptions="Center">
-                <Image
-                    Source="login"
-                    WidthRequest="200"
-                    Margin="10"
-                    />
-                <Label
-                    Text="Login"
-                    HorizontalOptions="Center"
-                    FontSize="30"
-                    />
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="20" CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding Email}"
-                        Placeholder="Email"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="20, 5"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding Password}"
-                        IsPassword="True"
-                        Placeholder="Password"
-                        Keyboard="Chat"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Button
-                    Command="{Binding btnLoginCommand}"
-                    Text="Login"
-                    CornerRadius="10"
-                    Margin="20"
-                    Padding="0"
-                    />
-                <Button
+        <ScrollView>
 
-                    Command="{Binding btnShowRegisterCommand}"
-                    Text="Go Register"
-                    CornerRadius="10"
-                    Margin="20"
-                    Padding="0"
-                    BackgroundColor="Orange"
-                    />
-                <!--<Label Text="No Tienes Cuenta"  >
-                <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding btnShowRegisterCommand}"/>
-                </Label.GestureRecognizers>
-                </Label>-->
+            <StackLayout>
+                <StackLayout x:Name="showRegister" VerticalOptions="Center">
+                    <Image
+                        Source="login"
+                        WidthRequest="200"
+                        Margin="10"
+                        />
+                    <Label
+                        Text="Login"
+                        HorizontalOptions="Center"
+                        FontSize="30"
+                        />
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="20" CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding Email}"
+                            Placeholder="Email"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="20, 5"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding Password}"
+                            IsPassword="True"
+                            Placeholder="Password"
+                            Keyboard="Chat"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Button
+                        Command="{Binding btnLoginCommand}"
+                        Text="Login"
+                        CornerRadius="10"
+                        Margin="20"
+                        Padding="0"
+                        />
+                    <Button
+
+                        Command="{Binding btnShowRegisterCommand}"
+                        Text="Go Register"
+                        CornerRadius="10"
+                        Margin="20"
+                        Padding="0"
+                        BackgroundColor="Orange"
+                        />
+                    <!--<Label Text="No Tienes Cuenta"  >
+                    <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding btnShowRegisterCommand}"/>
+                    </Label.GestureRecognizers>
+                    </Label>-->
+                </StackLayout>
+
+
+                <StackLayout x:Name="showLogin">
+                    <Image
+                        Source="login"
+                        WidthRequest="200"
+                        Margin="10" />
+                    <Label
+                        Text="Register"
+                        HorizontalOptions="Center"
+                        FontSize="30"/>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="20"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding User}"
+                            Placeholder="Name"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="20"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            Text="{Binding Email}"
+                            Placeholder="Email"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Frame
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="20"
+                        CornerRadius="10"
+                        Padding="0,-10,0,-10">
+                        <Entry
+                            IsPassword="True"
+                            Text="{Binding Password}"
+                            Placeholder="Password"
+                            Keyboard="Chat"
+                            HeightRequest="70"
+                            />
+                    </Frame>
+                    <Button
+                        Command="{Binding btnRegisterCommand}"
+                        Text="Register"
+                        CornerRadius="10"
+                        Margin="20" Padding="0"/>
+                    <Button
+                        Command="{Binding btnShowLoginCommand}"
+                        Text="Go Login"
+                        CornerRadius="10"
+                        Margin="20"
+                        Padding="0"
+                        BackgroundColor="Orange"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout x:Name="showLogin">
-                <Image
-                    Source="login"
-                    WidthRequest="200"
-                    Margin="10" />
-                <Label
-                    Text="Register"
-                    HorizontalOptions="Center"
-                    FontSize="30"/>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="20"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding User}"
-                        Placeholder="Name"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="20"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding Email}"
-                        Placeholder="Email"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="20"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        IsPassword="True"
-                        Text="{Binding Password}"
-                        Placeholder="Password"
-                        Keyboard="Chat"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Button
-                    Command="{Binding btnRegisterCommand}"
-                    Text="Register"
-                    CornerRadius="10"
-                    Margin="20" Padding="0"/>
-                <Button
-                    Command="{Binding btnShowLoginCommand}"
-                    Text="Go Login"
-                    CornerRadius="10"
-                    Margin="20"
-                    Padding="0"
-                    BackgroundColor="Orange"/>
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

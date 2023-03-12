@@ -31,7 +31,7 @@ namespace CRUD_SQLITE.ViewModels
             FontSize = "18";
 
 
-            List_Products = new ObservableCollection<MProduct>(products);
+            Get_Products_Cart();
         }
         #endregion
 
@@ -277,7 +277,7 @@ namespace CRUD_SQLITE.ViewModels
         public async Task Get_Products_Cart()
         {
 
-
+            List_Products = new ObservableCollection<MProduct>(products);
         }
 
         public void Get_Data_Company()

@@ -3,261 +3,263 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Config">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout >
-                <Label
-                    Text="CONFIG COMPANY"
-                    HorizontalOptions="Center"
-                    Margin="20"
-                    FontSize="30"/>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="10, 5"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding Name}"
-                        Placeholder="Name Company"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="10, 5"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding Owner}"
-                        Placeholder="Propietary"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="10, 5"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding Direction}"
-                        Placeholder="Direction"
-                        HeightRequest="70"
-                        />
-                </Frame>
-                <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="10, 5"
-                    CornerRadius="10"
-                    Padding="0,-10,0,-10">
-                    <Entry
-                        Text="{Binding Email}"
-                        Keyboard="Email"
-                        Placeholder="Email"
-                        HeightRequest="70"/>
-                </Frame>
-                <Grid
-                    ColumnDefinitions="180,180"
-                    HorizontalOptions="Center">
+        <ScrollView>
+            <StackLayout>
+                <StackLayout >
+                    <Label
+                        Text="CONFIG COMPANY"
+                        HorizontalOptions="Center"
+                        Margin="20"
+                        FontSize="30"/>
                     <Frame
                         HasShadow="True"
                         BackgroundColor="AliceBlue"
-                        Grid.Column="0"
                         IsClippedToBounds="True"
                         Margin="10, 5"
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            Text="{Binding RUC}"
-                            Keyboard="Numeric"
-                            Placeholder="RUC"
+                            Text="{Binding Name}"
+                            Placeholder="Name Company"
                             HeightRequest="70"
                             />
                     </Frame>
                     <Frame
                         HasShadow="True"
                         BackgroundColor="AliceBlue"
-                        Grid.Column="1"
                         IsClippedToBounds="True"
                         Margin="10, 5"
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            Text="{Binding Phone}"
-                            Keyboard="Numeric"
-                            Placeholder="Phone"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                </Grid>
-
-                <Grid
-                    WidthRequest="100"
-                    ColumnDefinitions="150,*,*">
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Column="0"
-                        IsClippedToBounds="True"
-                        Margin="10, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding NumDocument}"
-                            Keyboard="Numeric"
-                            Placeholder="#Document"
+                            Text="{Binding Owner}"
+                            Placeholder="Propietary"
                             HeightRequest="70"
                             />
                     </Frame>
                     <Frame
                         HasShadow="True"
                         BackgroundColor="AliceBlue"
-                        Grid.Column="1"
                         IsClippedToBounds="True"
                         Margin="10, 5"
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            Text="{Binding Serie1}"
-                            Keyboard="Numeric"
-                            Placeholder="Serie1"
+                            Text="{Binding Direction}"
+                            Placeholder="Direction"
                             HeightRequest="70"
                             />
                     </Frame>
                     <Frame
                         HasShadow="True"
                         BackgroundColor="AliceBlue"
-                        Grid.Column="2"
                         IsClippedToBounds="True"
                         Margin="10, 5"
                         CornerRadius="10"
                         Padding="0,-10,0,-10">
                         <Entry
-                            Text="{Binding Serie2}"
-                            Keyboard="Numeric"
-                            Placeholder="Serie2"
+                            Text="{Binding Email}"
+                            Keyboard="Email"
+                            Placeholder="Email"
                             HeightRequest="70"/>
                     </Frame>
-                </Grid>
-                <Grid
-                    HorizontalOptions="Center"
-                    ColumnDefinitions="180,180">
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        IsClippedToBounds="True"
-                        Margin="10, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding DB}"
-                            Placeholder="DB"
-                            Keyboard="Text"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Column="1"
-                        IsClippedToBounds="True"
-                        Margin="10, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding Document}"
-                            Placeholder="Document"
-                            Keyboard="Text"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                </Grid>
-                <Grid
-                    HorizontalOptions="Center"
-                    ColumnDefinitions="180,180">
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        IsClippedToBounds="True"
-                        Margin="10, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding Iva}"
-                            Placeholder="IVA"
-                            Keyboard="Numeric"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                    <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Column="1"
-                        IsClippedToBounds="True"
-                        Margin="10, 5"
-                        CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding Coin}"
-                            Placeholder="Current"
-                            Keyboard="Text"
-                            HeightRequest="70"
-                            />
-                    </Frame>
-                </Grid>
-                <Grid
-                    HorizontalOptions="Center"
-                    ColumnDefinitions="*,100,100">
-                    <Button
-                        Grid.Column="0"
-                        x:Name="buttonUpdate"
-                        Text="Save Company"
-                        Margin="10"
-                        CornerRadius="10"
-                        Command="{Binding btnUpdateCompany}"
-                        IsEnabled="{Binding showBtnSave}"
-                        />
-                    <Button
-                        Grid.Column="2"
-                        Text="ADMIN"
-                        Margin="10"
-                        CornerRadius="10"
-                        BackgroundColor="orange"
-                        Command="{Binding btnAdmin}"
+                    <Grid
+                        ColumnDefinitions="180,180"
+                        HorizontalOptions="Center">
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="0"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding RUC}"
+                                Keyboard="Numeric"
+                                Placeholder="RUC"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="1"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding Phone}"
+                                Keyboard="Numeric"
+                                Placeholder="Phone"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                    </Grid>
 
-                        />
-                    <Frame
-                        x:Name="FrameCode"
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        Grid.Column="1"
-                        IsClippedToBounds="True"
+                    <Grid
+                        WidthRequest="100"
+                        ColumnDefinitions="150,*,*">
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="0"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding NumDocument}"
+                                Keyboard="Numeric"
+                                Placeholder="#Document"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="1"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding Serie1}"
+                                Keyboard="Numeric"
+                                Placeholder="Serie1"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="2"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding Serie2}"
+                                Keyboard="Numeric"
+                                Placeholder="Serie2"
+                                HeightRequest="70"/>
+                        </Frame>
+                    </Grid>
+                    <Grid
+                        HorizontalOptions="Center"
+                        ColumnDefinitions="180,180">
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding DB}"
+                                Placeholder="DB"
+                                Keyboard="Text"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="1"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding Document}"
+                                Placeholder="Document"
+                                Keyboard="Text"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                    </Grid>
+                    <Grid
+                        HorizontalOptions="Center"
+                        ColumnDefinitions="180,180">
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding Iva}"
+                                Placeholder="IVA"
+                                Keyboard="Numeric"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="1"
+                            IsClippedToBounds="True"
+                            Margin="10, 5"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding Coin}"
+                                Placeholder="Current"
+                                Keyboard="Text"
+                                HeightRequest="70"
+                                />
+                        </Frame>
+                    </Grid>
+                    <Grid
+                        HorizontalOptions="Center"
+                        ColumnDefinitions="*,100,100">
+                        <Button
+                            Grid.Column="0"
+                            x:Name="buttonUpdate"
+                            Text="Save Company"
+                            Margin="10"
+                            CornerRadius="10"
+                            Command="{Binding btnUpdateCompany}"
+                            IsEnabled="{Binding showBtnSave}"
+                            />
+                        <Button
+                            Grid.Column="2"
+                            Text="ADMIN"
+                            Margin="10"
+                            CornerRadius="10"
+                            BackgroundColor="orange"
+                            Command="{Binding btnAdmin}"
+
+                            />
+                        <Frame
+                            x:Name="FrameCode"
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue"
+                            Grid.Column="1"
+                            IsClippedToBounds="True"
+                            Margin="10"
+                            CornerRadius="10"
+                            Padding="0,-10,0,-10">
+                            <Entry
+                                Text="{Binding CODE}"
+                                Placeholder="CODE"
+                                Keyboard="Numeric"
+                                IsPassword="True"
+                                />
+                        </Frame>
+                    </Grid>
+                    <Button
+                        Command="{Binding btnLogOut}"
+                        Text="LOGOUT"
+                        MinimumHeightRequest="2"
+                        BackgroundColor="Red"
                         Margin="10"
                         CornerRadius="10"
-                        Padding="0,-10,0,-10">
-                        <Entry
-                            Text="{Binding CODE}"
-                            Placeholder="CODE"
-                            Keyboard="Numeric"
-                            IsPassword="True"
-                            />
-                    </Frame>
-                </Grid>
-                <Button
-                    Command="{Binding btnLogOut}"
-                    Text="LOGOUT"
-                    MinimumHeightRequest="2"
-                    BackgroundColor="Red"
-                    Margin="10"
-                    CornerRadius="10"
-                    />
+                        />
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

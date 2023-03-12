@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Shopping">
     <ContentPage.Content>
+
         <StackLayout>
             <FlexLayout>
                 <Frame
@@ -157,5 +158,6 @@
                 </Grid>
             </StackLayout>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

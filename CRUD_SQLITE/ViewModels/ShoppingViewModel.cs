@@ -14,6 +14,7 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB_Context _dbContext = new DB_Context();
 
+
         #region VARIABLES
         string _nameProduct;
         int _prewProduct = 10;
@@ -87,6 +88,8 @@ namespace CRUD_SQLITE.ViewModels
         public async Task add_To_Cart(MProduct product)
         {
             await Navigation.PushAsync(new Cart(product));
+
+            new Cart(product);
         }
         public async Task prew_Product()
         {

@@ -3,157 +3,159 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUD_SQLITE.Views.Client">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid
-                Margin="0,5,0,0"
-                RowDefinitions="40"
-                ColumnDefinitions="*,360"
-                >
-                <ImageButton
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Source="add_client.png"
-                    HorizontalOptions="Center"
-                    VerticalOptions="CenterAndExpand"
-                    Aspect="AspectFit"
-                    Command="{Binding btnGoNewClient}"
-                    BackgroundColor="Transparent"
-                    WidthRequest="30"
-                    HeightRequest="50"
-                    Padding="0,0,-20,0"
-                    Margin="0,0,-20,0"
-                    />
-                <Frame
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="50, 5, 20, -5"
-                    CornerRadius="10"
-                    Padding="0,0,0,-2"
+        <ScrollView>
+            <StackLayout>
+                <Grid
+                    Margin="0,5,0,0"
+                    RowDefinitions="40"
+                    ColumnDefinitions="*,360"
                     >
-                    <SearchBar
-                        Placeholder="Search Client"
-                        HeightRequest="80"
-                        />
-                </Frame>
-            </Grid>
-            <StackLayout
-                Margin="0,10,0,0"
-                Background="Silver">
-                <FlexLayout
-                    WidthRequest="100"
-                    HeightRequest="40"
-                    Margin="0" >
-                    <Label
-                        Text="Name"
-                        WidthRequest="100"
-                        Margin="10"/>
-                    <Label
-                        Text="Direction"
-                        WidthRequest="100"
-                        Margin="10"/>
-                    <Label
-                        Text="Phone"
-                        WidthRequest="100"
-                        Margin="10"/>
-                    <Label
-                        Text="Email"
-                        WidthRequest="100"
-                        Margin="10"/>
-                    <Label
-                        Text="Action"
-                        WidthRequest="100"
-                        Margin="10"/>
-                </FlexLayout>
-            </StackLayout>
-
-            <ListView
-                x:Name="List"
-                ItemsSource="{Binding List_Clients}"
-                IsRefreshing="true"
-                RefreshControlColor="#0099FF" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell >
-                            <Grid
-                                RowDefinitions="*"
-                                ColumnDefinitions="*,*,*,*,*"
-                                BackgroundColor="white">
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Text="{Binding FirstName}"
-                                    MaxLines="1"
-                                    Margin="10"/>
-                                <Label
-                                    Text="{Binding Direction}"
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    MaxLines="1"
-                                    Margin="10"/>
-                                <Label
-                                    Text="{Binding Phone}"
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    MaxLines="1"
-                                    Margin="10"/>
-                                <Label
-                                    Text="{Binding Email}"
-                                    Grid.Row="0"
-                                    Grid.Column="3"
-                                    MaxLines="1"
-                                    Margin="10"/>
-                                <FlexLayout
-                                    Grid.Row="0"
-                                    Grid.Column="4"
-                                    HorizontalOptions="Center"   >
-                                    <ImageButton
-                                        BackgroundColor="Transparent"
-                                        Source="edit"
-                                        Aspect="AspectFit"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Margin="0, 2, 5, 0"
-                                        Command="{Binding Source={x:Reference List},
-                                        Path=BindingContext.btnGoUpdateClient}"
-                                        CommandParameter="{Binding}"
-                                        />
-                                    <ImageButton
-                                        BackgroundColor="Transparent"
-                                        Source="trash"
-                                        Aspect="AspectFit"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Margin="0, 2, 5, 0"
-                                        Command="{Binding Source={x:Reference List},
-                                        Path=BindingContext.btnDeleteClient}"
-                                        CommandParameter="{Binding}"
-                                        />
-                                </FlexLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackLayout
-                HeightRequest="30" >
-                <Grid RowDefinitions="*">
                     <ImageButton
-                        Source="left"
                         Grid.Column="0"
+                        Grid.Row="0"
+                        Source="add_client.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Aspect="AspectFit"
+                        Command="{Binding btnGoNewClient}"
                         BackgroundColor="Transparent"
-                        Command="{Binding btnLeftClient}"
+                        WidthRequest="30"
+                        HeightRequest="50"
+                        Padding="0,0,-20,0"
+                        Margin="0,0,-20,0"
                         />
-                    <ImageButton
-                        Source="right"
+                    <Frame
                         Grid.Column="1"
-                        BackgroundColor="Transparent"
-                        Command="{Binding btnRightClient}"
-                        />
+                        Grid.Row="0"
+                        HasShadow="True"
+                        BackgroundColor="AliceBlue"
+                        IsClippedToBounds="True"
+                        Margin="50, 5, 20, -5"
+                        CornerRadius="10"
+                        Padding="0,0,0,-2"
+                        >
+                        <SearchBar
+                            Placeholder="Search Client"
+                            HeightRequest="80"
+                            />
+                    </Frame>
                 </Grid>
+                <StackLayout
+                    Margin="0,10,0,0"
+                    Background="Silver">
+                    <FlexLayout
+                        WidthRequest="100"
+                        HeightRequest="40"
+                        Margin="0" >
+                        <Label
+                            Text="Name"
+                            WidthRequest="100"
+                            Margin="10"/>
+                        <Label
+                            Text="Direction"
+                            WidthRequest="100"
+                            Margin="10"/>
+                        <Label
+                            Text="Phone"
+                            WidthRequest="100"
+                            Margin="10"/>
+                        <Label
+                            Text="Email"
+                            WidthRequest="100"
+                            Margin="10"/>
+                        <Label
+                            Text="Action"
+                            WidthRequest="100"
+                            Margin="10"/>
+                    </FlexLayout>
+                </StackLayout>
+
+                <ListView
+                    x:Name="List"
+                    ItemsSource="{Binding List_Clients}"
+                    IsRefreshing="true"
+                    RefreshControlColor="#0099FF" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid
+                                    RowDefinitions="*"
+                                    ColumnDefinitions="*,*,*,*,*"
+                                    BackgroundColor="white">
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding FirstName}"
+                                        MaxLines="1"
+                                        Margin="10"/>
+                                    <Label
+                                        Text="{Binding Direction}"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        MaxLines="1"
+                                        Margin="10"/>
+                                    <Label
+                                        Text="{Binding Phone}"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        MaxLines="1"
+                                        Margin="10"/>
+                                    <Label
+                                        Text="{Binding Email}"
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        MaxLines="1"
+                                        Margin="10"/>
+                                    <FlexLayout
+                                        Grid.Row="0"
+                                        Grid.Column="4"
+                                        HorizontalOptions="Center"   >
+                                        <ImageButton
+                                            BackgroundColor="Transparent"
+                                            Source="edit"
+                                            Aspect="AspectFit"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            Margin="0, 2, 5, 0"
+                                            Command="{Binding Source={x:Reference List},
+                                            Path=BindingContext.btnGoUpdateClient}"
+                                            CommandParameter="{Binding}"
+                                            />
+                                        <ImageButton
+                                            BackgroundColor="Transparent"
+                                            Source="trash"
+                                            Aspect="AspectFit"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            Margin="0, 2, 5, 0"
+                                            Command="{Binding Source={x:Reference List},
+                                            Path=BindingContext.btnDeleteClient}"
+                                            CommandParameter="{Binding}"
+                                            />
+                                    </FlexLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout
+                    HeightRequest="30" >
+                    <Grid RowDefinitions="*">
+                        <ImageButton
+                            Source="left"
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding btnLeftClient}"
+                            />
+                        <ImageButton
+                            Source="right"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            Command="{Binding btnRightClient}"
+                            />
+                    </Grid>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
