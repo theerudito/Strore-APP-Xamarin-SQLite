@@ -33,13 +33,14 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextNumDocument;
         private string _TextSerie1;
         private string _TextSerie2;
-        private string _TextDB;
         private string _TextTypeDocument;
-        private float _TextIVA;
-        private string _TextCoin;
         private string _TextCODE;
         private bool _showBtnSave;
+        private string _TextDB;
+        private float _TextIVA;
+        private string _TextCoin;
         private string LocalStorage = "user";
+
         #endregion
 
 
@@ -94,15 +95,20 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextSerie2; }
             set { SetValue(ref _TextSerie2, value); }
         }
-        public string DB
-        {
-            get { return _TextDB; }
-            set { SetValue(ref _TextDB, value); }
-        }
         public string Document
         {
             get { return _TextTypeDocument; }
             set { SetValue(ref _TextTypeDocument, value); }
+        }
+        public string CODE
+        {
+            get { return _TextCODE; }
+            set { SetValue(ref _TextCODE, value); }
+        }
+        public string DB
+        {
+            get { return _TextDB; }
+            set { SetValue(ref _TextDB, value); }
         }
         public float Iva
         {
@@ -114,11 +120,40 @@ namespace CRUD_SQLITE.ViewModels
             get { return _TextCoin; }
             set { SetValue(ref _TextCoin, value); }
         }
-        public string CODE
+
+        public string SelectDB
         {
-            get { return _TextCODE; }
-            set { SetValue(ref _TextCODE, value); }
+            get { return _TextDB; }
+            set
+            {
+                SetProperty(ref _TextDB, value);
+                DB = _TextDB;
+
+            }
         }
+
+        public float SelectIva
+        {
+            get { return _TextIVA; }
+            set
+            {
+                SetProperty(ref _TextIVA, value);
+                Iva = _TextIVA;
+
+            }
+        }
+
+        public string SelectCoin
+        {
+            get { return _TextCoin; }
+            set
+            {
+                SetProperty(ref _TextCoin, value);
+                Coin = _TextCoin;
+
+            }
+        }
+
         #endregion
 
 

@@ -156,12 +156,19 @@
                             Margin="10, 5"
                             CornerRadius="10"
                             Padding="0,-10,0,-10">
-                            <Entry
-                                Text="{Binding DB}"
-                                Placeholder="DB"
-                                Keyboard="Text"
+                            <Picker
+                                Margin="20,0,0,0"
+                                Title="Select Data Base"
                                 HeightRequest="70"
-                                />
+                                SelectedItem="{Binding SelectDB}"
+                                ItemsSource="{Binding DB}">
+                                <Picker.Items>
+                                    <x:String>Firebase</x:String>
+                                    <x:String>SQLite</x:String>
+                                    <x:String>Web</x:String>
+                                </Picker.Items>
+                            </Picker>
+
                         </Frame>
                         <Frame
                             HasShadow="True"
@@ -189,12 +196,25 @@
                             Margin="10, 5"
                             CornerRadius="10"
                             Padding="0,-10,0,-10">
-                            <Entry
-                                Text="{Binding Iva}"
-                                Placeholder="IVA"
-                                Keyboard="Numeric"
+                            <Picker
+                                Margin="20,0,0,0"
+                                Title="Select Valor Iva"
                                 HeightRequest="70"
-                                />
+                                SelectedItem="{Binding SelectIva}"
+                                ItemsSource="{Binding Iva}">
+                                <Picker.Items>
+                                    <x:String>0.10</x:String>
+                                    <x:String>0.11</x:String>
+                                    <x:String>0.12</x:String>
+                                    <x:String>0.13</x:String>
+                                    <x:String>0.14</x:String>
+                                    <x:String>0.15</x:String>
+                                    <x:String>0.16</x:String>
+                                    <x:String>0.17</x:String>
+                                    <x:String>0.18</x:String>
+                                </Picker.Items>
+                            </Picker>
+
                         </Frame>
                         <Frame
                             HasShadow="True"
@@ -204,12 +224,18 @@
                             Margin="10, 5"
                             CornerRadius="10"
                             Padding="0,-10,0,-10">
-                            <Entry
-                                Text="{Binding Coin}"
-                                Placeholder="Current"
-                                Keyboard="Text"
+                            <Picker
+                                Margin="20,0,0,0"
+                                Title="Select Coin"
                                 HeightRequest="70"
-                                />
+                                SelectedItem="{Binding SelectCoin}"
+                                ItemsSource="{Binding Coin}">
+                                <Picker.Items>
+                                    <x:String>USD</x:String>
+                                    <x:String>PESO</x:String>
+                                    <x:String>EURO</x:String>
+                                </Picker.Items>
+                            </Picker>
                         </Frame>
                     </Grid>
                     <Grid
