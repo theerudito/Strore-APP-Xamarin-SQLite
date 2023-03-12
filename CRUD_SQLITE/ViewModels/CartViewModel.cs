@@ -1,5 +1,6 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,25 +15,25 @@ namespace CRUD_SQLITE.ViewModels
     public class CartViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-        public MProduct receivedProduct { get; set; }
 
         List<MProduct> products = new List<MProduct>();
 
         #region CONSTRUCTOR
-        public CartViewModel(INavigation navigation, MProduct product)
+        public CartViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            receivedProduct = product;
-            products.Add(product);
             Cantidad = 1;
+
+            List_Products = new ObservableCollection<MProduct>(products);
+
             Total_Cart();
             Get_Data_Company();
             getClientFinal();
             FontSize = "18";
-
-
-            Get_Products_Cart();
+            Get_Products_Cart(null);
         }
+
+
         #endregion
 
         #region VARIABLES
@@ -274,10 +275,9 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
 
-        public async Task Get_Products_Cart()
+        public void Get_Products_Cart(MProduct product)
         {
-
-            List_Products = new ObservableCollection<MProduct>(products);
+            products.Add(product);
         }
 
         public void Get_Data_Company()
@@ -301,7 +301,7 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task Delete_ProductCart()
         {
-            var deleteProduct = await _dbContext.Cart.FindAsync(receivedProduct.IdProduct);
+            var deleteProduct = await _dbContext.Cart.FindAsync(1);
             _dbContext.Cart.Remove(deleteProduct);
             await _dbContext.SaveChangesAsync();
             await DisplayAlert("Eliminar", "Producto eliminado", "OK");

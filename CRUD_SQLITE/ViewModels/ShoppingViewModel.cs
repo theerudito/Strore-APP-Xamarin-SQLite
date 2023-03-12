@@ -30,6 +30,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             Navigation = navigation;
             getAllProducts();
+
         }
         #endregion
 
@@ -83,13 +84,13 @@ namespace CRUD_SQLITE.ViewModels
         }
         public async Task goPageCart()
         {
-            //await Navigation.PushAsync(new Cart());
+            await Navigation.PushAsync(new Cart());
         }
         public async Task add_To_Cart(MProduct product)
         {
-            await Navigation.PushAsync(new Cart(product));
-
-            new Cart(product);
+            CartViewModel _cart = new CartViewModel(Navigation);
+            _cart.Get_Products_Cart(product);
+            await Navigation.PushAsync(new Cart());
         }
         public async Task prew_Product()
         {
