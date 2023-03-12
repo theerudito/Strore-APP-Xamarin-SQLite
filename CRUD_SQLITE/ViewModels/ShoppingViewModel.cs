@@ -22,7 +22,6 @@ namespace CRUD_SQLITE.ViewModels
         int _quantityProduct = 0;
 
         ObservableCollection<MProduct> _List_Product;
-
         #endregion
 
 
@@ -87,8 +86,6 @@ namespace CRUD_SQLITE.ViewModels
         #region METODOS ASYNC
         public async Task<List<MProduct>> getAllProducts()
         {
-            CartViewModel _cart = new CartViewModel(Navigation);
-            QuantityProduct = _cart.QuantityOnCart();
             var result = await _dbContext.Product.ToListAsync();
             List_Product = new ObservableCollection<MProduct>(result);
             return result;
@@ -115,6 +112,7 @@ namespace CRUD_SQLITE.ViewModels
             //await Navigation.PushAsync(new Cart());
 
 
+            QuantityProduct = _cart.QuantityOnCart();
         }
         public async Task prew_Product()
         {
