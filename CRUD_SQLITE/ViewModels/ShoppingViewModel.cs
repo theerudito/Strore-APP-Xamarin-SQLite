@@ -14,7 +14,6 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB_Context _dbContext = new DB_Context();
 
-
         #region VARIABLES
         string _nameProduct;
         int _prewProduct = 10;
