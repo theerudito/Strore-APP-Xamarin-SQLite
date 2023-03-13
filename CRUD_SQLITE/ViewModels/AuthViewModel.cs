@@ -12,6 +12,7 @@ namespace CRUD_SQLITE.ViewModels
     class AuthViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
+        App appIndex = new App();
 
         #region  VARIABLES
         private string _email;
@@ -75,9 +76,7 @@ namespace CRUD_SQLITE.ViewModels
                 {
                     await DisplayAlert("Login", "Welcome " + query.User, "Ok");
                     await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
-                    //await Navigation.PushAsync(new AppShell());
-                    // navegar a la pagina principal AppShell
-                    NavigationPage navigationPage = new NavigationPage(new AppShell());
+                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
 
                     User = "";
                     Email = "";
@@ -108,12 +107,13 @@ namespace CRUD_SQLITE.ViewModels
                     Email = Email,
                     Password = BCrypt.Net.BCrypt.HashPassword(Password)
                 };
-
+                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
+                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
                 _dbContext.Auth.Add(user);
                 await _dbContext.SaveChangesAsync();
                 await DisplayAlert("Register", query.User, "Ok");
-                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
-                await Navigation.PushAsync(new Home());
+
+
                 User = "";
                 Email = "";
                 Password = "";

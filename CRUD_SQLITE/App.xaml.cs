@@ -10,7 +10,8 @@ namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
-        private readonly string LocalStorageUser = "user";
+        private readonly string LocalStorageToken = "token";
+
         public App()
         {
             var _dbCcontext = new DB_Context();
@@ -19,16 +20,19 @@ namespace CRUD_SQLITE
 
             InitializeComponent();
 
-            var auth = SecureStorage.GetAsync(LocalStorageUser);
+            MainPage = new AppShell();
+            LoadPage();
 
-            if (auth.Result == null)
-            {
-                MainPage = new Auth();
-            }
-            else
-            {
-                MainPage = new AppShell();
-            }
+            //var auth = SecureStorage.GetAsync(LocalStorageToken);
+
+            //if (auth.Result == null)
+            //{
+            //    MainPage = new Auth();
+            //}
+            //else
+            //{
+            //    MainPage = new AppShell();
+            //}
 
 
             int id = 1;
@@ -110,6 +114,9 @@ namespace CRUD_SQLITE
                 _dbCcontext.Add(product);
                 _dbCcontext.SaveChanges();
             }
+        }
+        public void LoadPage()
+        {
 
         }
         protected override void OnStart()
