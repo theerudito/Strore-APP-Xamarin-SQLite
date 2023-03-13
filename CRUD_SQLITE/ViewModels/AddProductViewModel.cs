@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.IO;
 
 namespace CRUD_SQLITE.ViewModels
 {
@@ -18,13 +19,14 @@ namespace CRUD_SQLITE.ViewModels
         public MProduct _product { get; set; }
         public bool _Editing;
         private string _Save;
-        public string _textName;
-        public string _textCode;
-        public string _textBrand;
-        public string _textDescription;
-        public float _textPrice;
-        public string _textQuantity;
-        public string _urlImageProduct = "https://i.postimg.cc/7YycB3Dg/image.png";
+        private string _textName;
+        private string _textCode;
+        private string _textBrand;
+        private string _textDescription;
+        private float _textPrice;
+        private string _textQuantity;
+        private string _refImage = "https://raw.githubusercontent.com/theerudito/Strore-APP-Xamarin-SQLite/master/product.png";
+        private string _imageOnMobile = "";
         #endregion
 
         #region CONSTRUCTOR
@@ -44,7 +46,7 @@ namespace CRUD_SQLITE.ViewModels
                 _Editing = false;
                 Save = "SAVE PRODUCT";
             }
-            obtenerData();
+            getData();
         }
         #endregion
 
@@ -56,7 +58,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _Save, value);
-                //OnPropertyChanged();
             }
         }
         public string TextName
@@ -65,7 +66,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _textName, value);
-                //OnPropertyChanged();
             }
         }
         public string TextCode
@@ -74,7 +74,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _textCode, value);
-                //OnPropertyChanged();
             }
         }
         public string TextBrand
@@ -83,7 +82,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _textBrand, value);
-                //OnPropertyChanged();
             }
         }
         public string TextDescription
@@ -92,7 +90,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _textDescription, value);
-                //OnPropertyChanged();
             }
         }
         public float TextPrice
@@ -101,7 +98,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _textPrice, value);
-                //OnPropertyChanged();
             }
         }
         public string TextQuantity
@@ -110,23 +106,21 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _textQuantity, value);
-                //OnPropertyChanged();
             }
         }
         public string ImageProduct
         {
-            get { return _urlImageProduct; }
+            get { return _imageOnMobile; }
             set
             {
-                SetValue(ref _urlImageProduct, value);
-                //OnPropertyChanged();
+                SetValue(ref _imageOnMobile, value);
             }
         }
 
         #endregion
 
         #region METHODS
-        public void obtenerData()
+        public void getData()
         {
             TextName = _product.NameProduct;
             TextCode = _product.CodeProduct;
@@ -136,17 +130,17 @@ namespace CRUD_SQLITE.ViewModels
             TextQuantity = Convert.ToString(_product.Quantity);
             ImageProduct = _product.Image_Product;
         }
-        public async Task openGalery(MProduct product)
+        public async Task openGalery()
         {
-            var photo = await MediaPicker.PickPhotoAsync();
-
-            //if (photo != null)
-            //{
-            //    uploadImage = System.IO.File.ReadAllBytes(photo.FullPath);
-            //    var steam = picProduct.Source = ImageSource.FromStream(() => new MemoryStream(uploadImage));
-
-            //}
-            await DisplayAlert("Alert", "Image selected", "OK");
+            var result = await FilePicker.PickAsync();
+            if (result != null)
+            {
+                var stream = await result.OpenReadAsync();
+                var bytes = new byte[stream.Length];
+                await stream.ReadAsync(bytes, 0, (int)stream.Length);
+                string base64 = Convert.ToBase64String(bytes);
+                ImageProduct = base64;
+            }
         }
         public async Task<MProduct> Insert_Product()
         {
@@ -162,7 +156,8 @@ namespace CRUD_SQLITE.ViewModels
                     Description = TextDescription,
                     P_Unitary = TextPrice,
                     Quantity = Convert.ToInt32(TextQuantity),
-                    Image_Product = _urlImageProduct
+                    Image_Product = _refImage,
+                    RefImagen = _refImage,
                 };
                 await _dbContext.Product.AddAsync(product);
                 await _dbContext.SaveChangesAsync();
@@ -193,7 +188,7 @@ namespace CRUD_SQLITE.ViewModels
             _product.Description = TextDescription;
             _product.P_Unitary = TextPrice;
             _product.Quantity = Convert.ToInt32(TextQuantity);
-            _product.Image_Product = _urlImageProduct;
+            _product.Image_Product = _imageOnMobile;
             _dbContext.Product.Update(_product);
             await _dbContext.SaveChangesAsync();
             ResetField();
@@ -220,13 +215,13 @@ namespace CRUD_SQLITE.ViewModels
             TextDescription = "";
             TextPrice = 0;
             TextQuantity = "";
-            ImageProduct = "";
+            //Image_Product = "";
         }
         #endregion
 
         #region COMMAND
         public ICommand btnCreateProduct => new Command<MProduct>(async (prod) => await createOrEditProductAsync());
-        public ICommand btnOpenGalery => new Command<MProduct>(async (prod) => await openGalery(prod));
+        public ICommand btnOpenGalery => new Command(async () => await openGalery());
         #endregion
     }
 }

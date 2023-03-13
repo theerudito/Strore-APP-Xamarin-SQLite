@@ -1,5 +1,6 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace CRUD_SQLITE.ViewModels
         ObservableCollection<MAuth> _List_Users;
         private StackLayout showRegister;
         private StackLayout showLogin;
-        private string LocalStorage = "user";
+        private readonly string LocalStorageUser = "user";
+        private readonly string LocalStorageToken = "token";
         #endregion
 
         #region  OBJECTS
@@ -72,7 +74,11 @@ namespace CRUD_SQLITE.ViewModels
                 if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
                 {
                     await DisplayAlert("Login", "Welcome " + query.User, "Ok");
-                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorage, query.User);
+                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
+                    //await Navigation.PushAsync(new AppShell());
+                    // navegar a la pagina principal AppShell
+                    NavigationPage navigationPage = new NavigationPage(new AppShell());
+
                     User = "";
                     Email = "";
                     Password = "";
@@ -81,13 +87,14 @@ namespace CRUD_SQLITE.ViewModels
                 {
                     await DisplayAlert("Login", "Password or Email is Wrong", "Ok");
                 }
-
             }
             else
             {
                 await DisplayAlert("Login", "User not found", "Ok");
             }
         }
+
+
 
         public async Task Register()
         {
@@ -101,9 +108,12 @@ namespace CRUD_SQLITE.ViewModels
                     Email = Email,
                     Password = BCrypt.Net.BCrypt.HashPassword(Password)
                 };
+
                 _dbContext.Auth.Add(user);
                 await _dbContext.SaveChangesAsync();
-                await DisplayAlert("Register", "Register Success", "Ok");
+                await DisplayAlert("Register", query.User, "Ok");
+                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
+                await Navigation.PushAsync(new Home());
                 User = "";
                 Email = "";
                 Password = "";

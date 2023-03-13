@@ -1,6 +1,8 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 
@@ -8,6 +10,7 @@ namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
+        private readonly string LocalStorageUser = "user";
         public App()
         {
             var _dbCcontext = new DB_Context();
@@ -16,7 +19,17 @@ namespace CRUD_SQLITE
 
             InitializeComponent();
 
-            MainPage = new AppShell();
+            var auth = SecureStorage.GetAsync(LocalStorageUser);
+
+            if (auth.Result == null)
+            {
+                MainPage = new Auth();
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
+
 
             int id = 1;
             string conde = "250787";
@@ -88,7 +101,7 @@ namespace CRUD_SQLITE
                 Description = "Bebida Gaseosa",
                 P_Unitary = 1.50f,
                 Quantity = 10,
-                Image_Product = "https://i.postimg.cc/7YycB3Dg/image.png"
+                Image_Product = "https://raw.githubusercontent.com/theerudito/Strore-APP-Xamarin-SQLite/master/product.png"
             };
             var myProduct = _dbCcontext.Product.Find(id);
 

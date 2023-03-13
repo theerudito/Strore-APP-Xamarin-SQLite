@@ -16,6 +16,7 @@ namespace CRUD_SQLITE.Models
         public float P_Unitary { get; set; }
         public float P_Total { get; set; }
         public string Image_Product { get; set; } = "";
+        public string RefImagen { get; set; } = "";
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public List<MCart> Cart { get; set; } = new List<MCart>();

@@ -23,12 +23,12 @@ namespace CRUD_SQLITE.ViewModels
         private string _Version = "v1.2.0";
         private string _NameStore;
         private string _NameOwner;
-        private string GitHub = "https://github.com/theerudito";
-        private string Instagram = "https://www.instagram.com/theerudito";
-        private string Twitter = "https://twitter.com/theerudito";
-        private string Web = "https://byerudito.web.app/";
-        private string Linkedin = "https://www.linkedin.com/in/theerudito";
-        private string LocalStorage = "user";
+        private readonly string GitHub = "https://github.com/theerudito";
+        private readonly string Instagram = "https://www.instagram.com/theerudito";
+        private readonly string Twitter = "https://twitter.com/theerudito";
+        private readonly string Web = "https://byerudito.web.app/";
+        private readonly string Linkedin = "https://www.linkedin.com/in/theerudito";
+        private readonly string LocalStorage = "user";
         #endregion
 
         #region OBJECTS

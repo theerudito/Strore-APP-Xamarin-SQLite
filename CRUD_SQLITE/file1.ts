@@ -121,3 +121,36 @@ drop table MDetailCart;
 drop table MAuth;
 drop table MCodeApp;
 
+
+
+var resultado = await FilePicker.PickAsync();
+if (resultado != null) {
+    var stream = await resultado.OpenReadAsync();
+    var bytes = new byte[stream.Length];
+    await stream.ReadAsync(bytes, 0, (int)stream.Length);
+        string base64 = Convert.ToBase64String(bytes);
+    var imagen = new Imagen { ImagenBase64 = base64 };
+    var conexion = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, "database.db3"));
+    await conexion.CreateTableAsync<Imagen>();
+    await conexion.InsertAsync(imagen);
+}
+
+
+public async Task < ImageSource > ConvertirBase64(string base64)
+{
+    try {
+        byte[] bytes = Convert.FromBase64String(base64);
+        Stream stream = new MemoryStream(bytes);
+        return ImageSource.FromStream(() => stream);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+        return null;
+    }
+}
+
+
+string base64 = "TU_CADENA_BASE64";
+ImageSource imagen = await ConvertirBase64(base64);
+MiImagen.Source = imagen;
