@@ -1,7 +1,7 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -75,9 +75,9 @@ namespace CRUD_SQLITE.ViewModels
                 if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
                 {
                     await DisplayAlert("Login", "Welcome " + query.User, "Ok");
-                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
+                    // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
                     await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
-
+                    appIndex.ShowAppShell();
                     User = "";
                     Email = "";
                     Password = "";
@@ -101,19 +101,20 @@ namespace CRUD_SQLITE.ViewModels
 
             if (query == null)
             {
+                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
                 var user = new MAuth()
                 {
                     User = User,
                     Email = Email,
                     Password = BCrypt.Net.BCrypt.HashPassword(Password)
                 };
-                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
-                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
+                // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
+
                 _dbContext.Auth.Add(user);
                 await _dbContext.SaveChangesAsync();
                 await DisplayAlert("Register", query.User, "Ok");
 
-
+                appIndex.ShowAppShell();
                 User = "";
                 Email = "";
                 Password = "";

@@ -10,8 +10,19 @@ namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
-        private readonly string LocalStorageToken = "token";
+        private string LocalStorageToken = "token";
 
+        public void ShowAppShell()
+        {
+            if (string.IsNullOrEmpty(SecureStorage.GetAsync(LocalStorageToken).Result))
+            {
+                MainPage = new NavigationPage(new Client());
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
+        }
         public App()
         {
             var _dbCcontext = new DB_Context();
@@ -20,20 +31,7 @@ namespace CRUD_SQLITE
 
             InitializeComponent();
 
-            MainPage = new AppShell();
-            LoadPage();
-
-            //var auth = SecureStorage.GetAsync(LocalStorageToken);
-
-            //if (auth.Result == null)
-            //{
-            //    MainPage = new Auth();
-            //}
-            //else
-            //{
-            //    MainPage = new AppShell();
-            //}
-
+            ShowAppShell();
 
             int id = 1;
             string conde = "250787";
@@ -115,10 +113,7 @@ namespace CRUD_SQLITE
                 _dbCcontext.SaveChanges();
             }
         }
-        public void LoadPage()
-        {
 
-        }
         protected override void OnStart()
         {
         }

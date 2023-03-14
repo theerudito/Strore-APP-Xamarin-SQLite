@@ -62,7 +62,7 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task seeReport(MDetailsCart report)
         {
-            await Navigation.PushAsync(new DetailsCart(report));
+            await Navigation.PushAsync(new DetailsCart());
         }
         #endregion
 

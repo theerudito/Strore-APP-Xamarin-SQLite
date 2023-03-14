@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace CRUD_SQLITE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Auth : ContentPage
+    public partial class ViewAuth : ContentPage
     {
-        public Auth()
+        public ViewAuth()
         {
             InitializeComponent();
             BindingContext = new AuthViewModel(Navigation, showRegister, showLogin);

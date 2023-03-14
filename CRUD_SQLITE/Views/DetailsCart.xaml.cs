@@ -8,10 +8,10 @@ namespace CRUD_SQLITE.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailsCart : ContentPage
     {
-        public DetailsCart(MDetailsCart report)
+        public DetailsCart()
         {
             InitializeComponent();
-            BindingContext = new DetailsCartViewModel(Navigation, report);
+            BindingContext = new DetailsCartViewModel(Navigation);
         }
     }
 }

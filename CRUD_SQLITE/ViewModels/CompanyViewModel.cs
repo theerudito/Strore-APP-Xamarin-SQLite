@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using CRUD_SQLITE.Context;
 using Microsoft.EntityFrameworkCore;
 using CRUD_SQLITE.Views;
+using Xamarin.Essentials;
 
 namespace CRUD_SQLITE.ViewModels
 {
     public class CompanyViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
+        App appIndex = new App();
 
         #region CONTRUCTOR
         public CompanyViewModel(INavigation navigation)
@@ -40,6 +42,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextIVA;
         private string _TextCoin;
         private string LocalStorage = "user";
+        private string LocalStorageToken = "token";
 
         #endregion
 
@@ -222,7 +225,8 @@ namespace CRUD_SQLITE.ViewModels
         public void Logout()
         {
             Xamarin.Essentials.SecureStorage.Remove(LocalStorage);
-            Navigation.PushAsync(new Auth());
+            Xamarin.Essentials.SecureStorage.Remove(LocalStorageToken);
+            appIndex.ShowAppShell();
         }
         #endregion
 

@@ -73,41 +73,41 @@
     <ShellContent Route="Auth" ContentTemplate="{DataTemplate local:Auth}" />
     </FlyoutItem>-->
 
-    <FlyoutItem Title="Home" Icon="store.png">
-        <ShellContent Route="home" ContentTemplate="{DataTemplate local:Home}" />
+    <!--<FlyoutItem Title="Home" Icon="store.png">
+    <ShellContent Route="home" ContentTemplate="{DataTemplate local:Home}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Shopping" Icon="product.png">
-        <ShellContent Route="shopping" ContentTemplate="{DataTemplate local:Shopping}" />
-    </FlyoutItem>
+    <ShellContent Route="shopping" ContentTemplate="{DataTemplate local:Shopping}" />
+    </FlyoutItem>-->
 
-    <FlyoutItem Title="Card" Icon="cart.png">
-        <ShellContent Route="card" ContentTemplate="{DataTemplate local:Cart}" />
+    <!--<FlyoutItem Title="Card" Icon="cart.png">
+    <ShellContent Route="card" ContentTemplate="{DataTemplate local:Cart}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Client" Icon="avatar.png">
-        <ShellContent x:Name="RutaCliente" ContentTemplate="{DataTemplate local:Client}"  />
+    <ShellContent Route="client" ContentTemplate="{DataTemplate local:Client}"  />
     </FlyoutItem>
 
     <FlyoutItem Title="Product" Icon="product.png">
-        <ShellContent Route="product" ContentTemplate="{DataTemplate local:Product}" />
+    <ShellContent Route="product" ContentTemplate="{DataTemplate local:Product}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Reports" Icon="reports.png">
-        <ShellContent Route="report" ContentTemplate="{DataTemplate local:Reports}" />
+    <ShellContent Route="report" ContentTemplate="{DataTemplate local:Reports}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Config" Icon="config">
-        <ShellContent Route="config" ContentTemplate="{DataTemplate local:Config}" />
+    <ShellContent Route="config" ContentTemplate="{DataTemplate local:Config}" />
     </FlyoutItem>
 
     <FlyoutItem Title="User" Icon="avatar">
-        <ShellContent Route="users" ContentTemplate="{DataTemplate local:Users}" />
+    <ShellContent Route="users" ContentTemplate="{DataTemplate local:Users}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Detail" Icon="avatar">
-        <ShellContent Route="Detail" ContentTemplate="{DataTemplate local:DetailsCart}" />
-    </FlyoutItem>
+    <ShellContent Route="Detail" ContentTemplate="{DataTemplate local:DetailsCart}" />
+    </FlyoutItem>-->
 
 
 </Shell>

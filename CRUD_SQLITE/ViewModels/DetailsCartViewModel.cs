@@ -22,10 +22,10 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
-        public DetailsCartViewModel(INavigation navigation, MDetailsCart report)
+        public DetailsCartViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            myReport = report;
+
         }
 
 
