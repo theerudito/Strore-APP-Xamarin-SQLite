@@ -67,7 +67,7 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Login()
         {
-            App appIndex = new App();
+            
             if (Valitations() == true)
             {
                 var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
@@ -80,7 +80,7 @@ namespace CRUD_SQLITE.ViewModels
                         await DisplayAlert("Login", "Welcome " + query.User, "Ok");
                         // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
                         await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
-                        //appIndex.ShowAppShell();
+                        
                         User = "";
                         Email = "";
                         Password = "";
@@ -98,8 +98,7 @@ namespace CRUD_SQLITE.ViewModels
         }
 
         public async Task Register()
-        {
-            App appIndex = new App();
+        { 
             if (Valitations() == true)
             {
                 var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
@@ -119,7 +118,7 @@ namespace CRUD_SQLITE.ViewModels
                     await _dbContext.SaveChangesAsync();
                     await DisplayAlert("Register", query.User, "Ok");
 
-                    //appIndex.ShowAppShell();
+                   
                     User = "";
                     Email = "";
                     Password = "";

@@ -13,7 +13,7 @@ namespace CRUD_SQLITE.ViewModels
     public class CompanyViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-        App appIndex = new App();
+       
 
         #region CONTRUCTOR
         public CompanyViewModel(INavigation navigation)
@@ -227,7 +227,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             Xamarin.Essentials.SecureStorage.Remove(LocalStorage);
             Xamarin.Essentials.SecureStorage.Remove(LocalStorageToken);
-            //appIndex.ShowAppShell();
+           
         }
         #endregion
 
