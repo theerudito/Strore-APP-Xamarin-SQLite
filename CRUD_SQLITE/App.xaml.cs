@@ -10,18 +10,22 @@ namespace CRUD_SQLITE
 {
     public partial class App : Application
     {
-        private string LocalStorageToken = "token";
+        private readonly string _localStorageToken = "token";
 
         public void ShowAppShell()
         {
-            if (string.IsNullOrEmpty(SecureStorage.GetAsync(LocalStorageToken).Result))
-            {
-                MainPage = new NavigationPage(new Client());
-            }
-            else
-            {
-                MainPage = new AppShell();
-            }
+            // if (string.IsNullOrEmpty(SecureStorage.GetAsync(_localStorageToken).Result))
+            // {
+            //     //MainPage = new NavigationPage(new Client());
+            //     MainPage = new AppShell();
+            // }
+            // else
+            // {
+            //     //MainPage = new AppShell();
+            //     MainPage = new NavigationPage(new Product());
+            // }
+            
+            MainPage = new AppShell();
         }
         public App()
         {
@@ -31,7 +35,9 @@ namespace CRUD_SQLITE
 
             InitializeComponent();
 
-            ShowAppShell();
+            //ShowAppShell();
+
+            MainPage = new AppShell();
 
             int id = 1;
             string conde = "250787";

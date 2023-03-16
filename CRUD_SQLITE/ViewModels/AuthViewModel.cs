@@ -12,7 +12,7 @@ namespace CRUD_SQLITE.ViewModels
     class AuthViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-        App appIndex = new App();
+
 
         #region  VARIABLES
         private string _email;
@@ -67,63 +67,68 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Login()
         {
-            var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
-
-            if (query != null)
+            App appIndex = new App();
+            if (Valitations() == true)
             {
-                // check the password
-                if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
+                var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
+
+                if (query != null)
                 {
-                    await DisplayAlert("Login", "Welcome " + query.User, "Ok");
-                    // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
+                    // check the password
+                    if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
+                    {
+                        await DisplayAlert("Login", "Welcome " + query.User, "Ok");
+                        // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
+                        await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
+                        //appIndex.ShowAppShell();
+                        User = "";
+                        Email = "";
+                        Password = "";
+                    }
+                    else
+                    {
+                        await DisplayAlert("Login", "Password or Email is Wrong", "Ok");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Login", "User not found", "Ok");
+                }
+            }
+        }
+
+        public async Task Register()
+        {
+            App appIndex = new App();
+            if (Valitations() == true)
+            {
+                var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
+
+                if (query == null)
+                {
                     await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
-                    appIndex.ShowAppShell();
+                    var user = new MAuth()
+                    {
+                        User = User,
+                        Email = Email,
+                        Password = BCrypt.Net.BCrypt.HashPassword(Password)
+                    };
+                    // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
+
+                    _dbContext.Auth.Add(user);
+                    await _dbContext.SaveChangesAsync();
+                    await DisplayAlert("Register", query.User, "Ok");
+
+                    //appIndex.ShowAppShell();
                     User = "";
                     Email = "";
                     Password = "";
                 }
                 else
                 {
-                    await DisplayAlert("Login", "Password or Email is Wrong", "Ok");
+                    await DisplayAlert("Error", "Email already exists", "Ok");
                 }
             }
-            else
-            {
-                await DisplayAlert("Login", "User not found", "Ok");
-            }
-        }
-
-
-
-        public async Task Register()
-        {
-            var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
-
-            if (query == null)
-            {
-                await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
-                var user = new MAuth()
-                {
-                    User = User,
-                    Email = Email,
-                    Password = BCrypt.Net.BCrypt.HashPassword(Password)
-                };
-                // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
-
-                _dbContext.Auth.Add(user);
-                await _dbContext.SaveChangesAsync();
-                await DisplayAlert("Register", query.User, "Ok");
-
-                appIndex.ShowAppShell();
-                User = "";
-                Email = "";
-                Password = "";
-            }
-            else
-            {
-                await DisplayAlert("Error", "Email already exists", "Ok");
-            }
-
         }
         public void show_Login()
         {
@@ -135,9 +140,30 @@ namespace CRUD_SQLITE.ViewModels
             showRegister.IsVisible = true;
             showLogin.IsVisible = false;
         }
+        public bool Valitations()
+        {
+            if (string.IsNullOrEmpty(User))
+            {
+                DisplayAlert("Error", "User is required", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(Email))
+            {
+                DisplayAlert("Error", "Email is required", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(Password))
+            {
+                DisplayAlert("Error", "Password is required", "Ok");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         #endregion
-
 
         #region COMMANDS
         public ICommand btnLoginCommand => new Command(async () => await Login());

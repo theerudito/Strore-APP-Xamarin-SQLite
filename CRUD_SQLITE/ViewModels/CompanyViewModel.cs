@@ -205,6 +205,7 @@ namespace CRUD_SQLITE.ViewModels
             }
             CODE = "";
             showBtnSave = false;
+            Console.WriteLine("Hola");
             return company;
         }
         public async Task Activate()
@@ -226,7 +227,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             Xamarin.Essentials.SecureStorage.Remove(LocalStorage);
             Xamarin.Essentials.SecureStorage.Remove(LocalStorageToken);
-            appIndex.ShowAppShell();
+            //appIndex.ShowAppShell();
         }
         #endregion
 
