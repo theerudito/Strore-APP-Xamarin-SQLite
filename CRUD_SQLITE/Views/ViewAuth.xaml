@@ -1,65 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CRUD_SQLITE.Views.ViewAuth">
+<ContentPage
+    x:Class="CRUD_SQLITE.Views.ViewAuth"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
     <ContentPage.Content>
         <ScrollView>
 
             <StackLayout>
                 <StackLayout x:Name="showRegister" VerticalOptions="Center">
                     <Image
-                        Source="login"
-                        WidthRequest="200"
                         Margin="10"
-                        />
+                        Source="login"
+                        WidthRequest="200" />
                     <Label
-                        Text="Login"
-                        HorizontalOptions="Center"
                         FontSize="30"
-                        />
+                        HorizontalOptions="Center"
+                        Text="Login" />
                     <Frame
-                        HasShadow="True"
+                        Margin="20"
+                        Padding="0,-10,0,-10"
                         BackgroundColor="AliceBlue"
-                        IsClippedToBounds="True"
-                        Margin="20" CornerRadius="10"
-                        Padding="0,-10,0,-10">
+                        CornerRadius="10"
+                        HasShadow="True"
+                        IsClippedToBounds="True">
                         <Entry
-                            Text="{Binding Email}"
-                            Placeholder="Email"
                             HeightRequest="70"
-                            />
+                            Placeholder="Email"
+                            Text="{Binding Email}" />
                     </Frame>
                     <Frame
-                        HasShadow="True"
+                        Margin="20,5"
+                        Padding="0,-10,0,-10"
                         BackgroundColor="AliceBlue"
-                        IsClippedToBounds="True"
-                        Margin="20, 5"
                         CornerRadius="10"
-                        Padding="0,-10,0,-10">
+                        HasShadow="True"
+                        IsClippedToBounds="True">
                         <Entry
-                            Text="{Binding Password}"
-                            IsPassword="True"
-                            Placeholder="Password"
-                            Keyboard="Chat"
                             HeightRequest="70"
-                            />
+                            IsPassword="True"
+                            Keyboard="Chat"
+                            Placeholder="Password"
+                            Text="{Binding Password}" />
                     </Frame>
                     <Button
-                        Command="{Binding btnLoginCommand}"
-                        Text="Login"
-                        CornerRadius="10"
                         Margin="20"
                         Padding="0"
-                        />
-                    <Button
-
-                        Command="{Binding btnShowRegisterCommand}"
-                        Text="Go Register"
+                        Command="{Binding btnLoginCommand}"
                         CornerRadius="10"
+                        Text="Login" />
+                    <Button
                         Margin="20"
                         Padding="0"
                         BackgroundColor="Orange"
-                        />
+                        Command="{Binding btnShowRegisterCommand}"
+                        CornerRadius="10"
+                        Text="Go Register" />
                     <!--<Label Text="No Tienes Cuenta"  >
                     <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding btnShowRegisterCommand}"/>
@@ -70,66 +66,64 @@
 
                 <StackLayout x:Name="showLogin">
                     <Image
+                        Margin="10"
                         Source="login"
-                        WidthRequest="200"
-                        Margin="10" />
+                        WidthRequest="200" />
                     <Label
-                        Text="Register"
+                        FontSize="30"
                         HorizontalOptions="Center"
-                        FontSize="30"/>
+                        Text="Register" />
                     <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        IsClippedToBounds="True"
                         Margin="20"
+                        Padding="0,-10,0,-10"
+                        BackgroundColor="AliceBlue"
                         CornerRadius="10"
-                        Padding="0,-10,0,-10">
+                        HasShadow="True"
+                        IsClippedToBounds="True">
                         <Entry
-                            Text="{Binding User}"
+                            HeightRequest="70"
                             Placeholder="Name"
-                            HeightRequest="70"
-                            />
+                            Text="{Binding User}" />
                     </Frame>
                     <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        IsClippedToBounds="True"
                         Margin="20"
+                        Padding="0,-10,0,-10"
+                        BackgroundColor="AliceBlue"
                         CornerRadius="10"
-                        Padding="0,-10,0,-10">
+                        HasShadow="True"
+                        IsClippedToBounds="True">
                         <Entry
-                            Text="{Binding Email}"
+                            HeightRequest="70"
                             Placeholder="Email"
-                            HeightRequest="70"
-                            />
+                            Text="{Binding Email}" />
                     </Frame>
                     <Frame
-                        HasShadow="True"
-                        BackgroundColor="AliceBlue"
-                        IsClippedToBounds="True"
                         Margin="20"
+                        Padding="0,-10,0,-10"
+                        BackgroundColor="AliceBlue"
                         CornerRadius="10"
-                        Padding="0,-10,0,-10">
+                        HasShadow="True"
+                        IsClippedToBounds="True">
                         <Entry
-                            IsPassword="True"
-                            Text="{Binding Password}"
-                            Placeholder="Password"
-                            Keyboard="Chat"
                             HeightRequest="70"
-                            />
+                            IsPassword="True"
+                            Keyboard="Chat"
+                            Placeholder="Password"
+                            Text="{Binding Password}" />
                     </Frame>
                     <Button
-                        Command="{Binding btnRegisterCommand}"
-                        Text="Register"
-                        CornerRadius="10"
-                        Margin="20" Padding="0"/>
-                    <Button
-                        Command="{Binding btnShowLoginCommand}"
-                        Text="Go Login"
-                        CornerRadius="10"
                         Margin="20"
                         Padding="0"
-                        BackgroundColor="Orange"/>
+                        Command="{Binding btnRegisterCommand}"
+                        CornerRadius="10"
+                        Text="Register" />
+                    <Button
+                        Margin="20"
+                        Padding="0"
+                        BackgroundColor="Orange"
+                        Command="{Binding btnShowLoginCommand}"
+                        CornerRadius="10"
+                        Text="Go Login" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -14,31 +14,18 @@ namespace CRUD_SQLITE
 
         public void ShowAppShell()
         {
-            // if (string.IsNullOrEmpty(SecureStorage.GetAsync(_localStorageToken).Result))
-            // {
-            //     //MainPage = new NavigationPage(new Client());
-            //     MainPage = new AppShell();
-            // }
-            // else
-            // {
-            //     //MainPage = new AppShell();
-            //     MainPage = new NavigationPage(new Product());
-            // }
-            
-            MainPage = new AppShell();
+            if (string.IsNullOrEmpty(SecureStorage.GetAsync(_localStorageToken).Result))
+            {
+                MainPage = new NavigationPage(new ViewAuth());          
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
         }
-        public App()
+
+        public void CreateData (DB_Context _dbCcontext)
         {
-            var _dbCcontext = new DB_Context();
-
-            _dbCcontext.Database.Migrate();
-
-            InitializeComponent();
-
-            //ShowAppShell();
-
-            MainPage = new AppShell();
-
             int id = 1;
             string conde = "250787";
 
@@ -79,8 +66,6 @@ namespace CRUD_SQLITE
                 _dbCcontext.SaveChanges();
             }
 
-
-
             var client = new MClient
             {
                 IdClient = 1,
@@ -118,6 +103,20 @@ namespace CRUD_SQLITE
                 _dbCcontext.Add(product);
                 _dbCcontext.SaveChanges();
             }
+        }
+        public App()
+        {
+            NavigationPage.SetHasNavigationBar(this, false);
+            var _dbCcontext = new DB_Context();
+
+            _dbCcontext.Database.Migrate();
+
+            CreateData(_dbCcontext);
+
+            InitializeComponent();
+
+            ShowAppShell();
+       
         }
 
         protected override void OnStart()

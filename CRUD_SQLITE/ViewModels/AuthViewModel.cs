@@ -12,7 +12,7 @@ namespace CRUD_SQLITE.ViewModels
     class AuthViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-
+        App app = (App)Application.Current;
 
         #region  VARIABLES
         private string _email;
@@ -67,19 +67,23 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Login()
         {
-            
-            if (Valitations() == true)
+
+            if (ValitationsLogin() == true)
             {
+               
                 var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
 
                 if (query != null)
                 {
-                    // check the password
+                    
+                   // check the password
                     if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
                     {
                         await DisplayAlert("Login", "Welcome " + query.User, "Ok");
-                        // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
                         await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
+                        app.ShowAppShell();
+                        // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
+                        
                         
                         User = "";
                         Email = "";
@@ -98,27 +102,29 @@ namespace CRUD_SQLITE.ViewModels
         }
 
         public async Task Register()
-        { 
-            if (Valitations() == true)
+        {
+           
+            if (ValitationsRegister() == true)
             {
+               
                 var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
 
                 if (query == null)
                 {
-                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
+                    
                     var user = new MAuth()
                     {
                         User = User,
                         Email = Email,
                         Password = BCrypt.Net.BCrypt.HashPassword(Password)
                     };
-                    // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
-
+                   
+              
                     _dbContext.Auth.Add(user);
                     await _dbContext.SaveChangesAsync();
-                    await DisplayAlert("Register", query.User, "Ok");
-
-                   
+                    await DisplayAlert("Register", "Register Success", "Ok");
+                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, User);
+                    app.ShowAppShell();
                     User = "";
                     Email = "";
                     Password = "";
@@ -139,7 +145,25 @@ namespace CRUD_SQLITE.ViewModels
             showRegister.IsVisible = true;
             showLogin.IsVisible = false;
         }
-        public bool Valitations()
+        public bool  ValitationsLogin()
+        {
+            if (string.IsNullOrEmpty(Email))
+            {
+                DisplayAlert("Error", "Email is required", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(Password))
+            {
+                DisplayAlert("Error", "Password is required", "Ok");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool ValitationsRegister()
         {
             if (string.IsNullOrEmpty(User))
             {
