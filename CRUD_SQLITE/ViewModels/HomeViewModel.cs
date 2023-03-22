@@ -28,7 +28,7 @@ namespace CRUD_SQLITE.ViewModels
         private readonly string Twitter = "https://twitter.com/theerudito";
         private readonly string Web = "https://byerudito.web.app/";
         private readonly string Linkedin = "https://www.linkedin.com/in/theerudito";
-        private readonly string LocalStorage = "user";
+        private readonly string LocalStorageUser = "user";
         #endregion
 
         #region OBJECTS
@@ -54,7 +54,7 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public async Task Get_Company()
         {
-            var auth = await SecureStorage.GetAsync(LocalStorage);
+            var auth = await SecureStorage.GetAsync(LocalStorageUser);
             var id = 1;
             var user = await _dbCcontext.Company.FirstOrDefaultAsync(com => com.IdCompany == id);
             if (user != null)

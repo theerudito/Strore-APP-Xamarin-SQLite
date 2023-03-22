@@ -1,4 +1,5 @@
-﻿using CRUD_SQLITE.ViewModels;
+﻿using Admob;
+using CRUD_SQLITE.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,7 @@ namespace CRUD_SQLITE.Views
         public ViewAuth()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new AuthViewModel(Navigation, showRegister, showLogin);
         }
     }

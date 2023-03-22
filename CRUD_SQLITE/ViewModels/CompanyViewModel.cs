@@ -13,8 +13,8 @@ namespace CRUD_SQLITE.ViewModels
     public class CompanyViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-        App app = (App)Application.Current;
-
+       
+  
         #region CONTRUCTOR
         public CompanyViewModel(INavigation navigation)
         {
@@ -41,8 +41,8 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextDB;
         private string _TextIVA;
         private string _TextCoin;
-        private string LocalStorage = "user";
-        private string LocalStorageToken = "token";
+        private readonly string LocalStorageUser = "user";
+        private readonly string LocalStorageToken = "token";
 
         #endregion
 
@@ -223,13 +223,16 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
 
-        public void Logout()
+        public async void Logout()
         {
-            SecureStorage.Remove(LocalStorage);
-            Xamarin.Essentials.SecureStorage.Remove(LocalStorageToken);
+            App app = new App();
+            if (await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No"))
 
-            App.Current.MainPage = AppShell.Current;
-             
+            {
+               Xamarin.Essentials.SecureStorage.Remove(LocalStorageUser);
+               SecureStorage.Remove(LocalStorageToken);
+                app.ShowAppShell();
+            }
         }
         #endregion
 

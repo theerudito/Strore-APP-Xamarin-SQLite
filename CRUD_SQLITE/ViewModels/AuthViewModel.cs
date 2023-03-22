@@ -81,9 +81,8 @@ namespace CRUD_SQLITE.ViewModels
                     {
                         await DisplayAlert("Login", "Welcome " + query.User, "Ok");
                         await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
-                        app.ShowAppShell();
-                        // await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
-                        
+                        await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
+                        app.ShowAppShell();                        
                         
                         User = "";
                         Email = "";
@@ -100,7 +99,6 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
-
         public async Task Register()
         {
            
@@ -118,13 +116,15 @@ namespace CRUD_SQLITE.ViewModels
                         Email = Email,
                         Password = BCrypt.Net.BCrypt.HashPassword(Password)
                     };
-                   
-              
+                     
                     _dbContext.Auth.Add(user);
                     await _dbContext.SaveChangesAsync();
                     await DisplayAlert("Register", "Register Success", "Ok");
                     await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, User);
+                    await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
+
                     app.ShowAppShell();
+                    
                     User = "";
                     Email = "";
                     Password = "";
@@ -162,7 +162,6 @@ namespace CRUD_SQLITE.ViewModels
                 return true;
             }
         }
-
         public bool ValitationsRegister()
         {
             if (string.IsNullOrEmpty(User))
@@ -185,9 +184,7 @@ namespace CRUD_SQLITE.ViewModels
                 return true;
             }
         }
-
         #endregion
-
         #region COMMANDS
         public ICommand btnLoginCommand => new Command(async () => await Login());
         public ICommand btnShowRegisterCommand => new Command(show_Login);

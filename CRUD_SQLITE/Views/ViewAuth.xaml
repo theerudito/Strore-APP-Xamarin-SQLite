@@ -5,10 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView VerticalOptions="Center">
 
             <StackLayout>
-                <StackLayout x:Name="showRegister" VerticalOptions="Center">
+                <StackLayout x:Name="showRegister">
                     <Image
                         Margin="10"
                         Source="login"
