@@ -8,6 +8,14 @@ namespace CRUD_SQLITE.Context
 {
     public class DB_Context : DbContext
     {
+        public DB_Context()
+        {
+            SQLitePCL.Batteries_V2.Init();
+
+            this.Database.EnsureCreated();
+        }
+
+
         public DbSet<MClient> Client { get; set; }
         public DbSet<MProduct> Product { get; set; }
         public DbSet<MAuth> Auth { get; set; }
@@ -19,12 +27,7 @@ namespace CRUD_SQLITE.Context
 
         private const string DatabaseName = "storetgehd.db3";
 
-        public DB_Context()
-        {
-            SQLitePCL.Batteries_V2.Init();
-
-            this.Database.EnsureCreated();
-        }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
