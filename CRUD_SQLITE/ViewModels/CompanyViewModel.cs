@@ -7,6 +7,7 @@ using CRUD_SQLITE.Context;
 using Microsoft.EntityFrameworkCore;
 using CRUD_SQLITE.Views;
 using Xamarin.Essentials;
+using Admob;
 
 namespace CRUD_SQLITE.ViewModels
 {
@@ -226,12 +227,15 @@ namespace CRUD_SQLITE.ViewModels
         public async void Logout()
         {
             App app = new App();
+            app.MainPage = new NavigationPage(new ViewAuth());
             if (await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No"))
 
             {
                Xamarin.Essentials.SecureStorage.Remove(LocalStorageUser);
                SecureStorage.Remove(LocalStorageToken);
                 app.ShowAppShell();
+
+                app.MainPage = new NavigationPage(new ViewAuth());
             }
         }
         #endregion

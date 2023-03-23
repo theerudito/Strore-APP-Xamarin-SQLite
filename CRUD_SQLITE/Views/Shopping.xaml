@@ -1,160 +1,140 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CRUD_SQLITE.Views.Shopping">
+<ContentPage
+    x:Class="CRUD_SQLITE.Views.Shopping"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
 
         <StackLayout>
             <FlexLayout>
                 <Frame
-                    HasShadow="True"
-                    BackgroundColor="AliceBlue"
-                    IsClippedToBounds="True"
-                    Margin="30, 10"
-                    CornerRadius="10"
+                    Grid.Row="1"
+                    Margin="30,10"
                     Padding="0,0,0,-2"
-                    Grid.Row="1">
+                    BackgroundColor="AliceBlue"
+                    CornerRadius="10"
+                    HasShadow="True"
+                    IsClippedToBounds="True">
                     <SearchBar
                         Placeholder="Search Product"
-                        WidthRequest="250"
                         Text="{Binding NameProduct}"
-                        />
+                        WidthRequest="250" />
                 </Frame>
-                <ImageButton BackgroundColor="Transparent"
-                             Source="cart"
-                             HorizontalOptions="Center"
-                             VerticalOptions="CenterAndExpand"
-                             Aspect="AspectFit"
-                             WidthRequest="50"
-                             HeightRequest="50"
-                             Padding="0,12,-20,0"
-                             Margin="0,0,2,0"
-                             Command="{Binding goCart}"
-                             x:Name="padre"
-                             />
+                <ImageButton
+                    x:Name="padre"
+                    Margin="0,0,2,0"
+                    Padding="0,12,-20,0"
+                    Aspect="AspectFit"
+                    BackgroundColor="Transparent"
+                    Command="{Binding goCart}"
+                    HeightRequest="50"
+                    HorizontalOptions="Center"
+                    Source="cart"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="50" />
                 <Frame
-                    CornerRadius="50"
+                    Margin="1,10,2,20"
+                    Padding="5"
                     BackgroundColor="Red"
-                    Padding="5" Margin="1,10 ,2, 20"
+                    CornerRadius="50"
                     HeightRequest="30"
                     WidthRequest="25">
                     <Label
                         x:Name="textCounter"
                         Text="{Binding QuantityProduct}"
                         TextColor="White"
-                        VerticalTextAlignment="Center"/>
+                        VerticalTextAlignment="Center" />
                 </Frame>
             </FlexLayout>
 
-            <CollectionView
-                x:Name="viewPodroduct"
-                ItemsSource="{Binding  List_Product}"  >
+            <CollectionView x:Name="viewPodroduct" ItemsSource="{Binding List_Product}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid
-                            RowDefinitions="*"
-                            ColumnDefinitions="*">
-                            <Frame Padding="20"
-                                   BackgroundColor="black"
-                                   Margin="10"
-                                   CornerRadius="10">
+                        <Grid ColumnDefinitions="*" RowDefinitions="*">
+                            <Frame
+                                Margin="10"
+                                Padding="20"
+                                BackgroundColor="black"
+                                CornerRadius="10">
                                 <StackLayout>
                                     <Image
-                                        Source="{Binding Image_Product}"
                                         HeightRequest="100"
-                                        WidthRequest="100"
-                                        />
+                                        Source="{Binding Image_Product}"
+                                        WidthRequest="100" />
 
-                                    <FlexLayout
-                                        HorizontalOptions="Center">
+                                    <FlexLayout HorizontalOptions="Center">
                                         <Label
+                                            Margin="0,0,5,0"
                                             Text="Name:"
-                                            Margin="0, 0,5,0"
-                                            TextColor="White"
-                                            />
+                                            TextColor="White" />
                                         <Label
+                                            Margin="0,0,5,0"
+                                            MaxLines="1"
                                             Text="{Binding NameProduct}"
-                                            Margin="0, 0, 5 ,0"
-                                            MaxLines="1"
-
-                                            TextColor="White"
-                                            />
+                                            TextColor="White" />
                                     </FlexLayout>
-                                    <FlexLayout
-                                        HorizontalOptions="Center">
+                                    <FlexLayout HorizontalOptions="Center">
                                         <Label
+                                            Margin="0,-5,5,0"
                                             Text="Brand:"
-                                            Margin="0, -5, 5 ,0"
-                                            TextColor="White"
-                                            />
+                                            TextColor="White" />
                                         <Label
+                                            Margin="0,-5,5,0"
+                                            MaxLines="1"
                                             Text="{Binding Brand}"
-                                            Margin="0, -5, 5 ,0"
-                                            MaxLines="1"
-                                            TextColor="White"
-                                            />
+                                            TextColor="White" />
                                     </FlexLayout>
-                                    <FlexLayout
-                                        HorizontalOptions="Center">
+                                    <FlexLayout HorizontalOptions="Center">
                                         <Label
+                                            Margin="0,-5,5,0"
                                             Text="Description:"
-                                            Margin="0, -5, 5 ,0"
-                                            TextColor="White"
-                                            />
+                                            TextColor="White" />
                                         <Label
+                                            Margin="0,-5,5,0"
+                                            MaxLines="1"
                                             Text="{Binding Description}"
-                                            MaxLines="1"
-                                            Margin="0, -5, 5 ,0"
-                                            TextColor="White"
-                                            />
+                                            TextColor="White" />
                                     </FlexLayout>
-                                    <FlexLayout
-                                        HorizontalOptions="Center">
+                                    <FlexLayout HorizontalOptions="Center">
                                         <Label
+                                            Margin="0,-5,5,0"
+                                            MaxLines="1"
                                             Text="Price:"
-                                            MaxLines="1"
-                                            Margin="0, -5, 5 ,0"
-                                            TextColor="White"
-                                            />
+                                            TextColor="White" />
                                         <Label
-                                            Text="{Binding P_Unitary}"
+                                            Margin="0,-5,5,0"
                                             MaxLines="1"
-                                            Margin="0, -5, 5 ,0"
-                                            TextColor="White"
-                                            />
+                                            Text="{Binding P_Unitary}"
+                                            TextColor="White" />
                                     </FlexLayout>
-                                    <Button Text="ADD TO CART"
-                                            CornerRadius="20"
-                                            BackgroundColor="Orange"
-                                            Command="{Binding Source={x:Reference viewPodroduct},
-                                            Path=BindingContext.btnAddToCart}"
-                                            CommandParameter="{Binding .}"
-                                            />
+                                    <Button
+                                        BackgroundColor="#0099ff"
+                                        Command="{Binding Source={x:Reference viewPodroduct}, Path=BindingContext.btnAddToCart}"
+                                        CommandParameter="{Binding .}"
+                                        CornerRadius="5"
+                                        Text="ADD TO CART" />
                                 </StackLayout>
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout
-                        Span="2"
-                        Orientation="Vertical"/>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
             </CollectionView>
 
-            <StackLayout
-                HeightRequest="30" >
+            <StackLayout HeightRequest="30">
                 <Grid RowDefinitions="*">
                     <ImageButton
-                        Source="left"
                         Grid.Column="0"
                         BackgroundColor="Transparent"
-                        Command="{Binding btnPrewPorduct}"/>
+                        Command="{Binding btnPrewPorduct}"
+                        Source="left" />
                     <ImageButton
-                        Source="right"
                         Grid.Column="1"
                         BackgroundColor="Transparent"
-                        Command="{Binding nextProduct}" />
+                        Command="{Binding nextProduct}"
+                        Source="right" />
                 </Grid>
             </StackLayout>
         </StackLayout>

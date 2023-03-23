@@ -12,6 +12,7 @@
 
 	<ItemGroup>
 		<None Remove="Connection\products.db" />
+		<None Remove="Views\Config.xaml~RF19ae5e25.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>
