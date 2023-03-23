@@ -1,5 +1,6 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Services;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -86,32 +87,23 @@ namespace CRUD_SQLITE.ViewModels
         public async Task<List<MProduct>> getAllProducts()
         {
             var result = await _dbContext.Product.ToListAsync();
-            List_Product = new ObservableCollection<MProduct>(result);
+
+            if (result.Count > 0)
+            {
+                List_Product = new ObservableCollection<MProduct>(result);
+            }
             return result;
         }
         public async Task goPageCart()
         {
-            await Navigation.PushAsync(new Cart());
+           await Navigation.PushAsync(new Cart());
         }
 
         public async Task add_To_Cart(MProduct product)
         {
             CartViewModel _cart = new CartViewModel(Navigation);
-            var toCart = new MProduct()
-            {
-                IdProduct = product.IdProduct,
-                NameProduct = product.NameProduct,
-                CodeProduct = product.CodeProduct,
-                Brand = product.Brand,
-                Description = product.Description,
-                P_Unitary = product.P_Unitary,
-                Quantity = 1,
-            };
-            await _cart.Get_Products_Cart(toCart);
-            //await Navigation.PushAsync(new Cart());
-
-
-            QuantityProduct = _cart.QuantityOnCart();
+           await _cart.Get_Data_Product(product);
+           _cart.QuantityOnCart();
         }
         public async Task prew_Product()
         {

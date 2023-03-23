@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using System.IO;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    internal class AddProductViewModel : BaseViewModel
+    public class AddProductViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
 

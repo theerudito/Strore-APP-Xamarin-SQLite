@@ -1,5 +1,6 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
+using CRUD_SQLITE.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,27 +10,33 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+
 namespace CRUD_SQLITE.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
+        private INavigation Navigation;
+        MProduct pro = new MProduct();
 
-        List<MProduct> products = new List<MProduct>();
+        public MProduct _product { get; set; }
+        public MClient _client { get; set; }
 
 
-        #region CONSTRUCTOR
+     List<MProduct> _products = new List<MProduct>();
 
+        #region CONSTRUCTORS
 
         public CartViewModel(INavigation navigation)
         {
-
+            
+            Get_Data_Product(pro);
             Navigation = navigation;
             Get_Data_Company();
-            Cantidad = 1;
             Total_Cart();
             Task.Run(async () => await getClientFinal());
             FontSize = "18";
+            LoadCart();
         }
 
 
@@ -253,22 +260,19 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region METODOS ASYNC
-        public async Task Get_Products_Cart(MProduct product)
+        public async Task Get_Data_Product(MProduct product)
         {
-            products.Add(product);
-
-            if (products.Count > 0)
-            {
-                List_Products = new ObservableCollection<MProduct>(products);
-                //await Get_Products_Cart();
-            }
-            else
-            {
-                await DisplayAlert("Error", "No hay productos en el carrito", "Aceptar");
-            }
+            _products.Add(product);
+            LoadCart();
         }
 
-        public async Task getClientFinal()
+        public  void LoadCart()
+        {
+            List_Products = new ObservableCollection<MProduct>(_products);
+        }
+
+       
+         public async Task getClientFinal()
         {
             var seachClientFinal = await _dbContext.Client.Where(cli => cli.IdClient == cliFinal).FirstOrDefaultAsync();
 
@@ -307,12 +311,13 @@ namespace CRUD_SQLITE.ViewModels
             await DisplayAlert("Compra", "Compra realizada con exito", "OK");
         }
 
-        public async Task Delete_ProductCart()
+        public async Task Delete_ProductCart(MProduct product)
         {
-            var deleteProduct = await _dbContext.Cart.FindAsync(1);
-            _dbContext.Cart.Remove(deleteProduct);
-            await _dbContext.SaveChangesAsync();
-            await DisplayAlert("Eliminar", "Producto eliminado", "OK");
+            if (await DisplayAlert("Delete User", "Are you sure you want to delete this product?", "Yes", "No"))
+            {
+                _products.Remove(product);
+            }
+           
         }
 
         public void Res_Quantity()
@@ -356,14 +361,14 @@ namespace CRUD_SQLITE.ViewModels
 
         public int QuantityOnCart()
         {
-            return products.Count;
+            return _products.Count;
         }
         #endregion
 
         #region COMANDOS
         public ICommand btnSaveCartCommand => new Command(async () => await Save_Buy());
         public ICommand btnSearchDNICommand => new Command(async () => await getClient());
-        public ICommand btnDeleteProductCart => new Command(async () => await Delete_ProductCart());
+        public ICommand btnDeleteProductCart => new Command<MProduct>(async (pro) => await Delete_ProductCart(pro));
         public ICommand btnSumQuantityCommand => new Command(Sum_Quantity);
         public ICommand btnRestQuantityCommand => new Command(Res_Quantity);
         #endregion
