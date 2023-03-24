@@ -80,3 +80,14 @@ namespace CRUD_SQLITE
         }
     }
 }
+
+
+//< FlyoutItem Title = "About" Icon = "icon_about.png" >
+//       < ShellContent Route = "AboutPage" ContentTemplate = "{DataTemplate local:AboutPage}" />
+//   </ FlyoutItem >
+
+//    await Shell.Current.GoToAsync("//LoginPage");
+
+
+//Title = "{Binding Title}"
+//Shell.NavBarIsVisible="False"

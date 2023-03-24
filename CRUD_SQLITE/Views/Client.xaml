@@ -2,7 +2,8 @@
 <ContentPage
     x:Class="CRUD_SQLITE.Views.Client"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Clients">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
