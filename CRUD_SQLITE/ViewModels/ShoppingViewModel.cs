@@ -16,7 +16,6 @@ namespace CRUD_SQLITE.ViewModels
         DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
-        string _nameProduct;
         int _prewProduct = 10;
         int _nextProduct = -10;
         int _quantityProduct = 0;
@@ -41,15 +40,6 @@ namespace CRUD_SQLITE.ViewModels
             set
             {
                 SetValue(ref _List_Product, value);
-                OnpropertyChanged();
-            }
-        }
-        public string NameProduct
-        {
-            get { return _nameProduct; }
-            set
-            {
-                SetValue(ref _nameProduct, value);
                 OnpropertyChanged();
             }
         }
@@ -95,15 +85,16 @@ namespace CRUD_SQLITE.ViewModels
             return result;
         }
         public async Task goPageCart()
-        {
-           await Navigation.PushAsync(new Cart());
+        {            
+            await Navigation.PushAsync(new Cart());
         }
 
         public async Task add_To_Cart(MProduct product)
         {
             CartViewModel _cart = new CartViewModel(Navigation);
-           await _cart.Get_Data_Product(product);
-           _cart.QuantityOnCart();
+           _cart.Get_Data_Product(product);
+           var cuantity =  _cart.QuantityOnCart();
+            _quantityProduct = cuantity;
         }
         public async Task prew_Product()
         {

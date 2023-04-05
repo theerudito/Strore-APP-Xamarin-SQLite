@@ -5,13 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Add Clients">
     <ContentPage.Content>
-        <ScrollView>
+
             <StackLayout>
+                
                 <Image
                     Margin="0"
                     Source="avatar.png"
                     WidthRequest="100" />
-                <Label HorizontalOptions="Center" Text="ADD NEW CLIENT" />
+                <Label 
+                    HorizontalOptions="Center" 
+                    Text="ADD NEW CLIENT" />
                 <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
@@ -111,6 +114,6 @@
                     Text="{Binding Save}"
                     WidthRequest="80" />
             </StackLayout>
-        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

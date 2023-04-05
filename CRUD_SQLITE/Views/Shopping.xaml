@@ -48,10 +48,14 @@
                 </Frame>
             </FlexLayout>
 
-            <CollectionView x:Name="viewPodroduct" ItemsSource="{Binding List_Product}">
+            <CollectionView 
+                x:Name="viewPodroduct" 
+                ItemsSource="{Binding List_Product}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid ColumnDefinitions="*" RowDefinitions="*">
+                        <Grid 
+                            ColumnDefinitions="*" 
+                            RowDefinitions="*">
                             <Frame
                                 Margin="10"
                                 Padding="20"
@@ -63,7 +67,8 @@
                                         Source="{Binding Image_Product}"
                                         WidthRequest="100" />
 
-                                    <FlexLayout HorizontalOptions="Center">
+                                    <FlexLayout 
+                                        HorizontalOptions="Center">
                                         <Label
                                             Margin="0,0,5,0"
                                             Text="Name:"
@@ -74,7 +79,8 @@
                                             Text="{Binding NameProduct}"
                                             TextColor="White" />
                                     </FlexLayout>
-                                    <FlexLayout HorizontalOptions="Center">
+                                    <FlexLayout 
+                                        HorizontalOptions="Center">
                                         <Label
                                             Margin="0,-5,5,0"
                                             Text="Brand:"
@@ -85,7 +91,8 @@
                                             Text="{Binding Brand}"
                                             TextColor="White" />
                                     </FlexLayout>
-                                    <FlexLayout HorizontalOptions="Center">
+                                    <FlexLayout 
+                                        HorizontalOptions="Center">
                                         <Label
                                             Margin="0,-5,5,0"
                                             Text="Description:"
@@ -96,7 +103,8 @@
                                             Text="{Binding Description}"
                                             TextColor="White" />
                                     </FlexLayout>
-                                    <FlexLayout HorizontalOptions="Center">
+                                    <FlexLayout 
+                                        HorizontalOptions="Center">
                                         <Label
                                             Margin="0,-5,5,0"
                                             MaxLines="1"
@@ -110,7 +118,8 @@
                                     </FlexLayout>
                                     <Button
                                         BackgroundColor="#0099ff"
-                                        Command="{Binding Source={x:Reference viewPodroduct}, Path=BindingContext.btnAddToCart}"
+                                        Command="{Binding Source={x:Reference viewPodroduct}, 
+                                        Path=BindingContext.btnAddToCart}"
                                         CommandParameter="{Binding .}"
                                         CornerRadius="5"
                                         Text="ADD TO CART" />
@@ -120,12 +129,13 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                    <GridItemsLayout 
+                        Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
             </CollectionView>
 
             <StackLayout HeightRequest="30">
-                <Grid RowDefinitions="*">
+                <Grid RowDefinitions="20">
                     <ImageButton
                         Grid.Column="0"
                         BackgroundColor="Transparent"

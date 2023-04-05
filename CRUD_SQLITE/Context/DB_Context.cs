@@ -15,7 +15,6 @@ namespace CRUD_SQLITE.Context
             this.Database.EnsureCreated();
         }
 
-
         public DbSet<MClient> Client { get; set; }
         public DbSet<MProduct> Product { get; set; }
         public DbSet<MAuth> Auth { get; set; }
@@ -25,7 +24,7 @@ namespace CRUD_SQLITE.Context
         public DbSet<MDetailsCart> DetailsCart { get; set; }
         public DbSet<MReport> Reports { get; set; }
 
-        private const string DatabaseName = "storetgehd.db3";
+        private const string DatabaseName = "storr.db3";
 
         
 

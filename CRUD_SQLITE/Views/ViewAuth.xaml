@@ -46,21 +46,32 @@
                     <Button
                         Margin="20"
                         Padding="0"
+                        TextColor="White"
+                        Background="#0099ff"
                         Command="{Binding btnLoginCommand}"
                         CornerRadius="10"
                         Text="Login" />
-                    <Button
+                    <!--<Button
                         Margin="20"
                         Padding="0"
                         BackgroundColor="Orange"
                         Command="{Binding btnShowRegisterCommand}"
                         CornerRadius="10"
-                        Text="Go Register" />
-                    <!--<Label Text="No Tienes Cuenta"  >
-                    <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding btnShowRegisterCommand}"/>
-                    </Label.GestureRecognizers>
-                    </Label>-->
+                        Text="Go Register" />-->
+
+                        <Label 
+                            HorizontalOptions="Center" 
+                            Text="No tienes cuenta click en:"/>
+                        <Label 
+                            HorizontalOptions="Center"
+                            Text="Register" 
+                            TextColor="#0099ff">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding btnShowRegisterCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label> 
+                    
                 </StackLayout>
 
 
@@ -114,16 +125,33 @@
                     <Button
                         Margin="20"
                         Padding="0"
+                        TextColor="White"
+                        Background="#0099ff"
                         Command="{Binding btnRegisterCommand}"
                         CornerRadius="10"
                         Text="Register" />
-                    <Button
+                    <!--<Button
                         Margin="20"
                         Padding="0"
                         BackgroundColor="Orange"
                         Command="{Binding btnShowLoginCommand}"
                         CornerRadius="10"
-                        Text="Go Login" />
+                        Text="Go Login" />-->
+
+                    <Label 
+                            HorizontalOptions="Center" 
+                            Text="Deseas iniciar Session click en:"/>
+                    <Label 
+                            HorizontalOptions="Center"
+                            Text="Login" 
+                            TextColor="#0099ff">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding btnShowLoginCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
                 </StackLayout>
             </StackLayout>
         </ScrollView>

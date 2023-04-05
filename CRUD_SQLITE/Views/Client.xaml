@@ -5,13 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Clients">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Grid
+        <StackLayout>
+            <Grid
                     Margin="0,5,0,0"
                     ColumnDefinitions="*,360"
                     RowDefinitions="40">
-                    <ImageButton
+                <ImageButton
                         Grid.Row="0"
                         Grid.Column="0"
                         Margin="0,0,-20,0"
@@ -24,7 +23,7 @@
                         Source="add_client.png"
                         VerticalOptions="CenterAndExpand"
                         WidthRequest="30" />
-                    <Frame
+                <Frame
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="50,5,20,-5"
@@ -33,128 +32,141 @@
                         CornerRadius="10"
                         HasShadow="True"
                         IsClippedToBounds="True">
-                        <SearchBar HeightRequest="80" Placeholder="Search Client" />
-                    </Frame>
-                </Grid>
-                <StackLayout Margin="0,5,0,0" Background="#0099ff">
-                    <Grid ColumnDefinitions="2,*,*,*,*,*" RowDefinitions="*">
-                        <Label
+                    <SearchBar 
+                        HeightRequest="80" 
+                        Placeholder="Search Client" />
+                </Frame>
+            </Grid>
+            <StackLayout 
+                Margin="0,5,0,0" 
+                Background="#0099ff">
+                <Grid 
+                    Margin="0,2,0,0"
+                    ColumnDefinitions="2,*,*,*,*,*" 
+                    RowDefinitions="*">
+                    <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="1"
                             MaxLines="1"
                             Text="NAME"
                             TextColor="White"
                             WidthRequest="100" />
-                        <Label
+                    <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="2"
                             MaxLines="1"
                             Text="DIRECTION"
                             TextColor="White"
                             WidthRequest="100" />
-                        <Label
+                    <Label
                             Grid.Row="0"
+                            Margin="0,-3,0,0"
                             Grid.Column="3"
                             MaxLines="1"
                             Text="PHONE"
                             TextColor="White"
                             WidthRequest="100" />
-                        <Label
+                    <Label
                             Grid.Row="0"
+                            Margin="0,-3,0,0"
                             Grid.Column="4"
                             MaxLines="1"
                             Text="EMAIL"
                             TextColor="White"
                             WidthRequest="100" />
-                        <Label
+                    <Label
                             Grid.Row="0"
+                            Margin="0,-3,0,0"
                             Grid.Column="5"
                             MaxLines="1"
                             Text="ACTION"
                             TextColor="White"
                             WidthRequest="100" />
-                    </Grid>
-                </StackLayout>
+                </Grid>
+            </StackLayout>
 
-                <ListView
+            <ListView
                     x:Name="List"
                     IsRefreshing="true"
                     ItemsSource="{Binding List_Clients}"
                     RefreshControlColor="#0099FF">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
                                     BackgroundColor="white"
                                     ColumnDefinitions="*,*,*,*,*"
                                     RowDefinitions="*">
-                                    <Label
+                                <Label
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         Margin="10"
                                         MaxLines="1"
                                         Text="{Binding FirstName}" />
-                                    <Label
+                                <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Margin="10"
                                         MaxLines="1"
                                         Text="{Binding Direction}" />
-                                    <Label
+                                <Label
                                         Grid.Row="0"
                                         Grid.Column="2"
                                         Margin="10"
                                         MaxLines="1"
                                         Text="{Binding Phone}" />
-                                    <Label
+                                <Label
                                         Grid.Row="0"
                                         Grid.Column="3"
                                         Margin="10"
                                         MaxLines="1"
                                         Text="{Binding Email}" />
-                                    <FlexLayout
+                                <FlexLayout
                                         Grid.Row="0"
                                         Grid.Column="4"
                                         HorizontalOptions="Center">
-                                        <ImageButton
+                                    <ImageButton
                                             Margin="0,2,5,0"
                                             Aspect="AspectFit"
                                             BackgroundColor="Transparent"
-                                            Command="{Binding Source={x:Reference List}, Path=BindingContext.btnGoUpdateClient}"
+                                            Command="{Binding Source={x:Reference List}, 
+                                        Path=BindingContext.btnGoUpdateClient}"
                                             CommandParameter="{Binding}"
                                             HeightRequest="30"
                                             Source="edit"
                                             WidthRequest="30" />
-                                        <ImageButton
+                                    <ImageButton
                                             Margin="0,2,5,0"
                                             Aspect="AspectFit"
                                             BackgroundColor="Transparent"
-                                            Command="{Binding Source={x:Reference List}, Path=BindingContext.btnDeleteClient}"
+                                            Command="{Binding Source={x:Reference List}, 
+                                        Path=BindingContext.btnDeleteClient}"
                                             CommandParameter="{Binding}"
                                             HeightRequest="30"
                                             Source="trash"
                                             WidthRequest="30" />
-                                    </FlexLayout>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <StackLayout HeightRequest="30">
-                    <Grid RowDefinitions="*">
-                        <ImageButton
+                                </FlexLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout HeightRequest="30">
+                <Grid RowDefinitions="20">
+                    <ImageButton
                             Grid.Column="0"
                             BackgroundColor="Transparent"
                             Command="{Binding btnLeftClient}"
                             Source="left" />
-                        <ImageButton
+                    <ImageButton
                             Grid.Column="1"
                             BackgroundColor="Transparent"
                             Command="{Binding btnRightClient}"
                             Source="right" />
-                    </Grid>
-                </StackLayout>
+                </Grid>
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

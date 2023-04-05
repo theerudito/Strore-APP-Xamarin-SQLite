@@ -1,6 +1,5 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,33 +12,29 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
+   
     public class CartViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-        private INavigation Navigation;
-        MProduct pro = new MProduct();
+        public INavigation Navigation { get; set; }
+        
+        List<MProduct> _myCart = new List<MProduct>();
+        MProduct p = new MProduct();
 
-        public MProduct _product { get; set; }
-        public MClient _client { get; set; }
+       
 
-
-     List<MProduct> _products = new List<MProduct>();
 
         #region CONSTRUCTORS
-
         public CartViewModel(INavigation navigation)
         {
-            
-            Get_Data_Product(pro);
             Navigation = navigation;
             Get_Data_Company();
             Total_Cart();
             Task.Run(async () => await getClientFinal());
             FontSize = "18";
-            LoadCart();
+
+            List_Products = new ObservableCollection<MProduct>(_myCart);
         }
-
-
         #endregion
 
         #region VARIABLES
@@ -69,14 +64,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _Email;
         private string _Direction;
 
-        private float _Quantity;
-        private string _Code;
-        private string _Name;
-        private string _Brand;
-        private string _Description;
-        private float _P_Unitaty;
-        private float _P_Total;
-        private int _cantidad;
+        private int _cant;
         private int _IdClient;
         private int _IdProduct;
         private int cliFinal = 1;
@@ -85,11 +73,7 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region OBJETOS
-        public int Cantidad
-        {
-            get { return _cantidad; }
-            set { SetValue(ref _cantidad, value); }
-        }
+       
         public ObservableCollection<MProduct> List_Products
         {
             get { return _list_Product; }
@@ -105,42 +89,7 @@ namespace CRUD_SQLITE.ViewModels
             set { SetValue(ref _FontSize, value); }
         }
 
-        // DATA PRODUCT
-        public float Quantity
-        {
-            get { return _Quantity; }
-            set { SetValue(ref _Quantity, value); }
-        }
-        public string Code
-        {
-            get { return _Code; }
-            set { SetValue(ref _Code, value); }
-        }
-        public string Name
-        {
-            get { return _Name; }
-            set { SetValue(ref _Name, value); }
-        }
-        public string Brand
-        {
-            get { return _Brand; }
-            set { SetValue(ref _Brand, value); }
-        }
-        public string Description
-        {
-            get { return _Description; }
-            set { SetValue(ref _Description, value); }
-        }
-        public float P_Unitary
-        {
-            get { return _P_Unitaty; }
-            set { SetValue(ref _P_Unitaty, value); }
-        }
-        public float P_Total
-        {
-            get { return _P_Total; }
-            set { SetValue(ref _P_Total, value); }
-        }
+        
 
 
         // DATA CART VALUES
@@ -215,6 +164,11 @@ namespace CRUD_SQLITE.ViewModels
 
 
         // DATA CLIENT
+        public int IdClient
+        {
+            get { return _IdClient; }
+            set { SetValue(ref _IdClient, value); }
+        }
         public string DNI
         {
             get { return _DNI; }
@@ -246,34 +200,34 @@ namespace CRUD_SQLITE.ViewModels
             set { SetValue(ref _Direction, value); }
         }
 
-        public int IdClient
-        {
-            get { return _IdClient; }
-            set { SetValue(ref _IdClient, value); }
-        }
+       
         public int IdProduct
         {
             get { return _IdProduct; }
             set { SetValue(ref _IdProduct, value); }
         }
+        public int Cant
+        {
+            get { return _cant; }
+            set { SetValue(ref _cant, value); }
+        }
+
+
         #endregion
 
 
         #region METODOS ASYNC
-        public async Task Get_Data_Product(MProduct product)
+        public void Get_Data_Product(MProduct product)
         {
-            _products.Add(product);
-            LoadCart();
+            var cart = new MProduct();
+            cart.NameProduct = product.NameProduct;
         }
 
-        public  void LoadCart()
+      
+        
+        public async Task getClientFinal()
         {
-            List_Products = new ObservableCollection<MProduct>(_products);
-        }
-
-       
-         public async Task getClientFinal()
-        {
+            
             var seachClientFinal = await _dbContext.Client.Where(cli => cli.IdClient == cliFinal).FirstOrDefaultAsync();
 
             if (seachClientFinal != null)
@@ -291,7 +245,6 @@ namespace CRUD_SQLITE.ViewModels
                 await DisplayAlert("Error", "El cliente no existe", "OK");
             }
         }
-
         public async Task Get_Data_Company()
         {
             var id = 1;
@@ -305,38 +258,28 @@ namespace CRUD_SQLITE.ViewModels
                 IvaCompany = Convert.ToSingle(getCompany.Iva);
             }
         }
-
         public async Task Save_Buy()
         {
             await DisplayAlert("Compra", "Compra realizada con exito", "OK");
         }
-
         public async Task Delete_ProductCart(MProduct product)
         {
             if (await DisplayAlert("Delete User", "Are you sure you want to delete this product?", "Yes", "No"))
             {
-                _products.Remove(product);
+                _myCart.Remove(product);
             }
-           
         }
 
         public void Res_Quantity()
         {
-            Quantity = Quantity - 1;
+            Cant = Cant - 1;
         }
-
         public void Sum_Quantity()
         {
-            Quantity = Quantity + 1;
+            Cant = Cant + 1;
         }
-
         public void Total_Cart()
         {
-            SubTotal = P_Total * Quantity;
-            Descuent = 10;
-            SubTotal = SubTotal12 + SubTotal0;
-            IvaCart = SubTotal * IvaCompany / 100;
-            Total = SubTotal + IvaCart;
         }
 
         public async Task getClient()
@@ -361,7 +304,7 @@ namespace CRUD_SQLITE.ViewModels
 
         public int QuantityOnCart()
         {
-            return _products.Count;
+            return _myCart.Count + 1;
         }
         #endregion
 

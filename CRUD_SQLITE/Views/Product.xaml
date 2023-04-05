@@ -5,9 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Products">
     <ContentPage.Content>
-        <ScrollView>
+
             <StackLayout>
-                <FlexLayout HeightRequest="50" WidthRequest="100">
+                
+                <FlexLayout 
+                    HeightRequest="50" 
+                    WidthRequest="100">
                     <ImageButton
                         Margin="0,0,-2,0"
                         Padding="0,0,-20,0"
@@ -27,12 +30,21 @@
                         CornerRadius="10"
                         HasShadow="True"
                         IsClippedToBounds="True">
-                        <SearchBar HeightRequest="100" Placeholder="Search Product" />
+                        <SearchBar 
+                            HeightRequest="100" 
+                            Placeholder="Search Product" />
                     </Frame>
                 </FlexLayout>
-                <StackLayout Margin="0,5,0,0" Background="#0099ff">
-                    <Grid ColumnDefinitions="2,*,*,*,*,*" RowDefinitions="*">
+                    
+                <StackLayout 
+                    Margin="0,5,0,0"  
+                    Background="#0099ff">
+                    <Grid 
+                        Margin="0,2,0,0"
+                        ColumnDefinitions="2,*,*,*,*,*" 
+                        RowDefinitions="*">
                         <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="1"
                             MaxLines="1"
@@ -40,6 +52,7 @@
                             TextColor="White"
                             WidthRequest="100" />
                         <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="2"
                             MaxLines="1"
@@ -47,6 +60,7 @@
                             TextColor="White"
                             WidthRequest="100" />
                         <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="3"
                             MaxLines="1"
@@ -54,6 +68,7 @@
                             TextColor="White"
                             WidthRequest="100" />
                         <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="4"
                             MaxLines="1"
@@ -61,6 +76,7 @@
                             TextColor="White"
                             WidthRequest="100" />
                         <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="5"
                             MaxLines="1"
@@ -68,6 +84,7 @@
                             TextColor="White"
                             WidthRequest="100" />
                         <Label
+                            Margin="0,-3,0,0"
                             Grid.Row="0"
                             Grid.Column="6"
                             MaxLines="1"
@@ -76,7 +93,6 @@
                             WidthRequest="100" />
                     </Grid>
                 </StackLayout>
-
 
                 <ListView
                     x:Name="list_product"
@@ -143,7 +159,8 @@
                                             Margin="0,2,5,0"
                                             Aspect="AspectFit"
                                             BackgroundColor="Transparent"
-                                            Command="{Binding Source={x:Reference list_product}, Path=BindingContext.btnGoUpdateProduct}"
+                                            Command="{Binding Source={x:Reference list_product}, 
+                                            Path=BindingContext.btnGoUpdateProduct}"
                                             CommandParameter="{Binding .}"
                                             HeightRequest="30"
                                             Source="edit"
@@ -152,7 +169,8 @@
                                             Margin="0,2,5,0"
                                             Aspect="AspectFit"
                                             BackgroundColor="Transparent"
-                                            Command="{Binding Source={x:Reference list_product}, Path=BindingContext.btnDeleteProduct}"
+                                            Command="{Binding Source={x:Reference list_product}, 
+                                            Path=BindingContext.btnDeleteProduct}"
                                             CommandParameter="{Binding .}"
                                             HeightRequest="30"
                                             Source="trash"
@@ -163,8 +181,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout HeightRequest="30">
-                    <Grid RowDefinitions="*">
+                    
+                <StackLayout 
+                    HeightRequest="30">
+                    <Grid RowDefinitions="20">
                         <ImageButton
                             Grid.Column="0"
                             BackgroundColor="Transparent"
@@ -175,7 +195,8 @@
                             Source="right" />
                     </Grid>
                 </StackLayout>
+                    
             </StackLayout>
-        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

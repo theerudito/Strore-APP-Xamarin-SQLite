@@ -5,304 +5,308 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Details">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid ColumnDefinitions="*" RowDefinitions="22,100,15,15, *, 22,100, 40">
+        <Grid 
+            ColumnDefinitions="*" 
+            RowDefinitions="22,100,15,15, *, 22,100, 60">
 
-                <StackLayout
+            <StackLayout
                     Grid.Row="0"
                     Grid.Column="0"
                     Margin="0,2,0,0"
                     BackgroundColor="#0099ff">
-                    <Label
+                <Label
                         HorizontalOptions="Center"
                         Text="DETAIL CLIENT"
                         TextColor="white" />
-                </StackLayout>
+            </StackLayout>
 
-                <StackLayout Grid.Row="1" Grid.Column="0">
-                    <Grid ColumnDefinitions="80,100,*,150" RowDefinitions="*">
-                        <Label
+            <StackLayout 
+                    Grid.Row="1" Grid.Column="0">
+                <Grid 
+                        ColumnDefinitions="80,100,*,150" 
+                        RowDefinitions="*">
+                    <Label
                             Grid.Row="0"
                             Grid.Column="0"
                             Margin="5,0,0,0"
                             MaxLines="1"
                             Text="Client:" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="1"
                             Text="{Binding myReport.FirstName}"
                             WidthRequest="100" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="2"
                             Text="RUC:" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="3"
                             Text="{Binding myReport.DNI}" />
-                        <Label
+                    <Label
                             Grid.Row="1"
                             Grid.Column="0"
                             Margin="5,0,0,0"
                             MaxLines="1"
                             Text="Direction:" />
-                        <Label
+                    <Label
                             Grid.Row="1"
                             Grid.Column="1"
                             Text="Santo Domingo" />
-                        <Label
+                    <Label
                             Grid.Row="1"
                             Grid.Column="2"
                             Text="Email:" />
-                        <Label
+                    <Label
                             Grid.Row="1"
                             Grid.Column="3"
                             Text="erudito.tv@gmail.com" />
-                        <Label
+                    <Label
                             Grid.Row="2"
                             Grid.Column="0"
                             Margin="5,0,0,0"
                             MaxLines="1"
                             Text="Phone:" />
-                        <Label
+                    <Label
                             Grid.Row="2"
                             Grid.Column="1"
                             Text="0960806054" />
 
-                        <Label
+                    <Label
                             Grid.Row="2"
                             Grid.Column="2"
                             Text="Fecha:" />
-                        <Label
+                    <Label
                             Grid.Row="2"
                             Grid.Column="3"
                             Text="20/01/2023" />
 
 
-                    </Grid>
-                    <Grid ColumnDefinitions="*,100,*,*,*" RowDefinitions="20">
-                        <Label
+                </Grid>
+                <Grid 
+                        ColumnDefinitions="*,100,*,*,*" 
+                        RowDefinitions="20">
+                    <Label
                             Grid.Row="0"
                             Grid.Column="0"
                             Margin="5,0,0,0"
                             MaxLines="1"
                             Text="#Docum:" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="1"
                             Text="1234567890" />
 
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="2"
                             Text="Serie1:" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="3"
                             Text="001" />
 
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="4"
                             Text="Serie2:" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="5"
                             Text="002" />
-                    </Grid>
-                </StackLayout>
+                </Grid>
+            </StackLayout>
 
-                <StackLayout
+            <StackLayout
                     Grid.Row="2"
                     Grid.Column="0"
                     Margin="0,-5,0,0"
                     BackgroundColor="#0099ff">
-                    <Label
+                <Label
                         HorizontalOptions="Center"
                         Text="DETAIL PRODUCT"
                         TextColor="white" />
-                </StackLayout>
+            </StackLayout>
 
-                <StackLayout
+            <StackLayout
                     Grid.Row="3"
                     Grid.Column="0"
                     Margin="0,-4,0,0"
                     BackgroundColor="#0099ff">
-                    <Grid RowDefinitions="20">
-                        <Label
+                <Grid RowDefinitions="20">
+                    <Label
                             Grid.Row="0"
                             Grid.Column="0"
                             Margin="5,0,0,0"
                             Text="CANT"
                             TextColor="White" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="1"
                             Text="DETAILS"
                             TextColor="White" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="2"
                             Text="DESCUENTO"
                             TextColor="White" />
-                        <Label
+                    <Label
                             Grid.Row="0"
                             Grid.Column="3"
                             Text="P_UNITARY"
                             TextColor="White" />
-                        <Label
+                    <Label
                             Grid.Column="4"
                             Text="P_TOTAL"
                             TextColor="White" />
-                    </Grid>
-                </StackLayout>
+                </Grid>
+            </StackLayout>
 
-                <StackLayout
+            <StackLayout
                     Grid.Row="5"
                     Grid.Column="0"
                     Margin="0,-4,0,0">
-                    <ListView>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*">
-                                        <Label Text="cant" />
-                                        <Label Text="details" />
-                                        <Label Text="Desc" />
-                                        <Label Text="P_Unitary" />
-                                        <Label Text="P_Total" />
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid 
+                                        ColumnDefinitions="*,*,*,*" 
+                                        RowDefinitions="*">
+                                    <Label Text="cant" />
+                                    <Label Text="details" />
+                                    <Label Text="Desc" />
+                                    <Label Text="P_Unitary" />
+                                    <Label Text="P_Total" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
 
-                <StackLayout
+            <StackLayout
                     Grid.Row="5"
                     Grid.Column="0"
                     Margin="0,2,0,0"
                     BackgroundColor="#0099ff">
-                    <Label
+                <Label
                         HorizontalOptions="Center"
                         Text="DETAIL TOTALS"
                         TextColor="white" />
-                </StackLayout>
+            </StackLayout>
 
-                <StackLayout Grid.Row="6" Grid.Column="0">
-                    <Frame
+            <StackLayout 
+                    Grid.Row="6" 
+                    Grid.Column="0">
+                <Frame
                         Margin="0,-4,0,0"
-                        BackgroundColor="#0099ff"
-                        HeightRequest="40">
-                        <Grid ColumnDefinitions="80,*,*,*,90,*">
-                            <Label
+                        BackgroundColor="#0099ff">
+                    <Grid   
+                            RowDefinitions="*,*,*"
+                            ColumnDefinitions="*,*,*,*">
+                        <Label
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                Margin="-10,0,0,0"
+                                MaxLines="1"
                                 Text="Subtotal:"
                                 TextColor="White" />
-                            <Label
+                        <Label
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                Margin="-10,0,0,0"
                                 MaxLines="1"
                                 Text="1000.50"
                                 TextColor="White" />
-                            <Label
+                        <Label
                                 Grid.Row="0"
                                 Grid.Column="2"
-                                Margin="5,0,0,0"
                                 Text="Desc"
+                                MaxLines="1"
                                 TextColor="White" />
-                            <Label
+                        <Label
                                 Grid.Row="0"
                                 Grid.Column="3"
-                                Margin="1,0,0,0"
                                 MaxLines="1"
                                 Text="0.50"
                                 TextColor="White" />
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="4"
-                                Margin="-10,0,0,0"
-                                Text="SubTotal12%:"
-                                TextColor="White" />
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="5"
-                                Margin="-10,0,0,0"
-                                MaxLines="1"
-                                Text="1000.50"
-                                TextColor="White" />
-                            <Label
+                        <Label
                                 Grid.Row="1"
                                 Grid.Column="0"
-                                Margin="-10,0,0,0"
-                                Text="SubTotal0%:"
+                                MaxLines="1"
+                                Text="SubTotal12%:"
                                 TextColor="White" />
-                            <Label
+                        <Label
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                Margin="-10,0,0,0"
                                 MaxLines="1"
                                 Text="1000.50"
                                 TextColor="White" />
-                            <Label
+                        <Label
                                 Grid.Row="1"
                                 Grid.Column="2"
-                                Margin="5,0,0,0"
-                                Text="Iva:"
+                                MaxLines="1"
+                                Text="SubTotal0%:"
                                 TextColor="White" />
-                            <Label
+                        <Label
                                 Grid.Row="1"
                                 Grid.Column="3"
-                                Margin="-10,0,0,0"
+                                MaxLines="1"
+                                Text="1000.50"
+                                TextColor="White" />
+                        <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="Iva:"
+                                MaxLines="1"
+                                TextColor="White" />
+                        <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
                                 MaxLines="1"
                                 Text="21.12"
                                 TextColor="White" />
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="4"
-                                Margin="10,-2,0,0"
+                        <Label
+                                Grid.Row="2"
+                                Grid.Column="2"
                                 FontAttributes="Bold"
                                 FontSize="17"
+                                MaxLines="1"
                                 Text="TOTAL:"
                                 TextColor="White" />
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="5"
-                                Margin="-10,-2,-50,0"
+                        <Label
+                                Grid.Row="2"
+                                Grid.Column="3"
                                 FontAttributes="Bold"
                                 FontSize="17"
                                 MaxLines="1"
                                 Text="1111.12"
                                 TextColor="White" />
-                        </Grid>
-                    </Frame>
-                </StackLayout>
+                    </Grid>
+                </Frame>
+            </StackLayout>
 
-                <StackLayout
+            <StackLayout
                     Grid.Row="7"
                     Grid.Column="0"
-                    Margin="0,-5,0,0">
-                    <Grid>
-                        <Button
+                    Margin="0,2,0,0">
+                <Grid>
+                    <Button
                             Grid.Row="0"
                             Grid.Column="0"
                             Margin="10,0,0,0"
                             BackgroundColor="#0099ff"
                             Command="{Binding btnSharedCommand}"
                             Text="SHARED" />
-                        <Button
+                    <Button
                             Grid.Row="0"
                             Grid.Column="1"
                             Margin="0,0,10,0"
                             BackgroundColor="#0099ff"
                             Command="{Binding btnGeneratePDFCommand}"
                             Text="PDF" />
-                    </Grid>
-                </StackLayout>
-            </Grid>
-        </ScrollView>
+                </Grid>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

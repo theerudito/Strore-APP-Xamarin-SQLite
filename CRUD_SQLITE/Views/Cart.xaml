@@ -71,7 +71,7 @@
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Margin="5,10,0,0"
-                                        Text="{Binding Quantity}" />
+                                        Text="{Binding Cant}" />
                                     <ImageButton
                                         Grid.Row="0"
                                         Grid.Column="2"
