@@ -94,7 +94,7 @@
                         Text="{Binding TextQuantity}" />
             </Frame>
             <Button
-                    Margin="50"
+                    Margin="20"
                     Command="{Binding btnCreateProduct}"
                     CornerRadius="10"
                     Text="{Binding Save}" />

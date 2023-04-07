@@ -8,44 +8,52 @@
         <StackLayout>
             <Grid
                     Margin="0,5,0,0"
-                    ColumnDefinitions="*,360"
-                    RowDefinitions="40">
-                <ImageButton
+                    ColumnDefinitions="*"
+                    RowDefinitions="40,20,*,20">
+
+            <StackLayout
+                        Margin="10,0,10,0"
                         Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="0,0,-20,0"
-                        Padding="0,0,-20,0"
-                        Aspect="AspectFit"
-                        BackgroundColor="Transparent"
-                        Command="{Binding btnGoNewClient}"
-                        HeightRequest="50"
-                        HorizontalOptions="Center"
-                        Source="add_client.png"
-                        VerticalOptions="CenterAndExpand"
-                        WidthRequest="30" />
-                <Frame
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Margin="50,5,20,-5"
-                        Padding="0,0,0,-2"
-                        BackgroundColor="AliceBlue"
-                        CornerRadius="10"
-                        HasShadow="True"
-                        IsClippedToBounds="True">
-                    <SearchBar 
-                        HeightRequest="80" 
-                        Placeholder="Search Client" />
-                </Frame>
-            </Grid>
+                        Grid.Column="0">
+                    <Grid
+                        
+                        ColumnDefinitions="40,*"
+                        RowDefinitions="*">
+                        <ImageButton
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Aspect="AspectFit"
+                            BackgroundColor="Transparent"
+                            Command="{Binding btnGoNewClient}"
+                            HorizontalOptions="Center"
+                            Source="add_client.png"
+                            VerticalOptions="CenterAndExpand"/>
+                        <Frame
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="0,0,0,-2"
+                            BackgroundColor="AliceBlue"
+                            CornerRadius="10"
+                            HasShadow="True"
+                            IsClippedToBounds="True">
+                            <SearchBar 
+                                Placeholder="Search Client" />
+                        </Frame>
+                    </Grid>
+           
+            </StackLayout>
+               
             <StackLayout 
-                Margin="0,5,0,0" 
+                Grid.Row="1"
+                Grid.Column="0"
+               
                 Background="#0099ff">
                 <Grid 
-                    Margin="0,2,0,0"
+                    Margin="0,10,0,0"
                     ColumnDefinitions="2,*,*,*,*,*" 
                     RowDefinitions="*">
                     <Label
-                            Margin="0,-3,0,0"
+                            Margin="0,-10,0,0"
                             Grid.Row="0"
                             Grid.Column="1"
                             MaxLines="1"
@@ -53,7 +61,7 @@
                             TextColor="White"
                             WidthRequest="100" />
                     <Label
-                            Margin="0,-3,0,0"
+                            Margin="0,-10,0,0"
                             Grid.Row="0"
                             Grid.Column="2"
                             MaxLines="1"
@@ -62,7 +70,7 @@
                             WidthRequest="100" />
                     <Label
                             Grid.Row="0"
-                            Margin="0,-3,0,0"
+                             Margin="0,-10,0,0"
                             Grid.Column="3"
                             MaxLines="1"
                             Text="PHONE"
@@ -70,7 +78,7 @@
                             WidthRequest="100" />
                     <Label
                             Grid.Row="0"
-                            Margin="0,-3,0,0"
+                            Margin="0,-10,0,0"
                             Grid.Column="4"
                             MaxLines="1"
                             Text="EMAIL"
@@ -78,7 +86,7 @@
                             WidthRequest="100" />
                     <Label
                             Grid.Row="0"
-                            Margin="0,-3,0,0"
+                            Margin="0,-10,0,0"
                             Grid.Column="5"
                             MaxLines="1"
                             Text="ACTION"
@@ -88,6 +96,8 @@
             </StackLayout>
 
             <ListView
+                    Grid.Row="2"
+                    Grid.Column="0"
                     x:Name="List"
                     IsRefreshing="true"
                     ItemsSource="{Binding List_Clients}"
@@ -153,7 +163,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout HeightRequest="30">
+            
+            <StackLayout 
+                Grid.Row="3"
+                Grid.Column="0"
+                HeightRequest="30">
                 <Grid RowDefinitions="20">
                     <ImageButton
                             Grid.Column="0"
@@ -167,6 +181,8 @@
                             Source="right" />
                 </Grid>
             </StackLayout>
+            
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -42,8 +42,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextDB;
         private string _TextIVA;
         private string _TextCoin;
-        private readonly string LocalStorageUser = "user";
-        private readonly string LocalStorageToken = "token";
+
 
         #endregion
 
@@ -226,16 +225,11 @@ namespace CRUD_SQLITE.ViewModels
 
         public async void Logout()
         {
-            App app = new App();
-            app.MainPage = new NavigationPage(new ViewAuth());
+           
             if (await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No"))
 
             {
-               Xamarin.Essentials.SecureStorage.Remove(LocalStorageUser);
-               SecureStorage.Remove(LocalStorageToken);
-                app.ShowAppShell();
-
-                app.MainPage = new NavigationPage(new ViewAuth());
+                SecureStorage.RemoveAll();
             }
         }
         #endregion

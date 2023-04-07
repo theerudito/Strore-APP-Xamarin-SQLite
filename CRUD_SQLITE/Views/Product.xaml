@@ -6,38 +6,47 @@
     Title="Products">
     <ContentPage.Content>
 
-            <StackLayout>
+        <StackLayout>
+            <Grid
+                    Margin="0,5,0,0"
+                    ColumnDefinitions="*"
+                    RowDefinitions="40,20,*,20">
                 
-                <FlexLayout 
-                    HeightRequest="50" 
-                    WidthRequest="100">
-                    <ImageButton
-                        Margin="0,0,-2,0"
-                        Padding="0,0,-20,0"
-                        Aspect="AspectFit"
-                        BackgroundColor="Transparent"
-                        Command="{Binding btnGoNewProduct}"
-                        HeightRequest="50"
-                        HorizontalOptions="Center"
-                        Source="add_product.png"
-                        VerticalOptions="CenterAndExpand"
-                        WidthRequest="50" />
-                    <Frame
-                        Grid.Row="1"
-                        Margin="20,5"
-                        Padding="0,0,0,-2"
-                        BackgroundColor="AliceBlue"
-                        CornerRadius="10"
-                        HasShadow="True"
-                        IsClippedToBounds="True">
-                        <SearchBar 
-                            HeightRequest="100" 
-                            Placeholder="Search Product" />
-                    </Frame>
-                </FlexLayout>
+                <StackLayout
+                    Margin="10,0,10,0"
+                    Grid.Row="0"
+                    Grid.Column="0">
+                    <Grid 
+                            ColumnDefinitions="40,*"
+                            RowDefinitions="*">
+                        <ImageButton
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Aspect="AspectFit"
+                            BackgroundColor="Transparent"
+                            Command="{Binding btnGoNewProduct}"
+                            HorizontalOptions="Center"
+                            Source="add_product.png"
+                            VerticalOptions="CenterAndExpand"/>
+                        <Frame
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="0,0,0,-2"
+                            BackgroundColor="AliceBlue"
+                            CornerRadius="10"
+                            HasShadow="True"
+                            IsClippedToBounds="True">
+                            <SearchBar 
+                                HeightRequest="100" 
+                                Placeholder="Search Product" />
+                        </Frame>
+                    </Grid>
                     
+                </StackLayout>
+
                 <StackLayout 
-                    Margin="0,5,0,0"  
+                    Grid.Row="1"
+                    Grid.Column="0"
                     Background="#0099ff">
                     <Grid 
                         Margin="0,2,0,0"
@@ -95,6 +104,8 @@
                 </StackLayout>
 
                 <ListView
+                    Grid.Row="2"
+                    Grid.Column="0"
                     x:Name="list_product"
                     IsRefreshing="True"
                     ItemsSource="{Binding List_Product}"
@@ -181,8 +192,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                    
+
                 <StackLayout 
+                    Grid.Row="4"
+                    Grid.Column="0"
                     HeightRequest="30">
                     <Grid RowDefinitions="20">
                         <ImageButton
@@ -195,8 +208,9 @@
                             Source="right" />
                     </Grid>
                 </StackLayout>
-                    
-            </StackLayout>
 
+            </Grid>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

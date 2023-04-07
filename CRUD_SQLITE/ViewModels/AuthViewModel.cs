@@ -52,7 +52,6 @@ namespace CRUD_SQLITE.ViewModels
         }
         #endregion
 
-
         #region CONSTRUCTOR
         public AuthViewModel(INavigation navigation, StackLayout showRegister, StackLayout showLogin)
         {
@@ -185,6 +184,7 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
         #endregion
+
         #region COMMANDS
         public ICommand btnLoginCommand => new Command(async () => await Login());
         public ICommand btnShowRegisterCommand => new Command(show_Login);
