@@ -7,15 +7,12 @@
     <ContentPage.Content>
 
             <StackLayout>
-                
-                <Image
+
+            <Image
                     Margin="0"
                     Source="avatar.png"
                     WidthRequest="100" />
-                <Label 
-                    HorizontalOptions="Center" 
-                    Text="ADD NEW CLIENT" />
-                <Frame
+            <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
                     BackgroundColor="AliceBlue"

@@ -6,18 +6,17 @@
     Title="Add Products">
     <ContentPage.Content>
         <StackLayout>
-            <ImageButton
+            <Image
                     Margin="10"
                     Aspect="AspectFit"
                     BackgroundColor="Transparent"
-                    Command="{Binding btnOpenGalery}"
-                    HeightRequest="110"
                     Source="{Binding ImageProduct}"
-                    WidthRequest="50" />
-            <Button Command="{Binding btnOpenGalery}" Text="Open" />
-            <Label 
-                HorizontalOptions="Center" 
-                Text="ADD NEW PRODUCT" />
+                    HeightRequest="100"
+                    WidthRequest="100" />
+            <Button 
+                Command="{Binding btnOpenGalery}" 
+                Text="UPLOAD IMAGE" />
+            
             <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"

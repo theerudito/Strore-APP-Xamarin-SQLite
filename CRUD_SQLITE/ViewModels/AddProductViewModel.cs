@@ -24,8 +24,10 @@ namespace CRUD_SQLITE.ViewModels
         private string _textDescription;
         private float _textPrice;
         private string _textQuantity;
-        private string _refImage = "https://raw.githubusercontent.com/theerudito/Strore-APP-Xamarin-SQLite/master/product.png";
-        private string _imageOnMobile = "";
+        private string _refImage;
+        private string _urlImage = "https://raw.githubusercontent.com/theerudito/Strore-APP-Xamarin-SQLite/master/product.png";
+        private ImageSource _image;
+        private string _imagebyte;
         #endregion
 
         #region CONSTRUCTOR
@@ -44,11 +46,11 @@ namespace CRUD_SQLITE.ViewModels
                 _product = new MProduct();
                 _Editing = false;
                 Save = "SAVE PRODUCT";
+                ImageProduct = ImageSource.FromFile("image.png");
             }
             getData();
         }
         #endregion
-
 
         #region OBJECTS
         public string Save
@@ -107,40 +109,58 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textQuantity, value);
             }
         }
-        public string ImageProduct
+        public string RefImage
         {
-            get { return _imageOnMobile; }
+            get { return _refImage; }
             set
             {
-                SetValue(ref _imageOnMobile, value);
+                SetValue(ref _refImage, value);
             }
         }
-
+        public ImageSource ImageProduct
+        {
+            get { return _image; }
+            set
+            {
+                SetValue(ref _image, value);
+            }
+        }
+        public string ImageByte
+        {
+            get { return _imagebyte; }
+            set
+            {
+                SetValue(ref _imagebyte, value);
+            }
+        }
         #endregion
 
         #region METHODS
         public void getData()
         {
-            TextName = _product.NameProduct;
-            TextCode = _product.CodeProduct;
-            TextBrand = _product.Brand;
-            TextDescription = _product.Description;
-            TextPrice = _product.P_Unitary;
-            TextQuantity = Convert.ToString(_product.Quantity);
-            ImageProduct = _product.Image_Product;
+                TextName = _product.NameProduct;
+                TextCode = _product.CodeProduct;
+                TextBrand = _product.Brand;
+                TextDescription = _product.Description;
+                TextPrice = _product.P_Unitary;
+                TextQuantity = Convert.ToString(_product.Quantity);
+                ImageProduct = _product.Image_Product == null ? _product.Image_Product : ImageProduct;
         }
+
         public async Task openGalery()
         {
             var result = await FilePicker.PickAsync();
             if (result != null)
             {
+                ImageProduct = result.FullPath;
                 var stream = await result.OpenReadAsync();
                 var bytes = new byte[stream.Length];
                 await stream.ReadAsync(bytes, 0, (int)stream.Length);
                 string base64 = Convert.ToBase64String(bytes);
-                ImageProduct = base64;
+                ImageByte = base64;
             }
         }
+
         public async Task<MProduct> Insert_Product()
         {
             var newProducto = await _dbContext.Product.FirstOrDefaultAsync(pro => pro.CodeProduct == TextCode);
@@ -155,8 +175,8 @@ namespace CRUD_SQLITE.ViewModels
                     Description = TextDescription,
                     P_Unitary = TextPrice,
                     Quantity = Convert.ToInt32(TextQuantity),
-                    Image_Product = _refImage,
-                    RefImagen = _refImage,
+                    Image_Product = ImageByte,
+                    RefImagen = _refImage+TextCode,
                 };
                 await _dbContext.Product.AddAsync(product);
                 await _dbContext.SaveChangesAsync();
@@ -179,6 +199,7 @@ namespace CRUD_SQLITE.ViewModels
             }
             return null;
         }
+
         public async Task<MProduct> Update_Product()
         {
             _product.NameProduct = TextName;
@@ -187,13 +208,15 @@ namespace CRUD_SQLITE.ViewModels
             _product.Description = TextDescription;
             _product.P_Unitary = TextPrice;
             _product.Quantity = Convert.ToInt32(TextQuantity);
-            _product.Image_Product = _imageOnMobile;
+            _product.Image_Product = _urlImage == null ? _urlImage : _image.ToString();
+            _product.RefImagen = _refImage + TextCode;
             _dbContext.Product.Update(_product);
             await _dbContext.SaveChangesAsync();
             ResetField();
             await Navigation.PushAsync(new Product());
             return _product;
         }
+
         public async Task<MProduct> createOrEditProductAsync()
         {
             if (_Editing)
@@ -214,7 +237,9 @@ namespace CRUD_SQLITE.ViewModels
             TextDescription = "";
             TextPrice = 0;
             TextQuantity = "";
-            //Image_Product = "";
+            ImageProduct = "";
+            RefImage = "";
+            ImageByte = "";
         }
         #endregion
 

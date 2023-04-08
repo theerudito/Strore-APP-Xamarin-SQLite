@@ -22,8 +22,6 @@ namespace CRUD_SQLITE.ViewModels
         MProduct p = new MProduct();
 
        
-
-
         #region CONSTRUCTORS
         public CartViewModel(INavigation navigation)
         {
@@ -63,6 +61,7 @@ namespace CRUD_SQLITE.ViewModels
         private string _LastName;
         private string _Email;
         private string _Direction;
+        private string _City;
 
         private int _cant;
         private int _IdClient;
@@ -88,9 +87,6 @@ namespace CRUD_SQLITE.ViewModels
             get { return _FontSize; }
             set { SetValue(ref _FontSize, value); }
         }
-
-        
-
 
         // DATA CART VALUES
         public float SubTotal
@@ -199,7 +195,11 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Direction; }
             set { SetValue(ref _Direction, value); }
         }
-
+        public string City
+        {
+            get {return _City; }
+            set { SetValue(ref _City, value); }
+        }
        
         public int IdProduct
         {
@@ -215,7 +215,6 @@ namespace CRUD_SQLITE.ViewModels
 
         #endregion
 
-
         #region METODOS ASYNC
         public void Get_Data_Product(MProduct product)
         {
@@ -223,8 +222,6 @@ namespace CRUD_SQLITE.ViewModels
             cart.NameProduct = product.NameProduct;
         }
 
-      
-        
         public async Task getClientFinal()
         {
             
@@ -239,12 +236,14 @@ namespace CRUD_SQLITE.ViewModels
                 Phone = seachClientFinal.Phone;
                 Email = seachClientFinal.Email;
                 Direction = seachClientFinal.Direction;
+                City = seachClientFinal.City;
             }
             else
             {
                 await DisplayAlert("Error", "El cliente no existe", "OK");
             }
         }
+
         public async Task Get_Data_Company()
         {
             var id = 1;
@@ -258,10 +257,12 @@ namespace CRUD_SQLITE.ViewModels
                 IvaCompany = Convert.ToSingle(getCompany.Iva);
             }
         }
+
         public async Task Save_Buy()
         {
             await DisplayAlert("Compra", "Compra realizada con exito", "OK");
         }
+
         public async Task Delete_ProductCart(MProduct product)
         {
             if (await DisplayAlert("Delete User", "Are you sure you want to delete this product?", "Yes", "No"))
@@ -274,10 +275,12 @@ namespace CRUD_SQLITE.ViewModels
         {
             Cant = Cant - 1;
         }
+
         public void Sum_Quantity()
         {
             Cant = Cant + 1;
         }
+
         public void Total_Cart()
         {
         }

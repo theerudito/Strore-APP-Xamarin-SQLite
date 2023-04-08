@@ -11,8 +11,9 @@
                     Margin="0,5,0,0"
                     ColumnDefinitions="*"
                     RowDefinitions="40,20,*,20">
-                
+
                 <StackLayout
+                    
                     Margin="10,0,10,0"
                     Grid.Row="0"
                     Grid.Column="0">
@@ -41,7 +42,7 @@
                                 Placeholder="Search Product" />
                         </Frame>
                     </Grid>
-                    
+
                 </StackLayout>
 
                 <StackLayout 
@@ -104,6 +105,7 @@
                 </StackLayout>
 
                 <ListView
+                    
                     Grid.Row="2"
                     Grid.Column="0"
                     x:Name="list_product"
@@ -194,7 +196,7 @@
                 </ListView>
 
                 <StackLayout 
-                    Grid.Row="4"
+                    Grid.Row="3"
                     Grid.Column="0"
                     HeightRequest="30">
                     <Grid RowDefinitions="20">
@@ -210,7 +212,6 @@
                 </StackLayout>
 
             </Grid>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
