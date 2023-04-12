@@ -142,7 +142,7 @@
                                             Aspect="AspectFit"
                                             BackgroundColor="Transparent"
                                             Command="{Binding Source={x:Reference List}, 
-                                        Path=BindingContext.btnGoUpdateClient}"
+                                            Path=BindingContext.btnGoUpdateClient}"
                                             CommandParameter="{Binding}"
                                             HeightRequest="30"
                                             Source="edit"
@@ -152,7 +152,7 @@
                                             Aspect="AspectFit"
                                             BackgroundColor="Transparent"
                                             Command="{Binding Source={x:Reference List}, 
-                                        Path=BindingContext.btnDeleteClient}"
+                                            Path=BindingContext.btnDeleteClient}"
                                             CommandParameter="{Binding}"
                                             HeightRequest="30"
                                             Source="trash"
