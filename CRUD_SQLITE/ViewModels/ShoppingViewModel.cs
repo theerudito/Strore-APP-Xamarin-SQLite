@@ -1,10 +1,11 @@
-﻿using CRUD_SQLITE.Context;
+﻿
+using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -14,6 +15,8 @@ namespace CRUD_SQLITE.ViewModels
     class ShoppingViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
+
+        public Command LoadData { get;}
 
         #region VARIABLES
         int _prewProduct = 10;
@@ -28,7 +31,10 @@ namespace CRUD_SQLITE.ViewModels
         public ShoppingViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            Task.Run(async () => await getAllProducts());
+
+            getAllProducts();
+
+            LoadData = new Command(async () => await getAllProducts());
         }
         #endregion
 
@@ -39,8 +45,8 @@ namespace CRUD_SQLITE.ViewModels
             get { return _List_Product; }
             set
             {
-                SetValue(ref _List_Product, value);
-                OnpropertyChanged();
+                _List_Product =  value;
+                OnPropertyChanged();
             }
         }
         public int PrewProduct
@@ -74,21 +80,31 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region METODOS ASYNC
-        public async Task<List<MProduct>> getAllProducts()
+        public async Task getAllProducts()
         {
-            var result = await _dbContext.Product.ToListAsync();
-
-            if (result.Count > 0)
+            IsBusy = true;
+            try
             {
-                List_Product = new ObservableCollection<MProduct>(result);
+                var result = await _dbContext.Product.ToListAsync();
+
+                if (result.Count > 0)
+                {
+                    List_Product = new ObservableCollection<MProduct>(result);
+                }
             }
-            return result;
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
         public async Task goPageCart()
         {            
             await Navigation.PushAsync(new Cart());
         }
-
         public async Task add_To_Cart(MProduct product)
         {
             CartViewModel _cart = new CartViewModel(Navigation);
@@ -105,6 +121,7 @@ namespace CRUD_SQLITE.ViewModels
             await DisplayAlert("infor", "Siguientes Lista 10 Products", "Ok");
         }
         #endregion
+
 
         #region COMANDOS
         public ICommand goCart => new Command(async () => await goPageCart());

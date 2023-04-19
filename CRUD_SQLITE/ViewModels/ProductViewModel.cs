@@ -6,13 +6,15 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using CRUD_SQLITE.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System;
+using System.Diagnostics;
 
 namespace CRUD_SQLITE.ViewModels
 {
     public class ProductViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
+        public Command ReloadProducts { get; }
 
         #region VARIABLES
         ObservableCollection<MProduct> _List_product;
@@ -36,6 +38,8 @@ namespace CRUD_SQLITE.ViewModels
         {
             Navigation = navigation;
             GET_ALL_Products();
+
+            ReloadProducts = new Command(async () => await GET_ALL_Products());
         }
         #endregion
 
@@ -53,11 +57,23 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
-        public async Task<List<MProduct>> GET_ALL_Products()
+        public async Task GET_ALL_Products()
         {
-            var result = await _dbContext.Product.ToListAsync();
-            List_Product = new ObservableCollection<MProduct>(result);
-            return result;
+            IsBusy = true;
+
+            try
+            {
+                var result = await _dbContext.Product.ToListAsync();
+                List_Product = new ObservableCollection<MProduct>(result);
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
         public async Task goUpdate_Product(MProduct product)
         {

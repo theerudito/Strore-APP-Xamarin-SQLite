@@ -2,7 +2,9 @@
 using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,6 +15,7 @@ namespace CRUD_SQLITE.ViewModels
     {
         DB.SQLite_Config connection = new DB.SQLite_Config();
         DB_Context _dbContext = new DB_Context();
+        public Command ReloadReports { get; }
 
 
         #region CONSTRUCTOR
@@ -20,6 +23,8 @@ namespace CRUD_SQLITE.ViewModels
         {
             Navigation = navigation;
             Get_All_Report();
+
+            ReloadReports = new Command(async () => await Get_All_Report());
         }
         #endregion
 
@@ -32,16 +37,28 @@ namespace CRUD_SQLITE.ViewModels
         public ObservableCollection<MDetailsCart> List_Report
         {
             get { return _list_report; }
-            set { SetValue(ref _list_report, value); }
+            set { _list_report = value; }
         }
         #endregion
 
         #region METHODS
         public async Task Get_All_Report()
         {
-            var result = await _dbContext.DetailsCart.ToListAsync();
-            List_Report = new ObservableCollection<MDetailsCart>(result);
+            IsBusy = true;
 
+            try
+            {
+                var result = await _dbContext.DetailsCart.ToListAsync();
+                List_Report = new ObservableCollection<MDetailsCart>(result);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
         public async Task pickerDocumentReport()
         {
@@ -59,7 +76,6 @@ namespace CRUD_SQLITE.ViewModels
         {
             await DisplayAlert("info", "right", "ok");
         }
-
         public async Task seeReport(MDetailsCart report)
         {
             await Navigation.PushAsync(new DetailsCart());

@@ -1,10 +1,9 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -12,17 +11,21 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    internal class UsersViewModel : BaseViewModel, IAuth
+    internal class UsersViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
 
-        ObservableCollection<MAuth> _List_Users;
+        public Command ReloadUserCommand { get;}
 
+        ObservableCollection<MAuth> _List_Users;
 
         public UsersViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            GetAllUsersAsync();
+           
+            Task.Run(async () => await GetAllUsersAsync());
+
+            ReloadUserCommand = new Command(async () => await GetAllUsersAsync());
         }
 
         public ObservableCollection<MAuth> List_Users
@@ -36,13 +39,25 @@ namespace CRUD_SQLITE.ViewModels
         }
 
 
-        public async Task<IEnumerable<MAuth>> GetAllUsersAsync()
+        public async Task GetAllUsersAsync()
         {
-            var result = await _dbContext.Auth.ToListAsync();
+            IsBusy = true;
 
-            List_Users = new ObservableCollection<MAuth>(result);
+            try
+            {
+                var result = await _dbContext.Auth.ToListAsync();
 
-            return result;
+                List_Users = new ObservableCollection<MAuth>(result);
+
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine(ex);   
+            }
+            finally
+            {
+                IsBusy = !IsBusy;
+            }
         }
 
         public bool Login(string email, string password)
@@ -54,7 +69,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             throw new NotImplementedException();
         }
-
+        
         public async Task DeleteUser(MAuth auth)
         {
             var result = await _dbContext.Auth.FirstOrDefaultAsync(user => user.IdAuth == auth.IdAuth);
@@ -69,7 +84,7 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
-
+        
         public async Task UpdateUser()
         {
             await DisplayAlert("infor", "Deleted", "Ok");

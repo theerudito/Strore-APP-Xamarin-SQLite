@@ -2,8 +2,9 @@
 using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,6 +14,7 @@ namespace CRUD_SQLITE.ViewModels
     public class ClientViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
+        public Command ReloadClients { get; }
 
 
         #region VARIABLES
@@ -25,6 +27,8 @@ namespace CRUD_SQLITE.ViewModels
         {
             Navigation = navigation;
             GetAllClientAsync();
+
+            ReloadClients = new Command(async () => await GetAllClientAsync());
         }
         #endregion
 
@@ -41,11 +45,22 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region METHODS
-        public async Task<List<MClient>> GetAllClientAsync()
+        public async Task GetAllClientAsync()
         {
-            var result = await _dbContext.Client.ToListAsync();
-            List_Clients = new ObservableCollection<MClient>(result);
-            return result;
+            IsBusy = true;
+            try
+            {
+                var result = await _dbContext.Client.ToListAsync();
+                List_Clients = new ObservableCollection<MClient>(result);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = !IsBusy;
+            }
         }
         public async Task go_Update_Client(MClient client)
         {

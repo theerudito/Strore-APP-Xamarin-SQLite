@@ -58,14 +58,19 @@
                         </Frame>
                     </Grid>
 
-                <CollectionView 
+                <StackLayout
                     Margin="0,-14,0,0"
                     Grid.Row="1"
-                    Grid.Column="0"
-                    x:Name="viewPodroduct" 
-                    ItemsSource="{Binding List_Product}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                    Grid.Column="0">
+                    <RefreshView
+                        Command="{Binding LoadData}"
+                        IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                        RefreshColor="#0099ff">
+                         <CollectionView 
+                            x:Name="viewPodroduct" 
+                            ItemsSource="{Binding List_Product}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
                             <Grid 
                             ColumnDefinitions="*" 
                             RowDefinitions="*">
@@ -146,6 +151,8 @@
                         Orientation="Vertical" Span="2" />
                     </CollectionView.ItemsLayout>
                 </CollectionView>
+                    </RefreshView>
+                </StackLayout>
 
                 <StackLayout 
                 Grid.Row="2"
