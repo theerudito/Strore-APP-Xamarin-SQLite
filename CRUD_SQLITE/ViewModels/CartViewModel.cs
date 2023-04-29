@@ -12,35 +12,60 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-   
+
     public class CartViewModel : BaseViewModel
     {
         DB_Context _dbContext = new DB_Context();
-        public INavigation Navigation { get; set; }
-        
-        List<MProduct> _myCart = new List<MProduct>();
-        MProduct p = new MProduct();
 
-       
+
+        List<MProduct> _myCart = new List<MProduct>();
+
+
         #region CONSTRUCTORS
         public CartViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            Get_Data_Company();
-            Total_Cart();
-            Task.Run(async () => await getClientFinal());
-            FontSize = "18";
 
-            List_Products = new ObservableCollection<MProduct>(_myCart);
+            Get_Data_Company();
+
+            Total_Cart();
+
+            Task.Run(async () => await getClientFinal());
+
+            var pro2 = new MProduct
+            {
+                Quantity = 10,
+                NameProduct = "Cola",
+                P_Unitary = 2.5f,
+                P_Total = 10 * 2.5f,
+            };
+
+
+            _myCart.Add(pro2);
+
+
+            List_ProductsCart = new ObservableCollection<MProduct>(_myCart);
+
+        }
+
+        public CartViewModel(MProduct product)
+        {
+            //_myCart.Add(product);
+
+            var pro1 = new MProduct
+            {
+                Quantity = product.Quantity,
+                NameProduct = product.NameProduct,
+                P_Unitary = product.P_Unitary,
+                P_Total = product.Quantity * product.P_Unitary,
+            };
+
         }
         #endregion
 
         #region VARIABLES
         private string _Date = DateTime.Now.ToString("HH:mm:ss");
         private string _Hour = DateTime.Now.ToString("dd/MM/yyyy");
-
-
-        private string _FontSize;
 
         private float _subtotal;
         private float _subtotal0;
@@ -72,20 +97,14 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region OBJETOS
-       
-        public ObservableCollection<MProduct> List_Products
+        public ObservableCollection<MProduct> List_ProductsCart
         {
             get { return _list_Product; }
             set
             {
                 SetValue(ref _list_Product, value);
-                OnpropertyChanged();
+                OnPropertyChanged();
             }
-        }
-        public string FontSize
-        {
-            get { return _FontSize; }
-            set { SetValue(ref _FontSize, value); }
         }
 
         // DATA CART VALUES
@@ -197,10 +216,10 @@ namespace CRUD_SQLITE.ViewModels
         }
         public string City
         {
-            get {return _City; }
+            get { return _City; }
             set { SetValue(ref _City, value); }
         }
-       
+
         public int IdProduct
         {
             get { return _IdProduct; }
@@ -218,13 +237,19 @@ namespace CRUD_SQLITE.ViewModels
         #region METODOS ASYNC
         public void Get_Data_Product(MProduct product)
         {
-            var cart = new MProduct();
-            cart.NameProduct = product.NameProduct;
+            var newProduct = new MProduct
+            {
+                Quantity = product.Quantity,
+                NameProduct = product.NameProduct,
+                P_Unitary = product.P_Unitary,
+                P_Total = product.Quantity * product.P_Unitary,
+            };
+            _myCart.Add(newProduct);
         }
 
         public async Task getClientFinal()
         {
-            
+
             var seachClientFinal = await _dbContext.Client.Where(cli => cli.IdClient == cliFinal).FirstOrDefaultAsync();
 
             if (seachClientFinal != null)
@@ -307,7 +332,7 @@ namespace CRUD_SQLITE.ViewModels
 
         public int QuantityOnCart()
         {
-            return _myCart.Count + 1;
+            return _myCart.Count;
         }
         #endregion
 

@@ -24,9 +24,11 @@
                             HasShadow="True"
                             IsClippedToBounds="True">
                         <SearchBar
+                                Text="{Binding SearchTextReport}"
+                                SearchCommand="{Binding btnSearchDocumentCommand}"
+                                SearchCommandParameter="{Binding .}"
                                 HeightRequest="50"
-                                Placeholder="Search # Document"
-                                SearchCommand="{Binding numDocument}" />
+                                Placeholder="Search # Document" />
                     </Frame>
 
                 </Grid>
@@ -84,7 +86,7 @@
                             Grid.Row="0"
                             Grid.Column="5"
                             BackgroundColor="Transparent"
-                            Command="{Binding btnSearchDocumentCommand}"
+                            Command="{Binding btnSearchDateDocumentCommand}"
                             HorizontalOptions="Center"
                             Source="lupa"
                             VerticalOptions="Center" />

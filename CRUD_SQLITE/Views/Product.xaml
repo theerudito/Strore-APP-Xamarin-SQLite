@@ -38,6 +38,9 @@
                             HasShadow="True"
                             IsClippedToBounds="True">
                             <SearchBar 
+                                Text="{Binding SearchTextProduct}"
+                                SearchCommand="{Binding btnSearchProduct}"
+                                SearchCommandParameter="{Binding .}"
                                 HeightRequest="100" 
                                 Placeholder="Search Product" />
                         </Frame>
@@ -121,23 +124,15 @@
                                         BackgroundColor="White"
                                         ColumnDefinitions="*,*,*,*"
                                         RowDefinitions="*">
-                                            <Image
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            Margin="10"
-                                            Aspect="Fill"
-                                            BackgroundColor="black"
-                                            HeightRequest="50"
-                                            Source="{Binding Image_Product}"
-                                            WidthRequest="50" />
-                                            <!--<Label
+                                          
+                                       <Label
                                         Text="{Binding Quantity}"
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         WidthRequest="100"
-                                        Margin="10"
-                                        />-->
-                                            <Label
+                                        Margin="10"/>
+                                            
+                                        <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="10"

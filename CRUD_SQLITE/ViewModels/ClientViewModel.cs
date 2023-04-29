@@ -3,8 +3,10 @@ using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -20,6 +22,7 @@ namespace CRUD_SQLITE.ViewModels
         #region VARIABLES
         ObservableCollection<MClient> _List_client;
         public bool _goEditing = true;
+        string _searchTextClient;
         #endregion
 
         #region CONSTRUCTOR
@@ -42,6 +45,11 @@ namespace CRUD_SQLITE.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string SearchTextClient
+        {
+            get => _searchTextClient;
+            set => _searchTextClient = value;
+        }
         #endregion
 
         #region METHODS
@@ -50,6 +58,7 @@ namespace CRUD_SQLITE.ViewModels
             IsBusy = true;
             try
             {
+                InitialValues.CreateDataInitial();
                 var result = await _dbContext.Client.ToListAsync();
                 List_Clients = new ObservableCollection<MClient>(result);
             }
@@ -60,6 +69,41 @@ namespace CRUD_SQLITE.ViewModels
             finally
             {
                 IsBusy = !IsBusy;
+            }
+        }
+
+        public async Task getOnClient()
+        {
+            List<MClient> clients = new List<MClient>();
+
+            var searchingClient = await _dbContext.Client
+                                .Where(c => c.FirstName.StartsWith(SearchTextClient.Trim().ToUpper())
+                                    || c.LastName.StartsWith(SearchTextClient.Trim().ToUpper())
+                                    || c.DNI.StartsWith(SearchTextClient.Trim().ToUpper())).ToListAsync();
+
+            if (searchingClient.Count > 0)
+            {
+                foreach (var client in searchingClient)
+                {
+                    var list = new MClient
+                    {
+                        IdClient = client.IdClient,
+                        DNI = client.DNI,
+                        FirstName = client.FirstName,
+                        LastName = client.LastName,
+                        Direction = client.Direction,
+                        City = client.City,
+                        Email = client.Email,
+                        Phone = client.Phone,
+                    };
+
+                    clients.Add(list);
+                }
+                List_Clients = new ObservableCollection<MClient>(clients);
+            }
+            else
+            {
+                await DisplayAlert("Error", "Not Exits Client", "ok");
             }
         }
         public async Task go_Update_Client(MClient client)
@@ -87,6 +131,7 @@ namespace CRUD_SQLITE.ViewModels
         #endregion
 
         #region COMMANDS
+        public ICommand btnSearchClientCommand => new Command(async () => await getOnClient());
         public ICommand btnDeleteClient => new Command<MClient>(async (cli) => await deleteClientAsync(cli));
         public ICommand btnGoNewClient => new Command<MClient>(async (cli) => await go_New_Client(cli));
         public ICommand btnGoUpdateClient => new Command<MClient>(async (cli) => await go_Update_Client(cli));

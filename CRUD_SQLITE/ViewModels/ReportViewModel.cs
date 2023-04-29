@@ -3,8 +3,10 @@ using CRUD_SQLITE.Models;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,6 +18,14 @@ namespace CRUD_SQLITE.ViewModels
         DB.SQLite_Config connection = new DB.SQLite_Config();
         DB_Context _dbContext = new DB_Context();
         public Command ReloadReports { get; }
+
+        string _searchTextReport;
+
+        public string SearchTextReport
+        {
+            get => _searchTextReport;
+            set => _searchTextReport = value;
+        }
 
 
         #region CONSTRUCTOR
@@ -60,11 +70,28 @@ namespace CRUD_SQLITE.ViewModels
                 IsBusy = false;
             }
         }
+        public async Task GetOneReport()
+        {
+            //var searchingReport = _dbContext.DetailsCart
+            //                    .Where(r => r.IdCart.ToString().StartsWith(SearchTextReport.Trim().ToUpper())).ToListAsync();
+
+            //if (searchingReport.Count > 0)
+            //{
+
+            //    List_Report = new ObservableCollection<MReport>(searchingReport);
+            //}
+            //else
+            //{
+            //    await DisplayAlert("Error", "Not Exits Data", "ok");
+            //}
+            await DisplayAlert("Error", "Not Exits Data", "ok");
+
+        }
         public async Task pickerDocumentReport()
         {
             await DisplayAlert("info", "search docu", "ok");
         }
-        public async Task seachDocumentReport()
+        public async Task seachDateDocumentReport()
         {
             await DisplayAlert("info", "compartir", "ok");
         }
@@ -85,9 +112,11 @@ namespace CRUD_SQLITE.ViewModels
 
 
         #region COMMANDS
+        
+        public ICommand btnSearchDocumentCommand => new Command(async () => await GetOneReport());
+        public ICommand btnSearchDateDocumentCommand => new Command(async () => await seachDateDocumentReport());
         public ICommand btnLeftReportCommand => new Command(async () => await leftReport());
         public ICommand btnRightReportCommand => new Command(async () => await rightReport());
-        public ICommand btnSearchDocumentCommand => new Command(async () => await seachDocumentReport());
         public ICommand btnShowReportCommand => new Command<MDetailsCart>(async (r) => await seeReport(r));
         #endregion
     }

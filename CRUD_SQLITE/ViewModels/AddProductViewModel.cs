@@ -23,9 +23,8 @@ namespace CRUD_SQLITE.ViewModels
         private string _textBrand;
         private string _textDescription;
         private float _textPrice;
-        private string _textQuantity;
+        private int _textQuantity;
         private string _refImage;
-        private string _urlImage = "https://raw.githubusercontent.com/theerudito/Strore-APP-Xamarin-SQLite/master/product.png";
         private ImageSource _image;
         private string _imagebyte;
         #endregion
@@ -45,10 +44,9 @@ namespace CRUD_SQLITE.ViewModels
             {
                 _product = new MProduct();
                 _Editing = false;
-                Save = "SAVE PRODUCT";
-                ImageProduct = ImageSource.FromFile("image.png");
+                Save = "SAVE PRODUCT"; 
             }
-            getData();
+                getData();
         }
         #endregion
 
@@ -101,7 +99,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textPrice, value);
             }
         }
-        public string TextQuantity
+        public int TextQuantity
         {
             get { return _textQuantity; }
             set
@@ -120,10 +118,7 @@ namespace CRUD_SQLITE.ViewModels
         public ImageSource ImageProduct
         {
             get { return _image; }
-            set
-            {
-                SetValue(ref _image, value);
-            }
+            set{ SetValue(ref _image, value);}
         }
         public string ImageByte
         {
@@ -138,50 +133,75 @@ namespace CRUD_SQLITE.ViewModels
         #region METHODS
         public void getData()
         {
-                TextName = _product.NameProduct;
+            if (_Editing == true)
+            {
+                TextName = _product.NameProduct.ToUpper();
                 TextCode = _product.CodeProduct;
-                TextBrand = _product.Brand;
-                TextDescription = _product.Description;
+                TextBrand = _product.Brand.ToUpper();
+                TextDescription = _product.Description.ToUpper();
                 TextPrice = _product.P_Unitary;
-                TextQuantity = Convert.ToString(_product.Quantity);
-                ImageProduct = _product.Image_Product == null ? _product.Image_Product : ImageProduct;
+                TextQuantity = _product.Quantity;
+                ImageProduct = ConvertImage.ToPNG(_product.Image_Product);
+            }
+            else
+            {
+                ImageProduct = ImageSource.FromFile("image.png");
+            }  
         }
 
         public async Task openGalery()
         {
             var result = await FilePicker.PickAsync();
-            if (result != null)
+
+            if (result.ContentType == "image/png" || result.ContentType == "image/jpeg" || result.ContentType == "image/webp")
             {
-                ImageProduct = result.FullPath;
-                var stream = await result.OpenReadAsync();
-                var bytes = new byte[stream.Length];
-                await stream.ReadAsync(bytes, 0, (int)stream.Length);
-                string base64 = Convert.ToBase64String(bytes);
-                ImageByte = base64;
+                if (result != null)
+                {
+                    ImageProduct = result.FullPath;
+                    var stream = await result.OpenReadAsync();
+                    var bytes = new byte[stream.Length];
+                    await stream.ReadAsync(bytes, 0, (int)stream.Length);
+                    string base64 = Convert.ToBase64String(bytes);
+                    ImageByte = base64;
+                }
+            }             
+            else
+            {
+                await DisplayAlert("info", "The File doens't compatible only files allowed .jpg, .png or .webp ", "ok");
+
+                ImageProduct = ImageSource.FromFile("image.png");
             }
         }
 
         public async Task<MProduct> Insert_Product()
         {
+            if (Validations() == true)
+            {
+
             var newProducto = await _dbContext.Product.FirstOrDefaultAsync(pro => pro.CodeProduct == TextCode);
 
             if (newProducto == null)
             {
                 var product = new MProduct
                 {
-                    NameProduct = TextName,
+                    NameProduct = TextName.ToUpper(),
                     CodeProduct = TextCode,
-                    Brand = TextBrand,
-                    Description = TextDescription,
+                    Brand = TextBrand.ToUpper(),
+                    Description = TextDescription.ToUpper(),
                     P_Unitary = TextPrice,
-                    Quantity = Convert.ToInt32(TextQuantity),
-                    Image_Product = ImageByte,
-                    RefImagen = _refImage+TextCode,
+                    Quantity = TextQuantity,
+                    Image_Product = ImageByte == null ? ConvertImage.ImageDefault() : ImageByte,
+                    RefImagen = _refImage + TextCode,
                 };
+
+
                 await _dbContext.Product.AddAsync(product);
                 await _dbContext.SaveChangesAsync();
+
                 ResetField();
+
                 await Navigation.PushAsync(new Product());
+
                 return product;
             }
             else
@@ -190,30 +210,37 @@ namespace CRUD_SQLITE.ViewModels
                 _Editing = true;
                 Save = "EDIT PRODUCT";
                 TextCode = newProducto.CodeProduct;
-                TextName = newProducto.NameProduct;
-                TextBrand = newProducto.Brand;
-                TextDescription = newProducto.Description;
+                TextName = newProducto.NameProduct.ToUpper();
+                TextBrand = newProducto.Brand.ToUpper();
+                TextDescription = newProducto.Description.ToUpper();
                 TextPrice = newProducto.P_Unitary;
-                TextQuantity = Convert.ToString(newProducto.Quantity);
-                ImageProduct = newProducto.Image_Product;
+                TextQuantity = newProducto.Quantity;
+                ImageProduct = ConvertImage.ToPNG (newProducto.Image_Product);
+            }
             }
             return null;
         }
 
         public async Task<MProduct> Update_Product()
         {
-            _product.NameProduct = TextName;
+            _product.NameProduct = TextName.ToUpper();
             _product.CodeProduct = TextCode;
-            _product.Brand = TextBrand;
-            _product.Description = TextDescription;
+            _product.Brand = TextBrand.ToUpper();
+            _product.Description = TextDescription.ToUpper();
             _product.P_Unitary = TextPrice;
-            _product.Quantity = Convert.ToInt32(TextQuantity);
-            _product.Image_Product = _urlImage == null ? _urlImage : _image.ToString();
+            _product.Quantity = TextQuantity;
+            _product.Image_Product = ImageByte == null ? _product.Image_Product : ImageByte;
             _product.RefImagen = _refImage + TextCode;
-            _dbContext.Product.Update(_product);
-            await _dbContext.SaveChangesAsync();
-            ResetField();
-            await Navigation.PushAsync(new Product());
+
+            if (Validations() == true)
+            {
+                _dbContext.Product.Update(_product);
+                await _dbContext.SaveChangesAsync();
+
+                ResetField();
+            
+                await Navigation.PushAsync(new Product());
+            }
             return _product;
         }
 
@@ -231,15 +258,56 @@ namespace CRUD_SQLITE.ViewModels
 
         public void ResetField()
         {
+            ImageProduct = ImageSource.FromFile("image.png");
             TextName = "";
             TextCode = "";
             TextBrand = "";
             TextDescription = "";
             TextPrice = 0;
-            TextQuantity = "";
+            TextQuantity = 0;
             ImageProduct = "";
             RefImage = "";
             ImageByte = "";
+            _Editing = false;
+            Save = "SAVE PRODUCT";
+        }
+
+        public bool Validations()
+        {
+            if (string.IsNullOrEmpty(TextName))
+            {
+                DisplayAlert("Error", "the NameProduct is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextCode))
+            {
+                DisplayAlert("Error", "the CodeProduct is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextBrand))
+            {
+                DisplayAlert("Error", "the Brand is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextDescription))
+            {
+                DisplayAlert("Error", "the Description is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextPrice.ToString()) || TextPrice == 0)
+            {
+                DisplayAlert("Error", "the Price is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextQuantity.ToString()) || TextQuantity == 0)
+            {
+                DisplayAlert("Error", "the Quantity is requided", "Ok");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         #endregion
 

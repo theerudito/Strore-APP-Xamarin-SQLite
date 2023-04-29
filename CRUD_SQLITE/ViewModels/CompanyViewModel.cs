@@ -210,16 +210,32 @@ namespace CRUD_SQLITE.ViewModels
         }
         public async Task Activate()
         {
-            var company = await _dbContext.CodeApp.FirstOrDefaultAsync();
-
-            if (BCrypt.Net.BCrypt.Verify(CODE, company.CodeAdmin))
+            if (Validations() == true)
             {
-                await DisplayAlert("infor", "the code is correct", "ok");
-                showBtnSave = true;
+                var company = await _dbContext.CodeApp.FirstOrDefaultAsync();
+
+                if (BCrypt.Net.BCrypt.Verify(CODE, company.CodeAdmin))
+                {
+                    await DisplayAlert("infor", "the code is correct", "ok");
+                    showBtnSave = true;
+                }
+                else
+                {
+                    await DisplayAlert("infor", "the code is incorrect", "ok");
+                }
+            }    
+        }
+
+        public bool Validations()
+        {
+            if (string.IsNullOrEmpty(CODE))
+            {
+                DisplayAlert("Error", "the code is required", "Ok");
+                return false;
             }
             else
             {
-                await DisplayAlert("infor", "the code is incorrect", "ok");
+                return true;
             }
         }
 
@@ -230,6 +246,7 @@ namespace CRUD_SQLITE.ViewModels
 
             {
                 SecureStorage.RemoveAll();
+                await Navigation.PopToRootAsync();
             }
         }
         #endregion

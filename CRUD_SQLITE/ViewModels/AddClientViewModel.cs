@@ -138,21 +138,24 @@ namespace CRUD_SQLITE.ViewModels
             {
                 var client = new MClient
                 {
-                    DNI = TextDNI,
-                    FirstName = TextFirstName,
-                    LastName = TextLastName,
-                    Direction = TextDirection,
+                    DNI = TextDNI.ToUpper(),
+                    FirstName = TextFirstName.ToUpper(),
+                    LastName = TextLastName.ToUpper(),
+                    Direction = TextDirection.ToUpper(),
                     Phone = TextPhone,
                     Email = TextEmail,
-                    City = TextCity
+                    City = TextCity.ToUpper()
                 };
 
-                _dbContext.Client.Add(client);
-                await _dbContext.SaveChangesAsync();
-                ResetField();
-                await Navigation.PushAsync(new Client());
-                return client;
+                if (Validations() == true)
+                {
+                    _dbContext.Client.Add(client);
+                    await _dbContext.SaveChangesAsync();
+                    ResetField();
+                    await Navigation.PushAsync(new Client());
+                }
 
+                return client;
             }
             else
             {
@@ -160,31 +163,38 @@ namespace CRUD_SQLITE.ViewModels
                 _Editing = true;
                 Save = "EDIT CLIENT";
                 TextDNI = newClient.DNI;
-                TextFirstName = newClient.FirstName;
-                TextLastName = newClient.LastName;
-                TextDirection = newClient.Direction;
+                TextFirstName = newClient.FirstName.ToUpper();
+                TextLastName = newClient.LastName.ToUpper();
+                TextDirection = newClient.Direction.ToUpper();
                 TextPhone = newClient.Phone;
                 TextEmail = newClient.Email;
-                TextCity = newClient.City;
+                TextCity = newClient.City.ToUpper();
                 return null;
             }
-
+                 
         }
         public async Task<MClient> editClientAsync()
         {
-            _client.DNI = TextDNI;
-            _client.FirstName = TextFirstName;
-            _client.LastName = TextLastName;
-            _client.Direction = TextDirection;
-            _client.Phone = TextPhone;
-            _client.Email = TextEmail;
-            _client.City = TextCity;
+                    _client.DNI = TextDNI;
+                    _client.FirstName = TextFirstName.ToUpper();
+                    _client.LastName = TextLastName.ToUpper();
+                    _client.Direction = TextDirection.ToUpper();
+                    _client.Phone = TextPhone;
+                    _client.Email = TextEmail;
+                    _client.City = TextCity.ToUpper();
 
-            _dbContext.Client.Update(_client);
-            await _dbContext.SaveChangesAsync();
-            ResetField();
-            await Navigation.PushAsync(new Client());
+                if (Validations() == true)
+                {
+                    _dbContext.Client.Update(_client);
+                    await _dbContext.SaveChangesAsync();
+                
+                    ResetField();
+
+                    await Navigation.PushAsync(new Client());
+                }
+               
             return _client;
+
         }
         public async Task<MClient> createOrEditClientAsync()
         {
@@ -206,6 +216,49 @@ namespace CRUD_SQLITE.ViewModels
             TextPhone = "";
             TextEmail = "";
             TextCity = "";
+        }
+
+        public bool Validations()
+        {
+            if (string.IsNullOrEmpty(TextDNI))
+            {
+                DisplayAlert("Error", "the DNI is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextFirstName))
+            {
+                DisplayAlert("Error", "the FirstName is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextLastName))
+            {
+                DisplayAlert("Error", "the LastName is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextDirection))
+            {
+                DisplayAlert("Error", "the Direction is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextPhone))
+            {
+                DisplayAlert("Error", "the Phone is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextEmail))
+            {
+                DisplayAlert("Error", "the Email is requided", "Ok");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(TextCity))
+            {
+                DisplayAlert("Error", "the City is requided", "Ok");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         #endregion
 

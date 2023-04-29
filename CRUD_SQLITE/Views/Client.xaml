@@ -36,7 +36,11 @@
                             CornerRadius="10"
                             HasShadow="True"
                             IsClippedToBounds="True">
+                            
                             <SearchBar 
+                                Text="{Binding SearchTextClient}"
+                                SearchCommand="{Binding btnSearchClientCommand}"
+                                SearchCommandParameter="{Binding .}"
                                 Placeholder="Search Client" />
                         </Frame>
                     </Grid>

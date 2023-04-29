@@ -26,11 +26,16 @@
                             HasShadow="True"
                             IsClippedToBounds="True">
                             <SearchBar
+                                Text="{Binding SearchTextProductSP}"
+                                SearchCommand="{Binding btnSearchProductShopping}"
+                                SearchCommandParameter="{Binding .}"
+                                CancelButtonColor="#0099ff"
                                 Margin="0,-10,0,0"
-                                Placeholder="Search Product"
-                                Text="{Binding NameProduct}"/>
+                                Placeholder="Search Product"/>
                         </Frame>
-                        <ImageButton
+
+                   
+                    <ImageButton
                             Grid.Row="0"
                             Grid.Column="2"
                             x:Name="padre"
@@ -44,19 +49,18 @@
                             Grid.Row="0"
                             Grid.Column="3"
                             BackgroundColor="Red"
-                            CornerRadius="50"
-                            HeightRequest="50"
-                            WidthRequest="50">
+                            CornerRadius="50">
                             <Label
-                                HeightRequest="50"
-                                WidthRequest="50"
-                                Background="orange"
-                                x:Name="textCounter"
+                                VerticalTextAlignment="Center"
+                                Margin="-20,-10,-20,-10"
+                                HorizontalTextAlignment="Center"
                                 Text="{Binding QuantityProduct}"
                                 TextColor="White"
-                                VerticalTextAlignment="Center" />
+                                />
                         </Frame>
-                    </Grid>
+
+                   
+                </Grid>
 
                 <StackLayout
                     Margin="0,-14,0,0"
@@ -82,7 +86,7 @@
                                     <StackLayout>
                                         <Image
                                         HeightRequest="100"
-                                        Source="{Binding Image_Product}"
+                                        Source="{Binding Profile}"
                                         WidthRequest="100" />
 
                                         <FlexLayout 

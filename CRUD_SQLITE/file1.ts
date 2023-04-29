@@ -6,7 +6,7 @@ drop database  Store;
 CREATE TABLE IF NOT EXISTS MClient(
     IdClient INT NOT NULL AUTO_INCREMENT,
     DNI VARCHAR(20) NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,gg
+    FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
     Direction VARCHAR(100) NOT NULL,
     Phone VARCHAR(50) NOT NULL,

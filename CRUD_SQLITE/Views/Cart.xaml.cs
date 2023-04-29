@@ -1,4 +1,5 @@
-﻿using CRUD_SQLITE.ViewModels;
+﻿using CRUD_SQLITE.Models;
+using CRUD_SQLITE.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,6 +12,11 @@ namespace CRUD_SQLITE.Views
         {
             InitializeComponent();
             BindingContext = new CartViewModel(Navigation);
+        }
+
+        public Cart(MProduct product)
+        {
+            BindingContext = new CartViewModel(product);
         }
     }
 }
