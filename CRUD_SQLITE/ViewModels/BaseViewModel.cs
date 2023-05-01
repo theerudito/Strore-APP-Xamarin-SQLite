@@ -11,11 +11,14 @@ namespace CRUD_SQLITE.ViewModels
         public INavigation Navigation;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnpropertyChanged([CallerMemberName] string nombre = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nombre));
         }
+
         private ImageSource foto;
+
         public ImageSource Foto
         {
             get { return foto; }
@@ -48,6 +51,7 @@ namespace CRUD_SQLITE.ViewModels
         }
 
         private string _title;
+
         public string Title
         {
             get { return _title; }
@@ -55,11 +59,13 @@ namespace CRUD_SQLITE.ViewModels
         }
 
         private bool _isBusy;
+
         public bool IsBusy
         {
             get { return _isBusy; }
             set { SetProperty(ref _isBusy, value); }
         }
+
         protected void SetValue<T>(ref T backingFieled, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingFieled, value))

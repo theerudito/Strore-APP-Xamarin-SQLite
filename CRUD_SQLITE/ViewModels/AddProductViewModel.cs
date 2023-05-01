@@ -12,9 +12,10 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class AddProductViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
+        private DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
+
         public MProduct _product { get; set; }
         public bool _Editing;
         private string _Save;
@@ -27,9 +28,11 @@ namespace CRUD_SQLITE.ViewModels
         private string _refImage;
         private ImageSource _image;
         private string _imagebyte;
-        #endregion
+
+        #endregion VARIABLES
 
         #region CONSTRUCTOR
+
         public AddProductViewModel(INavigation navigation, MProduct product, bool _goEditingProduct)
         {
             Navigation = navigation;
@@ -44,13 +47,15 @@ namespace CRUD_SQLITE.ViewModels
             {
                 _product = new MProduct();
                 _Editing = false;
-                Save = "SAVE PRODUCT"; 
+                Save = "SAVE PRODUCT";
             }
-                getData();
+            getData();
         }
-        #endregion
+
+        #endregion CONSTRUCTOR
 
         #region OBJECTS
+
         public string Save
         {
             get { return _Save; }
@@ -59,6 +64,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _Save, value);
             }
         }
+
         public string TextName
         {
             get { return _textName; }
@@ -67,6 +73,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textName, value);
             }
         }
+
         public string TextCode
         {
             get { return _textCode; }
@@ -75,6 +82,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textCode, value);
             }
         }
+
         public string TextBrand
         {
             get { return _textBrand; }
@@ -83,6 +91,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textBrand, value);
             }
         }
+
         public string TextDescription
         {
             get { return _textDescription; }
@@ -91,6 +100,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textDescription, value);
             }
         }
+
         public float TextPrice
         {
             get { return _textPrice; }
@@ -99,6 +109,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textPrice, value);
             }
         }
+
         public int TextQuantity
         {
             get { return _textQuantity; }
@@ -107,6 +118,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textQuantity, value);
             }
         }
+
         public string RefImage
         {
             get { return _refImage; }
@@ -115,11 +127,13 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _refImage, value);
             }
         }
+
         public ImageSource ImageProduct
         {
             get { return _image; }
-            set{ SetValue(ref _image, value);}
+            set { SetValue(ref _image, value); }
         }
+
         public string ImageByte
         {
             get { return _imagebyte; }
@@ -128,9 +142,11 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _imagebyte, value);
             }
         }
-        #endregion
+
+        #endregion OBJECTS
 
         #region METHODS
+
         public void getData()
         {
             if (_Editing == true)
@@ -146,7 +162,7 @@ namespace CRUD_SQLITE.ViewModels
             else
             {
                 ImageProduct = ImageSource.FromFile("image.png");
-            }  
+            }
         }
 
         public async Task openGalery()
@@ -164,7 +180,7 @@ namespace CRUD_SQLITE.ViewModels
                     string base64 = Convert.ToBase64String(bytes);
                     ImageByte = base64;
                 }
-            }             
+            }
             else
             {
                 await DisplayAlert("info", "The File doens't compatible only files allowed .jpg, .png or .webp ", "ok");
@@ -177,46 +193,44 @@ namespace CRUD_SQLITE.ViewModels
         {
             if (Validations() == true)
             {
+                var newProducto = await _dbContext.Product.FirstOrDefaultAsync(pro => pro.CodeProduct == TextCode);
 
-            var newProducto = await _dbContext.Product.FirstOrDefaultAsync(pro => pro.CodeProduct == TextCode);
-
-            if (newProducto == null)
-            {
-                var product = new MProduct
+                if (newProducto == null)
                 {
-                    NameProduct = TextName.ToUpper(),
-                    CodeProduct = TextCode,
-                    Brand = TextBrand.ToUpper(),
-                    Description = TextDescription.ToUpper(),
-                    P_Unitary = TextPrice,
-                    Quantity = TextQuantity,
-                    Image_Product = ImageByte == null ? ConvertImage.ImageDefault() : ImageByte,
-                    RefImagen = _refImage + TextCode,
-                };
+                    var product = new MProduct
+                    {
+                        NameProduct = TextName.ToUpper(),
+                        CodeProduct = TextCode,
+                        Brand = TextBrand.ToUpper(),
+                        Description = TextDescription.ToUpper(),
+                        P_Unitary = TextPrice,
+                        Quantity = TextQuantity,
+                        Image_Product = ImageByte == null ? ConvertImage.ImageDefault() : ImageByte,
+                        RefImagen = _refImage + TextCode,
+                    };
 
+                    await _dbContext.Product.AddAsync(product);
+                    await _dbContext.SaveChangesAsync();
 
-                await _dbContext.Product.AddAsync(product);
-                await _dbContext.SaveChangesAsync();
+                    ResetField();
 
-                ResetField();
+                    await Navigation.PushAsync(new Product());
 
-                await Navigation.PushAsync(new Product());
-
-                return product;
-            }
-            else
-            {
-                await DisplayAlert("Alert", "Product already exists", "OK");
-                _Editing = true;
-                Save = "EDIT PRODUCT";
-                TextCode = newProducto.CodeProduct;
-                TextName = newProducto.NameProduct.ToUpper();
-                TextBrand = newProducto.Brand.ToUpper();
-                TextDescription = newProducto.Description.ToUpper();
-                TextPrice = newProducto.P_Unitary;
-                TextQuantity = newProducto.Quantity;
-                ImageProduct = ConvertImage.ToPNG (newProducto.Image_Product);
-            }
+                    return product;
+                }
+                else
+                {
+                    await DisplayAlert("Alert", "Product already exists", "OK");
+                    _Editing = true;
+                    Save = "EDIT PRODUCT";
+                    TextCode = newProducto.CodeProduct;
+                    TextName = newProducto.NameProduct.ToUpper();
+                    TextBrand = newProducto.Brand.ToUpper();
+                    TextDescription = newProducto.Description.ToUpper();
+                    TextPrice = newProducto.P_Unitary;
+                    TextQuantity = newProducto.Quantity;
+                    ImageProduct = ConvertImage.ToPNG(newProducto.Image_Product);
+                }
             }
             return null;
         }
@@ -238,7 +252,7 @@ namespace CRUD_SQLITE.ViewModels
                 await _dbContext.SaveChangesAsync();
 
                 ResetField();
-            
+
                 await Navigation.PushAsync(new Product());
             }
             return _product;
@@ -309,11 +323,14 @@ namespace CRUD_SQLITE.ViewModels
                 return true;
             }
         }
-        #endregion
+
+        #endregion METHODS
 
         #region COMMAND
+
         public ICommand btnCreateProduct => new Command<MProduct>(async (prod) => await createOrEditProductAsync());
         public ICommand btnOpenGalery => new Command(async () => await openGalery());
-        #endregion
+
+        #endregion COMMAND
     }
 }

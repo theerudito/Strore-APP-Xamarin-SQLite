@@ -13,16 +13,16 @@ namespace CRUD_SQLITE.ViewModels
 {
     internal class UsersViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
+        private DB_Context _dbContext = new DB_Context();
 
-        public Command ReloadUserCommand { get;}
+        public Command ReloadUserCommand { get; }
 
-        ObservableCollection<MAuth> _List_Users;
+        private ObservableCollection<MAuth> _List_Users;
 
         public UsersViewModel(INavigation navigation)
         {
             Navigation = navigation;
-           
+
             Task.Run(async () => await GetAllUsersAsync());
 
             ReloadUserCommand = new Command(async () => await GetAllUsersAsync());
@@ -38,7 +38,6 @@ namespace CRUD_SQLITE.ViewModels
             }
         }
 
-
         public async Task GetAllUsersAsync()
         {
             IsBusy = true;
@@ -48,11 +47,10 @@ namespace CRUD_SQLITE.ViewModels
                 var result = await _dbContext.Auth.ToListAsync();
 
                 List_Users = new ObservableCollection<MAuth>(result);
-
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                Debug.WriteLine(ex);   
+                Debug.WriteLine(ex);
             }
             finally
             {
@@ -69,7 +67,7 @@ namespace CRUD_SQLITE.ViewModels
         {
             throw new NotImplementedException();
         }
-        
+
         public async Task DeleteUser(MAuth auth)
         {
             var result = await _dbContext.Auth.FirstOrDefaultAsync(user => user.IdAuth == auth.IdAuth);
@@ -84,7 +82,7 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
-        
+
         public async Task UpdateUser()
         {
             await DisplayAlert("infor", "Deleted", "Ok");
@@ -98,6 +96,5 @@ namespace CRUD_SQLITE.ViewModels
         public ICommand btnGoUpdateCommand => new Command(async () => await goUpdateUser());
         public ICommand btnDeleteCommand => new Command<MAuth>(async (auth) => await DeleteUser(auth));
         public ICommand btnUpdateCommand => new Command(async () => await goUpdateUser());
-
     }
 }

@@ -9,17 +9,20 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        DB_Context _dbCcontext = new DB_Context();
+        private DB_Context _dbCcontext = new DB_Context();
 
         #region CONSTRUCTOR
+
         public HomeViewModel(INavigation navigation)
         {
             Navigation = navigation;
             Get_Company();
         }
-        #endregion
+
+        #endregion CONSTRUCTOR
 
         #region VARIABLES
+
         private string _Version = "v1.2.0";
         private string _NameStore;
         private string _NameOwner;
@@ -29,9 +32,11 @@ namespace CRUD_SQLITE.ViewModels
         private readonly string Web = "https://byerudito.web.app/";
         private readonly string Linkedin = "https://www.linkedin.com/in/theerudito";
         private readonly string LocalStorageUser = "user";
-        #endregion
+
+        #endregion VARIABLES
 
         #region OBJECTS
+
         public string Name
         {
             get { return _NameStore; }
@@ -43,15 +48,17 @@ namespace CRUD_SQLITE.ViewModels
             get { return _NameOwner; }
             set { SetValue(ref _NameOwner, value); }
         }
+
         public string Version
         {
             get { return _Version; }
             set { SetValue(ref _Version, value); }
         }
-        #endregion
 
+        #endregion OBJECTS
 
         #region METHODS
+
         public async Task Get_Company()
         {
             var auth = await SecureStorage.GetAsync(LocalStorageUser);
@@ -68,33 +75,37 @@ namespace CRUD_SQLITE.ViewModels
         {
             await Launcher.OpenAsync(GitHub);
         }
+
         public async Task Go_Instagram()
         {
             await Launcher.OpenAsync(Instagram);
         }
+
         public async Task Go_Twitter()
         {
             await Launcher.OpenAsync(Twitter);
         }
+
         public async Task Go_My_Web()
         {
             await Launcher.OpenAsync(Web);
         }
+
         public async Task Go_Linkedin()
         {
             await Launcher.OpenAsync(Linkedin);
         }
-        #endregion
+
+        #endregion METHODS
 
         #region COMMANDS
+
         public ICommand btnGitHub => new Command(async () => await Go_GitHub());
         public ICommand btnInstagram => new Command(async () => await Go_Instagram());
         public ICommand btnTwitter => new Command(async () => await Go_Twitter());
         public ICommand btnWeb => new Command(async () => await Go_My_Web());
         public ICommand btnLinkedin => new Command(async () => await Go_Linkedin());
-        #endregion
+
+        #endregion COMMANDS
     }
-
-
 }
-

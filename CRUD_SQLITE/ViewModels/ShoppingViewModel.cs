@@ -1,6 +1,5 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Services;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,23 +13,25 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    class ShoppingViewModel : BaseViewModel
+    internal class ShoppingViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
+        private DB_Context _dbContext = new DB_Context();
 
-        public Command LoadData { get;}
+        public Command LoadData { get; }
 
         #region VARIABLES
-        int _prewProduct = 10;
-        int _nextProduct = -10;
-        int _quantityProduct = 0;
-        string _searchTextProductSP;
 
-        ObservableCollection<MProduct> _List_Product;
-        #endregion
+        private int _prewProduct = 10;
+        private int _nextProduct = -10;
+        private int _quantityProduct = 0;
+        private string _searchTextProductSP;
 
+        private ObservableCollection<MProduct> _List_Product;
+
+        #endregion VARIABLES
 
         #region CONSTRUCTOR
+
         public ShoppingViewModel(INavigation navigation)
         {
             Navigation = navigation;
@@ -39,19 +40,21 @@ namespace CRUD_SQLITE.ViewModels
 
             LoadData = new Command(async () => await getAllProducts());
         }
-        #endregion
 
+        #endregion CONSTRUCTOR
 
         #region OBJETOS
+
         public ObservableCollection<MProduct> List_Product
         {
             get { return _List_Product; }
             set
             {
-                _List_Product =  value;
+                _List_Product = value;
                 OnPropertyChanged();
             }
         }
+
         public int PrewProduct
         {
             get { return _prewProduct; }
@@ -61,6 +64,7 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
+
         public int NextProduct
         {
             get { return _nextProduct; }
@@ -70,6 +74,7 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
+
         public int QuantityProduct
         {
             get { return _quantityProduct; }
@@ -79,18 +84,21 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
+
         public string SearchTextProductSP
         {
             get { return _searchTextProductSP; }
-            set {SetValue(ref _searchTextProductSP, value); 
-            OnPropertyChanged();
+            set
+            {
+                SetValue(ref _searchTextProductSP, value);
+                OnPropertyChanged();
             }
         }
 
-        #endregion
-
+        #endregion OBJETOS
 
         #region METODOS ASYNC
+
         public async Task getAllProducts()
         {
             IsBusy = true;
@@ -132,6 +140,7 @@ namespace CRUD_SQLITE.ViewModels
                 IsBusy = false;
             }
         }
+
         public async Task getOneProductShooping()
         {
             List<MProduct> products = new List<MProduct>();
@@ -141,56 +150,63 @@ namespace CRUD_SQLITE.ViewModels
                                     || s.CodeProduct.StartsWith(SearchTextProductSP.Trim().ToUpper())
                                     || s.Description.StartsWith(SearchTextProductSP.Trim().ToUpper())
                                     || s.Brand.StartsWith(SearchTextProductSP.Trim().ToUpper())).ToListAsync();
-                 
+
             if (searchingProduct.Count > 0)
             {
                 foreach (var product in searchingProduct)
+                {
+                    var list = new MProduct
                     {
-                        var list = new MProduct
-                        {
-                            IdProduct = product.IdProduct,
-                            NameProduct = product.NameProduct,
-                            CodeProduct = product.CodeProduct,
-                            Brand = product.Brand,
-                            Description = product.Description,
-                            P_Unitary = product.P_Unitary,
-                            Profile = ConvertImage.ToPNG(product.Image_Product),
-                        };
+                        IdProduct = product.IdProduct,
+                        NameProduct = product.NameProduct,
+                        CodeProduct = product.CodeProduct,
+                        Brand = product.Brand,
+                        Description = product.Description,
+                        P_Unitary = product.P_Unitary,
+                        Profile = ConvertImage.ToPNG(product.Image_Product),
+                    };
 
-                        products.Add(list);
-                    }
-                    List_Product = new ObservableCollection<MProduct>(products);
-            } else
+                    products.Add(list);
+                }
+                List_Product = new ObservableCollection<MProduct>(products);
+            }
+            else
             {
                 await DisplayAlert("Error", "Not Exits Product", "ok");
             }
         }
+
         public async Task goPageCart()
-        {            
+        {
             await Navigation.PushAsync(new Cart());
         }
-        public void  add_To_Cart(MProduct product)
+
+        public void add_To_Cart(MProduct product)
         {
             var quantity = new CartViewModel(product);
             QuantityProduct = quantity.QuantityOnCart();
         }
+
         public async Task prew_Product()
         {
             await DisplayAlert("infor", "Anterior Lista -10 Products", "Ok");
         }
+
         public async Task next_Product()
         {
             await DisplayAlert("infor", "Siguientes Lista 10 Products", "Ok");
         }
-        #endregion
 
+        #endregion METODOS ASYNC
 
         #region COMANDOS
+
         public ICommand btnSearchProductShopping => new Command(async () => await getOneProductShooping());
         public ICommand goCart => new Command(async () => await goPageCart());
         public ICommand btnAddToCart => new Command<MProduct>(add_To_Cart);
         public ICommand btnPrewPorduct => new Command(async () => await prew_Product());
         public ICommand nextProduct => new Command(async () => await next_Product());
-        #endregion
+
+        #endregion COMANDOS
     }
 }

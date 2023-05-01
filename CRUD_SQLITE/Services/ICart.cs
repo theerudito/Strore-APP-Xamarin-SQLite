@@ -1,7 +1,4 @@
 ﻿using CRUD_SQLITE.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CRUD_SQLITE.Services
@@ -14,8 +11,6 @@ namespace CRUD_SQLITE.Services
 
         Task<IClient> getOneClientAsync(int id);
 
-
         Task<MCompany> getOneCompanyAsync(int id);
-
     }
 }

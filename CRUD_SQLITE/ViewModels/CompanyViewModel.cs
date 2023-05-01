@@ -1,32 +1,31 @@
-﻿using CRUD_SQLITE.Models;
-using Xamarin.Forms;
-using System.Windows.Input;
+﻿using CRUD_SQLITE.Context;
+using CRUD_SQLITE.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using CRUD_SQLITE.Context;
-using Microsoft.EntityFrameworkCore;
-using CRUD_SQLITE.Views;
+using System.Windows.Input;
 using Xamarin.Essentials;
-using Admob;
+using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
     public class CompanyViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
-       
-  
+        private DB_Context _dbContext = new DB_Context();
+
         #region CONTRUCTOR
+
         public CompanyViewModel(INavigation navigation)
         {
             Navigation = navigation;
             getCompanyAsync();
             showBtnSave = false;
         }
-        #endregion
 
+        #endregion CONTRUCTOR
 
         #region VARIABLES
+
         private string _TextNameCompany;
         private string _TextNameOwner;
         private string _TextDirection;
@@ -43,86 +42,100 @@ namespace CRUD_SQLITE.ViewModels
         private string _TextIVA;
         private string _TextCoin;
 
-
-        #endregion
-
+        #endregion VARIABLES
 
         #region OBJETOS
+
         public bool showBtnSave
         {
             get { return _showBtnSave; }
             set { SetValue(ref _showBtnSave, value); }
         }
+
         public string Name
         {
             get { return _TextNameCompany; }
             set { SetValue(ref _TextNameCompany, value); }
         }
+
         public string Owner
         {
             get { return _TextNameOwner; }
             set { SetValue(ref _TextNameOwner, value); }
         }
+
         public string Direction
         {
             get { return _TextDirection; }
             set { SetValue(ref _TextDirection, value); }
         }
+
         public string Email
         {
             get { return _TextEmail; }
             set { SetValue(ref _TextEmail, value); }
         }
+
         public string RUC
         {
             get { return _TextRUC; }
             set { SetValue(ref _TextRUC, value); }
         }
+
         public string Phone
         {
             get { return _TextPhone; }
             set { SetValue(ref _TextPhone, value); }
         }
+
         public string NumDocument
         {
             get { return _TextNumDocument; }
             set { SetValue(ref _TextNumDocument, value); }
         }
+
         public string Serie1
         {
             get { return _TextSerie1; }
             set { SetValue(ref _TextSerie1, value); }
         }
+
         public string Serie2
         {
             get { return _TextSerie2; }
             set { SetValue(ref _TextSerie2, value); }
         }
+
         public string Document
         {
             get { return _TextTypeDocument; }
             set { SetValue(ref _TextTypeDocument, value); }
         }
+
         public string CODE
         {
             get { return _TextCODE; }
             set { SetValue(ref _TextCODE, value); }
         }
+
         public string DB
         {
             get { return _TextDB; }
             set { SetValue(ref _TextDB, value); }
         }
+
         public string Iva
         {
             get { return _TextIVA; }
             set { SetValue(ref _TextIVA, value); }
         }
+
         public string Coin
         {
             get { return _TextCoin; }
             set { SetValue(ref _TextCoin, value); }
         }
+
         public string SelectDB
         {
             get { return _TextDB; }
@@ -130,9 +143,9 @@ namespace CRUD_SQLITE.ViewModels
             {
                 SetProperty(ref _TextDB, value);
                 DB = _TextDB;
-
             }
         }
+
         public string SelectIva
         {
             get { return _TextIVA; }
@@ -140,9 +153,9 @@ namespace CRUD_SQLITE.ViewModels
             {
                 SetProperty(ref _TextIVA, value);
                 Iva = _TextIVA;
-
             }
         }
+
         public string SelectCoin
         {
             get { return _TextCoin; }
@@ -150,14 +163,13 @@ namespace CRUD_SQLITE.ViewModels
             {
                 SetProperty(ref _TextCoin, value);
                 Coin = _TextCoin;
-
             }
         }
 
-        #endregion
-
+        #endregion OBJETOS
 
         #region METHODS
+
         public async Task<MCompany> getCompanyAsync()
         {
             var id = 1;
@@ -181,6 +193,7 @@ namespace CRUD_SQLITE.ViewModels
             }
             return company;
         }
+
         public async Task<MCompany> updateCompanyAsync()
         {
             var id = 1;
@@ -208,6 +221,7 @@ namespace CRUD_SQLITE.ViewModels
             Console.WriteLine("Hola");
             return company;
         }
+
         public async Task Activate()
         {
             if (Validations() == true)
@@ -223,7 +237,7 @@ namespace CRUD_SQLITE.ViewModels
                 {
                     await DisplayAlert("infor", "the code is incorrect", "ok");
                 }
-            }    
+            }
         }
 
         public bool Validations()
@@ -241,7 +255,6 @@ namespace CRUD_SQLITE.ViewModels
 
         public async void Logout()
         {
-           
             if (await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No"))
 
             {
@@ -249,13 +262,15 @@ namespace CRUD_SQLITE.ViewModels
                 await Navigation.PopToRootAsync();
             }
         }
-        #endregion
 
+        #endregion METHODS
 
         #region COMMANDS
+
         public ICommand btnUpdateCompany => new Command(async () => await updateCompanyAsync());
         public ICommand btnLogOut => new Command(Logout);
         public ICommand btnAdmin => new Command(async () => await Activate());
-        #endregion
+
+        #endregion COMMANDS
     }
 }

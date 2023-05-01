@@ -22,7 +22,6 @@ namespace CRUD_SQLITE
 
             Image myImage = new Image { Source = ImageSource.FromResource("CRUD_SQLITE.Images.store.png") };
 
-
             this.Items.Add(new ShellContent
             {
                 Title = "Home",
@@ -81,13 +80,11 @@ namespace CRUD_SQLITE
     }
 }
 
-
 //< FlyoutItem Title = "About" Icon = "icon_about.png" >
 //       < ShellContent Route = "AboutPage" ContentTemplate = "{DataTemplate local:AboutPage}" />
 //   </ FlyoutItem >
 
 //    await Shell.Current.GoToAsync("//LoginPage");
-
 
 //Title = "{Binding Title}"
 //Shell.NavBarIsVisible="False"

@@ -1,11 +1,9 @@
 ﻿using CRUD_SQLITE.Context;
-using CRUD_SQLITE.Models;
 using CRUD_SQLITE.ViewModels;
 using CRUD_SQLITE.Views;
 using Microsoft.EntityFrameworkCore;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
 
 namespace CRUD_SQLITE
 {
@@ -17,7 +15,7 @@ namespace CRUD_SQLITE
         {
             if (string.IsNullOrEmpty(SecureStorage.GetAsync(_localStorageToken).Result))
             {
-                MainPage = new NavigationPage(new ViewAuth());          
+                MainPage = new NavigationPage(new ViewAuth());
             }
             else
             {
@@ -119,15 +117,16 @@ namespace CRUD_SQLITE
             InitializeComponent();
 
             ShowAppShell();
-       
         }
 
         protected override void OnStart()
         {
         }
+
         protected override void OnSleep()
         {
         }
+
         protected override void OnResume()
         {
         }

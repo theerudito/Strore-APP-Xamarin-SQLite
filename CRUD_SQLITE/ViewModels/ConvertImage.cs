@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System;
+﻿using System;
+using System.IO;
 using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels

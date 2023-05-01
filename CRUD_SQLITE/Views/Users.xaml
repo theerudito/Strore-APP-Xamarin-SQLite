@@ -72,7 +72,7 @@
                                         Margin="0,0,0,0"
                                         Aspect="AspectFit"
                                         BackgroundColor="Transparent"
-                                        Command="{Binding Source={x:Reference viewUser}, 
+                                        Command="{Binding Source={x:Reference viewUser},
                                         Path=BindingContext.btnGoUpdateCommand}"
                                         CommandParameter="{Binding .}"
                                         HeightRequest="40"
@@ -83,7 +83,7 @@
                                         Margin="0,0,0,0"
                                         Aspect="AspectFit"
                                         BackgroundColor="Transparent"
-                                        Command="{Binding Source={x:Reference viewUser}, 
+                                        Command="{Binding Source={x:Reference viewUser},
                                         Path=BindingContext.btnDeleteCommand}"
                                         CommandParameter="{Binding .}"
                                         HeightRequest="40"
@@ -96,7 +96,6 @@
                     </ListView>
                 </RefreshView>
             </StackLayout>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

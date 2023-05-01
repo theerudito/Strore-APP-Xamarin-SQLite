@@ -13,10 +13,10 @@
                     Source="{Binding ImageProduct}"
                     HeightRequest="100"
                     WidthRequest="100" />
-            <Button 
-                Command="{Binding btnOpenGalery}" 
+            <Button
+                Command="{Binding btnOpenGalery}"
                 Text="UPLOAD IMAGE" />
-            
+
             <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"

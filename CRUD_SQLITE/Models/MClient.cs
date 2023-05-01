@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CRUD_SQLITE.Models
 {
-
     public class MClient
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int IdClient { get; set; }
+
         public string DNI { get; set; } = "";
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";

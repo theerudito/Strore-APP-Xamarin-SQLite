@@ -6,7 +6,7 @@
     Title="Add Clients">
     <ContentPage.Content>
 
-            <StackLayout>
+        <StackLayout>
 
             <Image
                     Margin="0"
@@ -19,98 +19,97 @@
                     CornerRadius="10"
                     HasShadow="True"
                     IsClippedToBounds="True">
-                    <Entry
+                <Entry
                         HeightRequest="70"
                         Keyboard="Numeric"
                         Placeholder="CI"
                         Text="{Binding TextDNI}" />
-                </Frame>
-                <Frame
+            </Frame>
+            <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
                     BackgroundColor="AliceBlue"
                     CornerRadius="10"
                     HasShadow="True"
                     IsClippedToBounds="True">
-                    <Entry
+                <Entry
                         HeightRequest="70"
                         Keyboard="Text"
                         Placeholder="First Name"
                         Text="{Binding TextFirstName}" />
-                </Frame>
-                <Frame
+            </Frame>
+            <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
                     BackgroundColor="AliceBlue"
                     CornerRadius="10"
                     HasShadow="True"
                     IsClippedToBounds="True">
-                    <Entry
+                <Entry
                         HeightRequest="70"
                         Keyboard="Text"
                         Placeholder="Last Name"
                         Text="{Binding TextLastName}" />
-                </Frame>
-                <Frame
+            </Frame>
+            <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
                     BackgroundColor="AliceBlue"
                     CornerRadius="10"
                     HasShadow="True"
                     IsClippedToBounds="True">
-                    <Entry
+                <Entry
                         HeightRequest="70"
                         Keyboard="Text"
                         Placeholder="Direction"
                         Text="{Binding TextDirection}" />
-                </Frame>
-                <Frame
+            </Frame>
+            <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
                     BackgroundColor="AliceBlue"
                     CornerRadius="10"
                     HasShadow="True"
                     IsClippedToBounds="True">
-                    <Entry
+                <Entry
                         HeightRequest="70"
                         Keyboard="Numeric"
                         Placeholder="Phone"
                         Text="{Binding TextPhone}" />
-                </Frame>
-                <Frame
+            </Frame>
+            <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
                     BackgroundColor="AliceBlue"
                     CornerRadius="10"
                     HasShadow="True"
                     IsClippedToBounds="True">
-                    <Entry
+                <Entry
                         HeightRequest="70"
                         Keyboard="Email"
                         Placeholder="Email"
                         Text="{Binding TextEmail}" />
-                </Frame>
-                <Frame
+            </Frame>
+            <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
                     BackgroundColor="AliceBlue"
                     CornerRadius="10"
                     HasShadow="True"
                     IsClippedToBounds="True">
-                    <Entry
+                <Entry
                         HeightRequest="70"
                         Keyboard="Text"
                         Placeholder="City"
                         Text="{Binding TextCity}" />
-                </Frame>
-                <Button
+            </Frame>
+            <Button
                     Margin="20"
                     Command="{Binding btnSaveClient}"
                     CornerRadius="10"
                     HeightRequest="50"
                     Text="{Binding Save}"
                     WidthRequest="80" />
-            </StackLayout>
-
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,6 +7,7 @@ namespace CRUD_SQLITE.Models
     {
         [Key]
         public int IdCart { get; set; }
+
         public int IdClient { get; set; }
         public int IdProduct { get; set; }
         public int Quantity { get; set; }

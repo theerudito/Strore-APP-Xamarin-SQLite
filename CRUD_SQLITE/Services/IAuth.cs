@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 
 namespace CRUD_SQLITE.Services
 {
-    interface IAuth
+    internal interface IAuth
     {
         Task<IEnumerable<MAuth>> GetAllUsersAsync();
+
         bool Login(string email, string password);
+
         bool Register(string name, string email, string password);
     }
 }

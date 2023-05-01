@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 
-
 namespace CRUD_SQLITE.DB
 {
-    class SQLite_Config
+    internal class SQLite_Config
     {
         public SQLite.SQLiteConnection myconnection;
         internal string dbPath;

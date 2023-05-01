@@ -13,11 +13,11 @@
                     RowDefinitions="40,20,*,20">
 
                 <StackLayout
-                    
+
                     Margin="10,0,10,0"
                     Grid.Row="0"
                     Grid.Column="0">
-                    <Grid 
+                    <Grid
                             ColumnDefinitions="40,*"
                             RowDefinitions="*">
                         <ImageButton
@@ -28,7 +28,7 @@
                             Command="{Binding btnGoNewProduct}"
                             HorizontalOptions="Center"
                             Source="add_product.png"
-                            VerticalOptions="CenterAndExpand"/>
+                            VerticalOptions="CenterAndExpand" />
                         <Frame
                             Grid.Row="0"
                             Grid.Column="1"
@@ -37,24 +37,23 @@
                             CornerRadius="10"
                             HasShadow="True"
                             IsClippedToBounds="True">
-                            <SearchBar 
+                            <SearchBar
                                 Text="{Binding SearchTextProduct}"
                                 SearchCommand="{Binding btnSearchProduct}"
                                 SearchCommandParameter="{Binding .}"
-                                HeightRequest="100" 
+                                HeightRequest="100"
                                 Placeholder="Search Product" />
                         </Frame>
                     </Grid>
-
                 </StackLayout>
 
-                <StackLayout 
+                <StackLayout
                     Grid.Row="1"
                     Grid.Column="0"
                     Background="#0099ff">
-                    <Grid 
+                    <Grid
                         Margin="0,2,0,0"
-                        ColumnDefinitions="2,*,*,*,*,*" 
+                        ColumnDefinitions="2,*,*,*,*,*"
                         RowDefinitions="*">
                         <Label
                             Margin="0,-3,0,0"
@@ -124,15 +123,15 @@
                                         BackgroundColor="White"
                                         ColumnDefinitions="*,*,*,*"
                                         RowDefinitions="*">
-                                          
-                                       <Label
+
+                                            <Label
                                         Text="{Binding Quantity}"
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         WidthRequest="100"
-                                        Margin="10"/>
-                                            
-                                        <Label
+                                        Margin="10" />
+
+                                            <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="10"
@@ -169,7 +168,7 @@
                                                 Margin="0,2,5,0"
                                                 Aspect="AspectFit"
                                                 BackgroundColor="Transparent"
-                                                Command="{Binding Source={x:Reference list_product}, 
+                                                Command="{Binding Source={x:Reference list_product},
                                                 Path=BindingContext.btnGoUpdateProduct}"
                                                 CommandParameter="{Binding .}"
                                                 HeightRequest="30"
@@ -179,7 +178,7 @@
                                                 Margin="0,2,5,0"
                                                 Aspect="AspectFit"
                                                 BackgroundColor="Transparent"
-                                                Command="{Binding Source={x:Reference list_product}, 
+                                                Command="{Binding Source={x:Reference list_product},
                                                 Path=BindingContext.btnDeleteProduct}"
                                                 CommandParameter="{Binding .}"
                                                 HeightRequest="30"
@@ -194,7 +193,7 @@
                     </RefreshView>
                 </StackLayout>
 
-                <StackLayout 
+                <StackLayout
                     Grid.Row="3"
                     Grid.Column="0"
                     HeightRequest="30">
@@ -209,7 +208,6 @@
                             Source="right" />
                     </Grid>
                 </StackLayout>
-
             </Grid>
         </StackLayout>
     </ContentPage.Content>

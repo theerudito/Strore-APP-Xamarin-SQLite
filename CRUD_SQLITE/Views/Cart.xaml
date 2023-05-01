@@ -53,35 +53,34 @@
                     </Grid>
                 </StackLayout>
 
-
                 <StackLayout
                     Grid.Row="1"
-                    Grid.Column="0">                                                                                             
-                     <ListView
+                    Grid.Column="0">
+                    <ListView
                         x:Name="list_product"
                         ItemsSource="{Binding List_ProductsCart}">
-                    <ListView.ItemTemplate> 
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid RowDefinitions="*" ColumnDefinitions="*,*,*,*" BackgroundColor="red">
-                                        <Label 
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid RowDefinitions="*" ColumnDefinitions="*,*,*,*" BackgroundColor="red">
+                                        <Label
                                             Grid.Row="0"
                                             Grid.Column="0"
-                                            Text="10"/>
-                                        <Label 
+                                            Text="10" />
+                                        <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
-                                            Text="Hola"/>
-                                        <Label 
+                                            Text="Hola" />
+                                        <Label
                                             Grid.Row="0"
                                             Grid.Column="2"
-                                            Text="20"/>
+                                            Text="20" />
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="3"
-                                            Text="25"/>
-                                        <Label 
-                                            Text="10"/>
+                                            Text="25" />
+                                        <Label
+                                            Text="10" />
                                         <!--<ImageButton
                                         Grid.Row="0"
                                         Grid.Column="0"
@@ -141,13 +140,11 @@
                                             HeightRequest="20"
                                             Source="trash" />
                                     </StackLayout>-->
-
-                                </Grid>
-
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
 
                 <StackLayout
@@ -162,12 +159,12 @@
                         TextColor="White" />
                 </StackLayout>
 
-                <StackLayout 
+                <StackLayout
                     Margin="5,0,5,0"
-                    Grid.Row="3" 
+                    Grid.Row="3"
                     Grid.Column="0">
-                    <Grid 
-                        ColumnDefinitions="*,*" 
+                    <Grid
+                        ColumnDefinitions="*,*"
                         RowDefinitions="*">
                         <Frame
                             Grid.Row="0"
@@ -175,7 +172,7 @@
                             Padding="10"
                             BackgroundColor="#0099FF"
                             CornerRadius="10">
-                            <Grid 
+                            <Grid
                                 RowDefinitions="*,*,*,*,*"
                                 ColumnDefinitions="*,*">
                                 <Label
@@ -440,8 +437,8 @@
                     </Grid>
                 </StackLayout>
 
-                <StackLayout 
-                    Grid.Row="5" 
+                <StackLayout
+                    Grid.Row="5"
                     Grid.Column="0">
                     <Button
                         Margin="20,10,20,0"
@@ -449,9 +446,7 @@
                         CornerRadius="10"
                         Text="SAVE" />
                 </StackLayout>
-                
             </Grid>
-    
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

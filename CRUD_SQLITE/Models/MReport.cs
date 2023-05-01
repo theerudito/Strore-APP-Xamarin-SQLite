@@ -1,5 +1,4 @@
-﻿using SQLite;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CRUD_SQLITE.Models
 {
@@ -7,6 +6,7 @@ namespace CRUD_SQLITE.Models
     {
         [Key]
         public int IdReport { get; set; }
+
         public int IdDetailCart { get; set; }
     }
 }

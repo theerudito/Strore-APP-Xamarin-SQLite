@@ -9,19 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-
 namespace CRUD_SQLITE.ViewModels
 {
-
     public class CartViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
+        private DB_Context _dbContext = new DB_Context();
 
-
-        List<MProduct> _myCart = new List<MProduct>();
-
+        private List<MProduct> _myCart = new List<MProduct>();
 
         #region CONSTRUCTORS
+
         public CartViewModel(INavigation navigation)
         {
             Navigation = navigation;
@@ -40,12 +37,9 @@ namespace CRUD_SQLITE.ViewModels
                 P_Total = 10 * 2.5f,
             };
 
-
             _myCart.Add(pro2);
 
-
             List_ProductsCart = new ObservableCollection<MProduct>(_myCart);
-
         }
 
         public CartViewModel(MProduct product)
@@ -59,11 +53,12 @@ namespace CRUD_SQLITE.ViewModels
                 P_Unitary = product.P_Unitary,
                 P_Total = product.Quantity * product.P_Unitary,
             };
-
         }
-        #endregion
+
+        #endregion CONSTRUCTORS
 
         #region VARIABLES
+
         private string _Date = DateTime.Now.ToString("HH:mm:ss");
         private string _Hour = DateTime.Now.ToString("dd/MM/yyyy");
 
@@ -93,10 +88,12 @@ namespace CRUD_SQLITE.ViewModels
         private int _IdProduct;
         private int cliFinal = 1;
 
-        ObservableCollection<MProduct> _list_Product;
-        #endregion
+        private ObservableCollection<MProduct> _list_Product;
+
+        #endregion VARIABLES
 
         #region OBJETOS
+
         public ObservableCollection<MProduct> List_ProductsCart
         {
             get { return _list_Product; }
@@ -113,37 +110,42 @@ namespace CRUD_SQLITE.ViewModels
             get { return _subtotal; }
             set { SetValue(ref _subtotal, value); }
         }
+
         public float SubTotal12
         {
             get { return _subtotal12; }
             set { SetValue(ref _subtotal12, value); }
         }
+
         public float SubTotal0
         {
             get { return _subtotal0; }
             set { SetValue(ref _subtotal0, value); }
         }
+
         public float IvaCart
         {
             get { return _ivaCart; }
             set { SetValue(ref _ivaCart, value); }
         }
+
         public float IvaCompany
         {
             get { return _ivaCompany; }
             set { SetValue(ref _ivaCompany, value); }
         }
+
         public float Total
         {
             get { return _Total; }
             set { SetValue(ref _Total, value); }
         }
+
         public float Descuent
         {
             get { return _descuent; }
             set { SetValue(ref _descuent, value); }
         }
-
 
         // DATOS DE LA EMPRESA
         public string Date_Now
@@ -151,32 +153,36 @@ namespace CRUD_SQLITE.ViewModels
             get { return _Date; }
             set { SetValue(ref _Date, value); }
         }
+
         public string Hour_Now
         {
             get { return _Hour; }
             set { SetValue(ref _Hour, value); }
         }
+
         public string Document
         {
             get { return _Document; }
             set { SetValue(ref _Document, value); }
         }
+
         public int NumDocument
         {
             get { return _numDocument; }
             set { SetValue(ref _numDocument, value); }
         }
+
         public string Serie1
         {
             get { return _Serie1; }
             set { SetValue(ref _Serie1, value); }
         }
+
         public string Serie2
         {
             get { return _Serie2; }
             set { SetValue(ref _Serie2, value); }
         }
-
 
         // DATA CLIENT
         public int IdClient
@@ -184,36 +190,43 @@ namespace CRUD_SQLITE.ViewModels
             get { return _IdClient; }
             set { SetValue(ref _IdClient, value); }
         }
+
         public string DNI
         {
             get { return _DNI; }
             set { SetValue(ref _DNI, value); }
         }
+
         public string Phone
         {
             get { return _Phone; }
             set { SetValue(ref _Phone, value); }
         }
+
         public string FirstName
         {
             get { return _FirstName; }
             set { SetValue(ref _FirstName, value); }
         }
+
         public string LastName
         {
             get { return _LastName; }
             set { SetValue(ref _LastName, value); }
         }
+
         public string Email
         {
             get { return _Email; }
             set { SetValue(ref _Email, value); }
         }
+
         public string Direction
         {
             get { return _Direction; }
             set { SetValue(ref _Direction, value); }
         }
+
         public string City
         {
             get { return _City; }
@@ -225,16 +238,17 @@ namespace CRUD_SQLITE.ViewModels
             get { return _IdProduct; }
             set { SetValue(ref _IdProduct, value); }
         }
+
         public int Cant
         {
             get { return _cant; }
             set { SetValue(ref _cant, value); }
         }
 
-
-        #endregion
+        #endregion OBJETOS
 
         #region METODOS ASYNC
+
         public void Get_Data_Product(MProduct product)
         {
             var newProduct = new MProduct
@@ -249,7 +263,6 @@ namespace CRUD_SQLITE.ViewModels
 
         public async Task getClientFinal()
         {
-
             var seachClientFinal = await _dbContext.Client.Where(cli => cli.IdClient == cliFinal).FirstOrDefaultAsync();
 
             if (seachClientFinal != null)
@@ -334,14 +347,17 @@ namespace CRUD_SQLITE.ViewModels
         {
             return _myCart.Count;
         }
-        #endregion
+
+        #endregion METODOS ASYNC
 
         #region COMANDOS
+
         public ICommand btnSaveCartCommand => new Command(async () => await Save_Buy());
         public ICommand btnSearchDNICommand => new Command(async () => await getClient());
         public ICommand btnDeleteProductCart => new Command<MProduct>(async (pro) => await Delete_ProductCart(pro));
         public ICommand btnSumQuantityCommand => new Command(Sum_Quantity);
         public ICommand btnRestQuantityCommand => new Command(Res_Quantity);
-        #endregion
+
+        #endregion COMANDOS
     }
 }

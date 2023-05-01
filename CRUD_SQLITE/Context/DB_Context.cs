@@ -26,8 +26,6 @@ namespace CRUD_SQLITE.Context
 
         private const string DatabaseName = "storr.db3";
 
-        
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             String databasePath;
@@ -36,9 +34,11 @@ namespace CRUD_SQLITE.Context
                 case Device.iOS:
                     databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DatabaseName);
                     break;
+
                 case Device.Android:
                     databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseName);
                     break;
+
                 default:
                     throw new NotImplementedException("Platform not supported");
             }

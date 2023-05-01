@@ -15,17 +15,19 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class ClientViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
+        private DB_Context _dbContext = new DB_Context();
         public Command ReloadClients { get; }
 
-
         #region VARIABLES
-        ObservableCollection<MClient> _List_client;
+
+        private ObservableCollection<MClient> _List_client;
         public bool _goEditing = true;
-        string _searchTextClient;
-        #endregion
+        private string _searchTextClient;
+
+        #endregion VARIABLES
 
         #region CONSTRUCTOR
+
         public ClientViewModel(INavigation navigation)
         {
             Navigation = navigation;
@@ -33,9 +35,11 @@ namespace CRUD_SQLITE.ViewModels
 
             ReloadClients = new Command(async () => await GetAllClientAsync());
         }
-        #endregion
+
+        #endregion CONSTRUCTOR
 
         #region OBJECTS
+
         public ObservableCollection<MClient> List_Clients
         {
             get { return _List_client; }
@@ -45,14 +49,17 @@ namespace CRUD_SQLITE.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public string SearchTextClient
         {
             get => _searchTextClient;
             set => _searchTextClient = value;
         }
-        #endregion
+
+        #endregion OBJECTS
 
         #region METHODS
+
         public async Task GetAllClientAsync()
         {
             IsBusy = true;
@@ -106,14 +113,17 @@ namespace CRUD_SQLITE.ViewModels
                 await DisplayAlert("Error", "Not Exits Client", "ok");
             }
         }
+
         public async Task go_Update_Client(MClient client)
         {
             await Navigation.PushAsync(new Add_Client(client, _goEditing));
         }
+
         public async Task go_New_Client(MClient client)
         {
             await Navigation.PushAsync(new Add_Client(client, _goEditing));
         }
+
         public async Task deleteClientAsync(MClient client)
         {
             var result = await _dbContext.Client.FirstOrDefaultAsync(cli => cli.IdClient == client.IdClient);
@@ -128,17 +138,18 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
-        #endregion
+
+        #endregion METHODS
 
         #region COMMANDS
+
         public ICommand btnSearchClientCommand => new Command(async () => await getOnClient());
         public ICommand btnDeleteClient => new Command<MClient>(async (cli) => await deleteClientAsync(cli));
         public ICommand btnGoNewClient => new Command<MClient>(async (cli) => await go_New_Client(cli));
         public ICommand btnGoUpdateClient => new Command<MClient>(async (cli) => await go_Update_Client(cli));
         public ICommand btnLeftClient => new Command(async () => await DisplayAlert("info", "prew", "ok"));
         public ICommand btnRightClient => new Command(async () => await DisplayAlert("info", "next", "ok"));
-        #endregion
 
+        #endregion COMMANDS
     }
 }
-

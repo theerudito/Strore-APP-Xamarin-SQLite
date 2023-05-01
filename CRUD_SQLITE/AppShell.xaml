@@ -5,8 +5,6 @@
        Title="CRUD_SQLITE"
        x:Class="CRUD_SQLITE.AppShell">
 
-
-
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -16,9 +14,9 @@
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -86,7 +84,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Client" Icon="avatar.png">
-    <ShellContent Route="client" ContentTemplate="{DataTemplate local:Client}"  />
+    <ShellContent Route="client" ContentTemplate="{DataTemplate local:Client}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Product" Icon="product.png">
@@ -108,6 +106,4 @@
     <FlyoutItem Title="Detail" Icon="avatar">
     <ShellContent Route="Detail" ContentTemplate="{DataTemplate local:DetailsCart}" />
     </FlyoutItem>-->
-
-
 </Shell>

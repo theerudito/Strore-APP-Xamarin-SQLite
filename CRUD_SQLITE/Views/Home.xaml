@@ -6,7 +6,7 @@
     Title="Home">
     <ContentPage.Content>
         <StackLayout>
-            
+
             <StackLayout>
                 <Image
                         Margin="0,40,0,0"
@@ -24,8 +24,8 @@
                         Text="{Binding Owner}"
                         VerticalOptions="CenterAndExpand" />
             </StackLayout>
-            
-            <StackLayout 
+
+            <StackLayout
                 Margin="0,40,0,0">
                 <Image
                         Aspect="AspectFit"
@@ -33,15 +33,15 @@
                         Source="store"
                         WidthRequest="100" />
             </StackLayout>
-            
-            <StackLayout 
-                HorizontalOptions="CenterAndExpand" 
+
+            <StackLayout
+                HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand">
-                <Label 
-                    HorizontalOptions="CenterAndExpand" 
+                <Label
+                    HorizontalOptions="CenterAndExpand"
                     Text="By Jorge Loor 2023" />
-                <Label 
-                    HorizontalOptions="CenterAndExpand" 
+                <Label
+                    HorizontalOptions="CenterAndExpand"
                     Text="{Binding Version}" />
                 <FlexLayout
                         HeightRequest="50"

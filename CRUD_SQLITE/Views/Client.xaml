@@ -16,7 +16,7 @@
                         Grid.Row="0"
                         Grid.Column="0">
                     <Grid
-                        
+
                         ColumnDefinitions="40,*"
                         RowDefinitions="*">
                         <ImageButton
@@ -27,7 +27,7 @@
                             Command="{Binding btnGoNewClient}"
                             HorizontalOptions="Center"
                             Source="add_client.png"
-                            VerticalOptions="CenterAndExpand"/>
+                            VerticalOptions="CenterAndExpand" />
                         <Frame
                             Grid.Row="0"
                             Grid.Column="1"
@@ -36,25 +36,24 @@
                             CornerRadius="10"
                             HasShadow="True"
                             IsClippedToBounds="True">
-                            
-                            <SearchBar 
+
+                            <SearchBar
                                 Text="{Binding SearchTextClient}"
                                 SearchCommand="{Binding btnSearchClientCommand}"
                                 SearchCommandParameter="{Binding .}"
                                 Placeholder="Search Client" />
                         </Frame>
                     </Grid>
-           
-            </StackLayout>
+                </StackLayout>
 
-                <StackLayout 
+                <StackLayout
                 Grid.Row="1"
                 Grid.Column="0"
-               
+
                 Background="#0099ff">
-                    <Grid 
+                    <Grid
                     Margin="0,10,0,0"
-                    ColumnDefinitions="2,*,*,*,*,*" 
+                    ColumnDefinitions="2,*,*,*,*,*"
                     RowDefinitions="*">
                         <Label
                             Margin="0,-10,0,0"
@@ -148,7 +147,7 @@
                                                 Margin="0,2,5,0"
                                                 Aspect="AspectFit"
                                                 BackgroundColor="Transparent"
-                                                Command="{Binding Source={x:Reference List}, 
+                                                Command="{Binding Source={x:Reference List},
                                                 Path=BindingContext.btnGoUpdateClient}"
                                                 CommandParameter="{Binding}"
                                                 HeightRequest="30"
@@ -158,7 +157,7 @@
                                                 Margin="0,2,5,0"
                                                 Aspect="AspectFit"
                                                 BackgroundColor="Transparent"
-                                                Command="{Binding Source={x:Reference List}, 
+                                                Command="{Binding Source={x:Reference List},
                                                 Path=BindingContext.btnDeleteClient}"
                                                 CommandParameter="{Binding}"
                                                 HeightRequest="30"
@@ -173,24 +172,23 @@
                     </RefreshView>
                 </StackLayout>
 
-                <StackLayout 
+                <StackLayout
                 Grid.Row="3"
                 Grid.Column="0"
                 HeightRequest="30">
-                <Grid RowDefinitions="20">
-                    <ImageButton
+                    <Grid RowDefinitions="20">
+                        <ImageButton
                             Grid.Column="0"
                             BackgroundColor="Transparent"
                             Command="{Binding btnLeftClient}"
                             Source="left" />
-                    <ImageButton
+                        <ImageButton
                             Grid.Column="1"
                             BackgroundColor="Transparent"
                             Command="{Binding btnRightClient}"
                             Source="right" />
-                </Grid>
-            </StackLayout>
-            
+                    </Grid>
+                </StackLayout>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

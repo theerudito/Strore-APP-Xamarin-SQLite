@@ -9,9 +9,9 @@ namespace CRUD_SQLITE.ViewModels
 {
     public class DetailsCartViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
+        private DB_Context _dbContext = new DB_Context();
         private MDetailsCart myReport { get; set; }
-        ObservableCollection<MCart> _list_Product;
+        private ObservableCollection<MCart> _list_Product;
 
         public ObservableCollection<MCart> List_Products
         {
@@ -22,28 +22,31 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
+
         public DetailsCartViewModel(INavigation navigation)
         {
             Navigation = navigation;
-
         }
 
-
         #region METHODS
+
         public async Task generatePDF()
         {
             await DisplayAlert("info", "generando pdf", "ok");
         }
+
         public async Task sharedDocument()
         {
             await DisplayAlert("info", "compartir", "ok");
         }
-        #endregion
 
+        #endregion METHODS
 
         #region COMMANDS
+
         public ICommand btnSharedCommand => new Command(async () => await sharedDocument());
         public ICommand btnGeneratePDFCommand => new Command(async () => await generatePDF());
-        #endregion
+
+        #endregion COMMANDS
     }
 }

@@ -11,9 +11,10 @@ namespace CRUD_SQLITE.ViewModels
 {
     internal class AddClientViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
+        private DB_Context _dbContext = new DB_Context();
 
         #region VARIABLES
+
         public MClient _client { get; set; }
         public bool _Editing;
         public string _Save;
@@ -24,9 +25,11 @@ namespace CRUD_SQLITE.ViewModels
         public string _textPhone;
         public string _textEmail;
         public string _textCity;
-        #endregion
+
+        #endregion VARIABLES
 
         #region CONSTUCTOR
+
         public AddClientViewModel(INavigation navigation, MClient client, bool _goEditing)
         {
             if (client != null)
@@ -45,9 +48,11 @@ namespace CRUD_SQLITE.ViewModels
             Navigation = navigation;
             obtenerData();
         }
-        #endregion
+
+        #endregion CONSTUCTOR
 
         #region OBJECTS
+
         public string Save
         {
             get { return _Save; }
@@ -56,6 +61,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _Save, value);
             }
         }
+
         public string TextDNI
         {
             get { return _textDNI; }
@@ -64,6 +70,7 @@ namespace CRUD_SQLITE.ViewModels
                 SetValue(ref _textDNI, value);
             }
         }
+
         public string TextFirstName
         {
             get { return _textFirstName; }
@@ -73,6 +80,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
+
         public string TextLastName
         {
             get { return _textLastName; }
@@ -82,6 +90,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
+
         public string TextDirection
         {
             get { return _textDirection; }
@@ -91,6 +100,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
+
         public string TextPhone
         {
             get { return _textPhone; }
@@ -100,6 +110,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
+
         public string TextEmail
         {
             get { return _textEmail; }
@@ -109,6 +120,7 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
+
         public string TextCity
         {
             get { return _textCity; }
@@ -118,9 +130,11 @@ namespace CRUD_SQLITE.ViewModels
                 //OnPropertyChanged();
             }
         }
-        #endregion
+
+        #endregion OBJECTS
 
         #region METHODS
+
         public void obtenerData()
         {
             TextDNI = Convert.ToString(_client.DNI);
@@ -131,6 +145,7 @@ namespace CRUD_SQLITE.ViewModels
             TextEmail = _client.Email;
             TextCity = _client.City;
         }
+
         public async Task<MClient> createClientAsync()
         {
             var newClient = await _dbContext.Client.FirstOrDefaultAsync(cli => cli.DNI == TextDNI);
@@ -171,31 +186,31 @@ namespace CRUD_SQLITE.ViewModels
                 TextCity = newClient.City.ToUpper();
                 return null;
             }
-                 
         }
+
         public async Task<MClient> editClientAsync()
         {
-                    _client.DNI = TextDNI;
-                    _client.FirstName = TextFirstName.ToUpper();
-                    _client.LastName = TextLastName.ToUpper();
-                    _client.Direction = TextDirection.ToUpper();
-                    _client.Phone = TextPhone;
-                    _client.Email = TextEmail;
-                    _client.City = TextCity.ToUpper();
+            _client.DNI = TextDNI;
+            _client.FirstName = TextFirstName.ToUpper();
+            _client.LastName = TextLastName.ToUpper();
+            _client.Direction = TextDirection.ToUpper();
+            _client.Phone = TextPhone;
+            _client.Email = TextEmail;
+            _client.City = TextCity.ToUpper();
 
-                if (Validations() == true)
-                {
-                    _dbContext.Client.Update(_client);
-                    await _dbContext.SaveChangesAsync();
-                
-                    ResetField();
+            if (Validations() == true)
+            {
+                _dbContext.Client.Update(_client);
+                await _dbContext.SaveChangesAsync();
 
-                    await Navigation.PushAsync(new Client());
-                }
-               
+                ResetField();
+
+                await Navigation.PushAsync(new Client());
+            }
+
             return _client;
-
         }
+
         public async Task<MClient> createOrEditClientAsync()
         {
             if (_Editing)
@@ -207,6 +222,7 @@ namespace CRUD_SQLITE.ViewModels
                 return await createClientAsync();
             }
         }
+
         public void ResetField()
         {
             TextDNI = "";
@@ -260,11 +276,13 @@ namespace CRUD_SQLITE.ViewModels
                 return true;
             }
         }
-        #endregion
+
+        #endregion METHODS
 
         #region COMMANDS
-        public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createOrEditClientAsync());
-        #endregion
 
+        public ICommand btnSaveClient => new Command<MClient>(async (cli) => await createOrEditClientAsync());
+
+        #endregion COMMANDS
     }
 }

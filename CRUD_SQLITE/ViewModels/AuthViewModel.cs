@@ -1,7 +1,6 @@
 ﻿using CRUD_SQLITE.Context;
 using CRUD_SQLITE.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,23 +8,26 @@ using Xamarin.Forms;
 
 namespace CRUD_SQLITE.ViewModels
 {
-    class AuthViewModel : BaseViewModel
+    internal class AuthViewModel : BaseViewModel
     {
-        DB_Context _dbContext = new DB_Context();
-        App app = (App)Application.Current;
+        private DB_Context _dbContext = new DB_Context();
+        private App app = (App)Application.Current;
 
-        #region  VARIABLES
+        #region VARIABLES
+
         private string _email;
         private string _password;
         private string _user;
-        ObservableCollection<MAuth> _List_Users;
+        private ObservableCollection<MAuth> _List_Users;
         private StackLayout showRegister;
         private StackLayout showLogin;
         private readonly string LocalStorageUser = "user";
         private readonly string LocalStorageToken = "token";
-        #endregion
 
-        #region  OBJECTS
+        #endregion VARIABLES
+
+        #region OBJECTS
+
         public ObservableCollection<MAuth> List_Users
         {
             get { return _List_Users; }
@@ -35,24 +37,29 @@ namespace CRUD_SQLITE.ViewModels
                 OnpropertyChanged();
             }
         }
+
         public string User
         {
             get { return _user; }
             set { SetValue(ref _user, value); }
         }
+
         public string Email
         {
             get { return _email; }
             set { _email = value; OnPropertyChanged(); }
         }
+
         public string Password
         {
             get { return _password; }
             set { SetValue(ref _password, value); }
         }
-        #endregion
+
+        #endregion OBJECTS
 
         #region CONSTRUCTOR
+
         public AuthViewModel(INavigation navigation, StackLayout showRegister, StackLayout showLogin)
         {
             showRegister.IsVisible = false;
@@ -61,28 +68,26 @@ namespace CRUD_SQLITE.ViewModels
             this.showLogin = showLogin;
         }
 
-        #endregion
+        #endregion CONSTRUCTOR
 
         #region METHODS
+
         public async Task Login()
         {
-
             if (ValitationsLogin() == true)
             {
-               
                 var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
 
                 if (query != null)
                 {
-                    
-                   // check the password
+                    // check the password
                     if (BCrypt.Net.BCrypt.Verify(Password, query.Password))
                     {
                         await DisplayAlert("Login", "Welcome " + query.User, "Ok");
                         await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageToken, Password);
                         await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, query.User);
-                        app.ShowAppShell();                        
-                        
+                        app.ShowAppShell();
+
                         User = "";
                         Email = "";
                         Password = "";
@@ -98,24 +103,22 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
+
         public async Task Register()
         {
-           
             if (ValitationsRegister() == true)
             {
-               
                 var query = await _dbContext.Auth.FirstOrDefaultAsync(user => user.Email == Email);
 
                 if (query == null)
                 {
-                    
                     var user = new MAuth()
                     {
                         User = User,
                         Email = Email,
                         Password = BCrypt.Net.BCrypt.HashPassword(Password)
                     };
-                     
+
                     _dbContext.Auth.Add(user);
                     await _dbContext.SaveChangesAsync();
                     await DisplayAlert("Register", "Register Success", "Ok");
@@ -123,7 +126,7 @@ namespace CRUD_SQLITE.ViewModels
                     await Xamarin.Essentials.SecureStorage.SetAsync(LocalStorageUser, User);
 
                     app.ShowAppShell();
-                    
+
                     User = "";
                     Email = "";
                     Password = "";
@@ -134,17 +137,20 @@ namespace CRUD_SQLITE.ViewModels
                 }
             }
         }
+
         public void show_Login()
         {
             showRegister.IsVisible = false;
             showLogin.IsVisible = true;
         }
+
         public void show_Register()
         {
             showRegister.IsVisible = true;
             showLogin.IsVisible = false;
         }
-        public bool  ValitationsLogin()
+
+        public bool ValitationsLogin()
         {
             if (string.IsNullOrEmpty(Email))
             {
@@ -161,6 +167,7 @@ namespace CRUD_SQLITE.ViewModels
                 return true;
             }
         }
+
         public bool ValitationsRegister()
         {
             if (string.IsNullOrEmpty(User))
@@ -183,13 +190,16 @@ namespace CRUD_SQLITE.ViewModels
                 return true;
             }
         }
-        #endregion
+
+        #endregion METHODS
 
         #region COMMANDS
+
         public ICommand btnLoginCommand => new Command(async () => await Login());
         public ICommand btnShowRegisterCommand => new Command(show_Login);
         public ICommand btnRegisterCommand => new Command(async () => await Register());
         public ICommand btnShowLoginCommand => new Command(show_Register);
-        #endregion 
+        #endregion COMMANDS
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CRUD_SQLITE.Models
@@ -8,6 +7,7 @@ namespace CRUD_SQLITE.Models
     {
         [Key]
         public int IdCompany { get; set; }
+
         public string NameCompany { get; set; } = "";
         public string NameOwner { get; set; } = "";
         public string Direction { get; set; } = "";

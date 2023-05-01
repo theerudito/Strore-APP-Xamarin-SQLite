@@ -59,21 +59,19 @@
                         CornerRadius="10"
                         Text="Go Register" />-->
 
-                        <Label 
-                            HorizontalOptions="Center" 
-                            Text="No tienes cuenta click en:"/>
-                        <Label 
+                    <Label
                             HorizontalOptions="Center"
-                            Text="Register" 
+                            Text="No tienes cuenta click en:" />
+                    <Label
+                            HorizontalOptions="Center"
+                            Text="Register"
                             TextColor="#0099ff">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                Command="{Binding btnShowRegisterCommand}"/>
+                            <TapGestureRecognizer
+                                Command="{Binding btnShowRegisterCommand}" />
                         </Label.GestureRecognizers>
-                    </Label> 
-                    
+                    </Label>
                 </StackLayout>
-
 
                 <StackLayout x:Name="showLogin">
                     <Image
@@ -138,20 +136,18 @@
                         CornerRadius="10"
                         Text="Go Login" />-->
 
-                    <Label 
-                            HorizontalOptions="Center" 
-                            Text="Deseas iniciar Session click en:"/>
-                    <Label 
+                    <Label
                             HorizontalOptions="Center"
-                            Text="Login" 
+                            Text="Deseas iniciar Session click en:" />
+                    <Label
+                            HorizontalOptions="Center"
+                            Text="Login"
                             TextColor="#0099ff">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                Command="{Binding btnShowLoginCommand}"/>
+                            <TapGestureRecognizer
+                                Command="{Binding btnShowLoginCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
-
-
                 </StackLayout>
             </StackLayout>
         </ScrollView>

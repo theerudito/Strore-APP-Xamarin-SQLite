@@ -1,14 +1,11 @@
 ﻿using CRUD_SQLITE.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CRUD_SQLITE.Services
 {
     public interface IProduct
     {
-
         Task<IEnumerable<MProduct>> GetAllProduct();
 
         Task<MProduct> GetOneProduct(int id);
