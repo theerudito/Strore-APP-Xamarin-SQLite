@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="CRUD_SQLITE.Views.ViewAuth"
+    x:Class="MyStore.Views.ViewAuth"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -46,29 +46,26 @@
                     <Button
                         Margin="20"
                         Padding="0"
-                        TextColor="White"
                         Background="#0099ff"
                         Command="{Binding btnLoginCommand}"
                         CornerRadius="10"
-                        Text="Login" />
+                        Text="Login"
+                        TextColor="White" />
                     <!--<Button
-                        Margin="20"
-                        Padding="0"
-                        BackgroundColor="Orange"
-                        Command="{Binding btnShowRegisterCommand}"
-                        CornerRadius="10"
-                        Text="Go Register" />-->
+                    Margin="20"
+                    Padding="0"
+                    BackgroundColor="Orange"
+                    Command="{Binding btnShowRegisterCommand}"
+                    CornerRadius="10"
+                    Text="Go Register" />-->
 
+                    <Label HorizontalOptions="Center" Text="No tienes cuenta click en:" />
                     <Label
-                            HorizontalOptions="Center"
-                            Text="No tienes cuenta click en:" />
-                    <Label
-                            HorizontalOptions="Center"
-                            Text="Register"
-                            TextColor="#0099ff">
+                        HorizontalOptions="Center"
+                        Text="Register"
+                        TextColor="#0099ff">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding btnShowRegisterCommand}" />
+                            <TapGestureRecognizer Command="{Binding btnShowRegisterCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
@@ -123,29 +120,26 @@
                     <Button
                         Margin="20"
                         Padding="0"
-                        TextColor="White"
                         Background="#0099ff"
                         Command="{Binding btnRegisterCommand}"
                         CornerRadius="10"
-                        Text="Register" />
+                        Text="Register"
+                        TextColor="White" />
                     <!--<Button
-                        Margin="20"
-                        Padding="0"
-                        BackgroundColor="Orange"
-                        Command="{Binding btnShowLoginCommand}"
-                        CornerRadius="10"
-                        Text="Go Login" />-->
+                    Margin="20"
+                    Padding="0"
+                    BackgroundColor="Orange"
+                    Command="{Binding btnShowLoginCommand}"
+                    CornerRadius="10"
+                    Text="Go Login" />-->
 
+                    <Label HorizontalOptions="Center" Text="Deseas iniciar Session click en:" />
                     <Label
-                            HorizontalOptions="Center"
-                            Text="Deseas iniciar Session click en:" />
-                    <Label
-                            HorizontalOptions="Center"
-                            Text="Login"
-                            TextColor="#0099ff">
+                        HorizontalOptions="Center"
+                        Text="Login"
+                        TextColor="#0099ff">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding btnShowLoginCommand}" />
+                            <TapGestureRecognizer Command="{Binding btnShowLoginCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>

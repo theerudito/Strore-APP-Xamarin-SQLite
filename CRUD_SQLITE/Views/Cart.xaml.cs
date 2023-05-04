@@ -1,9 +1,9 @@
-﻿using CRUD_SQLITE.Models;
-using CRUD_SQLITE.ViewModels;
+﻿using MyStore.Models;
+using MyStore.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CRUD_SQLITE.Views
+namespace MyStore.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Cart : ContentPage
@@ -20,5 +20,3 @@ namespace CRUD_SQLITE.Views
         }
     }
 }
-
-

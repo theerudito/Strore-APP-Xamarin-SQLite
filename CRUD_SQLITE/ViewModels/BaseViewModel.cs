@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

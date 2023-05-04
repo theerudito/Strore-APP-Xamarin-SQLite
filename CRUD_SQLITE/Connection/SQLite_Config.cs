@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CRUD_SQLITE.DB
+namespace MyStore.Connection
 {
     internal class SQLite_Config
     {

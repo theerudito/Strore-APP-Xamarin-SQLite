@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="CRUD_SQLITE.Views.Home"
+    x:Class="MyStore.Views.Home"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Home">
@@ -9,84 +9,77 @@
 
             <StackLayout>
                 <Image
-                        Margin="0,40,0,0"
-                        Aspect="AspectFit"
-                        Source="avatar"
-                        WidthRequest="100" />
+                    Margin="0,40,0,0"
+                    Aspect="AspectFit"
+                    Source="avatar"
+                    WidthRequest="100" />
                 <Label
-                        FontSize="20"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="{Binding Name}"
-                        VerticalOptions="CenterAndExpand" />
+                    FontSize="20"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Name}"
+                    VerticalOptions="CenterAndExpand" />
                 <Label
-                        FontSize="14"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="{Binding Owner}"
-                        VerticalOptions="CenterAndExpand" />
+                    FontSize="14"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Owner}"
+                    VerticalOptions="CenterAndExpand" />
             </StackLayout>
 
-            <StackLayout
-                Margin="0,40,0,0">
+            <StackLayout Margin="0,40,0,0">
                 <Image
-                        Aspect="AspectFit"
-                        HeightRequest="300"
-                        Source="store"
-                        WidthRequest="100" />
+                    Aspect="AspectFit"
+                    HeightRequest="300"
+                    Source="store"
+                    WidthRequest="100" />
             </StackLayout>
 
-            <StackLayout
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand">
-                <Label
-                    HorizontalOptions="CenterAndExpand"
-                    Text="By Jorge Loor 2023" />
-                <Label
-                    HorizontalOptions="CenterAndExpand"
-                    Text="{Binding Version}" />
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label HorizontalOptions="CenterAndExpand" Text="By Jorge Loor 2023" />
+                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Version}" />
                 <FlexLayout
-                        HeightRequest="50"
-                        VerticalOptions="Center"
-                        WidthRequest="0">
+                    HeightRequest="50"
+                    VerticalOptions="Center"
+                    WidthRequest="0">
                     <ImageButton
-                            Margin="0,2,10,0"
-                            Aspect="AspectFit"
-                            BackgroundColor="Transparent"
-                            Command="{Binding btnGitHub}"
-                            HeightRequest="30"
-                            Source="github"
-                            WidthRequest="30" />
+                        Margin="0,2,10,0"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        Command="{Binding btnGitHub}"
+                        HeightRequest="30"
+                        Source="github"
+                        WidthRequest="30" />
                     <ImageButton
-                            Margin="0,2,10,0"
-                            Aspect="AspectFit"
-                            BackgroundColor="Transparent"
-                            Command="{Binding btnInstagram}"
-                            HeightRequest="30"
-                            Source="instagram"
-                            WidthRequest="30" />
+                        Margin="0,2,10,0"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        Command="{Binding btnInstagram}"
+                        HeightRequest="30"
+                        Source="instagram"
+                        WidthRequest="30" />
                     <ImageButton
-                            Margin="0,2,10,0"
-                            Aspect="AspectFit"
-                            BackgroundColor="Transparent"
-                            Command="{Binding btnTwitter}"
-                            HeightRequest="30"
-                            Source="twitter"
-                            WidthRequest="30" />
+                        Margin="0,2,10,0"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        Command="{Binding btnTwitter}"
+                        HeightRequest="30"
+                        Source="twitter"
+                        WidthRequest="30" />
                     <ImageButton
-                            Margin="0,2,10,0"
-                            Aspect="AspectFit"
-                            BackgroundColor="Transparent"
-                            Command="{Binding btnWeb}"
-                            HeightRequest="30"
-                            Source="web"
-                            WidthRequest="30" />
+                        Margin="0,2,10,0"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        Command="{Binding btnWeb}"
+                        HeightRequest="30"
+                        Source="web"
+                        WidthRequest="30" />
                     <ImageButton
-                            Margin="0,2,10,0"
-                            Aspect="AspectFit"
-                            BackgroundColor="Transparent"
-                            Command="{Binding btnLinkedin}"
-                            HeightRequest="30"
-                            Source="linkedin"
-                            WidthRequest="30" />
+                        Margin="0,2,10,0"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        Command="{Binding btnLinkedin}"
+                        HeightRequest="30"
+                        Source="linkedin"
+                        WidthRequest="30" />
                 </FlexLayout>
             </StackLayout>
         </StackLayout>

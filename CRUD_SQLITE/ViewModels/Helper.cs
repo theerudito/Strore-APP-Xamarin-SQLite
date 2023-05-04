@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     internal class Helper : BaseViewModel
     {

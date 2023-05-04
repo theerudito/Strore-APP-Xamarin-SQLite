@@ -2,7 +2,7 @@
 using System.IO;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     public static class ConvertImage
     {

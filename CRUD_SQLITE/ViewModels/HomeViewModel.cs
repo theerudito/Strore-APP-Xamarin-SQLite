@@ -1,11 +1,11 @@
-﻿using CRUD_SQLITE.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Context;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {

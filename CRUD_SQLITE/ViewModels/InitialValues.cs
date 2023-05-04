@@ -1,7 +1,7 @@
-﻿using CRUD_SQLITE.Context;
-using CRUD_SQLITE.Models;
+﻿using MyStore.Context;
+using MyStore.Models;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     public static class InitialValues
     {

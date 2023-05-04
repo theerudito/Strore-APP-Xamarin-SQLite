@@ -1,7 +1,7 @@
-﻿using CRUD_SQLITE.Models;
+﻿using MyStore.Models;
 using System.Threading.Tasks;
 
-namespace CRUD_SQLITE.Services
+namespace MyStore.Services
 {
     internal interface ICompany
     {

@@ -1,10 +1,10 @@
-﻿using CRUD_SQLITE.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Models;
 using System;
 using System.IO;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.Context
+namespace MyStore.Context
 {
     public class DB_Context : DbContext
     {

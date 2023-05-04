@@ -1,13 +1,13 @@
-﻿using CRUD_SQLITE.Context;
-using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Views;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Context;
+using MyStore.Models;
+using MyStore.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     internal class AddClientViewModel : BaseViewModel
     {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.Models
+namespace MyStore.Models
 {
     public class MProduct
     {

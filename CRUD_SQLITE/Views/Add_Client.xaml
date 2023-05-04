@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="CRUD_SQLITE.Views.Add_Client"
+    x:Class="MyStore.Views.Add_Client"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Add Clients">
@@ -9,107 +9,107 @@
         <StackLayout>
 
             <Image
-                    Margin="0"
-                    Source="avatar.png"
-                    WidthRequest="100" />
+                Margin="0"
+                Source="avatar.png"
+                WidthRequest="100" />
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Numeric"
-                        Placeholder="CI"
-                        Text="{Binding TextDNI}" />
+                    HeightRequest="70"
+                    Keyboard="Numeric"
+                    Placeholder="CI"
+                    Text="{Binding TextDNI}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Text"
-                        Placeholder="First Name"
-                        Text="{Binding TextFirstName}" />
+                    HeightRequest="70"
+                    Keyboard="Text"
+                    Placeholder="First Name"
+                    Text="{Binding TextFirstName}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Text"
-                        Placeholder="Last Name"
-                        Text="{Binding TextLastName}" />
+                    HeightRequest="70"
+                    Keyboard="Text"
+                    Placeholder="Last Name"
+                    Text="{Binding TextLastName}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Text"
-                        Placeholder="Direction"
-                        Text="{Binding TextDirection}" />
+                    HeightRequest="70"
+                    Keyboard="Text"
+                    Placeholder="Direction"
+                    Text="{Binding TextDirection}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Numeric"
-                        Placeholder="Phone"
-                        Text="{Binding TextPhone}" />
+                    HeightRequest="70"
+                    Keyboard="Numeric"
+                    Placeholder="Phone"
+                    Text="{Binding TextPhone}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Email"
-                        Placeholder="Email"
-                        Text="{Binding TextEmail}" />
+                    HeightRequest="70"
+                    Keyboard="Email"
+                    Placeholder="Email"
+                    Text="{Binding TextEmail}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Text"
-                        Placeholder="City"
-                        Text="{Binding TextCity}" />
+                    HeightRequest="70"
+                    Keyboard="Text"
+                    Placeholder="City"
+                    Text="{Binding TextCity}" />
             </Frame>
             <Button
-                    Margin="20"
-                    Command="{Binding btnSaveClient}"
-                    CornerRadius="10"
-                    HeightRequest="50"
-                    Text="{Binding Save}"
-                    WidthRequest="80" />
+                Margin="20"
+                Command="{Binding btnSaveClient}"
+                CornerRadius="10"
+                HeightRequest="50"
+                Text="{Binding Save}"
+                WidthRequest="80" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

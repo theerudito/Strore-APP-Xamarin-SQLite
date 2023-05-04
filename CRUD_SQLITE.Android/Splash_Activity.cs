@@ -3,8 +3,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 
-
-namespace CRUD_SQLITE.Droid
+namespace MyStore.Droid
 {
     [Activity(Label = "YOUR   STORE", Theme = "@style/SplashTheme", MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize)]
     public class Splash_Activity : Activity

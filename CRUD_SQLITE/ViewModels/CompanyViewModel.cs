@@ -1,13 +1,13 @@
-﻿using CRUD_SQLITE.Context;
-using CRUD_SQLITE.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Context;
+using MyStore.Models;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     public class CompanyViewModel : BaseViewModel
     {

@@ -1,102 +1,100 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="CRUD_SQLITE.Views.Add_Product"
+    x:Class="MyStore.Views.Add_Product"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Add Products">
     <ContentPage.Content>
         <StackLayout>
             <Image
-                    Margin="10"
-                    Aspect="AspectFit"
-                    BackgroundColor="Transparent"
-                    Source="{Binding ImageProduct}"
-                    HeightRequest="100"
-                    WidthRequest="100" />
-            <Button
-                Command="{Binding btnOpenGalery}"
-                Text="UPLOAD IMAGE" />
+                Margin="10"
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                HeightRequest="100"
+                Source="{Binding ImageProduct}"
+                WidthRequest="100" />
+            <Button Command="{Binding btnOpenGalery}" Text="UPLOAD IMAGE" />
 
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Placeholder="Name"
-                        Text="{Binding TextName}" />
+                    HeightRequest="70"
+                    Placeholder="Name"
+                    Text="{Binding TextName}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Numeric"
-                        Placeholder="Code"
-                        Text="{Binding TextCode}" />
+                    HeightRequest="70"
+                    Keyboard="Numeric"
+                    Placeholder="Code"
+                    Text="{Binding TextCode}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Placeholder="Brand"
-                        Text="{Binding TextBrand}" />
+                    HeightRequest="70"
+                    Placeholder="Brand"
+                    Text="{Binding TextBrand}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Placeholder="Description"
-                        Text="{Binding TextDescription}" />
+                    HeightRequest="70"
+                    Placeholder="Description"
+                    Text="{Binding TextDescription}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Numeric"
-                        Placeholder="Price"
-                        Text="{Binding TextPrice}" />
+                    HeightRequest="70"
+                    Keyboard="Numeric"
+                    Placeholder="Price"
+                    Text="{Binding TextPrice}" />
             </Frame>
             <Frame
-                    Margin="10,5"
-                    Padding="0,-10,0,-10"
-                    BackgroundColor="AliceBlue"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    IsClippedToBounds="True">
+                Margin="10,5"
+                Padding="0,-10,0,-10"
+                BackgroundColor="AliceBlue"
+                CornerRadius="10"
+                HasShadow="True"
+                IsClippedToBounds="True">
                 <Entry
-                        HeightRequest="70"
-                        Keyboard="Numeric"
-                        Placeholder="Quantity"
-                        Text="{Binding TextQuantity}" />
+                    HeightRequest="70"
+                    Keyboard="Numeric"
+                    Placeholder="Quantity"
+                    Text="{Binding TextQuantity}" />
             </Frame>
             <Button
-                    Margin="20"
-                    Command="{Binding btnCreateProduct}"
-                    CornerRadius="10"
-                    Text="{Binding Save}" />
+                Margin="20"
+                Command="{Binding btnCreateProduct}"
+                CornerRadius="10"
+                Text="{Binding Save}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

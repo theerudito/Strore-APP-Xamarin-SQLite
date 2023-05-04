@@ -149,9 +149,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\CRUD_SQLITE\CRUD_SQLITE.csproj">
+    <ProjectReference Include="..\CRUD_SQLITE\MyStore.csproj">
       <Project>{BA90234C-88EC-49B4-B74D-950E78337C54}</Project>
-      <Name>CRUD_SQLITE</Name>
+      <Name>MyStore</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

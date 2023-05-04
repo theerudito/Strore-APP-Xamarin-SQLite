@@ -1,6 +1,6 @@
-﻿using CRUD_SQLITE.Context;
-using CRUD_SQLITE.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Context;
+using MyStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
@@ -28,31 +28,30 @@ namespace CRUD_SQLITE.ViewModels
             Total_Cart();
 
             Task.Run(async () => await getClientFinal());
-
-            var pro2 = new MProduct
-            {
-                Quantity = 10,
-                NameProduct = "Cola",
-                P_Unitary = 2.5f,
-                P_Total = 10 * 2.5f,
-            };
-
-            _myCart.Add(pro2);
-
-            List_ProductsCart = new ObservableCollection<MProduct>(_myCart);
         }
 
         public CartViewModel(MProduct product)
         {
-            //_myCart.Add(product);
+            IdProduct = product.IdProduct;
 
-            var pro1 = new MProduct
+            if (IdProduct == product.IdProduct)
             {
-                Quantity = product.Quantity,
-                NameProduct = product.NameProduct,
-                P_Unitary = product.P_Unitary,
-                P_Total = product.Quantity * product.P_Unitary,
-            };
+                Cant = +1;
+
+                var add = new MCart
+                {
+                    IdCart = 1,
+                    IdClient = IdClient,
+                    IdProduct = product.IdProduct,
+                };
+
+                _dbContext.Add(add);
+                _dbContext.SaveChanges();
+            }
+
+            var query = _dbContext.Cart.Where(c => c.IdCart == 1).Join(_dbContext.Cart);
+
+            List_ProductsCart = new ObservableCollection<MProduct>(_myCart);
         }
 
         #endregion CONSTRUCTORS
@@ -251,14 +250,14 @@ namespace CRUD_SQLITE.ViewModels
 
         public void Get_Data_Product(MProduct product)
         {
-            var newProduct = new MProduct
-            {
-                Quantity = product.Quantity,
-                NameProduct = product.NameProduct,
-                P_Unitary = product.P_Unitary,
-                P_Total = product.Quantity * product.P_Unitary,
-            };
-            _myCart.Add(newProduct);
+            //var newProduct = new MProduct
+            //{
+            //    Quantity = product.Quantity,
+            //    NameProduct = product.NameProduct,
+            //    P_Unitary = product.P_Unitary,
+            //    P_Total = product.Quantity * product.P_Unitary,
+            //};
+            //_myCart.Add(newProduct);
         }
 
         public async Task getClientFinal()

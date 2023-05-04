@@ -7,8 +7,8 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CRUD_SQLITE.Droid</RootNamespace>
-    <AssemblyName>CRUD_SQLITE.Android</AssemblyName>
+    <RootNamespace>MyStore.Droid</RootNamespace>
+    <AssemblyName>MyStore.Android</AssemblyName>
     <Deterministic>True</Deterministic>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -136,9 +136,9 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CRUD_SQLITE\CRUD_SQLITE.csproj">
+    <ProjectReference Include="..\CRUD_SQLITE\MyStore.csproj">
       <Project>{BA90234C-88EC-49B4-B74D-950E78337C54}</Project>
-      <Name>CRUD_SQLITE</Name>
+      <Name>MyStore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

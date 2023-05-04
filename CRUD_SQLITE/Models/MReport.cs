@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CRUD_SQLITE.Models
+namespace MyStore.Models
 {
     public class MReport
     {

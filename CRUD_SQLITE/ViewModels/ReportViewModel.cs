@@ -1,7 +1,7 @@
-﻿using CRUD_SQLITE.Context;
-using CRUD_SQLITE.Models;
-using CRUD_SQLITE.Views;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Context;
+using MyStore.Models;
+using MyStore.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     public class ReportViewModel : BaseViewModel
     {
-        private DB.SQLite_Config connection = new DB.SQLite_Config();
         private DB_Context _dbContext = new DB_Context();
+
         public Command ReloadReports { get; }
 
         private string _searchTextReport;

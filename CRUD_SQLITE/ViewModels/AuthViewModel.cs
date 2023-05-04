@@ -1,12 +1,12 @@
-﻿using CRUD_SQLITE.Context;
-using CRUD_SQLITE.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MyStore.Context;
+using MyStore.Models;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace CRUD_SQLITE.ViewModels
+namespace MyStore.ViewModels
 {
     internal class AuthViewModel : BaseViewModel
     {
@@ -199,7 +199,7 @@ namespace CRUD_SQLITE.ViewModels
         public ICommand btnShowRegisterCommand => new Command(show_Login);
         public ICommand btnRegisterCommand => new Command(async () => await Register());
         public ICommand btnShowLoginCommand => new Command(show_Register);
-        #endregion COMMANDS
 
+        #endregion COMMANDS
     }
 }
