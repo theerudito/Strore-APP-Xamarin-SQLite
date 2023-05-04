@@ -49,7 +49,7 @@ namespace MyStore.ViewModels
                 _dbContext.SaveChanges();
             }
 
-            var query = _dbContext.Cart.Where(c => c.IdCart == 1).Join(_dbContext.Cart);
+            var query = _dbContext.Cart.Where(c => c.IdCart == 1);
 
             List_ProductsCart = new ObservableCollection<MProduct>(_myCart);
         }
