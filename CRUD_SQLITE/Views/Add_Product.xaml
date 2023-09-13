@@ -25,7 +25,9 @@
                 <Entry
                     HeightRequest="70"
                     Placeholder="Name"
-                    Text="{Binding TextName}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextName}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -38,7 +40,9 @@
                     HeightRequest="70"
                     Keyboard="Numeric"
                     Placeholder="Code"
-                    Text="{Binding TextCode}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextCode}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -50,7 +54,9 @@
                 <Entry
                     HeightRequest="70"
                     Placeholder="Brand"
-                    Text="{Binding TextBrand}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextBrand}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -62,7 +68,9 @@
                 <Entry
                     HeightRequest="70"
                     Placeholder="Description"
-                    Text="{Binding TextDescription}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextDescription}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -75,7 +83,9 @@
                     HeightRequest="70"
                     Keyboard="Numeric"
                     Placeholder="Price"
-                    Text="{Binding TextPrice}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextPrice}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -88,7 +98,9 @@
                     HeightRequest="70"
                     Keyboard="Numeric"
                     Placeholder="Quantity"
-                    Text="{Binding TextQuantity}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextQuantity}"
+                    TextColor="Black" />
             </Frame>
             <Button
                 Margin="20"

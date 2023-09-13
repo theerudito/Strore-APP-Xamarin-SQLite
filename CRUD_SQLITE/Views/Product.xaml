@@ -122,6 +122,7 @@
                                                 Grid.Column="0"
                                                 Margin="10"
                                                 Text="{Binding Quantity}"
+                                                TextColor="Black"
                                                 WidthRequest="100" />
 
                                             <Label
@@ -130,6 +131,7 @@
                                                 Margin="10"
                                                 MaxLines="1"
                                                 Text="{Binding NameProduct}"
+                                                TextColor="Black"
                                                 WidthRequest="100" />
                                             <Label
                                                 Grid.Row="0"
@@ -137,6 +139,7 @@
                                                 Margin="10"
                                                 MaxLines="1"
                                                 Text="{Binding Brand}"
+                                                TextColor="Black"
                                                 WidthRequest="100" />
                                             <Label
                                                 Grid.Row="0"
@@ -144,6 +147,7 @@
                                                 Margin="10"
                                                 MaxLines="1"
                                                 Text="{Binding Description}"
+                                                TextColor="Black"
                                                 WidthRequest="100" />
                                             <Label
                                                 Grid.Row="0"
@@ -151,6 +155,7 @@
                                                 Margin="10"
                                                 MaxLines="1"
                                                 Text="{Binding P_Unitary}"
+                                                TextColor="Black"
                                                 WidthRequest="100" />
 
                                             <FlexLayout

@@ -327,8 +327,10 @@
                             HeightRequest="60"
                             Keyboard="Numeric"
                             Placeholder="DNI"
+                            PlaceholderColor="silver"
                             SearchCommand="{Binding btnSearchDNICommand}"
-                            Text="{Binding DNI}" />
+                            Text="{Binding DNI}"
+                            TextColor="silver" />
                     </Frame>
                     <Grid>
                         <Frame
@@ -343,7 +345,9 @@
                             <Entry
                                 HeightRequest="70"
                                 Placeholder="FirstName"
-                                Text="{Binding FirstName}" />
+                                PlaceholderColor="silver"
+                                Text="{Binding FirstName}"
+                                TextColor="Black" />
                         </Frame>
                         <Frame
                             Grid.Row="0"
@@ -357,7 +361,9 @@
                             <Entry
                                 HeightRequest="70"
                                 Placeholder="LastName"
-                                Text="{Binding LastName}" />
+                                PlaceholderColor="silver"
+                                Text="{Binding LastName}"
+                                TextColor="Black" />
                         </Frame>
                         <Frame
                             Grid.Row="1"
@@ -371,7 +377,9 @@
                             <Entry
                                 HeightRequest="70"
                                 Placeholder="Email"
-                                Text="{Binding Email}" />
+                                PlaceholderColor="silver"
+                                Text="{Binding Email}"
+                                TextColor="Black" />
                         </Frame>
                         <Frame
                             Grid.Row="1"
@@ -385,7 +393,9 @@
                             <Entry
                                 HeightRequest="70"
                                 Placeholder="Phone"
-                                Text="{Binding Phone}" />
+                                PlaceholderColor="silver"
+                                Text="{Binding Phone}"
+                                TextColor="Black" />
                         </Frame>
                         <Frame
                             Grid.Row="2"
@@ -399,7 +409,9 @@
                             <Entry
                                 HeightRequest="70"
                                 Placeholder="Direction"
-                                Text="{Binding Direction}" />
+                                PlaceholderColor="silver"
+                                Text="{Binding Direction}"
+                                TextColor="Black" />
                         </Frame>
                         <Frame
                             Grid.Row="2"
@@ -413,7 +425,9 @@
                             <Entry
                                 HeightRequest="70"
                                 Placeholder="City"
-                                Text="{Binding City}" />
+                                PlaceholderColor="silver"
+                                Text="{Binding City}"
+                                TextColor="Black" />
                         </Frame>
                     </Grid>
                 </StackLayout>

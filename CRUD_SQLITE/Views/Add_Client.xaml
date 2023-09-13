@@ -23,7 +23,9 @@
                     HeightRequest="70"
                     Keyboard="Numeric"
                     Placeholder="CI"
-                    Text="{Binding TextDNI}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextDNI}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -36,7 +38,9 @@
                     HeightRequest="70"
                     Keyboard="Text"
                     Placeholder="First Name"
-                    Text="{Binding TextFirstName}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextFirstName}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -49,7 +53,9 @@
                     HeightRequest="70"
                     Keyboard="Text"
                     Placeholder="Last Name"
-                    Text="{Binding TextLastName}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextLastName}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -62,7 +68,9 @@
                     HeightRequest="70"
                     Keyboard="Text"
                     Placeholder="Direction"
-                    Text="{Binding TextDirection}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextDirection}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -75,7 +83,9 @@
                     HeightRequest="70"
                     Keyboard="Numeric"
                     Placeholder="Phone"
-                    Text="{Binding TextPhone}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextPhone}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -88,7 +98,9 @@
                     HeightRequest="70"
                     Keyboard="Email"
                     Placeholder="Email"
-                    Text="{Binding TextEmail}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextEmail}"
+                    TextColor="Black" />
             </Frame>
             <Frame
                 Margin="10,5"
@@ -101,7 +113,9 @@
                     HeightRequest="70"
                     Keyboard="Text"
                     Placeholder="City"
-                    Text="{Binding TextCity}" />
+                    PlaceholderColor="silver"
+                    Text="{Binding TextCity}"
+                    TextColor="Black" />
             </Frame>
             <Button
                 Margin="20"

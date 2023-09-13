@@ -27,7 +27,9 @@
                         <Entry
                             HeightRequest="70"
                             Placeholder="Email"
-                            Text="{Binding Email}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Email}"
+                            TextColor="Black" />
                     </Frame>
                     <Frame
                         Margin="20,5"
@@ -41,7 +43,9 @@
                             IsPassword="True"
                             Keyboard="Chat"
                             Placeholder="Password"
-                            Text="{Binding Password}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Password}"
+                            TextColor="Black" />
                     </Frame>
                     <Button
                         Margin="20"
@@ -89,7 +93,9 @@
                         <Entry
                             HeightRequest="70"
                             Placeholder="Name"
-                            Text="{Binding User}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding User}"
+                            TextColor="Black" />
                     </Frame>
                     <Frame
                         Margin="20"
@@ -101,7 +107,9 @@
                         <Entry
                             HeightRequest="70"
                             Placeholder="Email"
-                            Text="{Binding Email}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Email}"
+                            TextColor="Black" />
                     </Frame>
                     <Frame
                         Margin="20"
@@ -115,7 +123,9 @@
                             IsPassword="True"
                             Keyboard="Chat"
                             Placeholder="Password"
-                            Text="{Binding Password}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Password}"
+                            TextColor="Black" />
                     </Frame>
                     <Button
                         Margin="20"

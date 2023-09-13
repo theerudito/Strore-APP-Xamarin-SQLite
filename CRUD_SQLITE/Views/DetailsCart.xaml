@@ -25,57 +25,69 @@
                         Grid.Column="0"
                         Margin="5,0,0,0"
                         MaxLines="1"
-                        Text="Client:" />
+                        Text="Client:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        Text="{Binding myReport.FirstName}"
+                        Text="Jorge"
+                        TextColor="Black"
                         WidthRequest="100" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="2"
-                        Text="RUC:" />
+                        Text="RUC:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="3"
-                        Text="{Binding myReport.DNI}" />
+                        Text="1721457495001"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
                         Margin="5,0,0,0"
                         MaxLines="1"
-                        Text="Direction:" />
+                        Text="Direction:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="Santo Domingo" />
+                        Text="Santo Domingo"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="2"
-                        Text="Email:" />
+                        Text="Email:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="3"
-                        Text="erudito.tv@gmail.com" />
+                        Text="erudito.tv@gmail.com"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
                         Margin="5,0,0,0"
                         MaxLines="1"
-                        Text="Phone:" />
+                        Text="Phone:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="1"
-                        Text="0960806054" />
+                        Text="0960806054"
+                        TextColor="Black" />
 
                     <Label
                         Grid.Row="2"
                         Grid.Column="2"
-                        Text="Fecha:" />
+                        Text="Fecha:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="3"
-                        Text="20/01/2023" />
+                        Text="20/01/2023"
+                        TextColor="Black" />
                 </Grid>
                 <Grid ColumnDefinitions="*,100,*,*,*" RowDefinitions="20">
                     <Label
@@ -83,29 +95,35 @@
                         Grid.Column="0"
                         Margin="5,0,0,0"
                         MaxLines="1"
-                        Text="#Docum:" />
+                        Text="#Docum:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        Text="1234567890" />
+                        Text="1234567890"
+                        TextColor="Black" />
 
                     <Label
                         Grid.Row="0"
                         Grid.Column="2"
-                        Text="Serie1:" />
+                        Text="Serie1:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="3"
-                        Text="001" />
+                        Text="001"
+                        TextColor="Black" />
 
                     <Label
                         Grid.Row="0"
                         Grid.Column="4"
-                        Text="Serie2:" />
+                        Text="Serie2:"
+                        TextColor="Black" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="5"
-                        Text="002" />
+                        Text="002"
+                        TextColor="Black" />
                 </Grid>
             </StackLayout>
 

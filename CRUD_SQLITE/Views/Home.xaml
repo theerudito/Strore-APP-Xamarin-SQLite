@@ -17,11 +17,13 @@
                     FontSize="20"
                     HorizontalOptions="CenterAndExpand"
                     Text="{Binding Name}"
+                    TextColor="Black"
                     VerticalOptions="CenterAndExpand" />
                 <Label
                     FontSize="14"
                     HorizontalOptions="CenterAndExpand"
                     Text="{Binding Owner}"
+                    TextColor="Black"
                     VerticalOptions="CenterAndExpand" />
             </StackLayout>
 
@@ -34,8 +36,14 @@
             </StackLayout>
 
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                <Label HorizontalOptions="CenterAndExpand" Text="By Jorge Loor 2023" />
-                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Version}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="By Jorge Loor 2023"
+                    TextColor="Black" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Version}"
+                    TextColor="Black" />
                 <FlexLayout
                     HeightRequest="50"
                     VerticalOptions="Center"

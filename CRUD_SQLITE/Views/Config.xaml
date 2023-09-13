@@ -13,7 +13,8 @@
                     Margin="20"
                     FontSize="30"
                     HorizontalOptions="Center"
-                    Text="CONFIG COMPANY" />
+                    Text="CONFIG COMPANY"
+                    TextColor="black" />
                 <Frame
                     Margin="10,5"
                     Padding="0,-10,0,-10"
@@ -24,7 +25,9 @@
                     <Entry
                         HeightRequest="60"
                         Placeholder="Name Company"
-                        Text="{Binding Name}" />
+                        PlaceholderColor="silver"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
                 </Frame>
                 <Frame
                     Margin="10,5"
@@ -36,7 +39,9 @@
                     <Entry
                         HeightRequest="60"
                         Placeholder="Propietary"
-                        Text="{Binding Owner}" />
+                        PlaceholderColor="silver"
+                        Text="{Binding Owner}"
+                        TextColor="Black" />
                 </Frame>
                 <Frame
                     Margin="10,5"
@@ -48,7 +53,9 @@
                     <Entry
                         HeightRequest="60"
                         Placeholder="Direction"
-                        Text="{Binding Direction}" />
+                        PlaceholderColor="silver"
+                        Text="{Binding Direction}"
+                        TextColor="Black" />
                 </Frame>
                 <Frame
                     Margin="10,5"
@@ -61,7 +68,9 @@
                         HeightRequest="60"
                         Keyboard="Email"
                         Placeholder="Email"
-                        Text="{Binding Email}" />
+                        PlaceholderColor="silver"
+                        Text="{Binding Email}"
+                        TextColor="Black" />
                 </Frame>
                 <Grid ColumnDefinitions="*,*" HorizontalOptions="Center">
                     <Frame
@@ -76,7 +85,9 @@
                             HeightRequest="60"
                             Keyboard="Numeric"
                             Placeholder="RUC"
-                            Text="{Binding RUC}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding RUC}"
+                            TextColor="Black" />
                     </Frame>
                     <Frame
                         Grid.Column="1"
@@ -90,7 +101,9 @@
                             HeightRequest="60"
                             Keyboard="Numeric"
                             Placeholder="Phone"
-                            Text="{Binding Phone}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Phone}"
+                            TextColor="Black" />
                     </Frame>
                 </Grid>
 
@@ -107,7 +120,9 @@
                             HeightRequest="60"
                             Keyboard="Numeric"
                             Placeholder="#Document"
-                            Text="{Binding NumDocument}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding NumDocument}"
+                            TextColor="Black" />
                     </Frame>
                     <Frame
                         Grid.Column="1"
@@ -121,7 +136,9 @@
                             HeightRequest="60"
                             Keyboard="Numeric"
                             Placeholder="Serie1"
-                            Text="{Binding Serie1}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Serie1}"
+                            TextColor="Black" />
                     </Frame>
                     <Frame
                         Grid.Column="2"
@@ -135,7 +152,9 @@
                             HeightRequest="60"
                             Keyboard="Numeric"
                             Placeholder="Serie2"
-                            Text="{Binding Serie2}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Serie2}"
+                            TextColor="Black" />
                     </Frame>
                 </Grid>
                 <Grid ColumnDefinitions="180,180" HorizontalOptions="Center">
@@ -151,7 +170,9 @@
                             Margin="20,0,0,0"
                             HeightRequest="60"
                             ItemsSource="{Binding DB}"
-                            SelectedItem="{Binding SelectDB}">
+                            SelectedItem="{Binding SelectDB}"
+                            TextColor="Black"
+                            TitleColor="Silver">
                             <Picker.Items>
                                 <x:String>Firebase</x:String>
                                 <x:String>SQLite</x:String>
@@ -171,7 +192,9 @@
                             HeightRequest="60"
                             Keyboard="Text"
                             Placeholder="Document"
-                            Text="{Binding Document}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding Document}"
+                            TextColor="Black" />
                     </Frame>
                 </Grid>
                 <Grid ColumnDefinitions="180,180" HorizontalOptions="Center">
@@ -187,7 +210,9 @@
                             Margin="20,0,0,0"
                             HeightRequest="60"
                             ItemsSource="{Binding Iva}"
-                            SelectedItem="{Binding SelectIva}">
+                            SelectedItem="{Binding SelectIva}"
+                            TextColor="Black"
+                            TitleColor="silver">
                             <Picker.Items>
                                 <x:String>0.10</x:String>
                                 <x:String>0.11</x:String>
@@ -214,7 +239,9 @@
                             Margin="20,0,0,0"
                             HeightRequest="60"
                             ItemsSource="{Binding Coin}"
-                            SelectedItem="{Binding SelectCoin}">
+                            SelectedItem="{Binding SelectCoin}"
+                            TextColor="Black"
+                            TitleColor="silver">
                             <Picker.Items>
                                 <x:String>USD</x:String>
                                 <x:String>PESO</x:String>
@@ -252,7 +279,9 @@
                             IsPassword="True"
                             Keyboard="Numeric"
                             Placeholder="CODE"
-                            Text="{Binding CODE}" />
+                            PlaceholderColor="silver"
+                            Text="{Binding CODE}"
+                            TextColor="Black" />
                     </Frame>
                 </Grid>
                 <Button
